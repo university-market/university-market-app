@@ -1,5 +1,5 @@
 # :computer: university-market-app
-Projeto front-end da aplicação University Market.
+Projeto **front-end** da aplicação University Market.
 
 ## Conteúdo
 
@@ -12,6 +12,7 @@ Projeto front-end da aplicação University Market.
 
 ## :pushpin: Sobre
 
+Este repositório refere-se à camada de **front-end** do projeto University Market. <br>
 Leia mais sobre este projeto no [repositório de apresentação](https://github.com/university-market/university-market).
 
 <div id='requirements'/> &nbsp;
