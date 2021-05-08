@@ -80,7 +80,7 @@ ng serve --port 4200
 
 Esta camada de front-end é desenvolvida sobre as seguintes tecnologias:
 
-![Angular](https://angular.io/assets/images/logos/angular/logo-nav@2x.png)
+![angular-logo](assets/technologies/logo-angular-io.png)
 
 - [x] Framework Angular 
 - [x] TypeScript - linguagem utilizada pelo framework
