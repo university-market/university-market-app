@@ -12,7 +12,7 @@ Projeto front-end da aplicação University Market.
 
 ## :pushpin: Sobre
 
-Leia mais sobre este projeto no [repositório de apresentação]().
+Leia mais sobre este projeto no [repositório de apresentação](https://github.com/university-market/university-market).
 
 <div id='requirements'/> &nbsp;
 
