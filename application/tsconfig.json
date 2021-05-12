@@ -5,6 +5,8 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "strict": true,
+    "strictPropertyInitialization": false,
+    "strictTemplates": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
