@@ -1,0 +1,11 @@
+@import "src/styles/colors.scss";
+
+.header-toolbar {
+
+    background: $um-default-primary-bg;
+    color: $um-default-primary-text;
+
+    &__spacer {
+        flex: 1 1 auto;
+    }
+}
