@@ -1,9 +1,11 @@
 @import "src/styles/colors.scss";
+@import "src/styles/template.scss";
 
 .header-toolbar {
 
     background: $um-default-primary-bg;
     color: $um-default-primary-text;
+    height: $header-height;
 
     &__spacer {
         flex: 1 1 auto;

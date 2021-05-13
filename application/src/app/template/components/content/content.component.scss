@@ -1,0 +1,10 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+.app-container {
+
+    background: $um-background;
+    width: 100%;
+    height: #{$content-height};
+    box-sizing: content-box;
+}
