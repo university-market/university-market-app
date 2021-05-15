@@ -1,0 +1,76 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+
+.mat-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    width: 400px;
+
+    &__title{
+        font-size: 3em;
+        font-weight: 300;
+        padding: 32px;
+    }
+
+    &__form{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 90%;
+
+      &__input{
+        padding: 10px 0px 0px 0px;
+        width: 100%;
+    }
+
+    &__buttons { 
+      margin: 10px;
+      width: 100%;
+      background-color: $um-default-primary-bg;
+    }
+      
+    }
+
+    &__actions{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 90%;
+
+      
+
+      &__span{
+
+        margin: 10px;
+
+      }
+      &__a{
+        text-decoration: none;
+        color: $um-default-primary-bg;
+        
+      }
+
+      &__a:hover{
+        cursor: pointer;
+      }
+      
+      &__hr{
+        width: 100%;
+        opacity: 50%;
+      }
+    }
+}
+
+.hr { 
+    font-weight: bold;
+    width: 90%;
+    opacity: 40%;
+}
