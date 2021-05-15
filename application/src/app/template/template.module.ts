@@ -7,22 +7,31 @@ import { DesignModule } from '../design/design.module';
 import { TemplateComponent } from './template.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ContentComponent } from './components/content/content.component';
+import { SidebarComponent } from './components/header/sidebar/sidebar.component';
+import { TemplateService } from './template.service';
+import { TemplateRoutingModule } from './template-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     DesignModule,
+    TemplateRoutingModule,
     RouterModule
   ],
   declarations: [
     TemplateComponent,
     HeaderComponent,
     ContentComponent,
+    SidebarComponent
   ],
   exports: [
     TemplateComponent,
     HeaderComponent,
     ContentComponent,
+    SidebarComponent
+  ],
+  providers: [
+    TemplateService
   ]
 })
 export class TemplateModule { }
