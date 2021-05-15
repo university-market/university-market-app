@@ -8,10 +8,11 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {
     path: '',
+    component : AuthComponent,
     children: [
       {
         path : '',
-        component : AuthComponent
+        redirectTo: 'login'
       },
       {
         path : 'login',
