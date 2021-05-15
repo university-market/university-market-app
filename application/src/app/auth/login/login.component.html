@@ -6,7 +6,7 @@
     <form [formGroup]="login" class="mat-card__form">
         <mat-form-field class="mat-card__form__input">
             <mat-label>E-mail</mat-label>
-            <input formControlName="email"  type="email" matInput>
+            <input formControlName="email" type="email" matInput>
             <mat-error *ngIf="login.get('email')?.hasError('email') && !login.get('email')?.hasError('required')">
                 Favor inserir um E-mail válido
             </mat-error>
@@ -17,16 +17,21 @@
         <mat-form-field class="mat-card__form__input">
             <mat-label>Senha</mat-label>
             <input formControlName="password" type="password" matInput>
-            <mat-error *ngIf="login.get('email')?.hasError('required')">
+            <mat-error *ngIf="login.get('password')?.hasError('required')">
                 Senha é <strong>Obrigatória</strong>
             </mat-error>
         </mat-form-field>
+        <button (click)="doLogin()" mat-raised-button color="primary" class="mat-card__form__buttons">
+            login
+        </button>
     </form>
     <mat-card-actions class="mat-card__actions">
-        <button (click)="doLogin()" mat-raised-button color="primary" class="mat-card__actions__buttons">login</button>
-        <a (click)="forgot()" class="mat-card__actions__a">Esqueci minha senha</a>
+        <a (click)="forgot()" class="mat-card__actions__a">
+            Esqueci minha senha
+        </a>
         <hr class="mat-card__actions__hr">
-        <span class="mat-card__actions__span">Novo no University Market? 
+        <span class="mat-card__actions__span">
+            Novo no University Market?
             <a routerLink='/auth/register' class="mat-card__actions__a">
                 Cadastre-se aqui
             </a>
