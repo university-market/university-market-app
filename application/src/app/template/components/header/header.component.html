@@ -1,15 +1,23 @@
-<div>
-  <mat-toolbar color="default" class="header-toolbar">
-    <button mat-icon-button class="header-icon" aria-label="Menu">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>{{ headerTitle }}</span>
-    <span class="header-toolbar__spacer"></span>
-    <button mat-icon-button class="header-icon favorite-icon" aria-label="Favoritos">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="header-icon" aria-label="Compartilhar">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
-</div>
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <!-- Sidebar -->
+  <mat-drawer #drawer [mode]="sidenavOpenMode">I'm a drawer</mat-drawer>
+  <!-- Page content -->
+  <mat-drawer-content>
+    <mat-toolbar color="default" class="header-toolbar">
+      <button mat-icon-button class="header-icon" aria-label="Menu" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{ headerTitle }}</span>
+      <span class="header-toolbar__spacer"></span>
+      <button mat-icon-button class="header-icon favorite-icon" aria-label="Favoritos">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="header-icon" aria-label="Compartilhar">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="container">
+      <ng-content></ng-content>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
