@@ -29,7 +29,7 @@ export class MenuListComponent implements OnInit {
     }, {
       route: 'perfil',
       label: 'Perfil',
-      icon: 'user',
+      icon: 'person',
       value: {
         route: ApplicationRoutesEnum.profile
       }
