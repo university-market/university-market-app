@@ -1,15 +1,24 @@
-<ul class="menu-list__ul">
-  <li class="menu-list__ul__list-item" routerLinkActive="list-item-active" *ngFor="let item of routes">
-    <a 
-      [routerLink]="[item.value.route, item.value.queryParams != null ? '?'+item.value.queryParams : '']" 
-      [title]="item.help != null ? item.help : ''">
-      <mat-icon *ngIf="item.icon != null; else defaultIcon">{{ item.icon }}</mat-icon>
-      <ng-template #defaultIcon>
-        <mat-icon>
-          analytics
+<div class="menu-list">
+  <ul class="menu-list__ul">
+    <li class="menu-list__ul__list-item" 
+      routerLinkActive="list-item-active" *ngFor="let item of routes">
+      <a 
+        [routerLink]="[item.value.route, item.value.queryParams != null ? '?'+item.value.queryParams : '']" 
+        [title]="item.help != null ? item.help : ''"
+        class="menu-list__ul__list-item__a-item"
+        >
+        <mat-icon class="icon" *ngIf="item.icon != null; else defaultIcon">
+          {{ item.icon }}
         </mat-icon>
-      </ng-template>
-      {{ item.label }}
-    </a>
-  </li>
-</ul>
+        <ng-template #defaultIcon>
+          <mat-icon class="icon">
+            analytics
+          </mat-icon>
+        </ng-template>
+        <span>
+          {{ item.label }}
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>

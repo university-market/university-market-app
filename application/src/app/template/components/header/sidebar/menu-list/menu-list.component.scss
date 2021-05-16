@@ -1,0 +1,59 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+.menu-list {
+
+    display: flex;
+    padding: 10px 10px 0 0;
+    width: 300px;
+    max-width: 100%;
+
+    @media screen and (max-width: 400px) {
+        width: 225px;
+    }
+
+    &__ul, ul {
+        display: flex;
+        flex-direction: column;
+        width: 85%;
+        box-sizing: content-box;
+        list-style: none;
+        padding: 0;
+
+        &__list-item {
+
+            display: initial;
+            width: 100%;
+            padding-left: 25px;
+            justify-content: center;
+            border-color: $menu-border-color;
+            border-width: 1px;
+            border-style: solid solid solid none;
+            border-radius: 0 #{$rounded} #{$rounded} 0;
+            transition: ease 0.15s;
+
+            &:hover {
+                background: $menu-background-color;
+            }
+
+            &__a-item, a {
+
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: $menu-item-color-text;
+                padding: 7.5px 0;
+                transition: ease 0.15s;
+
+                .icon {
+                    margin-right: 10px;
+                    color: inherit;
+                }
+                span {
+                    text-transform: uppercase;
+                    color: inherit;
+                }
+            }
+        }
+    }
+}
