@@ -74,3 +74,14 @@
     width: 90%;
     opacity: 40%;
 }
+
+@media screen and (max-width: 560px){
+  .mat-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    width: 90%;
+  }
+}

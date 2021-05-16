@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { RegisterModel } from '../models/register.model';
 
 @Component({
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   register: FormGroup;
 
-  constructor() { }
+  constructor(private snackBar: SnackBarService) { }
 
   ngOnInit(): void {
     this.register = new FormGroup({
@@ -32,11 +33,19 @@ export class RegisterComponent implements OnInit {
       date: this.register.get('date')?.value,
       password: this.register.get('password')?.value,
     }
+    
+    //Validação dos campos de cadastro
+    if(!model.name || !model.email || !model.password || !model.date || !password_validator){
+      this.snackBar.show("Favor preencher todos os campos!",3000,'msg-error');
+      return
+    }
+
     // Validação de senha, verificando se as mesmas são iguais
     if(model.password != password_validator){
-      alert('As senhas não condizem')
+      this.snackBar.show("Senhas divergentes",3000,'msg-error');
+      return
     }else{
-    console.log(model)
+      console.log(model)
     }
   }
 }

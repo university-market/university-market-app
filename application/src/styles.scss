@@ -2,3 +2,25 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.msg-error{
+    background-color: #f65151;
+    color: #ffffff;
+    font-weight: 600;
+}
+.msg-success{
+    background-color: #1fc71f;
+    color: #ffffff;
+    font-weight: 600;
+    button{
+        color: red;
+    }
+}
+.msg-warning{
+    background-color: yellow;
+    color: #000000;
+    font-weight: 600;
+    button{
+        color: red;
+    }
+}
