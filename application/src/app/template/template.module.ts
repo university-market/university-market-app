@@ -10,6 +10,7 @@ import { ContentComponent } from './components/content/content.component';
 import { SidebarComponent } from './components/header/sidebar/sidebar.component';
 import { TemplateService } from './template.service';
 import { TemplateRoutingModule } from './template-routing.module';
+import { MenuListComponent } from './components/header/sidebar/menu-list/menu-list.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { TemplateRoutingModule } from './template-routing.module';
     TemplateComponent,
     HeaderComponent,
     ContentComponent,
-    SidebarComponent
+    SidebarComponent,
+    MenuListComponent
   ],
   exports: [
     TemplateComponent,
