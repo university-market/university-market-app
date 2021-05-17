@@ -1,6 +1,8 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="true">
   <!-- Sidebar -->
-  <mat-drawer #drawer [mode]="sidenavOpenMode">I'm a drawer</mat-drawer>
+  <mat-drawer #drawer [mode]="sidenavOpenMode">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
   <!-- Page content -->
   <mat-drawer-content>
     <mat-toolbar color="default" class="header-toolbar">
