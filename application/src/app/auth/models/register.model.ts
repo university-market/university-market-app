@@ -3,5 +3,4 @@ export interface RegisterModel {
     email: string
     date: string
     password: string
-    
 }
