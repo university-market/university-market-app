@@ -1,9 +1,8 @@
-<mat-grid-list class="grid mat-elevation-z6" [cols]="columns" rowHeight="200px">
-    <mat-grid-tile class="grid__tile" *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
-      class="grid__tile">
-      <div class="grid__tile__div" (click)="teste()" style="background-image: url('{{tile.img}}');" >
-          <a class="grid__tile__div__a" routerLink="">{{tile.text}}</a>
-      </div>
-    </mat-grid-tile>
+<mat-grid-list class="grid mat-elevation-z6" [cols]="columns" rowHeight="150px">
+  <mat-grid-tile class="grid__tile" *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+    class="grid__tile">
+    <div class="grid__tile__div" (click)="courseSearch(tile.id)" style="background-image: url('{{tile.img}}');">
+      <a class="grid__tile__div__a" routerLink="">{{tile.text}}</a>
+    </div>
+  </mat-grid-tile>
 </mat-grid-list>
-

@@ -10,24 +10,19 @@
   
 
   &__tile{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
     &__div{
       display: flex;
       justify-content: center;
       align-items: flex-end;
       background-repeat: no-repeat;
-      filter: grayscale(80%);
       background-size: cover;
       transition: .9s ;
       width: 100%;
       height: 100%;
-      box-shadow: inset 0 0 10vmin 2vmin #5a5a5a80;
+      box-shadow: inset 0 0 10vmin 4vmin #57575780;
 
         &__a{
-          margin: 16px;
+          margin: auto auto 16px 24px;
           width: 100%;
           text-align: left;
           text-decoration: none;
@@ -39,21 +34,16 @@
 
       }
       &__div:hover {
-        filter: none;
         cursor: pointer;
-        a{
-          font-size: 1.8em;
-        }
+        box-shadow: inset 0 0 15vmin 8vmin #5f5f5f80;
+        transform: scale(1.03);
       }
     }
     
 }
-img{
-  background-size: cover;
-}
 
 @media only screen and (max-width: 1000px) {
-  .grid{
+  .content{
     width: 95%;
   }
 }

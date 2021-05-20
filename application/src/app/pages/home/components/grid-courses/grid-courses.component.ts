@@ -1,6 +1,6 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Tile } from '../models/grid-courses.mode';
+import { GridCoursesService } from '../services/grid-courses.service';
 
 @Component({
   selector: 'app-grid-courses',
@@ -9,19 +9,19 @@ import { Tile } from '../models/grid-courses.mode';
 })
 export class GridCoursesComponent implements OnInit {
 
-  tiles: Tile[] = [
-    {text: 'Arquitetura', cols: 1, rows: 1,img:'https://www.caurj.gov.br/wp-content/uploads/2018/12/48370873_1156715337843150_1818609661318791168_o.jpg'},
-    {text: 'Análise e Desenvolvimento', cols: 2, rows: 1,img:'http://flf.edu.br/web/app/uploads/ciencia-da-computacao-principal.jpg'},
-    {text: 'Odontologia', cols: 1, rows: 2, img:'https://blog.unyleya.edu.br/wp-content/uploads/2019/01/264683-ja-pensou-em-comecar-uma-especializacao-em-odontologia-confira-x-areas.jpg'},
-    {text: 'Engenharia Civil', cols: 2, rows: 1,img:'https://thorusengenharia.com.br/wp-content/uploads/2020/08/VENTILACAO_NATURAL_na-arquitetura.jpg'},
-    {text: 'Direito', cols: 1, rows: 1, img:'https://s3.amazonaws.com/cambury-site/wp-content/uploads/2020/07/23153922/direito-1.png'}
-  ];
+  tiles: Tile[];
 
   columns: number = 4;
 
-  constructor() { }
+  constructor(private gridService: GridCoursesService) { }
 
   ngOnInit() {
+
+    this.gridService.onInit().subscribe(tiles => {
+      this.tiles = tiles
+      console.log(tiles)
+    })
+
     window.onresize = () => {
       const width = window.innerWidth;
       this.setColumn(width);
@@ -37,7 +37,7 @@ export class GridCoursesComponent implements OnInit {
     }
   }
 
-  teste(){
-    alert('funcionou');
+  courseSearch(id: number){
+    window.location.assign('http://localhost:3000/post?course_id=' + id)
   }
 }
