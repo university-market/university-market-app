@@ -9,6 +9,9 @@ import { DesignModule } from '../design/design.module';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ForgotService } from './services/forgot.service';
+import { LoginService } from './services/login.service';
+import { RegisterService } from './services/register.service';
 
 
 @NgModule({
@@ -24,6 +27,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent
+  ],
+  providers:[
+    ForgotService,
+    LoginService,
+    RegisterService
   ],
   exports: [
     RouterModule
