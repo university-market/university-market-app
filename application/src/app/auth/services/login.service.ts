@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { LoginModel } from '../models/login.model';
 
