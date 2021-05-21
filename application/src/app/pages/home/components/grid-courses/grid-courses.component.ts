@@ -32,8 +32,8 @@ export class GridCoursesComponent implements OnInit {
     if(width < 1000){
       this.columns = 3;
       this.tiles.forEach(e =>  {
-        e.cols = this.columns
-        e.rows = 1})
+        e.grid_cols = this.columns
+        e.grid_rows = 1})
     }
   }
 

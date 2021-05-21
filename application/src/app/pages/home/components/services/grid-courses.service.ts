@@ -8,12 +8,11 @@ import { Tile } from '../models/grid-courses.mode';
 })
 export class GridCoursesService {
 
-private baseUrl = 'http://localhost:3000/course'
+private baseUrl = 'http://localhost:9090/course/grid'
 
 constructor(private http : HttpClient) { }
 
   onInit(): Observable<Tile[]>{
-    const Url = `${this.baseUrl}?_limit=5"`
     return this.http.get<Tile[]>(this.baseUrl)
   }
 
