@@ -14,5 +14,6 @@ export class ForgotService {
 
   doRecover(forgot : ForgotModel): Observable<ForgotModel> {
     return this.http.post<ForgotModel>(this.baseUrl, forgot)
+    
   }
 }
