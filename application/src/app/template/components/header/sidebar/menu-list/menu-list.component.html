@@ -1,22 +1,47 @@
 <div class="menu-list">
   <ul class="menu-list__ul">
-    <li class="menu-list__ul__list-item" 
-      routerLinkActive="list-item-active" *ngFor="let item of routes">
+    <!-- HOMEPAGE MENU -->
+    <li class="menu-list__ul__list-item">
       <a 
-        [routerLink]="[item.value.route, item.value.queryParams != null ? '?'+item.value.queryParams : '']" 
-        [title]="item.help != null ? item.help : ''"
-        class="menu-list__ul__list-item__a-item"
+        routerLink="/"
+        routerLinkActive="active"
+        class="menu-list__ul__list-item__a-item menu-item"
         >
-        <mat-icon class="icon" *ngIf="item.icon != null; else defaultIcon">
-          {{ item.icon }}
+        <mat-icon class="icon">
+          home
         </mat-icon>
-        <ng-template #defaultIcon>
-          <mat-icon class="icon">
-            analytics
-          </mat-icon>
-        </ng-template>
         <span>
-          {{ item.label }}
+          Homepage
+        </span>
+      </a>
+    </li>
+    <!-- PERFIL MENU -->
+    <li class="menu-list__ul__list-item">
+      <a 
+        routerLink="/profile"
+        routerLinkActive="active"
+        class="menu-list__ul__list-item__a-item menu-item"
+        >
+        <mat-icon class="icon">
+          person
+        </mat-icon>
+        <span>
+          Perfil
+        </span>
+      </a>
+    </li>
+    <!-- PESQUISAR MENU -->
+    <li class="menu-list__ul__list-item">
+      <a 
+        routerLink="/search"
+        routerLinkActive="active"
+        class="menu-list__ul__list-item__a-item menu-item"
+        >
+        <mat-icon class="icon">
+          search
+        </mat-icon>
+        <span>
+          Pesquisar
         </span>
       </a>
     </li>
