@@ -3,7 +3,7 @@
     <!-- HOMEPAGE MENU -->
     <li class="menu-list__ul__list-item">
       <a 
-        routerLink="/"
+        [routerLink]="route.home"
         routerLinkActive="active"
         class="menu-list__ul__list-item__a-item menu-item"
         >
@@ -18,7 +18,7 @@
     <!-- PERFIL MENU -->
     <li class="menu-list__ul__list-item">
       <a 
-        routerLink="/profile"
+        [routerLink]="route.profile"
         routerLinkActive="active"
         class="menu-list__ul__list-item__a-item menu-item"
         >
@@ -33,7 +33,7 @@
     <!-- PESQUISAR MENU -->
     <li class="menu-list__ul__list-item">
       <a 
-        routerLink="/search"
+        [routerLink]="route.search"
         routerLinkActive="active"
         class="menu-list__ul__list-item__a-item menu-item"
         >
