@@ -8,6 +8,8 @@ import { ApplicationRoutesEnum } from 'src/app/shared/enum/application-routes.en
 })
 export class MenuListComponent implements OnInit {
 
+  route = ApplicationRoutesEnum;
+
   routes: {
     route: string,
     label: string,

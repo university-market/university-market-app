@@ -24,25 +24,21 @@
 
             display: initial;
             width: 100%;
-            padding-left: 25px;
             justify-content: center;
-            border-color: $menu-border-color;
-            border-width: 1px;
-            border-style: solid solid solid none;
-            border-radius: 0 #{$rounded} #{$rounded} 0;
             transition: ease 0.15s;
-
-            &:hover {
-                background: $menu-background-color;
-            }
 
             &__a-item, a {
 
                 display: flex;
                 align-items: center;
                 text-decoration: none;
-                color: $menu-item-color-text;
-                padding: 7.5px 0;
+                border-width: 0px;
+                border-style: solid solid solid none;
+                border-color: $menu-border-color;
+                border-radius: 0 #{$rounded} #{$rounded} 0;
+                padding-left: 25px;
+                padding-top: 7.5px;
+                padding-bottom: 7.5px;
                 transition: ease 0.15s;
 
                 .icon {
@@ -56,4 +52,22 @@
             }
         }
     }
+}
+
+// Menu item config
+.menu-item {
+    background: $menu-item-color-bg;
+    color: $menu-item-color-text;
+}
+.menu-item:hover {
+    background: $menu-item-hover-bg;
+}
+.active {
+    background: $menu-item-selected-bg !important;
+    color: $menu-item-selected-text !important;
+}
+.active:hover  {
+    background: initial;
+    color: initial;
+    filter: brightness(1.25) !important;
 }
