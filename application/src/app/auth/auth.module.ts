@@ -9,6 +9,7 @@ import { DesignModule } from '../design/design.module';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   declarations: [
     AuthComponent,
+    HeaderComponent,
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent
