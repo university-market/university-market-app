@@ -4,6 +4,6 @@
   </div>
   <div class="menu-list-container">
     <!-- Componente de listagem de menus -->
-    <app-menu-list></app-menu-list>
+    <app-menu-list (onSelect)="onSelectedMenu.emit()"></app-menu-list>
   </div>
 </div>

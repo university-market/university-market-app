@@ -9,9 +9,12 @@ import { DesignModule } from '../design/design.module';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { ForgotService } from './services/forgot.service';
 import { LoginService } from './services/login.service';
 import { RegisterService } from './services/register.service';
+
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -24,6 +27,7 @@ import { RegisterService } from './services/register.service';
   ],
   declarations: [
     AuthComponent,
+    HeaderComponent,
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent

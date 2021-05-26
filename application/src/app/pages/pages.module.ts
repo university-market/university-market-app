@@ -5,7 +5,11 @@ import { HomeModule } from './home/home.module';
 import { DesignModule } from '../design/design.module';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
+
 import { SaleModule } from './sale/sale.module';
+
+import { PublicacaoModule } from './publicacao/publicacao.module';
+
 
 @NgModule({
   imports: [
@@ -14,7 +18,9 @@ import { SaleModule } from './sale/sale.module';
     HomeModule,
     DesignModule,
     SharedModule,
-    SaleModule
+    SaleModule,
+    PublicacaoModule
+
   ],
   declarations: [
     
