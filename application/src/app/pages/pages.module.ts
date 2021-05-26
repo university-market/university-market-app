@@ -5,6 +5,7 @@ import { HomeModule } from './home/home.module';
 import { DesignModule } from '../design/design.module';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
+import { PublicacaoModule } from './publicacao/publicacao.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { PagesRoutingModule } from './pages-routing.module';
     PagesRoutingModule,
     HomeModule,
     DesignModule,
-    SharedModule
+    SharedModule,
+    PublicacaoModule
   ],
   declarations: [
     

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ApplicationRoutesEnum } from 'src/app/shared/enum/application-routes.enum';
 
 @Component({
@@ -7,6 +7,8 @@ import { ApplicationRoutesEnum } from 'src/app/shared/enum/application-routes.en
   styleUrls: ['./menu-list.component.scss']
 })
 export class MenuListComponent implements OnInit {
+
+  @Output() onSelect = new EventEmitter<void>();
 
   route = ApplicationRoutesEnum;
 

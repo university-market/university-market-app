@@ -6,6 +6,7 @@
         [routerLink]="route.home"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}"
+        (click)="onSelect.emit()"
         class="menu-list__ul__list-item__a-item menu-item"
         >
         <mat-icon class="icon">
@@ -22,6 +23,7 @@
         [routerLink]="route.profile"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}"
+        (click)="onSelect.emit()"
         class="menu-list__ul__list-item__a-item menu-item"
         >
         <mat-icon class="icon">
@@ -32,12 +34,30 @@
         </span>
       </a>
     </li>
+    <!-- PUBLICACOES MENU -->
+    <li class="menu-list__ul__list-item">
+      <a 
+        [routerLink]="route.publicacao"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+        (click)="onSelect.emit()"
+        class="menu-list__ul__list-item__a-item menu-item"
+        >
+        <mat-icon class="icon">
+          dashboard
+        </mat-icon>
+        <span>
+          Publicações
+        </span>
+      </a>
+    </li>
     <!-- PESQUISAR MENU -->
     <li class="menu-list__ul__list-item">
       <a 
         [routerLink]="route.search"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}"
+        (click)="onSelect.emit()"
         class="menu-list__ul__list-item__a-item menu-item"
         >
         <mat-icon class="icon">
