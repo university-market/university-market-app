@@ -5,9 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { RegisterModel } from '../models/register.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RegisterService {
 
   private baseUrl = 'http://localhost:9090/usuario/register'

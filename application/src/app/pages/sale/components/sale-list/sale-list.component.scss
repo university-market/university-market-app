@@ -1,0 +1,32 @@
+.div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    flex-wrap: wrap;
+    max-width: 75%;
+
+    &__card {
+      margin: 5px;
+      width: 250px;
+      height: 350px;
+      transition: .9s;
+      
+    
+      &__img{
+        width: 250px;
+        height: 250px;
+        background-repeat: no-repeat;
+      }
+
+      &__content{
+        &__hr{
+          opacity: 30%;
+        }
+      }
+    }
+    &__card:hover{
+      box-shadow: 0 0 25px 15px #00000033, 0 10px 20px 0 #00000030;
+      cursor: pointer;
+    }
+}

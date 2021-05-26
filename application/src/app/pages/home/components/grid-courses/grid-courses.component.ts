@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Tile } from '../models/grid-courses.mode';
 import { GridCoursesService } from '../services/grid-courses.service';
 
@@ -13,7 +14,8 @@ export class GridCoursesComponent implements OnInit {
 
   columns: number = 4;
 
-  constructor(private gridService: GridCoursesService) { }
+  constructor(private gridService: GridCoursesService,
+              private route : Router) { }
 
   ngOnInit() {
 
@@ -35,9 +37,16 @@ export class GridCoursesComponent implements OnInit {
         e.grid_cols = this.columns
         e.grid_rows = 1})
     }
+    if(width > 1000){
+      this.columns = 4
+      this.gridService.onInit().subscribe(tiles => {
+        this.tiles = tiles
+        console.log(tiles)
+      })
+    }
   }
 
   courseSearch(id: number){
-    window.location.assign('http://localhost:3000/post?course_id=' + id)
+    this.route.navigate(['/list/course/'+ id]);
   }
 }

@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ForgotModel } from '../models/forgot.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ForgotService {
 
   private baseUrl = 'http://localhost:3000/forgot'
