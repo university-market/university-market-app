@@ -6,6 +6,7 @@ import { DEFAULT_APP_TITLE } from '../const/default-consts';
 export class TitleService {
 
   private _defaultApplicationTitle: string;
+  private _tabBrowserHistory: string[] = [];
 
   constructor(private title: Title) {
 
@@ -28,6 +29,7 @@ export class TitleService {
    * @returns void
    */
    public set(newTitle: string): void {
+    this._tabBrowserHistory.push(newTitle);
     this._set(newTitle);
   }
 
