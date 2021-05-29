@@ -3,5 +3,8 @@
  * para as mais diversas funcionalidades
  */
 
+// Constante referente ao titulo padrão exibido na aba do navegador
+export const DEFAULT_APP_TITLE = 'University Market';
+
 // Constante de rota definida para criação de novos recursos
 export const NEW_RESOURCE = 'new';

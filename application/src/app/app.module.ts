@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { DesignModule } from './design/design.module';
 import { PagesModule } from './pages/pages.module';
+import { TitleService } from './shared/services/title.service';
 import { SharedModule } from './shared/shared.module';
 import { TemplateModule } from './template/template.module';
 
@@ -23,7 +24,9 @@ import { TemplateModule } from './template/template.module';
     SharedModule,
     TemplateModule
   ],
-  providers: [],
+  providers: [
+    TitleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
