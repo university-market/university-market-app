@@ -24,3 +24,51 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         color: red;
     }
 }
+
+/*
+ * Snackbar styles for success, error, warning and notify
+ *
+ */
+$snackbar-default-font-weight: 500;
+.snackbar-instance {
+    font-weight: $snackbar-default-font-weight;
+    button {
+        font-weight: initial;
+    }
+}
+$snackbar-notify-bg-color: #4c00ff;
+$snackbar-notify-font-color: #fff;
+.snackbar-notify {
+    background: $snackbar-notify-bg-color;
+    color: $snackbar-notify-font-color;
+    button {
+        color: $snackbar-notify-font-color;
+    }
+}
+$snackbar-success-bg-color: #009e47;
+$snackbar-success-font-color: #fff;
+.snackbar-success {
+    background: $snackbar-success-bg-color;
+    color: $snackbar-success-font-color;
+    button {
+        color: $snackbar-success-font-color;
+    }
+}
+$snackbar-error-bg-color: #db1111;
+$snackbar-error-font-color: #fff;
+.snackbar-error {
+    background: $snackbar-error-bg-color;
+    color: $snackbar-error-font-color;
+    button {
+        color: $snackbar-error-font-color;
+    }
+}
+$snackbar-warning-bg-color: #ffe600;
+$snackbar-warning-font-color: #3e3e3e;
+.snackbar-warning {
+    background: $snackbar-warning-bg-color;
+    color: $snackbar-warning-font-color;
+    button {
+        color: $snackbar-warning-font-color;
+    }
+}
