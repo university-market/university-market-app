@@ -5,6 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { TextMaskModule } from 'angular2-text-mask';
+import { NgBrazil }from 'ng-brazil';
+
 import { DesignModule } from './design/design.module';
 import { PagesModule } from './pages/pages.module';
 import { SnackBarService } from './shared/services/snack-bar.service';
@@ -17,6 +20,8 @@ import { TemplateModule } from './template/template.module';
     AppComponent
   ],
   imports: [
+    NgBrazil,
+    TextMaskModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

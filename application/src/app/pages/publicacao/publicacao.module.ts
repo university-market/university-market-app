@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { PublicacaoComponent } from './publicacao.component';
 import { PublicacaoRoutingModule } from './publicacao-routing.module';
@@ -10,11 +11,13 @@ import { PublicacaoEdicaoComponent } from './publicacao-edicao/publicacao-edicao
 import { DesignModule } from 'src/app/design/design.module';
 import { PublicacaoService } from './services/publicacao.service';
 import { PublicacaoFormService } from './services/publicacao-form.service';
-
+import { TextMaskModule } from 'angular2-text-mask';
 @NgModule({
   imports: [
     CommonModule,
     PublicacaoRoutingModule,
+    ReactiveFormsModule,
+    TextMaskModule,
     DesignModule,
   ],
   declarations: [
@@ -25,6 +28,7 @@ import { PublicacaoFormService } from './services/publicacao-form.service';
     PublicacaoEdicaoComponent
   ],
   providers: [
+    FormBuilder,
     PublicacaoService,
     PublicacaoFormService
   ]
