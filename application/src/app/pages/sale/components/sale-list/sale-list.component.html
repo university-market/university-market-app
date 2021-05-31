@@ -1,19 +1,19 @@
 <div class="div">
     <mat-card class="div__card" *ngFor="let sale of sales">
-        <!-- <mat-card-header>
+        <mat-card-header>
             <mat-card-title>{{sale.title}}</mat-card-title>
-            <mat-card-subtitle>{{sale.description}}</mat-card-subtitle>
+            <!-- <mat-card-subtitle>{{sale.status}}</mat-card-subtitle> -->
             <button mat-icon-button color="warn"  aria-label="Example icon button with a heart icon">
                 <mat-icon>favorite</mat-icon>
             </button>
-        </mat-card-header> -->
+        </mat-card-header>
         <img src="{{sale.img_path}}" class="div__card__img">
         <mat-card-content class="div__card_content">
             <hr class="div__card__content__hr">
             <h2>
                 {{sale.alternative_value | currency:'BRL':true:'1.2-2'}}
             </h2>
-            <h3>{{sale.title}}</h3>
+            <h3>{{sale.description}}</h3>
         </mat-card-content>
         <!-- <mat-card-actions>
             <button  mat-raised-button color="primary">Ver Mais</button>

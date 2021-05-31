@@ -9,7 +9,7 @@ import { GridCoursesService } from '../services/grid-courses.service';
   styleUrls: ['./grid-courses.component.scss']
 })
 export class GridCoursesComponent implements OnInit {
-
+  
   tiles: Tile[];
 
   columns: number = 4;
