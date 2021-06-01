@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
@@ -25,6 +26,10 @@ export class RegisterComponent implements OnInit {
       date : new FormControl(null,[Validators.required]),
       password : new FormControl(null,[Validators.required,Validators.minLength(8)]),
       pass_confirm :new FormControl(null,[Validators.required,Validators.minLength(8)]),
+    })
+    this.register.get('email')?.valueChanges.pipe()
+    .subscribe((email) => {
+      this.validaEmail(email)
     })
   }
 
@@ -55,5 +60,10 @@ export class RegisterComponent implements OnInit {
         this.route.navigate(['/'])
       })
     }
+  }
+
+
+  validaEmail(email : string){
+    this.registerService.validateEmail(email).subscribe()
   }
 }
