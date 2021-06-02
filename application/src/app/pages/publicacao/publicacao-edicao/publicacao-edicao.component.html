@@ -1,37 +1,73 @@
 <div class="container">
-  <div class="container__header">
-    <h1>
-      {{ (this.service.isEdicao$ | async) ? 'Editar' : 'Nova' }}
-      publicação
-    </h1>
-  </div>
-  
-  <div class="container__content">
-
-    <form [formGroup]="form" class="input-form">
-
-      <mat-form-field class="input-full-width">
-        <mat-label>Título</mat-label>
-        <input matInput formControlName="titulo" placeholder="Ex. Livro de estudos">
-      </mat-form-field>
+  <div class="container__form">
+    <div class="container__form__header">
+      <h1>
+        <span class="title-icon">
+          <mat-icon>
+            dashboard
+          </mat-icon>
+        </span>
+        <span>
+          {{ (this.service.isEdicao$ | async) ? 'Edite' : 'Crie' }}
+          sua publicação
+        </span>
+      </h1>
+    </div>
     
-      <mat-form-field class="input-full-width">
-        <mat-label>Descrição</mat-label>
-        <textarea matInput #descricao [maxlength]="descricaoMaxLength" formControlName="descricao" placeholder="Uma breve descrição do item anunciado..."></textarea>
-        <mat-hint align="start">
-          <strong>Considere apenas informações relevantes</strong>
-        </mat-hint>
-        <mat-hint align="end">
-          {{ descricao.value.length }} / {{ descricaoMaxLength }}
-        </mat-hint>
-      </mat-form-field>
+    <div class="container__form__content">
 
-      <mat-form-field class="input-full-width mt-20">
-        <mat-label>Valor do produto</mat-label>
-        <!-- <span matPrefix>R$ &nbsp;</span> -->
-        <input type="text" matInput placeholder="R$ 0.00" [textMask]="{mask: MASKS.currency.textMask}" autocomplete="off">
-      </mat-form-field>
+      <form [formGroup]="form" class="input-form">
 
-    </form>
+        <mat-form-field class="input-full-width">
+          <mat-label>Título</mat-label>
+          <input matInput formControlName="titulo" placeholder="Ex. Livro de estudos" required>
+            <mat-error  *ngIf="form.get('titulo')?.touched && form.get('titulo')?.hasError('required')">
+              O título é obrigatório
+            </mat-error>
+            <mat-error *ngIf="form.get('titulo')?.hasError('invalid')">
+              Informe um título válido
+            </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field class="input-full-width">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput #descricao [maxlength]="descricaoMaxLength" formControlName="descricao" placeholder="Uma breve descrição do item anunciado..."></textarea>
+          <mat-hint align="start">
+            <strong>Considere as informações mais relevantes</strong>
+          </mat-hint>
+          <mat-hint align="end">
+            {{ descricao.value.length }} / {{ descricaoMaxLength }}
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="input-full-width mt-20">
+          <mat-label>Tags & <i>Hashtags</i></mat-label>
+          <mat-chip-list #tagsList aria-label="Tags da publicação">
+            <mat-chip *ngFor="let tag of tags; index as i" 
+              [selectable]="true" [removable]="true" 
+              (removed)="removeTag(tag)">
+              {{ tag.name }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Nova tag..."
+                    formControlName="tags"
+                    [matChipInputFor]="tagsList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="true"
+                    (matChipInputTokenEnd)="addTag($event)">
+          </mat-chip-list>
+        </mat-form-field>
+
+        <mat-form-field class="input-full-width">
+          <mat-label>Valor do produto</mat-label>
+          <!-- <span matPrefix>R$ &nbsp;</span> -->
+          <input type="text" matInput placeholder="R$ 0.00" [textMask]="{mask: MASKS.currency.textMask}" autocomplete="off">
+        </mat-form-field>
+
+      </form>
+    </div>
+  </div>
+  <div class="container__design-bg">
+
   </div>
 </div>

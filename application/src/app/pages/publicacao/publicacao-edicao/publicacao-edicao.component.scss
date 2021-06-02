@@ -1,24 +1,59 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px 15px;
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
 
-    &__header {
-        display: initial;
+    &__form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 15px;
+        box-sizing: border-box;
+
+        &__header { display: initial; }
+
+        &__content { font-size: 1rem;
+
+            form.input-form {
+                min-width: 150px;
+                max-width: 500px;
+                width: 100%;
+
+                .input-full-width { width: 100%; }
+            }
+        }
     }
 
-    &__content {
-        font-size: 1rem;
+    &__design-bg {
+        display: flex;
+        background: url("/assets/backgrounds/create-publicacao-bg.png");
+        opacity: 0.75;
     }
 }
-.input-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-}
 
-.input-full-width {
-    width: 100%;
+// Media query
+@media only screen and (max-width: $md-port-w-screen) {
+
+    .container {
+        grid-template-columns: 1fr;
+
+        &__form {
+            display: flex;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        &__design-bg {
+            display: flex;
+            position: absolute;
+            width: 50%;
+            height: calc(100% - #{$header-height});
+            top: $header-height;
+            right: 0;
+            opacity: 0.25;
+            z-index: 0;
+        }
+    }
 }

@@ -13,8 +13,8 @@ export class PublicacaoFormService {
 
     return this.fb.group({
       titulo: this.fb.control(null),
-      tags: this.fb.array([]),
       descricao: this.fb.control(null),
+      tags: this.fb.control(null),
       valor: this.fb.control(null, [NgBrazilValidators.currency]),
       imagem: this.fb.control(null)
     })

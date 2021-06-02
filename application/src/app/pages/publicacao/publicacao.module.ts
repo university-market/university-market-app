@@ -25,7 +25,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     PublicacaoListComponent,
     PublicacaoListItemComponent,
     PublicacaoDetalheComponent,
-    PublicacaoEdicaoComponent
+    PublicacaoEdicaoComponent,
   ],
   providers: [
     FormBuilder,
