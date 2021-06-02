@@ -5,4 +5,29 @@ $content-height: calc(100vh - #{$header-height});
 
 $m-screen-width : 750px;
 
+/* 
+ * Tamanhos e formatos padrão que devem ser considerados de tela 
+ * 
+ * sm - small  | pequeno
+ * md - medium | médio
+ * lg - large  | grande
+ *
+ * port - portrait  | orientação vertical
+ * land - landscape | orientação horizontal
+ * 
+ * w - width  | largura
+ * h - height | altura
+ *
+ */
+$sm-port-w-screen : 350px;
+$sm-port-h-screen : 750px;
+$sm-land-w-screen : 750px;
+$sm-land-h-screen : 350px;
+
+$md-port-w-screen: 550px;
+$md-port-h-screen: 750px;
+$md-land-w-screen: 750px;
+$md-land-h-screen: 550px;
+
+
 $rounded: 999px;
