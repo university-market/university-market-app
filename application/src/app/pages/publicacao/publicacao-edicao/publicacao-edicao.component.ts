@@ -10,6 +10,7 @@ import { MASKS } from 'ng-brazil';
 import { PublicacaoFormService } from '../services/publicacao-form.service';
 import { PublicacaoService } from '../services/publicacao.service';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 @Component({
   selector: 'app-publicacao-edicao',
   templateUrl: './publicacao-edicao.component.html',
@@ -27,10 +28,16 @@ export class PublicacaoEdicaoComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   public tags: PublicacaoTag[] = [];
 
+  // Imagem
+  public imagePath: string;
+  public message: string|null;
+  public imgURL: any;
+
   constructor(
     private route: ActivatedRoute,
     private formService: PublicacaoFormService,
     public service: PublicacaoService,
+    private snackbar: SnackBarService
   ) { }
 
   ngOnInit() {
@@ -62,6 +69,26 @@ export class PublicacaoEdicaoComponent implements OnInit {
 
     if (index >= 0)
       this.tags.splice(index, 1);
+  }
+
+  preview(files: any) {
+
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      let msg = "Somente imagens são suportadas";
+      this.message = msg;
+      this.snackbar.warn(msg);
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imagePath = files;
+    this.message = null;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => this.imgURL = reader.result;
   }
 
 }

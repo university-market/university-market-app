@@ -1,6 +1,8 @@
 @import "src/styles/colors.scss";
 @import "src/styles/template.scss";
 
+$template-witdh: 500px;
+
 .container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -12,7 +14,34 @@
         padding: 10px 15px;
         box-sizing: border-box;
 
-        &__header { display: initial; }
+        &__header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            max-width: $template-witdh;
+
+            h1 {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .title-icon {
+                    display: flex;
+                    margin-right: 7.5px;
+                    color: $um-default-primary-bg;
+                }
+            }
+
+            button.input-submit {
+                display: flex;
+                margin: 0;
+                box-sizing: border-box;
+                justify-content: center;
+                background: $um-default-primary-bg;
+                color: $um-default-primary-text;
+            }
+        }
 
         &__content { font-size: 1rem;
 
@@ -20,8 +49,63 @@
                 min-width: 150px;
                 max-width: 500px;
                 width: 100%;
+                padding-bottom: 50px;
 
                 .input-full-width { width: 100%; }
+
+                .chip-icon-verified { color: $um-default-primary-bg; }
+
+                .div-input-group {
+                    display: grid; 
+                    grid-template-columns: 1fr 1fr; 
+                    flex-direction: row; 
+                    align-items: baseline;
+
+                    .checkbox { margin-left: 7.5px; }
+                }
+
+                .input-group-file {
+
+                    &__title {
+                        display: flex;
+                        margin-bottom: 7.5px;
+                    }
+
+                    input[type="file"] {
+                        display: flex;
+                        width: 100%;
+                        padding: 10px;
+                        margin-bottom: 25px;
+                        box-sizing: border-box;
+                        border-style: dashed;
+                        border-width: 2.5px;
+                        border-radius: 10px;
+                        border-color: $um-default-primary-bg;
+                    }
+
+                    .preview {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+
+                        img {
+                            max-width: 100%;
+                            display: flex;
+                            border-radius: 10px;
+                            filter: drop-shadow(0px 0px 10px rgb(0, 0, 0, 0.5));
+                        }
+                    }
+
+                    &__file-input {
+                        display: grid;
+                        grid-template-columns: 1fr 12.5%;
+
+                        button { margin-left: 5px; background: $um-default-primary-bg; }
+                        button:hover, label:hover { cursor: pointer; }
+                        mat-error { font-size: small; }
+                    }
+                }
+
             }
         }
     }
@@ -34,6 +118,21 @@
 }
 
 // Media query
+@media only screen and (orientation: landscape) {
+
+    div.input-submit {
+        display: flex;
+        width: 50%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        justify-content: center;
+        position: sticky;
+        bottom: 0px;
+        left: 0px;
+        z-index: 99;
+    }
+}
 @media only screen and (max-width: $md-port-w-screen) {
 
     .container {
@@ -43,6 +142,16 @@
             display: flex;
             opacity: 1;
             z-index: 1;
+
+            &__content {
+
+                form.input-form {
+    
+                    .div-input-group {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            }
         }
 
         &__design-bg {

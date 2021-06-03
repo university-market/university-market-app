@@ -8,10 +8,12 @@
           </mat-icon>
         </span>
         <span>
-          {{ (this.service.isEdicao$ | async) ? 'Edite' : 'Crie' }}
-          sua publicação
+          {{ (this.service.isEdicao$ | async) ? 'Editando' : 'Criando' }}
         </span>
       </h1>
+      <button mat-raised-button class="input-submit" type="submit">
+        {{ (this.service.isEdicao$ | async) ? 'Salvar' : 'Criar' }}
+      </button>
     </div>
     
     <div class="container__form__content">
@@ -40,29 +42,63 @@
           </mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="input-full-width mt-20">
+        <mat-form-field appearance="outline" class="input-full-width mt-20">
           <mat-label>Tags & <i>Hashtags</i></mat-label>
-          <mat-chip-list #tagsList aria-label="Tags da publicação">
+          <mat-chip-list #tagsList aria-label="Tags da publicação" color="primary">
             <mat-chip *ngFor="let tag of tags; index as i" 
-              [selectable]="true" [removable]="true" 
+              [selectable]="true" [removable]="true" [color]="'primary'"
               (removed)="removeTag(tag)">
               {{ tag.name }}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
-            <input placeholder="Nova tag..."
+          </mat-chip-list>
+          <input matInput [placeholder]="'Digite e tecle Enter para criar a tag'"
+                    class="input-full-width"
                     formControlName="tags"
                     [matChipInputFor]="tagsList"
                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                     [matChipInputAddOnBlur]="true"
                     (matChipInputTokenEnd)="addTag($event)">
-          </mat-chip-list>
+          <mat-icon matSuffix class="chip-icon-verified"
+            matTooltip="Considere palavras-chave que outros usuários possam procurar que tenham relação com a sua publicação"
+            matTooltipPosition="above"
+            matTooltipHideDelay="200">
+            verified_outline
+          </mat-icon>
+          <mat-hint align="start">
+            As tags e <i>hashtags</i> fazem com que sua publicação alcance mais pessoas
+          </mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="input-full-width">
-          <mat-label>Valor do produto</mat-label>
-          <!-- <span matPrefix>R$ &nbsp;</span> -->
-          <input type="text" matInput placeholder="R$ 0.00" [textMask]="{mask: MASKS.currency.textMask}" autocomplete="off">
-        </mat-form-field>
+        <div class="div-input-group mt-20">
+          <mat-form-field class="input-full-width">
+            <mat-label>Valor do produto</mat-label>
+            <!-- <span matPrefix>R$ &nbsp;</span> -->
+            <input type="text" matInput placeholder="R$ 0.00" [textMask]="{mask: MASKS.currency.textMask}" autocomplete="off">
+          </mat-form-field>
+          <mat-checkbox class="checkbox" color="primary">
+            Exibir apenas para meu curso
+          </mat-checkbox>
+        </div>
+
+        <div class="input-full-width input-group-file mt-20">
+          <span class="input-group-file__title">
+            {{ imgURL ? 'Foto selecionada' : 'Selecione uma foto' }}
+          </span>
+          <div class="input-group-file__file-input">
+            <input #file type="file" id="input-file" accept="image/*" (change)="preview(file.files)" />
+            <button type="button" mat-mini-fab color="primary" aria-label="Change picture">
+              <label for="input-file">
+                <mat-icon *ngIf="imgURL; else iconNew">edit</mat-icon>
+                <ng-template #iconNew> <mat-icon>add</mat-icon> </ng-template>
+              </label>
+            </button>
+            <mat-error *ngIf="message"> {{ message }} </mat-error>
+          </div>
+          <div class="preview">
+            <img [src]="imgURL" *ngIf="imgURL">
+          </div>
+        </div>
 
       </form>
     </div>
