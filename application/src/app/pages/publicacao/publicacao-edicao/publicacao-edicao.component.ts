@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { take, tap } from 'rxjs/operators';
+import { filter, switchMap, take, tap } from 'rxjs/operators';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -11,6 +11,7 @@ import { PublicacaoFormService } from '../services/publicacao-form.service';
 import { PublicacaoService } from '../services/publicacao.service';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
 @Component({
   selector: 'app-publicacao-edicao',
   templateUrl: './publicacao-edicao.component.html',
@@ -33,7 +34,8 @@ export class PublicacaoEdicaoComponent implements OnInit {
   public message: string|null;
   public imgURL: any;
 
-  constructor(
+  constructor (
+    private router: Router,
     private route: ActivatedRoute,
     private formService: PublicacaoFormService,
     public service: PublicacaoService,
@@ -45,17 +47,68 @@ export class PublicacaoEdicaoComponent implements OnInit {
     this.route.paramMap
     .pipe(
       take(1),
+      switchMap((p: Params) => {
+        const publicacaoId = +p.get('publicacaoId');
+  
+        return this.service.init(publicacaoId);
+      }),
+      filter(p => p != null)
     )
-    .subscribe((p: Params) => {
-      const publicacaoId = +p.get('publicacaoId');
-
-      this.service.init(publicacaoId);
+    .subscribe(publicacao => {
+      console.log(publicacao);
+      this.patchValue(publicacao);
+    },
+    error => {
+      this.snackbar.error(error.error.message);
+      this.router.navigate(['../']);
     });
 
     this.form = this.formService.criarForm();
   }
 
-  addTag(event: MatChipInputEvent): void {
+  public patchValue(publicacao: PublicacaoCriacaoModel) {
+
+    if (publicacao.tags)
+      this.tags = this._makeTagsArray(publicacao.tags);
+
+    this.form.patchValue({
+      titulo: publicacao.titulo,
+      descricao: publicacao.descricao,
+      valor: this._makeValor(publicacao.valor)
+    });
+  }
+
+  private _makeValor = (valor: number) => valor.toString().replace('.', ',');
+
+  private _makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
+
+  private _makeTagsArray = (tags: string) => tags ? tags.split(',').map<PublicacaoTag>(t => ({ name: t.trim() })) : null;
+
+  public criar() {
+
+    const model: PublicacaoCriacaoModel = {
+      titulo: this.form.get('titulo').value,
+      descricao: this.form.get('descricao').value,
+      valor: this.form.get('valor').value,
+      tags: this._makeTagsString(this.tags)
+    };
+
+    console.log('Publicacao criada:', model);
+  }
+
+  public editar() {
+
+    const model: PublicacaoCriacaoModel = {
+      titulo: this.form.get('titulo').value,
+      descricao: this.form.get('descricao').value,
+      valor: this.form.get('valor').value,
+      tags: this._makeTagsString(this.tags)
+    };
+
+    console.log('Publicacao editada:', model);
+  }
+
+  public addTag(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     if (value)
@@ -64,14 +117,14 @@ export class PublicacaoEdicaoComponent implements OnInit {
     event.input.value = '';
   }
 
-  removeTag(tag: PublicacaoTag): void {
+  public removeTag(tag: PublicacaoTag): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0)
       this.tags.splice(index, 1);
   }
 
-  preview(files: any) {
+  public preview(files: any) {
 
     if (files.length === 0)
       return;

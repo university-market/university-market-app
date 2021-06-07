@@ -11,9 +11,16 @@
           {{ (this.service.isEdicao$ | async) ? 'Editando' : 'Criando' }}
         </span>
       </h1>
-      <button mat-raised-button class="input-submit" type="submit">
-        {{ (this.service.isEdicao$ | async) ? 'Salvar' : 'Criar' }}
+      <button *ngIf="this.service.isEdicao$ | async; else btnCriar" 
+        mat-raised-button class="input-submit" type="submit" 
+        (click)="editar()" [disabled]="!form.valid">
+        Salvar
       </button>
+      <ng-template #btnCriar>
+        <button mat-raised-button class="input-submit" type="submit" (click)="criar()" [disabled]="form.invalid">
+          Criar
+        </button>
+      </ng-template>
     </div>
     
     <div class="container__form__content">
@@ -74,7 +81,7 @@
           <mat-form-field class="input-full-width">
             <mat-label>Valor do produto</mat-label>
             <!-- <span matPrefix>R$ &nbsp;</span> -->
-            <input type="text" matInput placeholder="R$ 0.00" [textMask]="{mask: MASKS.currency.textMask}" autocomplete="off">
+            <input type="text" matInput formControlName="valor" placeholder="R$ 0.00" [textMask]="{mask: MASKS.currency.textMask}" autocomplete="off">
           </mat-form-field>
           <mat-checkbox class="checkbox" color="primary">
             Exibir apenas para meu curso

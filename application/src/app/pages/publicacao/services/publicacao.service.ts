@@ -1,6 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
+import { API_Routes, environment } from 'src/environments/environment';
+import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
+
+const API_URL = environment.dev + API_Routes.publicacao;
 
 @UntilDestroy()
 @Injectable()
@@ -9,18 +15,53 @@ export class PublicacaoService {
   private _isEdicao = new BehaviorSubject<boolean>(false);
   public isEdicao$ = this._isEdicao.asObservable();
 
-  private _publicacaoId = new BehaviorSubject<number>(0);
-  public publicacaoId$ = this._publicacaoId.asObservable();
+  private _publicacao = new BehaviorSubject<PublicacaoCriacaoModel>({} as PublicacaoCriacaoModel);
+  public publicacao$ = this._publicacao.asObservable();
 
-  constructor() { }
+  constructor (
+    private http: HttpClient
+  ) { }
 
-  public init(publicacaoId: number): void {
+  public init(publicacaoId: number): Observable<PublicacaoCriacaoModel|null> {
 
-    if (isNaN(publicacaoId))
-      return this._isEdicao.next(false);
-    
+    if (isNaN(publicacaoId)) {
+
+      this._isEdicao.next(false);
+      return of(null);
+    }
+
     this._isEdicao.next(true);
-    this._publicacaoId.next(publicacaoId);
+    return this.obter(publicacaoId);
   }
+
+  public obter(publicacaoId: number): Observable<PublicacaoCriacaoModel> {
+    return this._obter(publicacaoId)
+      .pipe(
+        tap(p => this._publicacao.next(p))
+      );
+  }
+
+  private _obter(publicacaoId: number): Observable<PublicacaoCriacaoModel> {
+
+    return this.http.get<PublicacaoCriacaoModel>(`${API_URL}/${publicacaoId}`)
+      .pipe(
+        take(1)
+      );
+  }
+
+  public criar(publicacao: PublicacaoCriacaoModel): Observable<number> {
+
+    return this._criar(publicacao).pipe();
+  }
+
+  private _criar(publicacao: PublicacaoCriacaoModel): Observable<number> {
+    
+    return this.http.post<number>(`${API_URL}/create`, publicacao)
+      .pipe(
+        take(1)
+      );
+  }
+
+  
 
 }
