@@ -12,6 +12,7 @@ import { PublicacaoService } from '../services/publicacao.service';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
+
 @Component({
   selector: 'app-publicacao-edicao',
   templateUrl: './publicacao-edicao.component.html',
@@ -78,7 +79,12 @@ export class PublicacaoEdicaoComponent implements OnInit {
     });
   }
 
-  private _makeValor = (valor: number) => valor.toString().replace('.', ',');
+  private _makeValor(valor: number|string): number | string {
+    console.log(valor);
+    return typeof valor === 'string' ? 
+      parseFloat(valor.toString().replace(',', '.')) : 
+      valor.toString().replace('.', ',');
+  }
 
   private _makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
 
@@ -89,11 +95,14 @@ export class PublicacaoEdicaoComponent implements OnInit {
     const model: PublicacaoCriacaoModel = {
       titulo: this.form.get('titulo').value,
       descricao: this.form.get('descricao').value,
-      valor: this.form.get('valor').value,
+      valor: <number>this._makeValor(this.form.get('valor').value),
       tags: this._makeTagsString(this.tags)
     };
 
-    console.log('Publicacao criada:', model);
+    const msg = 'Publicacao criada';
+
+    this.snackbar.success(msg);
+    console.log(msg, model);
   }
 
   public editar() {
@@ -101,11 +110,14 @@ export class PublicacaoEdicaoComponent implements OnInit {
     const model: PublicacaoCriacaoModel = {
       titulo: this.form.get('titulo').value,
       descricao: this.form.get('descricao').value,
-      valor: this.form.get('valor').value,
+      valor: <number>this._makeValor(this.form.get('valor').value),
       tags: this._makeTagsString(this.tags)
     };
 
-    console.log('Publicacao editada:', model);
+    const msg = 'Publicacao editada';
+
+    this.snackbar.success(msg);
+    console.log(msg, model);
   }
 
   public addTag(event: MatChipInputEvent): void {

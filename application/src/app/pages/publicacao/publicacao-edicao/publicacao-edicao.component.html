@@ -40,13 +40,20 @@
       
         <mat-form-field class="input-full-width">
           <mat-label>Descrição</mat-label>
-          <textarea matInput #descricao [maxlength]="descricaoMaxLength" formControlName="descricao" placeholder="Uma breve descrição do item anunciado..."></textarea>
+          <textarea matInput #descricao [maxlength]="descricaoMaxLength" 
+            formControlName="descricao" 
+            placeholder="Uma breve descrição do item anunciado..."
+            required>
+          </textarea>
           <mat-hint align="start">
             <strong>Considere as informações mais relevantes</strong>
           </mat-hint>
           <mat-hint align="end">
             {{ descricao.value.length }} / {{ descricaoMaxLength }}
           </mat-hint>
+          <mat-error  *ngIf="form.get('descricao')?.touched && form.get('descricao')?.hasError('required')">
+            A descrição é obrigatória
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="input-full-width mt-20">
@@ -81,7 +88,18 @@
           <mat-form-field class="input-full-width">
             <mat-label>Valor do produto</mat-label>
             <!-- <span matPrefix>R$ &nbsp;</span> -->
-            <input type="text" matInput formControlName="valor" placeholder="R$ 0.00" [textMask]="{mask: MASKS.currency.textMask}" autocomplete="off">
+            <input type="text" matInput 
+              formControlName="valor" 
+              placeholder="R$ 0.00" 
+              [textMask]="{mask: MASKS.currency.textMask}" 
+              autocomplete="off"
+              required>
+              <mat-error  *ngIf="form.get('valor')?.touched && form.get('valor')?.hasError('required')">
+                O valor é obrigatório
+              </mat-error>
+              <mat-error *ngIf="form.get('valor')?.hasError('invalid')">
+                Informe um valor válido
+              </mat-error>
           </mat-form-field>
           <mat-checkbox class="checkbox" color="primary">
             Exibir apenas para meu curso
