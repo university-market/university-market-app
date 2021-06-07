@@ -23,6 +23,9 @@ export class PublicacaoEdicaoComponent implements OnInit {
   public form: FormGroup;
   public MASKS = MASKS;
 
+  // Validacao do formulario
+  private _warned: boolean = false;
+
   // Descricao
   public descricaoMaxLength = 256;
 
@@ -92,6 +95,15 @@ export class PublicacaoEdicaoComponent implements OnInit {
 
   public criar() {
 
+    if (!this.form.valid) {
+      if(!this._warned) {
+        this._warned = true;
+        this.form.markAllAsTouched();
+        this.snackbar.error('Campos obrigatórios devem ser preenchidos');
+      }
+      return;
+    }
+
     const model: PublicacaoCriacaoModel = {
       titulo: this.form.get('titulo').value,
       descricao: this.form.get('descricao').value,
@@ -106,6 +118,15 @@ export class PublicacaoEdicaoComponent implements OnInit {
   }
 
   public editar() {
+
+    if (!this.form.valid) {
+      if(!this._warned) {
+        this._warned = true;
+        this.form.markAllAsTouched();
+        this.snackbar.error('Campos obrigatórios devem ser preenchidos');
+      }
+      return;
+    }
 
     const model: PublicacaoCriacaoModel = {
       titulo: this.form.get('titulo').value,

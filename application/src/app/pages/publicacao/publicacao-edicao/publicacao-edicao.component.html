@@ -13,11 +13,11 @@
       </h1>
       <button *ngIf="this.service.isEdicao$ | async; else btnCriar" 
         mat-raised-button class="input-submit" type="submit" 
-        (click)="editar()" [disabled]="!form.valid">
+        (click)="editar()">
         Salvar
       </button>
       <ng-template #btnCriar>
-        <button mat-raised-button class="input-submit" type="submit" (click)="criar()" [disabled]="form.invalid">
+        <button mat-raised-button class="input-submit" type="submit" (click)="criar()">
           Criar
         </button>
       </ng-template>
