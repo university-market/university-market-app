@@ -3,6 +3,8 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+//=========================================================================
+
 .msg-error{
     background-color: #f65151;
     color: #ffffff;
@@ -24,6 +26,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         color: red;
     }
 }
+
+//=========================================================================
 
 /*
  * Snackbar styles for success, error, warning and notify
@@ -72,6 +76,16 @@ $snackbar-warning-font-color: #3e3e3e;
         color: $snackbar-warning-font-color;
     }
 }
+
+//=========================================================================
+
+/*
+ * Classes padrão para chips
+ */
+// Chip selecionado
+.selected-chip { background: #4c00ff; color: #fff; }
+
+//=========================================================================
 
 /*
  * Classes padrão para utilizar nos componentes 

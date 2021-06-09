@@ -14,10 +14,15 @@ import { SnackBarService } from './shared/services/snack-bar.service';
 import { TitleService } from './shared/services/title.service';
 import { SharedModule } from './shared/shared.module';
 import { TemplateModule } from './template/template.module';
+import { SelectedChipDirective } from './shared/directives/selected-chip.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SelectedChipDirective, // Diretiva
+  ],
+  exports: [
+    SelectedChipDirective, // Diretiva
   ],
   imports: [
     NgBrazil,

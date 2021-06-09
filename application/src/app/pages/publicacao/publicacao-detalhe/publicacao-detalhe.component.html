@@ -1,3 +1,40 @@
-<p>
-  publicacao-detalhe works!
-</p>
+<div class="container">
+  <div class="publicacao-design">
+    <div class="publicacao-design__header">
+      <h2>Lorem ipsum dolor sit amet consectetur</h2>
+    </div>
+    <div class="publicacao-design__content">
+      <div class="publicacao-design__content__sup-section">
+        <div class="publicacao-design__content__sup-section__img">
+          <img src="">
+        </div>
+        <div class="publicacao-design__content__sup-section__details">
+          <span selectedChip>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore, laudantium? Cumque libero quas laborum sapiente nostrum quod voluptates, pariatur repellendus est, eligendi perferendis soluta. Dolore quos doloribus magni! Laudantium, perferendis.
+          </span>
+        </div>
+      </div>
+      <div class="publicacao-design__content__tags">
+        <mat-form-field appearance="outline" class="input-full-width mt-20">
+          <mat-label>Tags & <i>Hashtags</i></mat-label>
+          <mat-chip-list #tagsList aria-label="Tags da publicação" color="primary">
+            <mat-chip> ads </mat-chip>
+            <mat-chip> analise de sistemas </mat-chip>
+            <mat-chip selectedChip> computacaoo </mat-chip>
+            <mat-chip> tecnologia </mat-chip>
+          </mat-chip-list>
+          <input matInput type="text" disabled>
+          <mat-icon matSuffix class="chip-icon-verified"
+            matTooltip="Estas palavras-chave facilitam a busca por este produto"
+            matTooltipPosition="above"
+            matTooltipHideDelay="200">
+            verified_outline
+          </mat-icon>
+          <mat-hint align="start">
+            As tags e <i>hashtags</i> fazem com que esta publicação seja facilmente localizada
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>

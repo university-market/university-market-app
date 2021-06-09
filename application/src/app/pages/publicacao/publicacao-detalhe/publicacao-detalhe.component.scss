@@ -1,0 +1,88 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+$publicacao-img-min-width: 350px;
+
+.container {
+
+    padding: 5px;
+
+    .publicacao-design {
+
+        &__header {
+            font-weight: bold;
+        }
+
+        &__content {
+
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+
+            &__sup-section {
+
+                display: flex;
+                flex-direction: row;
+                column-gap: 12.5px;
+
+                &__img {
+    
+                    img {
+    
+                        display: flex;
+                        min-width: $publicacao-img-min-width;
+                        max-width: 100%;
+                        border: solid 2px #3e3e3e;
+                        border-radius: 7.5px;
+                        height: 200px;
+                    }
+                }
+    
+                &__details {
+    
+                    display: flex;
+                    line-height: 23.5px;
+                    text-align: justify;
+                    padding-right: 5px;
+                }
+            }
+
+            &__tags {
+
+                .input-full-width { width: 100%; }
+                .chip-icon-verified { color: $um-default-primary-bg; }
+            }
+
+        }
+    }
+}
+
+// Media query
+@media only screen and (orientation: landscape) {
+
+    
+}
+@media only screen and (max-width: calc(2 * #{$publicacao-img-min-width})) {
+    .container {
+        
+        .publicacao-design {
+         
+            &__content {
+
+                
+                &__sup-section {
+                    
+                    display: flex;
+                    flex-direction: column;
+
+                    &__img {
+    
+                        img { width: 100%; }
+                    }
+    
+                    &__details { display: flex; }
+                }
+            }
+        }
+    }
+}
