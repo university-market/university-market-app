@@ -18,39 +18,39 @@ export class TitleService {
   }
 
   /**
-   * @method get - Get the browser platform title (current or default)
-   * @param current If true (without arguments), obtain the current browser title
-   * @param current If false, get the application default title
-   * @returns A title (current or default)
+   * Get the browser platform title (current or default)
+   * @method get
+   * @param {boolean} current Without arguments (true), gets the browser current title
+   * @param {boolean} current If false, get the application default title
+   * @returns {string} A title (current or default)
    */
   public get(current: boolean = true): string {
     return current ? this._get() : this._defaultApplicationTitle;
   }
-
+  
   /**
-   * @method set - Set a new title for the browser tab
-   * @param newTitle New title that will be defined in the the current browser tab
-   * @returns void
+   * Set a new title for the browser tab
+   * @method set
+   * @param {string} newTitle New title that will be defined into current browser tab
+   * @returns {void} void
    */
   public set(newTitle: string): void {
-    if (!this._tabBrowserHistory.some(t => t.indexOf(newTitle) != -1))
-      this._tabBrowserHistory.push(newTitle);
-
     this._set(newTitle);
   }
-
+  
   /**
-   * @method reset - Reset the browser tab title
-   * @description Should be called in the component ngOnDestroy method
-   * @returns void
+   * Reset the browser tab title to default of application
+   * @method reset
+   * @returns {void} void
    */
   public reset(): void {
     this._reset();
   }
-
+  
   /**
-   * @method getHistory - Gets the history stored in application memory
-   * @param sentence An slice of a string to be searched in the titles history
+   * Gets the history stored in application memory
+   * @method getHistory
+   * @param {string} sentence An slice of a string to be searched in the titles history
    * @returns All registers or registers that match with the sentence provided in argument
    */
   public getHistory(sentence?: string): string | string[] {
