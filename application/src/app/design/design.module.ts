@@ -13,6 +13,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatChipsModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatTabsModule,
   ],
   declarations: [],
   exports: [
@@ -44,6 +47,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatChipsModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatTabsModule,
   ]
 })
 export class DesignModule { }
