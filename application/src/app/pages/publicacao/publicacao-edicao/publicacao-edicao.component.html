@@ -13,11 +13,14 @@
       </h1>
       <button *ngIf="this.service.isEdicao$ | async; else btnCriar" 
         mat-raised-button class="input-submit" type="submit" 
+        [disabled]="form.invalid && triedSave"
         (click)="editar()">
         Salvar
       </button>
       <ng-template #btnCriar>
-        <button mat-raised-button class="input-submit" type="submit" (click)="criar()">
+        <button mat-raised-button class="input-submit" type="submit" 
+          [disabled]="form.invalid && triedSave"
+          (click)="criar()">
           Criar
         </button>
       </ng-template>
@@ -59,28 +62,25 @@
         <mat-form-field appearance="outline" class="input-full-width mt-20">
           <mat-label>Tags & <i>Hashtags</i></mat-label>
           <mat-chip-list #tagsList aria-label="Tags da publicação" color="primary">
-            <mat-chip *ngFor="let tag of tags; index as i" 
+            <mat-chip *ngFor="let tag of tags; index as i" [class]="'chip-tag-'+i%2"
               [selectable]="true" [removable]="true" [color]="'primary'"
               (removed)="removeTag(tag)">
               {{ tag.name }}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
           </mat-chip-list>
-          <input matInput [placeholder]="'Digite e tecle Enter para criar a tag'"
+          <input matInput [placeholder]="tags.length < maxLengthTags ? 'Digite e tecle Enter para criar a tag':''"
                     class="input-full-width"
-                    formControlName="tags"
                     [matChipInputFor]="tagsList"
                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                     [matChipInputAddOnBlur]="true"
-                    (matChipInputTokenEnd)="addTag($event)">
-          <mat-icon matSuffix class="chip-icon-verified"
-            matTooltip="Considere palavras-chave que outros usuários possam procurar que tenham relação com a sua publicação"
-            matTooltipPosition="above"
-            matTooltipHideDelay="200">
-            verified_outline
-          </mat-icon>
+                    (matChipInputTokenEnd)="addTag($event)"
+                    [readonly]="tags.length >= maxLengthTags">
           <mat-hint align="start">
-            As tags e <i>hashtags</i> fazem com que sua publicação alcance mais pessoas
+            As tags e <i>hashtags</i> fazem com que sua publicação alcance mais pessoas.
+          </mat-hint>
+          <mat-hint align="end" *ngIf="maxLengthTags > 0">
+            {{ tags.length }} / {{ maxLengthTags }} {{ maxLengthTags == 1 ? 'tag' : 'tags' }}
           </mat-hint>
         </mat-form-field>
 
@@ -101,9 +101,33 @@
                 Informe um valor válido
               </mat-error>
           </mat-form-field>
-          <mat-checkbox class="checkbox" color="primary">
-            Exibir apenas para meu curso
+        </div>
+
+        <div>
+          <mat-checkbox class="checkbox" color="primary" 
+            [checked]="hasDetalhesTecnicos$ | async"
+            (click)="changeDetalhesTecnicos()">
+            Informar detalhes técnicos do produto
           </mat-checkbox>
+        </div>
+
+        <div *ngIf="hasDetalhesTecnicos$ | async" class="mt-20">
+          <mat-form-field class="input-full-width">
+            <mat-label>Detalhes técnicos</mat-label>
+            <textarea matInput #detalhesTecnicos [maxlength]="detalhesTecnicosMaxLength" 
+              formControlName="detalhesTecnicos" 
+              placeholder="Detalhes técnicos deste produto..."
+              required></textarea>
+            <mat-hint align="start">
+              <strong>Considere pontos técnios relevantes</strong>
+            </mat-hint>
+            <mat-hint align="end">
+              {{ detalhesTecnicos.value.length }} / {{ detalhesTecnicosMaxLength }}
+            </mat-hint>
+            <mat-error  *ngIf="form.get('detalhesTecnicos')?.touched && form.get('detalhesTecnicos')?.hasError('required')">
+              Atualmente os detalhes técnicos são obrigatórios
+            </mat-error>
+          </mat-form-field>
         </div>
 
         <div class="input-full-width input-group-file mt-20">

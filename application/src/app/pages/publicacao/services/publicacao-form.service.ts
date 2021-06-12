@@ -14,15 +14,11 @@ export class PublicacaoFormService {
     return this.fb.group({
       titulo: this.fb.control(null),
       descricao: this.fb.control(null),
-      tags: this.fb.control(null),
+      // tags: this.fb.control(null),
       valor: this.fb.control(null, [NgBrazilValidators.currency]),
+      detalhesTecnicos: this.fb.control(null),
       imagem: this.fb.control(null)
-    })
-  }
-
-  public criarTag(value?: string): FormControl {
-
-    return this.fb.control(value);
+    });
   }
 
 }

@@ -6,6 +6,7 @@ $template-witdh: 500px;
 .container {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    padding-bottom: 50px;
     overflow-x: hidden;
 
     &__form {
@@ -59,6 +60,9 @@ $template-witdh: 500px;
                 .input-full-width { width: 100%; }
 
                 .chip-icon-verified { color: $um-default-primary-bg; }
+
+                .chip-tag-0 { background: $primary-chip-bg; color: $primary-chip-text }
+                .chip-tag-1 { background: $secondary-chip-bg; color: $secondary-chip-text }
 
                 .div-input-group {
                     display: grid; 

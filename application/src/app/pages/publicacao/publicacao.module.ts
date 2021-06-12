@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PublicacaoComponent } from './publicacao.component';
 import { PublicacaoRoutingModule } from './publicacao-routing.module';
@@ -12,9 +12,11 @@ import { DesignModule } from 'src/app/design/design.module';
 import { PublicacaoService } from './services/publicacao.service';
 import { PublicacaoFormService } from './services/publicacao-form.service';
 import { TextMaskModule } from 'angular2-text-mask';
+import { DialogConfirmDetalhesTecnicosComponent } from './dialogs/dialog-confirm-detalhes-tecnicos/dialog-confirm-detalhes-tecnicos.component';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     PublicacaoRoutingModule,
     ReactiveFormsModule,
     TextMaskModule,
@@ -26,6 +28,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     PublicacaoListItemComponent,
     PublicacaoDetalheComponent,
     PublicacaoEdicaoComponent,
+    DialogConfirmDetalhesTecnicosComponent,
   ],
   providers: [
     FormBuilder,
