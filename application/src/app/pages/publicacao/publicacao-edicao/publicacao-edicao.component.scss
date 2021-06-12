@@ -6,6 +6,7 @@ $template-witdh: 500px;
 .container {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    overflow-x: hidden;
 
     &__form {
         display: flex;
