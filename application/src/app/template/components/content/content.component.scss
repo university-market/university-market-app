@@ -5,7 +5,7 @@
 
     background: $um-background;
     width: 100%;
-    height: #{$content-height};
+    min-height: #{$content-height};
     // padding: 5px;
     box-sizing: border-box;
 }
