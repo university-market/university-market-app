@@ -140,10 +140,12 @@ export class PublicacaoEdicaoComponent implements OnInit {
 
     // Metodo de criar no back-end
     this.service.criar(model)
-    .subscribe(publicacaoId => {
+    .pipe(
+      take(1)
+    ).subscribe(publicacaoId => {
       this.snackbar.success('Publicação criada com sucesso');
       // Navegar para pagina de detalhes da publicacao
-      this.router.navigate(['publicacao', publicacaoId]);
+      this.router.navigate(['publicacao', publicacaoId], { relativeTo: this.route.root });
     });
   }
 
@@ -165,19 +167,14 @@ export class PublicacaoEdicaoComponent implements OnInit {
     this.service.publicacao$
     .pipe(
       take(1),
-      // untilDestroyed(this),
+      untilDestroyed(this),
       switchMap(publicacao => this.service.editar(publicacao.publicacaoId, model)),
-      finalize(() => this.snackbar.success('Publicação editada com sucesso'))
     )
-    .subscribe((publicacaoId) => {
+    .subscribe((publicacao) => {
+      this.snackbar.success('Publicação editada com sucesso');
       // Navegar para pagina de detalhes da publicacao
-      this.router.navigate(['publicacao', publicacaoId.publicacaoId ], { relativeTo: this.route.root });
+      this.router.navigate(['publicacao', publicacao.publicacaoId ], { relativeTo: this.route.root });
     });
-
-    const msg = 'Publicacao editada';
-
-    this.snackbar.success(msg);
-    console.log(msg, model);
   }
 
   private _isValidSubmit() {

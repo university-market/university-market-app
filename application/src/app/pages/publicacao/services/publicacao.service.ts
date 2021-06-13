@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, finalize, map, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, finalize, map, mapTo, switchMap, take, tap } from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { API_Routes, environment } from 'src/environments/environment';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
@@ -93,7 +93,6 @@ export class PublicacaoService {
 
     return this._editar(publicacaoId, model)
       .pipe(
-        take(1),
         finalize(() => this._loadingEdicao.next(false)),
         map(() => ({publicacaoId}))
       );
