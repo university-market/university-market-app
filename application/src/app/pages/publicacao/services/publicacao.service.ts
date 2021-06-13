@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, finalize, take, tap } from 'rxjs/operators';
+import { catchError, finalize, map, switchMap, take, tap } from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { API_Routes, environment } from 'src/environments/environment';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
@@ -55,7 +55,11 @@ export class PublicacaoService {
 
     return this.http.get<PublicacaoCriacaoModel>(`${API_URL}/${publicacaoId}`)
       .pipe(
-        take(1)
+        take(1),
+        catchError(err => {
+          this.snackbar.error(err.error.message);
+          throw err;
+        })
       );
   }
 
@@ -82,16 +86,28 @@ export class PublicacaoService {
       );
   }
 
-  public editar(publicacaoId: number, model: PublicacaoCriacaoModel): Observable<void> {
+  public editar(publicacaoId: number, model: PublicacaoCriacaoModel): Observable<{publicacaoId: number}> {
 
-    return this._editar(publicacaoId, model).pipe();
+    // Iniciando loading
+    this._loadingEdicao.next(true);
+
+    return this._editar(publicacaoId, model)
+      .pipe(
+        take(1),
+        finalize(() => this._loadingEdicao.next(false)),
+        map(() => ({publicacaoId}))
+      );
   }
 
   private _editar(publicacaoId: number, model: PublicacaoCriacaoModel): Observable<void> {
 
     return this.http.put<void>(`${API_URL}/${publicacaoId}`, model)
       .pipe(
-        take(1)
+        take(1),
+        catchError(err => {
+          this.snackbar.error(err.error.message);
+          throw err;
+        })
       );
   }
 

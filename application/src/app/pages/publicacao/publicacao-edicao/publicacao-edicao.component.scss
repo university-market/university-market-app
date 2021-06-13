@@ -35,17 +35,23 @@ $template-witdh: 500px;
                 }
             }
 
-            button.input-submit {
+            div.actions {
+
                 display: flex;
-                margin: 0;
-                box-sizing: border-box;
-                justify-content: center;
-                background: $um-default-primary-bg;
-                color: $um-default-primary-text;
-            }
-            button.input-submit:disabled, button.input-submit[disabled] {
-                background: #b8b8b8;
-                color: #3e3e3e;
+                flex-direction: row;
+
+                button.input-submit {
+                    display: flex;
+                    margin: 0;
+                    box-sizing: border-box;
+                    justify-content: center;
+                    background: $um-default-primary-bg;
+                    color: $um-default-primary-text;
+                }
+                button.input-submit:disabled, button.input-submit[disabled] {
+                    background: #b8b8b8;
+                    color: #3e3e3e;
+                }
             }
         }
 

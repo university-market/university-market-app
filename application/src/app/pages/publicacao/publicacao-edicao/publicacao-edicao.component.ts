@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 import { BehaviorSubject } from 'rxjs';
-import { catchError, filter, finalize, switchMap, take } from 'rxjs/operators';
+import { filter, finalize, switchMap, take } from 'rxjs/operators';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -16,7 +17,9 @@ import { PublicacaoService } from '../services/publicacao.service';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
 import { DialogConfirmDetalhesTecnicosComponent } from '../dialogs/dialog-confirm-detalhes-tecnicos/dialog-confirm-detalhes-tecnicos.component';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-publicacao-edicao',
   templateUrl: './publicacao-edicao.component.html',
@@ -63,10 +66,11 @@ export class PublicacaoEdicaoComponent implements OnInit {
   constructor (
     private router: Router,
     private route: ActivatedRoute,
+    private location: Location,
     private formService: PublicacaoFormService,
     public service: PublicacaoService,
     private snackbar: SnackBarService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -87,7 +91,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
     },
     error => {
       this.snackbar.error(error.error.message);
-      this.router.navigate(['../']);
+      this.location.back();
     });
 
     this.form = this.formService.criarForm();
@@ -108,7 +112,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
 
   private _makeValor(valor: number|string): number | string {
     return typeof valor === 'number' ? 
-    valor.toString().replace('.', ',') : isNaN(parseFloat(valor.toString())) ? 
+    valor.toFixed(2).toString().replace('.', ',') : isNaN(parseFloat(valor.toString())) ? 
       parseFloat(valor.toString().substr(3).replace('.','').replace(',', '.')) : 
       parseFloat((valor).toString().replace(',','.'));
   }
@@ -117,8 +121,66 @@ export class PublicacaoEdicaoComponent implements OnInit {
 
   private _makeTagsArray = (tags: string) => tags ? tags.split(',').map<PublicacaoTag>(t => ({ name: t.trim() })) : null;
 
+  // Metodo utilizado para cancelar a criacao/edicao
+  public onCancel = () => this.location.back();
+
   // Metodo chamado ao criar publicacao
   public criar() {
+
+    if (!this._isValidSubmit())
+      return;
+
+    const model: PublicacaoCriacaoModel = {
+      titulo: this.form.get('titulo').value,
+      descricao: this.form.get('descricao').value,
+      valor: <number>this._makeValor(this.form.get('valor').value),
+      tags: this._makeTagsString(this.tags),
+      detalhesTecnicos: this.form.get('detalhesTecnicos').value
+    };
+
+    // Metodo de criar no back-end
+    this.service.criar(model)
+    .subscribe(publicacaoId => {
+      this.snackbar.success('Publicação criada com sucesso');
+      // Navegar para pagina de detalhes da publicacao
+      this.router.navigate(['publicacao', publicacaoId]);
+    });
+  }
+
+  // Metodo chamado ao editar publicacao
+  public editar() {
+
+    if (!this._isValidSubmit())
+      return;
+
+    const model: PublicacaoCriacaoModel = {
+      titulo: this.form.get('titulo').value,
+      descricao: this.form.get('descricao').value,
+      valor: <number>this._makeValor(this.form.get('valor').value),
+      tags: this._makeTagsString(this.tags),
+      detalhesTecnicos: this.form.get('detalhesTecnicos').value
+    };
+
+    // Metodo de editar no back-end
+    this.service.publicacao$
+    .pipe(
+      take(1),
+      // untilDestroyed(this),
+      switchMap(publicacao => this.service.editar(publicacao.publicacaoId, model)),
+      finalize(() => this.snackbar.success('Publicação editada com sucesso'))
+    )
+    .subscribe((publicacaoId) => {
+      // Navegar para pagina de detalhes da publicacao
+      this.router.navigate(['publicacao', publicacaoId.publicacaoId ], { relativeTo: this.route.root });
+    });
+
+    const msg = 'Publicacao editada';
+
+    this.snackbar.success(msg);
+    console.log(msg, model);
+  }
+
+  private _isValidSubmit() {
 
     if (!this.form.valid) {
       this.triedSave = true;
@@ -127,50 +189,9 @@ export class PublicacaoEdicaoComponent implements OnInit {
         this.form.markAllAsTouched();
         this.snackbar.error('Existem campos obrigatórios');
       }
-      return;
+      return false;
     }
-
-    const model: PublicacaoCriacaoModel = {
-      titulo: this.form.get('titulo').value,
-      descricao: this.form.get('descricao').value,
-      valor: <number>this._makeValor(this.form.get('valor').value),
-      tags: this._makeTagsString(this.tags),
-      detalhesTecnicos: this.form.get('detalhesTecnicos').value
-    };
-
-    // Metodo de salvar no back-end
-    this.service.criar(model)
-    .subscribe(publicacaoId => {
-      
-      this.snackbar.success('Publicação criada! ' + publicacaoId, 15000);
-    });
-  }
-
-  // Metodo chamado ao editar publicacao
-  public editar() {
-
-    if (!this.form.valid) {
-      this.triedSave = true;
-      if(!this._warned) {
-        this._warned = true;
-        this.form.markAllAsTouched();
-        this.snackbar.error('Campos obrigatórios devem ser preenchidos');
-      }
-      return;
-    }
-
-    const model: PublicacaoCriacaoModel = {
-      titulo: this.form.get('titulo').value,
-      descricao: this.form.get('descricao').value,
-      valor: <number>this._makeValor(this.form.get('valor').value),
-      tags: this._makeTagsString(this.tags),
-      detalhesTecnicos: this.form.get('detalhesTecnicos').value
-    };
-
-    const msg = 'Publicacao editada';
-
-    this.snackbar.success(msg);
-    console.log(msg, model);
+    return true;
   }
 
   // Manipulacao de tags

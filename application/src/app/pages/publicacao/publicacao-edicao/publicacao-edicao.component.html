@@ -14,19 +14,22 @@
           {{ (this.service.isEdicao$ | async) ? 'Editando' : 'Criando' }}
         </span>
       </h1>
-      <button *ngIf="this.service.isEdicao$ | async; else btnCriar" 
-        mat-raised-button class="input-submit" type="submit" 
-        [disabled]="form.invalid && triedSave"
-        (click)="editar()">
-        Salvar
-      </button>
-      <ng-template #btnCriar>
-        <button mat-raised-button class="input-submit" type="submit" 
+      <div class="actions">
+        <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+        <button *ngIf="this.service.isEdicao$ | async; else btnCriar" 
+          mat-raised-button class="input-submit" type="submit" 
           [disabled]="form.invalid && triedSave"
-          (click)="criar()">
-          Criar
+          (click)="editar()">
+          Salvar
         </button>
-      </ng-template>
+        <ng-template #btnCriar>
+          <button mat-raised-button class="input-submit" type="submit" 
+            [disabled]="form.invalid && triedSave"
+            (click)="criar()">
+            Criar
+          </button>
+        </ng-template>
+      </div>
     </div>
     
     <div class="container__form__content">
