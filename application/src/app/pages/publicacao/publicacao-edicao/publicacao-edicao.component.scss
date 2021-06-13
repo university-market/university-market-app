@@ -70,6 +70,8 @@ $template-witdh: 500px;
                 .chip-tag-0 { background: $primary-chip-bg; color: $primary-chip-text }
                 .chip-tag-1 { background: $secondary-chip-bg; color: $secondary-chip-text }
 
+                .description textarea { height: fit-content; line-height: 21.25px; }
+
                 .div-input-group {
                     display: grid; 
                     grid-template-columns: 1fr 1fr; 
