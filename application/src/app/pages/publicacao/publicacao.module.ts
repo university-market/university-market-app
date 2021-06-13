@@ -13,7 +13,9 @@ import { PublicacaoService } from './services/publicacao.service';
 import { PublicacaoFormService } from './services/publicacao-form.service';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DialogConfirmDetalhesTecnicosComponent } from './dialogs/dialog-confirm-detalhes-tecnicos/dialog-confirm-detalhes-tecnicos.component';
-import { PublicacaoLoadingComponent } from './publicacao-loading/publicacao-loading.component';
+import { PublicacaoLoadingComponent } from './components/publicacao-loading/publicacao-loading.component';
+import { PublicacaoListHeaderComponent } from './components/publicacao-list-header/publicacao-list-header.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { PublicacaoLoadingComponent } from './publicacao-loading/publicacao-load
     PublicacaoEdicaoComponent,
     DialogConfirmDetalhesTecnicosComponent,
     PublicacaoLoadingComponent,
+    PublicacaoListHeaderComponent
   ],
   providers: [
     FormBuilder,
