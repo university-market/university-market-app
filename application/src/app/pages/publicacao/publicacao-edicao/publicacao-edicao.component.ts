@@ -104,9 +104,10 @@ export class PublicacaoEdicaoComponent implements OnInit {
   }
 
   private _makeValor(valor: number|string): number | string {
-    return typeof valor === 'string' ? 
+    return typeof valor === 'number' ? 
+    valor.toString().replace('.', ',') : isNaN(parseFloat(valor.toString())) ? 
       parseFloat(valor.toString().substr(3).replace('.','').replace(',', '.')) : 
-      valor.toString().replace('.', ',');
+      parseFloat((valor).toString().replace(',','.'));
   }
 
   private _makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
