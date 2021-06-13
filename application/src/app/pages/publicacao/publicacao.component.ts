@@ -10,7 +10,7 @@ import { ApplicationRoutesEnum } from 'src/app/shared/enum/application-routes.en
 })
 export class PublicacaoComponent implements OnInit {
 
-  private publicacaoIdTest = 123;
+  private publicacaoIdTest = 1;
 
   constructor(
     private router: Router
