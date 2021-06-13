@@ -62,6 +62,19 @@ export class PublicacaoService {
       );
   }
 
+  public editar(publicacaoId: number, model: PublicacaoCriacaoModel): Observable<void> {
+
+    return this._editar(publicacaoId, model).pipe();
+  }
+
+  private _editar(publicacaoId: number, model: PublicacaoCriacaoModel): Observable<void> {
+
+    return this.http.put<void>(`${API_URL}/${publicacaoId}`, model)
+      .pipe(
+        take(1)
+      );
+  }
+
   
 
 }
