@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 import { BehaviorSubject } from 'rxjs';
-import { filter, switchMap, take } from 'rxjs/operators';
+import { catchError, filter, finalize, switchMap, take } from 'rxjs/operators';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -34,6 +34,9 @@ export class PublicacaoEdicaoComponent implements OnInit {
 
   public form: FormGroup;
   public MASKS = MASKS;
+
+  // Salvamento dos dados
+  public loadingEdicao$ = this.service.loadingEdicao$;
 
   // Validacao do formulario
   private _warned: boolean = false;
@@ -135,10 +138,12 @@ export class PublicacaoEdicaoComponent implements OnInit {
       detalhesTecnicos: this.form.get('detalhesTecnicos').value
     };
 
-    const msg = 'Publicacao criada';
-
-    this.snackbar.success(msg);
-    console.log(msg, model);
+    // Metodo de salvar no back-end
+    this.service.criar(model)
+    .subscribe(publicacaoId => {
+      
+      this.snackbar.success('Publicação criada! ' + publicacaoId, 15000);
+    });
   }
 
   // Metodo chamado ao editar publicacao

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
+import { catchError, finalize, take, tap } from 'rxjs/operators';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { API_Routes, environment } from 'src/environments/environment';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
 
@@ -18,8 +19,12 @@ export class PublicacaoService {
   private _publicacao = new BehaviorSubject<PublicacaoCriacaoModel>({} as PublicacaoCriacaoModel);
   public publicacao$ = this._publicacao.asObservable();
 
+  private _loadingEdicao = new BehaviorSubject<boolean>(false);
+  public loadingEdicao$ = this._loadingEdicao.asObservable();
+
   constructor (
-    private http: HttpClient
+    private http: HttpClient,
+    private snackbar: SnackBarService
   ) { }
 
   public init(publicacaoId: number): Observable<PublicacaoCriacaoModel|null> {
@@ -35,9 +40,14 @@ export class PublicacaoService {
   }
 
   public obter(publicacaoId: number): Observable<PublicacaoCriacaoModel> {
+
+    // Iniciando loading
+    this._loadingEdicao.next(true);
+
     return this._obter(publicacaoId)
       .pipe(
-        tap(p => this._publicacao.next(p))
+        tap(p => this._publicacao.next(p)),
+        finalize(() => this._loadingEdicao.next(false))
       );
   }
 
@@ -51,14 +61,24 @@ export class PublicacaoService {
 
   public criar(publicacao: PublicacaoCriacaoModel): Observable<number> {
 
-    return this._criar(publicacao).pipe();
+    // Iniciando loading
+    this._loadingEdicao.next(true);
+
+    return this._criar(publicacao)
+      .pipe(
+        finalize(() => this._loadingEdicao.next(false))
+      );
   }
 
   private _criar(publicacao: PublicacaoCriacaoModel): Observable<number> {
     
     return this.http.post<number>(`${API_URL}/create`, publicacao)
       .pipe(
-        take(1)
+        take(1),
+        catchError(err => {
+          this.snackbar.error(err.error.message);
+          throw err;
+        })
       );
   }
 

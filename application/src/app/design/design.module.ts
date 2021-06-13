@@ -14,6 +14,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCheckboxModule,
     MatTooltipModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [],
   exports: [
@@ -48,6 +50,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCheckboxModule,
     MatTooltipModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class DesignModule { }
