@@ -87,7 +87,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
     )
     .subscribe(publicacao => {
       this._hasDetalhesTecnicos.next(publicacao.detalhesTecnicos != null);
-      this.patchValue(publicacao);
+      this.patchValue(publicacao as PublicacaoCriacaoModel);
     },
     error => {
       this.snackbar.error(error.error.message);

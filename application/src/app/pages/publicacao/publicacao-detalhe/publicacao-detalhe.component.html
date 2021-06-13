@@ -1,7 +1,10 @@
+<!-- LOADING -->
+<app-publicacao-loading [show]="loadingDetails$ | async"></app-publicacao-loading>
+<!-- LOADING -->
 <div class="container">
   <div class="publicacao-design">
     <div class="publicacao-design__header">
-      <h2>Lorem ipsum dolor sit amet consectetur</h2>
+      <h2>{{ (publicacao$ | async).titulo }}</h2>
     </div>
     <div class="publicacao-design__content">
       <div class="publicacao-design__content__sup-section">
@@ -12,20 +15,12 @@
           <mat-tab-group dynamicHeight class="tab-group">
             <mat-tab label="Descrição">
               <div class="content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                Tempore, laudantium? Cumque libero quas laborum sapiente 
-                nostrum quod voluptates, pariatur repellendus est, 
-                eligendi perferendis soluta. Dolore quos doloribus magni! 
-                Laudantium, perferendis.
+                {{ (publicacao$ | async).descricao }}
               </div>
             </mat-tab>
-            <mat-tab label="Informações técnicas">
+            <mat-tab label="Informações técnicas" *ngIf="(publicacao$ | async)?.detalhesTecnicos != null">
               <div class="content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                Tempore, laudantium? Cumque libero quas laborum sapiente 
-                nostrum quod voluptates, pariatur repellendus est, 
-                eligendi perferendis soluta. Dolore quos doloribus magni! 
-                Laudantium, perferendis.
+                {{ (publicacao$ | async)?.detalhesTecnicos }}
               </div>
             </mat-tab>
           </mat-tab-group>
@@ -41,12 +36,6 @@
             <mat-chip> tecnologia </mat-chip>
           </mat-chip-list>
           <input matInput type="text" disabled>
-          <mat-icon matSuffix class="chip-icon-verified"
-            matTooltip="Estas palavras-chave facilitam a busca por este produto"
-            matTooltipPosition="above"
-            matTooltipHideDelay="200">
-            verified_outline
-          </mat-icon>
           <mat-hint align="start">
             As tags e <i>hashtags</i> fazem com que esta publicação seja facilmente localizada
           </mat-hint>

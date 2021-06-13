@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { filter, switchMap, take } from 'rxjs/operators';
+import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { PublicacaoService } from '../services/publicacao.service';
+import { of } from 'rxjs';
+import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
 
 @Component({
   selector: 'app-publicacao-detalhe',
@@ -11,9 +18,38 @@ export class PublicacaoDetalheComponent implements OnInit {
   // imageTest = 'EF-Core.png';
   imageTest = 'php-db-config.png';
 
-  constructor() { }
+  // Loading de carregamento dos dados
+  public loadingDetails$ = this.service.loadingDetails$;
+
+  public publicacao$ = of({} as PublicacaoDetalheModel);
+
+  constructor (
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location,
+    private service: PublicacaoService,
+    private snackbar: SnackBarService
+    ) { }
 
   ngOnInit() {
+
+    this.route.paramMap
+    .pipe(
+      take(1),
+      switchMap((p: Params) => {
+        const publicacaoId = +p.get('publicacaoId');
+  
+        return this.service.init(publicacaoId);
+      }),
+      filter(p => p != null)
+    )
+    .subscribe(() => {
+      this.publicacao$ = this.service.publicacao$;
+    },
+    error => {
+      this.snackbar.error(error.error.message);
+      this.location.back();
+    });
   }
 
 }

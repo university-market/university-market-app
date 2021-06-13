@@ -6,6 +6,7 @@ import { catchError, finalize, map, mapTo, switchMap, take, tap } from 'rxjs/ope
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { API_Routes, environment } from 'src/environments/environment';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
+import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
 
 const API_URL = environment.dev + API_Routes.publicacao;
 
@@ -16,18 +17,21 @@ export class PublicacaoService {
   private _isEdicao = new BehaviorSubject<boolean>(false);
   public isEdicao$ = this._isEdicao.asObservable();
 
-  private _publicacao = new BehaviorSubject<PublicacaoCriacaoModel>({} as PublicacaoCriacaoModel);
+  private _publicacao = new BehaviorSubject<PublicacaoDetalheModel>({} as PublicacaoDetalheModel);
   public publicacao$ = this._publicacao.asObservable();
 
   private _loadingEdicao = new BehaviorSubject<boolean>(false);
   public loadingEdicao$ = this._loadingEdicao.asObservable();
+
+  private _loadingDetails = new BehaviorSubject<boolean>(false);
+  public loadingDetails$ = this._loadingDetails.asObservable();
 
   constructor (
     private http: HttpClient,
     private snackbar: SnackBarService
   ) { }
 
-  public init(publicacaoId: number): Observable<PublicacaoCriacaoModel|null> {
+  public init(publicacaoId: number): Observable<PublicacaoDetalheModel|null> {
 
     if (isNaN(publicacaoId)) {
 
@@ -39,21 +43,25 @@ export class PublicacaoService {
     return this.obter(publicacaoId);
   }
 
-  public obter(publicacaoId: number): Observable<PublicacaoCriacaoModel> {
+  public obter(publicacaoId: number): Observable<PublicacaoDetalheModel> {
 
     // Iniciando loading
     this._loadingEdicao.next(true);
+    this._loadingDetails.next(true);
 
     return this._obter(publicacaoId)
       .pipe(
         tap(p => this._publicacao.next(p)),
-        finalize(() => this._loadingEdicao.next(false))
+        finalize(() => {
+          this._loadingEdicao.next(false);
+          this._loadingDetails.next(false);
+        })
       );
   }
 
-  private _obter(publicacaoId: number): Observable<PublicacaoCriacaoModel> {
+  private _obter(publicacaoId: number): Observable<PublicacaoDetalheModel> {
 
-    return this.http.get<PublicacaoCriacaoModel>(`${API_URL}/${publicacaoId}`)
+    return this.http.get<PublicacaoDetalheModel>(`${API_URL}/${publicacaoId}`)
       .pipe(
         take(1),
         catchError(err => {
