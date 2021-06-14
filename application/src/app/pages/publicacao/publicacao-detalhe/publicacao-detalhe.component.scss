@@ -23,8 +23,8 @@ $publicacao-img-min-width: 350px;
 
             &__sup-section {
 
-                display: flex;
-                flex-direction: row;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
                 column-gap: 17.5px;
 
                 &__img {
