@@ -48,7 +48,7 @@ export class PublicacaoDetalheComponent implements OnInit {
     )
     .subscribe(publicacao => {
       this.publicacao = publicacao;
-      this.tags = this.service.makeTagsArray(publicacao.tags);
+      this.tags = publicacao.tags ? this.service.makeTagsArray(publicacao.tags) : [];
     },
     error => {
       this.snackbar.error(error.error.message);
