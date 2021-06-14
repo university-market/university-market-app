@@ -16,6 +16,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @NgModule({
   imports: [
@@ -35,6 +37,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTabsModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatListModule,
+    MatBottomSheetModule,
   ],
   declarations: [],
   exports: [
@@ -53,6 +57,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTabsModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatListModule,
+    MatBottomSheetModule,
   ]
 })
 export class DesignModule { }

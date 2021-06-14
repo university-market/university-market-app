@@ -59,9 +59,18 @@ $publicacao-img-min-width: 350px;
 
                     .details-plus {
 
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 10px;
+
                         span.valor {
                             font-size: 1.25em;
                             font-weight: 500;
+                        }
+
+                        button.contact-vendedor {
+                            background: $um-default-primary-bg;
+                            color: $um-default-primary-text;
                         }
                     }
                 }

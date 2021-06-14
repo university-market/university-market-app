@@ -31,6 +31,11 @@
                 {{ publicacao.valor | currencyBrazil }}
               </span>
             </mat-card>
+            <button mat-raised-button type="button" 
+              (click)="contatarVendedor()"
+              class="full-width contact-vendedor">
+              Entrar em contato com o vendedor
+            </button>
           </div>
         </div>
       </div>
