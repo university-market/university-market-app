@@ -1,9 +1,4 @@
-<div>
-  <p>
-    publicacao-list works!
-  </p>
-  <hr>
-  <b>Item:</b>
-  <hr>
-  <app-publicacao-list-item></app-publicacao-list-item>
+<div class="container">
+  <app-publicacao-list-item *ngFor="let publicacao of publicacaoList">
+  </app-publicacao-list-item>
 </div>

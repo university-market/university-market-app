@@ -3,10 +3,6 @@
 
 .container {
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 7.5px;
-
     .publicacao-card {
         max-width: 100%;
 
@@ -49,11 +45,4 @@
 }
 @media only screen and (max-width: $md-port-w-screen) {
 
-    .container {
-        
-        display: grid;
-        grid-template-columns: 1fr;
-
-        
-    }
 }

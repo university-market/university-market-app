@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicacaoListComponent implements OnInit {
 
+  public publicacaoList = [];
+
   constructor() { }
 
   ngOnInit() {
+    this.init();
+  }
+
+  init() {
+    this.publicacaoList.push(true);
+    this.publicacaoList.push(true);
+    this.publicacaoList.push(true);
+    this.publicacaoList.push(true);
+    this.publicacaoList.push(true);
+    this.publicacaoList.push(true);
+    this.publicacaoList.push(true);
+    this.publicacaoList.push(true);
   }
 
 }
