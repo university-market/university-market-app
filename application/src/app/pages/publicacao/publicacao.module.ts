@@ -15,6 +15,8 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { DialogConfirmDetalhesTecnicosComponent } from './dialogs/dialog-confirm-detalhes-tecnicos/dialog-confirm-detalhes-tecnicos.component';
 import { PublicacaoLoadingComponent } from './components/publicacao-loading/publicacao-loading.component';
 import { PublicacaoListHeaderComponent } from './components/publicacao-list-header/publicacao-list-header.component';
+import { PublicacaoImportantTagComponent } from './components/publicacao-important-tag/publicacao-important-tag.component';
+import { NgBrazil } from 'ng-brazil';
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import { PublicacaoListHeaderComponent } from './components/publicacao-list-head
     ReactiveFormsModule,
     TextMaskModule,
     DesignModule,
+    NgBrazil
   ],
   declarations: [
     PublicacaoComponent,
@@ -33,7 +36,8 @@ import { PublicacaoListHeaderComponent } from './components/publicacao-list-head
     PublicacaoEdicaoComponent,
     DialogConfirmDetalhesTecnicosComponent,
     PublicacaoLoadingComponent,
-    PublicacaoListHeaderComponent
+    PublicacaoListHeaderComponent,
+    PublicacaoImportantTagComponent,
   ],
   providers: [
     FormBuilder,

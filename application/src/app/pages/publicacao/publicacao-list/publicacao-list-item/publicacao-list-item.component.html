@@ -1,3 +1,35 @@
-<p>
-  publicacao-list-item works!
-</p>
+<div class="container">
+  <mat-card class="publicacao-card">
+    <mat-card-header>
+      <div mat-card-avatar class="publicacao-header-image"></div>
+      <mat-card-title>{{ publicacao.titulo }}</mat-card-title>
+      <mat-card-subtitle>Username autor</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <div class="publicacao-card__content">
+        <div class="publicacao-card__content__important-tags">
+          <app-publicacao-important-tag color="primary">
+            Detalhes técnicos
+          </app-publicacao-important-tag>
+          <app-publicacao-important-tag>
+            Novo
+          </app-publicacao-important-tag>
+        </div>
+        <div class="publicacao-card__content__description">
+          <p>{{ publicacao.descricao }}</p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="publicacao-card__actions">
+        <button mat-button type="button" class="content-price">
+          {{ publicacao.valor | currencyBrazil }}
+        </button>
+        <button mat-raised-button class="btn-details" type="button" [routerLink]="publicacao.publicacaoId">
+          Ver detalhes
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
