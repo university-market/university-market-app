@@ -42,6 +42,8 @@ $publicacao-img-min-width: 350px;
                 &__details {
     
                     display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
 
                     .tab-group {
 
@@ -54,13 +56,23 @@ $publicacao-img-min-width: 350px;
                             text-align: justify;
                         }
                     }
+
+                    .details-plus {
+
+                        span.valor {
+                            font-size: 1.25em;
+                            font-weight: 500;
+                        }
+                    }
                 }
             }
 
             &__tags {
 
                 .input-full-width { width: 100%; }
-                .chip-icon-verified { color: $um-default-primary-bg; }
+
+                .chip-tag-0 { background: $primary-chip-bg; color: $primary-chip-text }
+                .chip-tag-1 { background: $secondary-chip-bg; color: $secondary-chip-text }
             }
 
         }

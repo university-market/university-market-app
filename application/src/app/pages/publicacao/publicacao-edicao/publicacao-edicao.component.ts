@@ -100,7 +100,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
   public patchValue(publicacao: PublicacaoCriacaoModel) {
 
     if (publicacao.tags)
-      this.tags = this._makeTagsArray(publicacao.tags);
+      this.tags = this.service.makeTagsArray(publicacao.tags);
 
     this.form.patchValue({
       titulo: publicacao.titulo,
@@ -117,9 +117,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       parseFloat((valor).toString().replace(',','.'));
   }
 
-  private _makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
-
-  private _makeTagsArray = (tags: string) => tags ? tags.split(',').map<PublicacaoTag>(t => ({ name: t.trim() })) : null;
+  
 
   // Metodo utilizado para cancelar a criacao/edicao
   public onCancel = () => this.location.back();
@@ -134,7 +132,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       titulo: this.form.get('titulo').value,
       descricao: this.form.get('descricao').value,
       valor: <number>this._makeValor(this.form.get('valor').value),
-      tags: this._makeTagsString(this.tags),
+      tags: this.service.makeTagsString(this.tags),
       detalhesTecnicos: this.form.get('detalhesTecnicos').value
     };
 
@@ -159,7 +157,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       titulo: this.form.get('titulo').value,
       descricao: this.form.get('descricao').value,
       valor: <number>this._makeValor(this.form.get('valor').value),
-      tags: this._makeTagsString(this.tags),
+      tags: this.service.makeTagsString(this.tags),
       detalhesTecnicos: this.form.get('detalhesTecnicos').value
     };
 

@@ -7,6 +7,7 @@ import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { API_Routes, environment } from 'src/environments/environment';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
+import { PublicacaoTag } from '../models/publicacao-tag.model';
 
 const API_URL = environment.dev + API_Routes.publicacao;
 
@@ -118,6 +119,10 @@ export class PublicacaoService {
       );
   }
 
+  // Operacoes com tags de publicacao
+  public makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
+
+  public makeTagsArray = (tags: string) => tags ? tags.split(',').map<PublicacaoTag>(t => ({ name: t.trim() })) : null;
   
 
 }

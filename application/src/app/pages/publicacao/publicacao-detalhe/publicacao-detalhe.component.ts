@@ -6,6 +6,7 @@ import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { PublicacaoService } from '../services/publicacao.service';
 import { of } from 'rxjs';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
+import { PublicacaoTag } from '../models/publicacao-tag.model';
 
 @Component({
   selector: 'app-publicacao-detalhe',
@@ -21,7 +22,8 @@ export class PublicacaoDetalheComponent implements OnInit {
   // Loading de carregamento dos dados
   public loadingDetails$ = this.service.loadingDetails$;
 
-  public publicacao$ = of({} as PublicacaoDetalheModel);
+  public publicacao: PublicacaoDetalheModel = {} as PublicacaoDetalheModel;
+  public tags: PublicacaoTag[] = [];
 
   constructor (
     private router: Router,
@@ -43,8 +45,9 @@ export class PublicacaoDetalheComponent implements OnInit {
       }),
       filter(p => p != null)
     )
-    .subscribe(() => {
-      this.publicacao$ = this.service.publicacao$;
+    .subscribe(publicacao => {
+      this.publicacao = publicacao;
+      this.tags = this.service.makeTagsArray(publicacao.tags);
     },
     error => {
       this.snackbar.error(error.error.message);

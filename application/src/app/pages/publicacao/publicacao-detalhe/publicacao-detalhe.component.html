@@ -4,7 +4,7 @@
 <div class="container">
   <div class="publicacao-design">
     <div class="publicacao-design__header">
-      <h2>{{ (publicacao$ | async).titulo }}</h2>
+      <h2>{{ publicacao.titulo }}</h2>
     </div>
     <div class="publicacao-design__content">
       <div class="publicacao-design__content__sup-section">
@@ -15,25 +15,32 @@
           <mat-tab-group dynamicHeight class="tab-group">
             <mat-tab label="Descrição">
               <div class="content">
-                {{ (publicacao$ | async).descricao }}
+                {{ publicacao.descricao }}
               </div>
             </mat-tab>
-            <mat-tab label="Informações técnicas" *ngIf="(publicacao$ | async)?.detalhesTecnicos != null">
+            <mat-tab label="Informações técnicas" *ngIf="publicacao?.detalhesTecnicos != null">
               <div class="content">
-                {{ (publicacao$ | async)?.detalhesTecnicos }}
+                {{ publicacao?.detalhesTecnicos }}
               </div>
             </mat-tab>
           </mat-tab-group>
+          <div class="details-plus">
+            <mat-card>
+              <mat-card-subtitle>Valor do anúncio</mat-card-subtitle>
+              <span class="valor">
+                {{ publicacao.valor | currencyBrazil }}
+              </span>
+            </mat-card>
+          </div>
         </div>
       </div>
-      <div class="publicacao-design__content__tags">
+      <div class="publicacao-design__content__tags" *ngIf="tags.length > 0">
         <mat-form-field appearance="outline" class="input-full-width mt-20">
           <mat-label>Tags & <i>Hashtags</i></mat-label>
           <mat-chip-list #tagsList aria-label="Tags da publicação" color="primary">
-            <mat-chip> ads </mat-chip>
-            <mat-chip> analise de sistemas </mat-chip>
-            <mat-chip selectedChip> computacaoo </mat-chip>
-            <mat-chip> tecnologia </mat-chip>
+            <mat-chip *ngFor="let tag of tags; index as i" [class]="'chip-tag-'+i%2">
+              {{ tag.name }}
+            </mat-chip>
           </mat-chip-list>
           <input matInput type="text" disabled>
           <mat-hint align="start">
