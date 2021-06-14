@@ -17,7 +17,8 @@ export class PublicacaoDetalheComponent implements OnInit {
 
   // imageTest = 'angular-background.png';
   // imageTest = 'EF-Core.png';
-  imageTest = 'php-db-config.png';
+  // imageTest = 'php-db-config.png';
+  imageTest = 'default/no-image.png';
 
   // Loading de carregamento dos dados
   public loadingDetails$ = this.service.loadingDetails$;
