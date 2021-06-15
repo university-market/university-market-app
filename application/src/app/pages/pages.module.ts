@@ -9,6 +9,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { SaleModule } from './sale/sale.module';
 
 import { PublicacaoModule } from './publicacao/publicacao.module';
+import { ProfileModule } from './profile/profile.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PublicacaoModule } from './publicacao/publicacao.module';
     DesignModule,
     SharedModule,
     SaleModule,
-    PublicacaoModule
+    PublicacaoModule,
+    ProfileModule
 
   ],
   declarations: [
