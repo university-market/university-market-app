@@ -1,0 +1,49 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+.container {
+
+    &__header {
+        display: flex;
+    }
+
+    &__content {
+
+        .grid-publicacoes {
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 10px;
+        }
+    }
+}
+
+// Media query
+@media only screen and (max-width: 1460px) {
+    .container {
+        &__content {
+
+            .grid-publicacoes { grid-template-columns: 1fr 1fr 1fr 1fr; }
+        }
+    }
+}
+@media only screen and (max-width: 1150px) {
+    .container {
+        &__content {
+
+            .grid-publicacoes { grid-template-columns: 1fr 1fr 1fr; }
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .container {
+        &__content {
+
+            .grid-publicacoes { grid-template-columns: 1fr 1fr; }
+        }
+    }
+}
+// Media query default para componentes
+@media only screen and (max-width: $md-port-w-screen) {
+
+}

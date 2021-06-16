@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="container__header">
+    <div class="user-img">
+      <img src="assets/logos/logo-university-market-branco-azul.png" alt="user-image">
+    </div>
+    <div class="user-data">
+      <div class="user-data__primary">
+        <div class="user-data__primary__name">
+          Username of User
+        </div>
+        <div class="user-data__primary__email">
+          <mat-icon>mail_outline</mat-icon>
+          username.user@email.com
+        </div>
+        <div class="user-data__primary__course">
+          Estudante de {{ 'Curso Universitário' }}
+        </div>
+      </div>
+      <div class="user-data__actions">
+        <button mat-raised-button class="btn-edit-data" 
+          routerLink="posts" routerLinkActive="selected-route">
+          <mat-icon>dashboard</mat-icon>
+          Minhas publicações
+        </button>
+        <button mat-raised-button class="btn-edit-data" 
+          routerLink="account" routerLinkActive="selected-route">
+          <mat-icon>account_circle</mat-icon>
+          Meus dados
+        </button>
+        <button mat-raised-button class="btn-edit-config" 
+          routerLink="settings" routerLinkActive="selected-route">
+          <mat-icon>settings</mat-icon>
+          Configurações da conta
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

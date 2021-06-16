@@ -14,7 +14,9 @@ const routes: Routes = [
     }, {
       path: 'publicacao',
       loadChildren: () => import("../pages/publicacao/publicacao.module").then(m => m.PublicacaoModule)
-
+    }, {
+      path: 'profile',
+      loadChildren: () => import("../pages/profile/profile.module").then(m => m.ProfileModule)
     }
 ];
 
