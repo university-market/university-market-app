@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+
+import { DesignModule } from 'src/app/design/design.module';
+import { NgBrazil } from 'ng-brazil';
 import { SaleComponent } from './sale.component';
 import { SaleRoutingModule } from './sale-routing.module';
 import { SaleListService } from './services/sale-list.service';
-import { DesignModule } from 'src/app/design/design.module';
 import { SaleListComponent } from './components/sale-list/sale-list.component';
 import { SaleListItemComponent } from './components/sale-list/sale-list-item/sale-list-item.component';
 import { SaleImportantTagComponent } from './components/sale-important-tag/sale-important-tag.component';
 import { SaleListHeaderComponent } from './components/sale-list-header/sale-list-header.component';
-import { NgBrazil } from 'ng-brazil';
+import { SaleListHeaderService } from './services/sale-list-header.service';
 
 @NgModule({
   imports: [
@@ -25,7 +28,8 @@ import { NgBrazil } from 'ng-brazil';
     SaleListHeaderComponent
   ],
   providers:[
-    SaleListService
+    SaleListService,
+    SaleListHeaderService
   ]
 })
 export class SaleModule { }

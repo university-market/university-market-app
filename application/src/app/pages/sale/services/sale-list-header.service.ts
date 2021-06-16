@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SaleListHeaderModel } from '../models/sale-list-header-model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SaleListHeaderService {
 
     

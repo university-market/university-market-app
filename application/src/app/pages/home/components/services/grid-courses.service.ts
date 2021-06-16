@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tile } from '../models/grid-courses.mode';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GridCoursesService {
 
   private baseUrl = environment.dev + '/course/grid';

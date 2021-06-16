@@ -1,0 +1,50 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+.container {
+
+    .publicacao-card {
+        max-width: 100%;
+
+        &__content {
+
+            &__important-tags {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 5px;
+            }
+
+            &__description {
+                text-align: justify;
+                min-height: 60px;
+                max-height: 60px;
+            }
+        }
+
+        &__actions {
+            display: flex;
+            justify-content: space-between;
+
+            .content-price {
+                font-size: 1.25em;
+            }
+            .btn-details {
+                background: $um-default-primary-bg;
+                color: $um-default-primary-text;
+            }
+        }
+    }
+    
+    .publicacao-header-image {
+        background-image: url('/assets/logos/logo-university-market-branco-azul.png');
+        background-size: cover;
+    }
+}
+
+// Media query
+@media only screen and (orientation: landscape) {
+
+}
+@media only screen and (max-width: $md-port-w-screen) {
+
+}
