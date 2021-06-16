@@ -10,6 +10,7 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { ProfilePublicacoesComponent } from './components/profile-publicacoes/profile-publicacoes.component';
 import { ProfileAccountDataComponent } from './components/profile-account-data/profile-account-data.component';
 import { ProfileContentComponent } from './profile-content/profile-content.component';
+import { ProfilePublicacoesHeaderComponent } from './components/profile-publicacoes/profile-publicacoes-header/profile-publicacoes-header.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { ProfileContentComponent } from './profile-content/profile-content.compo
     ProfilePublicacoesComponent,
     ProfileAccountDataComponent,
     ProfileContentComponent,
+    ProfilePublicacoesHeaderComponent,
   ],
   providers: [ProfileService]
 })
