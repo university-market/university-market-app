@@ -11,7 +11,7 @@
           <mat-icon>verified</mat-icon>
           <span>Vendido</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item [routerLink]="['/publicacao', 'edit', publicacao.publicacaoId]">
           <mat-icon>edit_outline</mat-icon>
           <span>Editar</span>
         </button>
