@@ -12,6 +12,9 @@ import { HomePublicacaoListItemComponent } from './components/home-publicacao-li
 import { SaleHomeListService } from './components/services/sale-home-list.service';
 import { GridCoursesService } from './components/services/grid-courses.service';
 import { HomePublicacaoListHeaderComponent } from './components/home-publicacao-list-header/home-publicacao-list-header.component';
+import { AboutUmComponent } from './components/about-um/about-um.component';
+import { AboutUmItemComponent } from './components/about-um/about-um-item/about-um-item.component';
+import { AboutUmHeaderComponent } from './components/about-um-header/about-um-header.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { HomePublicacaoListHeaderComponent } from './components/home-publicacao-
     HomePublicacaoListComponent,
     HomePublicacaoListItemComponent,
     HomePublicacaoImportantTagComponent,
-    HomePublicacaoListHeaderComponent
+    HomePublicacaoListHeaderComponent,
+    AboutUmComponent,
+    AboutUmItemComponent,
+    AboutUmHeaderComponent
   ],
   providers:[
     SaleHomeListService,

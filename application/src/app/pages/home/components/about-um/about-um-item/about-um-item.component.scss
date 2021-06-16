@@ -1,0 +1,17 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+.container {
+
+    display: flex;
+    
+    .content{
+        height: 200px;
+        width: 49%;
+        margin: 5px;
+        background-color: $um-default-primary-bg;
+        background-image: url('https://static.olx.com.br/cd/homepage/envs/feature-node-14/desktop/d97d86a2/static/background-imoveis-2021-1de1027bb6f67b52702ee0bdac2c44b1.jpg');
+        background-size: cover;
+    }
+}
+
