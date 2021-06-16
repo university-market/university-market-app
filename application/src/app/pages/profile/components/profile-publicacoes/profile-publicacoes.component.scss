@@ -12,27 +12,36 @@
         .grid-publicacoes {
 
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 10px;
         }
     }
 }
 
 // Media query
 @media only screen and (max-width: 1460px) {
-    
-    .grid-publicacoes { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .container {
+        &__content {
+
+            .grid-publicacoes { grid-template-columns: 1fr 1fr 1fr 1fr; }
+        }
+    }
 }
 @media only screen and (max-width: 1150px) {
-    
-    .grid-publicacoes { grid-template-columns: 1fr 1fr 1fr; }
-}
-@media only screen and (max-width: 880px) {
-    
-    .grid-publicacoes { grid-template-columns: 1fr 1fr; }
+    .container {
+        &__content {
+
+            .grid-publicacoes { grid-template-columns: 1fr 1fr 1fr; }
+        }
+    }
 }
 @media only screen and (max-width: 600px) {
+    .container {
+        &__content {
 
-    .grid-publicacoes { grid-template-columns: 1fr; }
+            .grid-publicacoes { grid-template-columns: 1fr 1fr; }
+        }
+    }
 }
 // Media query default para componentes
 @media only screen and (max-width: $md-port-w-screen) {

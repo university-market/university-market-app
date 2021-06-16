@@ -12,12 +12,14 @@ import { ProfileAccountDataComponent } from './components/profile-account-data/p
 import { ProfileContentComponent } from './profile-content/profile-content.component';
 import { ProfilePublicacoesHeaderComponent } from './components/profile-publicacoes/profile-publicacoes-header/profile-publicacoes-header.component';
 import { ProfilePublicacaoItemComponent } from './components/profile-publicacoes/profile-publicacao-item/profile-publicacao-item.component';
+import { NgBrazil } from 'ng-brazil';
 
 @NgModule({
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    DesignModule
+    DesignModule,
+    NgBrazil,
   ],
   declarations: [
     ProfileComponent,
