@@ -12,4 +12,8 @@ export class AboutUmItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  about(){
+   alert("teste");
+  }
+
 }
