@@ -1,0 +1,7 @@
+<span class="important-tag" 
+  [ngClass]="color == 'primary' ? 'tag-primary' : 
+             color == 'secondary' ? 'tag-secondary' : 
+             color == 'accent' ? 'tag-accent' : 'tag-default'
+             ">
+  <ng-content></ng-content>
+</span>

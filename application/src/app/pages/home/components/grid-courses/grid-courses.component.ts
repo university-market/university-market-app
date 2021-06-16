@@ -47,6 +47,6 @@ export class GridCoursesComponent implements OnInit {
   }
 
   courseSearch(id: number){
-    this.route.navigate(['/list/course/'+ id]);
+    this.route.navigate(['/sales/course/'+ id]);
   }
 }

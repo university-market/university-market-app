@@ -8,7 +8,7 @@ const routes: Routes = [
 
     },
     {
-      path: 'list',
+      path: 'sales',
       loadChildren: () => import("../pages/sale/sale.module").then(m => m.SaleModule)
 
     }, {
