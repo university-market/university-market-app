@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="container__content">
+    <div class="menus-header">
+      <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle value="posts" routerLink="posts">
+          <mat-icon>dashboard</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="account" routerLink="account">
+          <mat-icon>account_circle</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="settings" routerLink="settings">
+          <mat-icon>settings</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="section-content">
+      <mat-card class="section-content__card-main mt-10">
+        <ng-content></ng-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

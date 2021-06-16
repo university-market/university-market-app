@@ -67,30 +67,6 @@
                 flex-direction: row;
                 column-gap: 12.5px;
             }
-
-        }
-    }
-
-    &__content {
-        
-        .menus-header {
-            display: none;
-            flex-direction: row;
-            justify-content: center;
-            flex: 100%;
-
-            * { width: 100%; }
-        }
-
-        .section-content {
-
-            display: flex;
-
-            &__card-main {
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-            }
         }
     }
 }
@@ -106,9 +82,6 @@
             .user-data {
                 &__actions { display: none; }
             }
-        }
-        &__content {
-            .menus-header { display: flex; }
         }
     }
 }

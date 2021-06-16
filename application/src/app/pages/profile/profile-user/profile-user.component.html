@@ -17,39 +17,19 @@
         </div>
       </div>
       <div class="user-data__actions">
-        <button mat-raised-button class="btn-edit-data">
+        <button mat-raised-button class="btn-edit-data" routerLink="posts">
           <mat-icon>dashboard</mat-icon>
           Minhas publicações
         </button>
-        <button mat-raised-button class="btn-edit-data">
+        <button mat-raised-button class="btn-edit-data" routerLink="account">
           <mat-icon>account_circle</mat-icon>
           Meus dados
         </button>
-        <button mat-raised-button class="btn-edit-config">
+        <button mat-raised-button class="btn-edit-config" routerLink="settings">
           <mat-icon>settings</mat-icon>
           Configurações da conta
         </button>
       </div>
-    </div>
-  </div>
-  <div class="container__content">
-    <div class="menus-header">
-      <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle value="posts">
-          <mat-icon>dashboard</mat-icon>
-        </mat-button-toggle>
-        <mat-button-toggle value="account">
-          <mat-icon>account_circle</mat-icon>
-        </mat-button-toggle>
-        <mat-button-toggle value="settings">
-          <mat-icon>settings</mat-icon>
-        </mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
-    <div class="section-content">
-      <mat-card class="section-content__card-main mt-10">
-        <router-outlet></router-outlet>
-      </mat-card>
     </div>
   </div>
 </div>

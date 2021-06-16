@@ -9,6 +9,7 @@ import { ProfileConfigComponent } from './components/profile-config/profile-conf
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { ProfilePublicacoesComponent } from './components/profile-publicacoes/profile-publicacoes.component';
 import { ProfileAccountDataComponent } from './components/profile-account-data/profile-account-data.component';
+import { ProfileContentComponent } from './profile-content/profile-content.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ProfileAccountDataComponent } from './components/profile-account-data/p
     ProfileConfigComponent,
     ProfilePublicacoesComponent,
     ProfileAccountDataComponent,
+    ProfileContentComponent,
   ],
   providers: [ProfileService]
 })
