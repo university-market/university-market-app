@@ -9,14 +9,8 @@ import { SaleModel } from '../../../models/sale-model';
 })
 export class SaleListItemComponent implements OnInit {
 
-  @Input('sale') sale: SaleModel = {
-    publicacaoId: 1,
-    titulo: 'Publicação teste título',
-    descricao: 'Uma descricao qualquer para teste a nova sale, e complemento de descrição para ser visualizado no componente de detalhes da publicação. Espero que funcione',
-    pathImagem: '',
-    valor: 2849.9
+  @Input('sale') sale : SaleModel;
 
-  };
   public MASKS = utilsBr.MASKS;
 
   private _descriptionMaxLength = 100;
@@ -25,6 +19,7 @@ export class SaleListItemComponent implements OnInit {
   
 
   ngOnInit() {
+
 
     // Definindo padrao template descricao tamanho maximo
     this._limitDescriptionLength();

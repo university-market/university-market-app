@@ -11,7 +11,7 @@ import { SaleListService } from '../../services/sale-list.service';
 })
 export class SaleListComponent implements OnInit {
   
-  sales : SaleModel[] = [];
+  sales : SaleModel[];
 
   constructor(private SaleService: SaleListService,
               private activatedRoute: ActivatedRoute) { }

@@ -6,7 +6,7 @@ import { SaleComponent } from './sale.component';
 const routes: Routes = [
   {
     path: '',
-    component: SaleListComponent
+    component: SaleComponent
   },
   {
     path: 'course/:id',

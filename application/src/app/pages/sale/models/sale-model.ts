@@ -1,7 +1,7 @@
-export interface SaleModel {
-    publicacaoId: number;
-    titulo: string;
+export interface SaleModel{
     descricao: string;
-    valor?: number;
     pathImagem?: string;
-}
+        publicacaoId: number;
+        titulo: string;
+        valor?: number;
+    }
