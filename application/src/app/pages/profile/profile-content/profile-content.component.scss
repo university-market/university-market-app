@@ -1,6 +1,11 @@
 @import "src/styles/colors.scss";
 @import "src/styles/template.scss";
 
+.selected-route {
+    color: $um-default-primary-bg !important;
+    background: $um-default-primary-opacity;
+}
+
 .container {
 
     &__content {

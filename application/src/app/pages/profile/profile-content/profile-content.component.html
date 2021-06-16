@@ -2,13 +2,16 @@
   <div class="container__content">
     <div class="menus-header">
       <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle value="posts" routerLink="posts">
+        <mat-button-toggle value="posts" 
+          routerLink="posts" routerLinkActive="selected-route">
           <mat-icon>dashboard</mat-icon>
         </mat-button-toggle>
-        <mat-button-toggle value="account" routerLink="account">
+        <mat-button-toggle value="account" 
+          routerLink="account" routerLinkActive="selected-route">
           <mat-icon>account_circle</mat-icon>
         </mat-button-toggle>
-        <mat-button-toggle value="settings" routerLink="settings">
+        <mat-button-toggle value="settings" 
+          routerLink="settings" routerLinkActive="selected-route">
           <mat-icon>settings</mat-icon>
         </mat-button-toggle>
       </mat-button-toggle-group>
