@@ -85,7 +85,7 @@ export class PublicacaoService {
 
   private _criar(publicacao: PublicacaoCriacaoModel): Observable<number> {
     
-    return this.http.post<number>(`${API_URL}/create`, publicacao)
+    return this.http.post<number>(`${API_URL}`, publicacao)
       .pipe(
         take(1),
         catchError(err => {

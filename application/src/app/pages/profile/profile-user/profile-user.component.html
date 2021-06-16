@@ -1,3 +1,55 @@
-<p>
-  profile-user works!
-</p>
+<div class="container">
+  <div class="container__header">
+    <div class="user-img">
+      <img src="assets/logos/logo-university-market-branco-azul.png" alt="user-image">
+    </div>
+    <div class="user-data">
+      <div class="user-data__primary">
+        <div class="user-data__primary__name">
+          Username of User
+        </div>
+        <div class="user-data__primary__email">
+          <mat-icon>mail_outline</mat-icon>
+          username.user@email.com
+        </div>
+        <div class="user-data__primary__course">
+          Estudante de {{ 'Curso Universitário' }}
+        </div>
+      </div>
+      <div class="user-data__actions">
+        <button mat-raised-button class="btn-edit-data">
+          <mat-icon>dashboard</mat-icon>
+          Minhas publicações
+        </button>
+        <button mat-raised-button class="btn-edit-data">
+          <mat-icon>account_circle</mat-icon>
+          Meus dados
+        </button>
+        <button mat-raised-button class="btn-edit-config">
+          <mat-icon>settings</mat-icon>
+          Configurações da conta
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container__content">
+    <div class="menus-header">
+      <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle value="posts">
+          <mat-icon>dashboard</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="account">
+          <mat-icon>account_circle</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="settings">
+          <mat-icon>settings</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="section-content">
+      <mat-card class="section-content__card-main mt-10">
+        <router-outlet></router-outlet>
+      </mat-card>
+    </div>
+  </div>
+</div>
