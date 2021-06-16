@@ -1,5 +1,5 @@
 export enum ApplicationRoutesEnum {
-    home = '',
+    home = 'home',
     profile = 'profile',
     search = 'search',
     publicacao = 'publicacao'

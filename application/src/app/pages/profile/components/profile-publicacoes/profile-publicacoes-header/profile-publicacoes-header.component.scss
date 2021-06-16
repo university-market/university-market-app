@@ -1,0 +1,16 @@
+@import "src/styles/colors.scss";
+
+.container {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    span {
+        font-size: 1.25em;
+        font-weight: 500;
+    }
+    mat-icon {
+        color: $um-default-primary-bg;
+    }
+}

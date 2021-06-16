@@ -18,6 +18,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   imports: [
@@ -39,6 +41,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatDividerModule,
     MatListModule,
     MatBottomSheetModule,
+    MatButtonToggleModule,
+    MatMenuModule,
   ],
   declarations: [],
   exports: [
@@ -59,6 +63,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatDividerModule,
     MatListModule,
     MatBottomSheetModule,
+    MatButtonToggleModule,
+    MatMenuModule,
   ]
 })
 export class DesignModule { }

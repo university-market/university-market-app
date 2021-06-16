@@ -1,0 +1,32 @@
+<mat-card>
+<div class="container">
+  <div class="container__details">
+    <div class="title">{{ publicacao.titulo }}</div>
+    <div class="actions">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item disabled>
+          <mat-icon>verified</mat-icon>
+          <span>Vendido</span>
+        </button>
+        <button mat-menu-item [routerLink]="['/publicacao', 'edit', publicacao.publicacaoId]">
+          <mat-icon>edit_outline</mat-icon>
+          <span>Editar</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete_outline</mat-icon>
+          <span>Excluir</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="container__img mb-10">
+    <div class="img">
+      <img src="assets/publicacao/default/no-image.png" alt="publicacao-image">
+      <mat-chip class="value">{{ publicacao.valor | currencyBrazil }}</mat-chip>
+    </div>
+  </div>
+</div>
+</mat-card>

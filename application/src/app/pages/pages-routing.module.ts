@@ -4,8 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
     {
       path: '',
+      pathMatch: 'prefix',
+      redirectTo: 'home'
+    },
+    {
+      path: 'home',
       loadChildren: () => import("../pages/home/home.module").then(m => m.HomeModule)
-
     },
     {
       path: 'sales',
@@ -14,7 +18,9 @@ const routes: Routes = [
     }, {
       path: 'publicacao',
       loadChildren: () => import("../pages/publicacao/publicacao.module").then(m => m.PublicacaoModule)
-
+    }, {
+      path: 'profile',
+      loadChildren: () => import("../pages/profile/profile.module").then(m => m.ProfileModule)
     }
 ];
 

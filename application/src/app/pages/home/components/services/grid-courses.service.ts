@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Tile } from '../models/grid-courses.mode';
 
 @Injectable({
@@ -8,9 +9,9 @@ import { Tile } from '../models/grid-courses.mode';
 })
 export class GridCoursesService {
 
-private baseUrl = 'http://localhost:9090/course/grid'
+  private baseUrl = environment.dev + '/course/grid';
 
-constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient) { }
 
   onInit(): Observable<Tile[]>{
     return this.http.get<Tile[]>(this.baseUrl)
