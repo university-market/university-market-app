@@ -11,6 +11,7 @@ import { ProfilePublicacoesComponent } from './components/profile-publicacoes/pr
 import { ProfileAccountDataComponent } from './components/profile-account-data/profile-account-data.component';
 import { ProfileContentComponent } from './profile-content/profile-content.component';
 import { ProfilePublicacoesHeaderComponent } from './components/profile-publicacoes/profile-publicacoes-header/profile-publicacoes-header.component';
+import { ProfilePublicacaoItemComponent } from './components/profile-publicacoes/profile-publicacao-item/profile-publicacao-item.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { ProfilePublicacoesHeaderComponent } from './components/profile-publicac
     ProfileAccountDataComponent,
     ProfileContentComponent,
     ProfilePublicacoesHeaderComponent,
+    ProfilePublicacaoItemComponent,
   ],
   providers: [ProfileService]
 })

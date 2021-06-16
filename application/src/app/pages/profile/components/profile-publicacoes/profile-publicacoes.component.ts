@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePublicacoesComponent implements OnInit {
 
-  constructor() { }
+  public publicacoesList = [];
 
-  ngOnInit() {
+  constructor() {
+    
+    this.publicacoesList.push(true);
+    this.publicacoesList.push(true);
+    this.publicacoesList.push(true);
+    this.publicacoesList.push(true);
+    this.publicacoesList.push(true);
   }
+
+  ngOnInit() { }
 
 }
