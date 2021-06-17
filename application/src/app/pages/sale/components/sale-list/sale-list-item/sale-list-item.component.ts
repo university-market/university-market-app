@@ -23,6 +23,10 @@ export class SaleListItemComponent implements OnInit {
 
     // Definindo padrao template descricao tamanho maximo
     this._limitDescriptionLength();
+
+    if(!this.sale.pathImagem){
+      this.sale.pathImagem = 'assets/publicacao/default/no-image.png';
+    }
   }
 
   private _limitDescriptionLength() {
