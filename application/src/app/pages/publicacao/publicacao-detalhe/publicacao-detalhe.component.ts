@@ -9,6 +9,7 @@ import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 import { PublicacaoDetalheContatoComponent } from './publicacao-detalhe-contato/publicacao-detalhe-contato.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-publicacao-detalhe',
@@ -17,10 +18,9 @@ import { PublicacaoDetalheContatoComponent } from './publicacao-detalhe-contato/
 })
 export class PublicacaoDetalheComponent implements OnInit {
 
-  // imageTest = 'angular-background.png';
-  // imageTest = 'EF-Core.png';
-  // imageTest = 'php-db-config.png';
-  imageTest = 'default/no-image.png';
+  // Gerenciamento de imagens
+  public noImage = 'default/no-image.png';
+  public baseImageResource = environment.dev;
 
   // Loading de carregamento dos dados
   public loadingDetails$ = this.service.loadingDetails$;

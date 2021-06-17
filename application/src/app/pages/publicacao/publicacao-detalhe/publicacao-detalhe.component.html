@@ -9,7 +9,11 @@
     <div class="publicacao-design__content">
       <div class="publicacao-design__content__sup-section">
         <div class="publicacao-design__content__sup-section__img">
-          <img src="assets/publicacao/{{imageTest}}">
+          <img 
+            #publicacaoImg
+            [src]="publicacao.pathImagem ? 
+            baseImageResource+publicacao.pathImagem : 
+            'assets/publicacao/'+noImage">
         </div>
         <div class="publicacao-design__content__sup-section__details">
           <mat-tab-group dynamicHeight class="tab-group">

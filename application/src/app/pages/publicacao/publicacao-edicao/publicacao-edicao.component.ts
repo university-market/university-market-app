@@ -62,6 +62,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
   public imagePath: string;
   public message: string|null;
   public imgURL: any;
+  public selectedImage: any;
 
   constructor (
     private router: Router,
@@ -133,7 +134,8 @@ export class PublicacaoEdicaoComponent implements OnInit {
       descricao: this.form.get('descricao').value,
       valor: <number>this._makeValor(this.form.get('valor').value),
       tags: this.service.makeTagsString(this.tags),
-      detalhesTecnicos: this.form.get('detalhesTecnicos').value
+      detalhesTecnicos: this.form.get('detalhesTecnicos').value ?? null,
+      pathImagem: this.selectedImage
     };
 
     // Metodo de criar no back-end
@@ -219,12 +221,18 @@ export class PublicacaoEdicaoComponent implements OnInit {
       this.snackbar.warn(msg);
       return;
     }
+
+    // Salvando a imagem em memória para enviar para API
+    this.selectedImage = files[0];
  
     var reader = new FileReader();
     this.imagePath = files;
     this.message = null;
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => this.imgURL = reader.result;
+
+    // this.service.uploadImage(files[0])
+    // .subscribe(() => this.snackbar.notify('Sua imagem foi carregada com sucesso'));
   }
 
   // Manipulacao detalhes tecnicos

@@ -77,15 +77,24 @@ export class PublicacaoService {
     // Iniciando loading
     this._loadingEdicao.next(true);
 
-    return this._criar(publicacao)
+    // Construcao FormData
+    const formData = new FormData();
+    formData.append('titulo', publicacao.titulo);
+    formData.append('descricao', publicacao.descricao);
+    formData.append('tags', publicacao.tags);
+    formData.append('detalhesTecnicos', publicacao.detalhesTecnicos);
+    formData.append('valor', publicacao.valor.toString());
+    formData.append('image', publicacao.pathImagem);
+
+    return this._criar(formData)
       .pipe(
         finalize(() => this._loadingEdicao.next(false))
       );
   }
 
-  private _criar(publicacao: PublicacaoCriacaoModel): Observable<number> {
+  private _criar(publicacao: any): Observable<number> {
     
-    return this.http.post<number>(`${API_URL}`, publicacao)
+    return this.http.post<number>(`${API_URL}/create`, publicacao)
       .pipe(
         take(1),
         catchError(err => {
@@ -110,6 +119,35 @@ export class PublicacaoService {
   private _editar(publicacaoId: number, model: PublicacaoCriacaoModel): Observable<void> {
 
     return this.http.put<void>(`${API_URL}/${publicacaoId}`, model)
+      .pipe(
+        take(1),
+        catchError(err => {
+          this.snackbar.error(err.error.message);
+          throw err;
+        })
+      );
+  }
+
+  public uploadImage(image: any): Observable<void> {
+
+    // Iniciando loading
+    this._loadingEdicao.next(true);
+
+    const formData = new FormData();
+    formData.append('image', image);
+
+    return this._uploadImage(formData)
+      .pipe(
+        finalize(() => this._loadingEdicao.next(false))
+      );
+  }
+
+  private _uploadImage(image: any): Observable<void> {
+
+    // const headers = new HttpHeaders();
+    // headers.append('Content-Type', 'multipart/form-data');
+
+    return this.http.post<void>(`${API_URL}/image`, image)
       .pipe(
         take(1),
         catchError(err => {
