@@ -46,12 +46,13 @@
               Informe um título válido
             </mat-error>
         </mat-form-field>
-      
+        
         <mat-form-field class="input-full-width description">
           <mat-label>Descrição</mat-label>
           <textarea matInput #descricao [maxlength]="descricaoMaxLength" 
             formControlName="descricao" 
             placeholder="Uma breve descrição do item anunciado..."
+            (blur)="onBlurFn($event)"
             required>
           </textarea>
           <mat-hint align="start">
