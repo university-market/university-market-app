@@ -235,6 +235,14 @@ export class PublicacaoEdicaoComponent implements OnInit {
     // .subscribe(() => this.snackbar.notify('Sua imagem foi carregada com sucesso'));
   }
 
+  // Manipulacao detalhes (ambiente de testes)
+  public onBlurFn(event: any): void {
+
+    const lorem = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos non similique molestiae culpa pariatur repellendus tempora distinctio laboriosam voluptatum perspiciatis, incidunt inventore suscipit, sapiente corrupti voluptatem quaerat mollitia qui placeat?'
+    if (event.target.value == 'lorem')
+      this.form.get('descricao').setValue(lorem);
+  }
+
   // Manipulacao detalhes tecnicos
   public changeDetalhesTecnicos(): void {
 
