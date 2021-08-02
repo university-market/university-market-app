@@ -21,6 +21,8 @@ export class DialogService {
     };
 
     return this.dialog.open(BaseConfirmDialogComponent, {
+      maxWidth: '90%',
+      width: '400px',
       data: dataModel
     }).afterClosed()
       .pipe(
