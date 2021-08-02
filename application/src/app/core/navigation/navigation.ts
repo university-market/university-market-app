@@ -1,3 +1,3 @@
-import { NavigationModel } from "../static/navigation.model";
+import { NavigationItemModel } from "../static/navigation-item.model";
 
-export const navigation: NavigationModel[] = [];
+export const navigation: NavigationItemModel[] = [];
