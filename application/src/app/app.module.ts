@@ -11,7 +11,6 @@ import { NgBrazil }from 'ng-brazil';
 import { DesignModule } from './design/design.module';
 import { PagesModule } from './pages/pages.module';
 import { SnackBarService } from './shared/services/snack-bar.service';
-import { TitleService } from './shared/services/title.service';
 import { SharedModule } from './shared/shared.module';
 import { TemplateModule } from './template/template.module';
 import { SelectedChipDirective } from './shared/directives/selected-chip.directive';
@@ -36,7 +35,6 @@ import { SelectedChipDirective } from './shared/directives/selected-chip.directi
     TemplateModule
   ],
   providers: [
-    TitleService,
     SnackBarService
   ],
   bootstrap: [AppComponent]
