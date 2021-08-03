@@ -15,5 +15,4 @@ export class ShortNamePipe implements PipeTransform {
 
     return temp[0].concat(whiteSpace).concat(temp[temp.length-1]).toString();
   }
-
 }

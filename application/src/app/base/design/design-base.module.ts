@@ -5,13 +5,13 @@ import { DesignMaterialComponentsModule } from './material/material-components/d
 import { DesignMaterialCdkModule } from './material/material-cdk/design-material-cdk.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-      ],
-      declarations: [],
-      exports: [
-        DesignMaterialComponentsModule,
-        DesignMaterialCdkModule,
-      ]
+  imports: [
+    CommonModule,
+  ],
+  declarations: [],
+  exports: [
+    DesignMaterialComponentsModule,
+    DesignMaterialCdkModule,
+  ]
 })
 export class DesignBaseModule { }
