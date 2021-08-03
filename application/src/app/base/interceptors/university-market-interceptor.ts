@@ -10,7 +10,6 @@ export class UniversityMarketInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         console.log('req is', req);
-        console.log('next is', next);
 
         return next.handle(req);
     }
