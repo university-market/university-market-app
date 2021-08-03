@@ -15,7 +15,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
     // Header for http requests, like authentication token, should be inserted here
 
-    return next.handle(request)
+    console.log('req is', req);
+
+    return next.handle(req)
       .pipe(
         catchError(error => {
           this._notification.error(error.error.message, 0);
