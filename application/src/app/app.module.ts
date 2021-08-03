@@ -14,6 +14,8 @@ import { SnackBarService } from './shared/services/snack-bar.service';
 import { SharedModule } from './shared/shared.module';
 import { TemplateModule } from './template/template.module';
 import { SelectedChipDirective } from './shared/directives/selected-chip.directive';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './base/interceptors/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,12 @@ import { SelectedChipDirective } from './shared/directives/selected-chip.directi
     TemplateModule
   ],
   providers: [
-    SnackBarService
+    SnackBarService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
