@@ -7,6 +7,7 @@ import { BaseQrCodeDialogComponent } from './components/base-qr-code-dialog/base
 import { UniversityMarketPipesModule } from './pipes/university-market-pipes.module';
 import { UniversityMarketInterceptor } from './interceptors/university-market-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth-interceptor.service';
 
 @NgModule({
   imports: [
@@ -24,12 +25,18 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     UniversityMarketPipesModule,
   ],
   providers: [
-    UniversityMarketInterceptor, 
+    AuthInterceptor,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: UniversityMarketInterceptor,
+      useClass: AuthInterceptor,
       multi: true
     }
+    // UniversityMarketInterceptor, 
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: UniversityMarketInterceptor,
+    //   multi: true
+    // }
   ]
 })
 export class UniversityMarketBaseModule { }
