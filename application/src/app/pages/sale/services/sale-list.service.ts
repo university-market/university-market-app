@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { SaleModel } from '../models/sale-model';
 
-const baseUrl = 'http://localhost:9090/publicacao'
+const API_URL = environment.apiUrl + environment.publicacao;
 
 @Injectable()
 export class SaleListService {
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    listSaleByCourseId(id: number): Observable<SaleModel[]>{
-        const url = baseUrl+'/listar/'+id
-        return this.http.get<SaleModel[]>(url)
-    }
+  listSaleByCourseId(id: number): Observable<SaleModel[]>{
+    return this.http.get<SaleModel[]>(API_URL + `/listar/${id}`)
+  }
 
 }
