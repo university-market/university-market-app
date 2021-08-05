@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { NotificationService } from 'src/app/base/services/notification.service';
 import { ForgotModel } from '../models/forgot.model';
 import { ForgotService } from '../services/forgot.service';
 
@@ -14,9 +14,11 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgot: FormGroup
 
-  constructor(private snackBar: SnackBarService,
-              private forgotService: ForgotService,
-              private dialog: MatDialog,) { }
+  constructor(
+    private notification: NotificationService,
+    private forgotService: ForgotService,
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
     this.forgot = new FormGroup({
@@ -30,12 +32,15 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     if(!model.email){
-      this.snackBar.show("E-mail é obrigatório",3000,'msg-error')
+      
+      this.notification.error("E-mail é obrigatório");
       return
-    }else{
+
+    } else {
+
       this.forgotService.doRecover(model).subscribe(() => {
-        this.snackBar.show("Link para recuperação de senha enviado ao e-mail",3000,'msg-success'),
-        this.dialog.closeAll()
+        this.notification.success("Link para recuperação de senha enviado ao e-mail");
+        this.dialog.closeAll();
       })
     }
   }

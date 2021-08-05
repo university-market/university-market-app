@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, finalize, map, mapTo, switchMap, take, tap } from 'rxjs/operators';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { finalize, map, take, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
@@ -27,10 +26,7 @@ export class PublicacaoService {
   private _loadingDetails = new BehaviorSubject<boolean>(false);
   public loadingDetails$ = this._loadingDetails.asObservable();
 
-  constructor (
-    private http: HttpClient,
-    private snackbar: SnackBarService
-  ) { }
+  constructor (private http: HttpClient) { }
 
   public init(publicacaoId: number): Observable<PublicacaoDetalheModel|null> {
 
@@ -64,11 +60,7 @@ export class PublicacaoService {
 
     return this.http.get<PublicacaoDetalheModel>(`${API_URL}/${publicacaoId}`)
       .pipe(
-        take(1),
-        catchError(err => {
-          this.snackbar.error(err.error.message);
-          throw err;
-        })
+        take(1)
       );
   }
 
@@ -96,11 +88,7 @@ export class PublicacaoService {
     
     return this.http.post<number>(`${API_URL}/create`, publicacao)
       .pipe(
-        take(1),
-        catchError(err => {
-          this.snackbar.error(err.error.message);
-          throw err;
-        })
+        take(1)
       );
   }
 
@@ -120,11 +108,7 @@ export class PublicacaoService {
 
     return this.http.put<void>(`${API_URL}/${publicacaoId}`, model)
       .pipe(
-        take(1),
-        catchError(err => {
-          this.snackbar.error(err.error.message);
-          throw err;
-        })
+        take(1)
       );
   }
 
@@ -149,11 +133,7 @@ export class PublicacaoService {
 
     return this.http.post<void>(`${API_URL}/image`, image)
       .pipe(
-        take(1),
-        catchError(err => {
-          this.snackbar.error(err.error.message);
-          throw err;
-        })
+        take(1)
       );
   }
 

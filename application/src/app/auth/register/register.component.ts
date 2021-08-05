@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { NotificationService } from 'src/app/base/services/notification.service';
 import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
 
@@ -15,9 +14,11 @@ export class RegisterComponent implements OnInit {
 
   register: FormGroup;
 
-  constructor(private snackBar: SnackBarService,
-              private registerService: RegisterService,
-              private route: Router) { }
+  constructor(
+    private notification: NotificationService,
+    private registerService: RegisterService,
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
     this.register = new FormGroup({
@@ -45,18 +46,18 @@ export class RegisterComponent implements OnInit {
     
     if(!model.name || !model.email || !model.password || !model.date || !password_validator){
       //Validação dos campos de cadastro
-      this.snackBar.show("Favor preencher todos os campos!",3000,'msg-error');
+      this.notification.error("Favor preencher todos os campos!");
       return
     }else if(model.password != password_validator){
       // Validação de senha, verificando se as mesmas são iguais
-      this.snackBar.show("Senhas divergentes",3000,'msg-error');
+      this.notification.error("Senhas divergentes");
       return
     }else if (model.password.length < 8 || password_validator < 8){
       //Validação do tamanho das senhas
-      this.snackBar.show("A Senha deve conter no mínimo 8 caracteres",3000,'msg-error')
+      this.notification.error("A Senha deve conter no mínimo 8 caracteres")
     }else{
       this.registerService.doRegister(model).subscribe(() => {
-        this.snackBar.show("Cadastro realizado com sucesso",3000,'msg-success'),
+        this.notification.success("Cadastro realizado com sucesso"),
         this.route.navigate(['/'])
       })
     }

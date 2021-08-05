@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { NotificationService } from 'src/app/base/services/notification.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { LoginModel } from '../models/login.model';
 import { LoginService } from '../services/login.service';
@@ -16,10 +16,12 @@ export class LoginComponent implements OnInit {
 
   login: FormGroup;
 
-  constructor(private dialog: MatDialog,
-              private snackBar : SnackBarService,
-              private loginService: LoginService,
-              private route: Router) {}
+  constructor(
+    private dialog: MatDialog,
+    private notification: NotificationService,
+    private loginService: LoginService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     this.login = new FormGroup({
@@ -38,11 +40,11 @@ export class LoginComponent implements OnInit {
     // Validação dos campos de login
     if(model.email && model.password){
       this.loginService.doLogin(model).subscribe(() =>{
-        this.snackBar.show("Login Realizado com sucesso", 3000, 'msg-success'),
+        this.notification.success("Login Realizado com sucesso"),
         this.route.navigate(['/'])
       })
     }else{
-      this.snackBar.show("Favor preencher todos os campos!", 3000, 'msg-error');
+      this.notification.error("Favor preencher todos os campos!");
       return
     }
   }

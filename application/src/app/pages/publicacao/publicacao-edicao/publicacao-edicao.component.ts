@@ -11,13 +11,13 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 
 import { MASKS } from 'ng-brazil';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
 import { PublicacaoFormService } from '../services/publicacao-form.service';
 import { PublicacaoService } from '../services/publicacao.service';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
 import { DialogConfirmDetalhesTecnicosComponent } from '../dialogs/dialog-confirm-detalhes-tecnicos/dialog-confirm-detalhes-tecnicos.component';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { NotificationService } from 'src/app/base/services/notification.service';
 
 @UntilDestroy()
 @Component({
@@ -70,7 +70,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
     private location: Location,
     private formService: PublicacaoFormService,
     public service: PublicacaoService,
-    private snackbar: SnackBarService,
+    private notification: NotificationService,
     private dialog: MatDialog,
   ) { }
 
@@ -90,10 +90,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       this._hasDetalhesTecnicos.next(publicacao.detalhesTecnicos != null);
       this.patchValue(publicacao as PublicacaoCriacaoModel);
     },
-    error => {
-      this.snackbar.error(error.error.message);
-      this.location.back();
-    });
+    () => this.location.back());
 
     this.form = this.formService.criarForm();
   }
@@ -143,7 +140,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
     .pipe(
       take(1)
     ).subscribe(publicacaoId => {
-      this.snackbar.success('Publicação criada com sucesso');
+      this.notification.success('Publicação criada com sucesso');
       // Navegar para pagina de detalhes da publicacao
       this.router.navigate(['publicacao', publicacaoId], { relativeTo: this.route.root });
     });
@@ -171,7 +168,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       switchMap(publicacao => this.service.editar(publicacao.publicacaoId, model)),
     )
     .subscribe((publicacao) => {
-      this.snackbar.success('Publicação editada com sucesso');
+      this.notification.success('Publicação editada com sucesso');
       // Navegar para pagina de detalhes da publicacao
       this.router.navigate(['publicacao', publicacao.publicacaoId ], { relativeTo: this.route.root });
     });
@@ -184,7 +181,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       if(!this._warned) {
         this._warned = true;
         this.form.markAllAsTouched();
-        this.snackbar.error('Existem campos obrigatórios');
+        this.notification.error('Existem campos obrigatórios');
       }
       return false;
     }
@@ -218,7 +215,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
     if (mimeType.match(/image\/*/) == null) {
       let msg = "Somente imagens são suportadas";
       this.message = msg;
-      this.snackbar.warn(msg);
+      this.notification.warn(msg);
       return;
     }
 
@@ -232,7 +229,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
     reader.onload = (_event) => this.imgURL = reader.result;
 
     // this.service.uploadImage(files[0])
-    // .subscribe(() => this.snackbar.notify('Sua imagem foi carregada com sucesso'));
+    // .subscribe(() => this.notification.notify('Sua imagem foi carregada com sucesso'));
   }
 
   // Manipulacao detalhes (ambiente de testes)
@@ -261,7 +258,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
           detalhesTecnicosRef.reset(); // Reset do campo de detalhes tecnicos
 
           detalhesTecnicosRef.clearValidators();
-          this.snackbar.warn('Detalhes técnicos apagados');
+          this.notification.warn('Detalhes técnicos apagados');
           this._changeDetalhesTecnicos(!hasDetails);
         });
       else {
