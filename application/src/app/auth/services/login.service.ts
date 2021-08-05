@@ -1,26 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { LoginModel } from '../models/login.model';
+
+const API_URL = environment.apiUrl + environment.usuario;
 
 @Injectable()
 export class LoginService {
 
-  private baseUrl = 'http://localhost:9090/usuario'
-
-  constructor(private http: HttpClient,
-              private Snack : SnackBarService) { }
+  constructor(private http: HttpClient) { }
 
   // Função Responsável enviar os dados de login para o backend
   doLogin(login : LoginModel): Observable<LoginModel> {
-    const Url = this.baseUrl + '/auth'
-    return this.http.post<LoginModel>(Url,login).pipe(
-      catchError((err) => {
-        this.Snack.show (err.error.message,3000,'msg-error')
-        return throwError(err);
-      })
-    )
+
+    return this.http.post<LoginModel>(API_URL + '/auth', login);
   }
 }
