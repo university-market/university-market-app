@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { UniversityMarketBaseModule } from '../base/university-market-base.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
-import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { DesignModule } from '../design/design.module';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { ForgotService } from './services/forgot.service';
 import { LoginService } from './services/login.service';
@@ -20,10 +20,8 @@ import { HeaderComponent } from './components/header/header.component';
 @NgModule({
   imports: [
     CommonModule,
+    UniversityMarketBaseModule,
     AuthRoutingModule,
-    DesignModule,
-    ReactiveFormsModule
-    
   ],
   declarations: [
     AuthComponent,
