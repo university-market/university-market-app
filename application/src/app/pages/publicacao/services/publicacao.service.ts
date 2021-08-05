@@ -4,12 +4,12 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, finalize, map, mapTo, switchMap, take, tap } from 'rxjs/operators';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
-import { API_Routes, environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 
-const API_URL = environment.dev + API_Routes.publicacao;
+const API_URL = environment.apiUrl + environment.publicacao;
 
 @UntilDestroy()
 @Injectable()
