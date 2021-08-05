@@ -4,15 +4,15 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tile } from '../models/grid-courses.mode';
 
+const API_URL = environment.apiUrl + environment.curso;
+
 @Injectable()
 export class GridCoursesService {
-
-  private baseUrl = environment.dev + '/course/grid';
 
   constructor(private http : HttpClient) { }
 
   onInit(): Observable<Tile[]>{
-    return this.http.get<Tile[]>(this.baseUrl)
+    return this.http.get<Tile[]>(API_URL + '/grid');
   }
 
 }
