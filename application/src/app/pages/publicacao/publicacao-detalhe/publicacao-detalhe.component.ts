@@ -20,7 +20,7 @@ export class PublicacaoDetalheComponent implements OnInit {
 
   // Gerenciamento de imagens
   public noImage = 'default/no-image.png';
-  public baseImageResource = environment.dev;
+  public baseImageResource = environment.apiUrl;
 
   // Loading de carregamento dos dados
   public loadingDetails$ = this.service.loadingDetails$;
