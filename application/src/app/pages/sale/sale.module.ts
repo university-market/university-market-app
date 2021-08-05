@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { UniversityMarketBaseModule } from 'src/app/base/university-market-base.module';
 
-import { DesignModule } from 'src/app/design/design.module';
-import { NgBrazil } from 'ng-brazil';
 import { SaleComponent } from './sale.component';
 import { SaleRoutingModule } from './sale-routing.module';
 import { SaleListService } from './services/sale-list.service';
@@ -16,9 +15,8 @@ import { SaleListHeaderService } from './services/sale-list-header.service';
 @NgModule({
   imports: [
     CommonModule,
+    UniversityMarketBaseModule,
     SaleRoutingModule,
-    DesignModule,
-    NgBrazil
   ],
   declarations: [
     SaleComponent,
