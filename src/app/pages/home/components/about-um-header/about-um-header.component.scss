@@ -18,7 +18,7 @@
             .title-icon {
                 display: flex;
                 margin-right: 7.5px;
-                color: $um-default-primary-bg;
+                color: $app-primary-default;
             }
         }
         
@@ -32,8 +32,8 @@
                 margin: 0;
                 box-sizing: border-box;
                 justify-content: center;
-                background: $um-default-primary-bg;
-                color: $um-default-primary-text;
+                background: $app-primary-default;
+                color: #fff;
             }
             button.input-submit:disabled, button.input-submit[disabled] {
                 background: #b8b8b8;

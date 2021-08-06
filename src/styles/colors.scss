@@ -1,23 +1,12 @@
 // Arquivo com variaveis das cores padrao do aplicativo
 
-// Application defines
-$um-background: #e4e4e4;
+@import "/src/styles.scss";
 
-// Primary colors
-$um-default-primary-bg: #4c00ff;
-$um-default-primary-text: #ffffff;
-$um-default-primary-opacity: rgba(76, 0, 255, 0.123);
+// Default primary color used in application
+// $app-primary-default: $app-primary;
+$app-primary-default: #4c00ff;
 
-// Menu sidebar color
-$menu-item-hover-bg: #e4e4e4;
-
-$menu-border-color: transparent;
-
-$menu-item-color-bg: #ffffff;
-$menu-item-color-text: #4c00ff;
-
-$menu-item-selected-text: #ffffff;
-$menu-item-selected-bg: #4c00ff;
+//=========================================================================
 
 // Chips color
 $primary-chip-bg: #6624ff;

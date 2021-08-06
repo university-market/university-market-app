@@ -2,8 +2,8 @@
 @import "src/styles/template.scss";
 
 .selected-route {
-    background: $um-default-primary-bg;
-    color: $um-default-primary-text !important;
+    background: $app-primary-default;
+    color: #fff !important;
 }
 
 .container {
@@ -73,7 +73,7 @@
                 column-gap: 12.5px;
 
                 button {
-                    color: $um-default-primary-bg;
+                    color: $app-primary-default;
                 }
             }
         }

@@ -2,8 +2,8 @@
 @import "src/styles/template.scss";
 
 .selected-route {
-    color: $um-default-primary-bg !important;
-    background: $um-default-primary-opacity;
+    color: $app-primary-default !important;
+    background: #ccc;
 }
 
 .container {
