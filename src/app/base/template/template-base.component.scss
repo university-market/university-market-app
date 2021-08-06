@@ -1,0 +1,33 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  // border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.header {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 999; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.sidenav {
+
+  width: 85%;
+  max-width: 350px;
+
+  &__main-content {
+      padding: 20px;
+  }
+}
+
+.template-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  &__container {
+      padding: 15px;
+      padding-bottom: 75px;
+  }
+}

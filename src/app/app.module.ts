@@ -11,7 +11,6 @@ import { NgBrazil }from 'ng-brazil';
 import { DesignModule } from './design/design.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
-import { TemplateModule } from './template/template.module';
 import { SelectedChipDirective } from './shared/directives/selected-chip.directive';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { SelectedChipDirective } from './shared/directives/selected-chip.directi
     DesignModule,
     PagesModule,
     SharedModule,
-    TemplateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,13 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+.header-toolbar {
+
+  background: $app-primary-default;
+  color: #fff;
+  height: $header-height;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+}

@@ -12,6 +12,9 @@ import { BaseQrCodeDialogComponent } from './components/base-qr-code-dialog/base
 
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgBrazil } from 'ng-brazil';
+import { RouterModule } from '@angular/router';
+
+
 
 @NgModule({
   imports: [
@@ -24,7 +27,6 @@ import { NgBrazil } from 'ng-brazil';
     NgBrazil,
 
     // Application Base
-    DesignBaseModule,
     UniversityMarketPipesModule,
   ],
   declarations: [
@@ -44,6 +46,7 @@ import { NgBrazil } from 'ng-brazil';
     DesignBaseModule,
     UniversityMarketPipesModule,
 
+    RouterModule
   ],
   providers: [
     FormBuilder,

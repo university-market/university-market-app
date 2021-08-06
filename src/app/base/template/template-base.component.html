@@ -1,0 +1,19 @@
+<mat-drawer-container class="main-container" autosize>
+  
+  <mat-drawer #drawer class="sidenav" [mode]="sidenavMode" [opened]="(screenWidth$ | async) > maxWidth">
+    <div class="sidenav__main-content">
+      <!-- <app-profile [title]="sidenavTitle"></app-profile> -->
+    </div>
+    <app-menu-list (onNavigate)="sidenavMode == 'over' ? drawer.toggle() : false"></app-menu-list>
+  </mat-drawer>
+
+  <div class="template-content">
+
+    <app-header class="header" (openDrawer)="drawer.toggle()"></app-header>
+    <div class="template-content__container">
+      <router-outlet></router-outlet>
+    </div>
+    
+  </div>
+
+</mat-drawer-container>
