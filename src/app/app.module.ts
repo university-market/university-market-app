@@ -8,10 +8,10 @@ import { AppComponent } from './app.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgBrazil }from 'ng-brazil';
 
-import { DesignModule } from './design/design.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { SelectedChipDirective } from './shared/directives/selected-chip.directive';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { SelectedChipDirective } from './shared/directives/selected-chip.directi
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DesignModule,
     PagesModule,
     SharedModule,
   ],
