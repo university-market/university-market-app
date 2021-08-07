@@ -1,12 +1,35 @@
-<a class="container" 
-  [matTooltip]="menuItem.label" 
-  matTooltipPosition="right"
-  [routerLink]="menuItem.route" 
-  routerLinkActive="menu-active" 
-  (click)="onNavigate.emit(true)">
-  <mat-icon *ngIf="menuItem.icon != null; else menuIconDefault">{{ menuItem.icon }}</mat-icon>
-  <ng-template #menuIconDefault>
-    <mat-icon>dashboard</mat-icon>
-  </ng-template>
-  <span class="container__title">{{ menuItem.title }}</span>
-</a>
+<div [ngSwitch]="menuItem.type">
+  <!-- ITEM -->
+  <ng-template [ngTemplateOutlet]="menuItemTemplate" *ngSwitchCase="'item'"></ng-template>
+
+  <!-- GROUP -->
+  <ng-template [ngTemplateOutlet]="menuGroupTemplate" *ngSwitchCase="'group'"></ng-template>
+
+</div>
+
+<!-- TEMPLATE ITEM -->
+<ng-template #menuItemTemplate>
+  <a class="container" 
+    [ngClass]="isSubmenu ? 'container-submenu' : ''"
+    [matTooltip]="menuItem.label" 
+    matTooltipPosition="right"
+    [routerLink]="menuItem.route" 
+    routerLinkActive="menu-active" 
+    (click)="onNavigate.emit(true)">
+    <mat-icon *ngIf="menuItem.icon != null; else menuIconDefault">{{ menuItem.icon }}</mat-icon>
+    <ng-template #menuIconDefault>
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </ng-template>
+    <span class="container__title">{{ menuItem.title }}</span>
+  </a>
+</ng-template>
+<!-- / TEMPLATE ITEM -->
+
+<!-- TEMPLATE GROUP -->
+<ng-template #menuGroupTemplate>
+  <app-menu-list-group
+    [item]="menuItem" 
+    [active]="menuItem.isActive"
+    (onNavigate)="onNavigate.emit(true)">
+  </app-menu-list-group>
+</ng-template>

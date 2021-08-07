@@ -6,6 +6,8 @@ import { TemplateBaseRoutingModule } from './template-base-routing.module';
 import { HeaderComponent } from 'src/app/base/template/components/header/header.component';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { MenuListItemComponent } from './components/menu-list/menu-list-item/menu-list-item.component';
+import { MenuListGroupComponent } from './components/menu-list/menu-list-group/menu-list-group.component';
+import { MenuListSectionComponent } from './components/menu-list/menu-list-section/menu-list-section.component';
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import { MenuListItemComponent } from './components/menu-list/menu-list-item/men
     HeaderComponent,
     MenuListComponent,
     MenuListItemComponent,
+    MenuListGroupComponent,
+    MenuListSectionComponent,
   ],
   exports: [TemplateBaseComponent]
 })

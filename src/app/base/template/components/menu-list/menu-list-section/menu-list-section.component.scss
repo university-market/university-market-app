@@ -1,0 +1,13 @@
+@import "src/styles/colors.scss";
+
+section {
+  display: block;
+  padding-left: 17.5px;
+  margin: 12.5px 0;
+
+  .title {
+    color: $app-primary;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}

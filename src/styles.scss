@@ -16,10 +16,13 @@ body *::-moz-selection {
 
 //=========================================================================
 /*
- * Default colors
+ * Global classes configuration
  *
  */
- $app-primary: #0004ff;
+
+.mat-expansion-panel-content > .mat-expansion-panel-body {
+  padding: 0 !important;
+}
 
 
 //=========================================================================
@@ -34,7 +37,7 @@ body *::-moz-selection {
          font-weight: initial;
      }
  }
- $snackbar-notify-bg-color: $app-primary;
+ $snackbar-notify-bg-color: #4c00ff;
  $snackbar-notify-font-color: #fff;
  .snackbar-notify {
      background: $snackbar-notify-bg-color;

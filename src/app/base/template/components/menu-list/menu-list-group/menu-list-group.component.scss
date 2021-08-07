@@ -1,0 +1,38 @@
+@import "src/styles/colors.scss";
+
+.container {
+
+  // &__title {
+  mat-expansion-panel-header {
+
+    padding-left: 0 !important;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    &:hover {
+      background: rgba($color: $app-accent, $alpha: 0.1);
+    }
+
+    mat-panel-title {
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: $app-accent;
+      margin-left: 17.5px;
+
+      .title {
+        margin-left: 15px;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
+  }
+}
+
+.container-opened {
+  background: rgba($color: $app-accent, $alpha: 0.1);
+}
+.group-on-opened {
+  background: rgba($color: $app-accent, $alpha: 0.115);
+}

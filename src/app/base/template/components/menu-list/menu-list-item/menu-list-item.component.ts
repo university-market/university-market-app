@@ -9,6 +9,7 @@ import { NavigationItemModel } from 'src/app/core/static/navigation-item.model';
 export class MenuListItemComponent implements OnInit {
 
   @Input('active') active: boolean = false;
+  @Input('isSubmenu') isSubmenu: boolean = false;
   @Input('item') menuItem: NavigationItemModel;
   @Output() onNavigate = new EventEmitter<boolean>();
 

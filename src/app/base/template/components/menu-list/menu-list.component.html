@@ -1,9 +1,23 @@
 <div class="container">
-  <app-menu-list-item 
-    *ngFor="let menuItem of menuList" 
-    [item]="menuItem" 
-    [active]="menuItem.isActive"
-    (onNavigate)="onNavigate.emit(true)"
-    >
-  </app-menu-list-item>
+
+  <ng-container *ngFor="let menuItem of menuList" [ngSwitch]="menuItem.type">
+
+    <app-menu-list-item *ngSwitchCase="'item'"
+      [item]="menuItem" 
+      [active]="menuItem.isActive"
+      (onNavigate)="onNavigate.emit(true)">
+    </app-menu-list-item>
+
+    <app-menu-list-group *ngSwitchCase="'group'"
+      [item]="menuItem" 
+      [active]="menuItem.isActive"
+      (onNavigate)="onNavigate.emit(true)">
+    </app-menu-list-group>
+
+    <app-menu-list-section *ngSwitchDefault
+      [item]="menuItem">
+    </app-menu-list-section>
+
+  </ng-container>
+
 </div>
