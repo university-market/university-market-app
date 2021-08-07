@@ -4,12 +4,13 @@
 .container {
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: minmax(min-content, 1fr);
     column-gap: 12.5px;
     row-gap: 12.5px;
 }
 
+/*
 // Media query
 @media only screen and (max-width: 1460px) {
     
@@ -31,3 +32,4 @@
 @media only screen and (max-width: $md-port-w-screen) {
 
 }
+*/
