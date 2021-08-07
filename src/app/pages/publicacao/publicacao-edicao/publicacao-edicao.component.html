@@ -39,7 +39,7 @@
 
         <mat-form-field class="input-full-width">
           <mat-label>Título</mat-label>
-          <input matInput formControlName="titulo" placeholder="Ex. Livro de estudos" required>
+          <input matInput formControlName="titulo" placeholder="Ex. Livro de estudos" autocomplete="off" required>
             <mat-error  *ngIf="form.get('titulo')?.touched && form.get('titulo')?.hasError('required')">
               O título é obrigatório
             </mat-error>
@@ -112,7 +112,7 @@
         </div>
 
         <div>
-          <mat-checkbox class="checkbox" color="primary" 
+          <mat-checkbox class="checkbox" color="accent" 
             [checked]="hasDetalhesTecnicos$ | async"
             (click)="changeDetalhesTecnicos()">
             Informar detalhes técnicos do produto
