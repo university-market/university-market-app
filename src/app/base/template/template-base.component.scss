@@ -1,3 +1,5 @@
+@import "src/styles/template.scss";
+
 .main-container {
   width: 100vw;
   height: 100vh;
@@ -5,8 +7,11 @@
 }
 
 .header {
-  position: sticky;
-  position: -webkit-sticky; /* For macOS/iOS Safari */
+  position: fixed;
+  // position: sticky;
+  // position: -webkit-sticky; /* For macOS/iOS Safari */
+  display: block;
+  width: 100%;
   top: 0; /* Sets the sticky toolbar to be on top */
   z-index: 999; /* Ensure that your app's content doesn't overlap the toolbar */
 }
@@ -28,6 +33,7 @@
 
   &__container {
       padding: 15px;
+      padding-top: calc(#{$header-height} + 10px);
       padding-bottom: 75px;
   }
 }
