@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Palette Theme
+
+To get more help about Angular Material Theme, see the following links: 
+- [x] [Material Design Palette](https://www.materialpalette.com/pink/indigo)
+- [x] [Available default themes](https://medium.com/@treviergits/angular-material-theme-color-options-7d5968cb7460)
+- [x] [Generate your own palette](https://materialtheme.arcsine.dev/)
+- [x] [Mat Theme Generator)](https://www.nikhilwalvekar.com/ng-mat-theme-generator/)
