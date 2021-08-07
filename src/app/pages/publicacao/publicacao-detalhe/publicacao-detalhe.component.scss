@@ -4,136 +4,126 @@
 $publicacao-img-min-width: 350px;
 
 .publicacao-detalhe {
+  display: flex;
+  justify-content: center;
 
+  .container {
     display: flex;
-    justify-content: center;
+    padding: 15px;
+    padding-bottom: 75px;
+    overflow-x: hidden;
+    max-width: 1000px;
+    width: 1000px;
 
-    .container {
+    .publicacao-design {
+      width: 100% !important;
+      &__header {
+        font-weight: bold;
+      }
 
+      &__content {
         display: flex;
-        padding: 15px;
-        padding-bottom: 75px;
-        overflow-x: hidden;
-        max-width: 1000px;
-        width: 1000px;
-    
-        .publicacao-design {
-    
-            width: 100% !important;
-            &__header {
-                font-weight: bold;
-            }
-    
-            &__content {
-    
-                display: flex;
-                flex-direction: column;
-                row-gap: 10px;
-    
-                &__sup-section {
-    
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    column-gap: 17.5px;
-    
-                    &__img {
-        
-                        display: flex;
-                        // min-width: $publicacao-img-min-width;
-                        justify-content: center;
-                        width: 100%;
-                        height: 350px;
-                        max-height: 450px;
-                        border: solid 1px rgb(179, 179, 179);
-                        border-radius: 5.25px;
-                        background: url('/assets/publicacao/default/background-publicacao-abstract-default.jpg');
-                        background-size: cover;
-                        background-repeat: no-repeat !important;
+        flex-direction: column;
+        row-gap: 10px;
 
-                        img {
-        
-                            display: flex;
-                            max-width: 100%;
-                            max-height: 100%;
-                        }
-                    }
-        
-                    &__details {
-        
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-    
-                        .tab-group {
-    
-                            display: flex;
-                            width: 100%;
-    
-                            * {
-                                padding: 10px;
-                                line-height: 23.5px;
-                                text-align: justify;
-                            }
-                        }
-    
-                        .details-plus {
-    
-                            display: flex;
-                            flex-direction: column;
-                            row-gap: 10px;
-    
-                            span.valor {
-                                font-size: 1.25em;
-                                font-weight: 500;
-                            }
-    
-                            button.contact-vendedor {
-                                background: $app-primary-default;
-                                color: #fff;
-                            }
-                        }
-                    }
-                }
-    
-                &__tags {
-    
-                    .input-full-width { width: 100%; }
-    
-                    .chip-tag-0 { background: $primary-chip-bg; color: $primary-chip-text }
-                    .chip-tag-1 { background: $secondary-chip-bg; color: $secondary-chip-text }
-                }
-    
+        &__sup-section {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 17.5px;
+
+          &__img {
+            display: flex;
+            // min-width: $publicacao-img-min-width;
+            justify-content: center;
+            width: 100%;
+            height: 350px;
+            max-height: 450px;
+            border: solid 1px rgb(179, 179, 179);
+            border-radius: 5.25px;
+            background: url("/assets/publicacao/default/background-publicacao-abstract-default.jpg");
+            background-size: cover;
+            background-repeat: no-repeat !important;
+
+            img {
+              display: flex;
+              max-width: 100%;
+              max-height: 100%;
             }
+          }
+
+          &__details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .tab-group {
+              display: flex;
+              width: 100%;
+
+              * {
+                padding: 10px;
+                line-height: 23.5px;
+                text-align: justify;
+              }
+            }
+
+            .details-plus {
+              display: flex;
+              flex-direction: column;
+              row-gap: 10px;
+
+              span.valor {
+                font-size: 1.25em;
+                font-weight: 500;
+              }
+            }
+          }
         }
+
+        &__tags {
+          .input-full-width {
+            width: 100%;
+          }
+
+          .chip-tag-0 {
+            background: $primary-chip-bg;
+            color: $primary-chip-text;
+          }
+          .chip-tag-1 {
+            background: $secondary-chip-bg;
+            color: $secondary-chip-text;
+          }
+        }
+      }
     }
+  }
 }
 
 // Media query
 @media only screen and (orientation: landscape) {
-
-    
 }
 @media only screen and (max-width: calc(2 * #{$publicacao-img-min-width})) {
-    .publicacao-detalhe .container {
-        
-        .publicacao-design {
-         
-            &__content {
+  .publicacao-detalhe .container {
+    .publicacao-design {
+      &__content {
+        &__sup-section {
+          display: flex;
+          flex-direction: column;
+          row-gap: 17.5px;
 
-                &__sup-section {
-                    
-                    display: flex;
-                    flex-direction: column;
-                    row-gap: 17.5px;
-
-                    &__img {
-    
-                        img { max-width: 100%; min-width: unset; max-height: 100%; }
-                    }
-    
-                    &__details { display: flex; }
-                }
+          &__img {
+            img {
+              max-width: 100%;
+              min-width: unset;
+              max-height: 100%;
             }
+          }
+
+          &__details {
+            display: flex;
+          }
         }
+      }
     }
+  }
 }

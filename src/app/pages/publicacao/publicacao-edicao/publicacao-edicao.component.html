@@ -6,7 +6,7 @@
     <div class="container__form__header">
       <h1>
         <span class="title-icon">
-          <mat-icon>
+          <mat-icon color="accent">
             dashboard
           </mat-icon>
         </span>
@@ -17,14 +17,15 @@
       <div class="actions">
         <button mat-button type="button" (click)="onCancel()">Cancelar</button>
         <button *ngIf="this.service.isEdicao$ | async; else btnCriar" 
-          mat-raised-button class="input-submit" type="submit" 
+          mat-raised-button color="accent" type="submit" 
           [disabled]="form.invalid && triedSave"
           (click)="editar()">
           Salvar
         </button>
         <ng-template #btnCriar>
-          <button mat-raised-button class="input-submit" type="submit" 
+          <button mat-raised-button type="submit" 
             [disabled]="form.invalid && triedSave"
+            color="accent"
             (click)="criar()">
             Criar
           </button>

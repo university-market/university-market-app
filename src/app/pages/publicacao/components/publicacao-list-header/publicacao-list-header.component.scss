@@ -1,53 +1,39 @@
-@import "src/styles/colors.scss";
-
 .container {
 
-    &__content {
+  &__content {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+
+    h1 {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .title-icon {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 100%;
-        
-        h1 {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            
-            .title-icon {
-                display: flex;
-                margin-right: 7.5px;
-                color: $app-primary-default;
-            }
-        }
-        
-        div.actions {
-            
-            display: flex;
-            flex-direction: row;
-            
-            button.input-submit {
-                display: flex;
-                margin: 0;
-                box-sizing: border-box;
-                justify-content: center;
-                background: $app-primary-default;
-                color: #fff;
-            }
-            button.input-submit:disabled, button.input-submit[disabled] {
-                background: #b8b8b8;
-                color: #3e3e3e;
-            }
-        }
+        margin-right: 7.5px;
+      }
     }
 
-    &__description {
-
-        display: flex;
-        justify-content: right;
-        align-items: center;
-        color: #5e5e5e;
-
-        mat-icon { margin-right: 7.5px; }
+    div.actions {
+      display: flex;
+      flex-direction: row;
     }
+  }
+
+  &__description {
+    
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: #5e5e5e;
+
+    mat-icon {
+      margin-right: 7.5px;
+    }
+  }
 }
