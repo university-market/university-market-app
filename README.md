@@ -53,19 +53,15 @@ Caso seu sistema operacional seja Windows, talvez alguns recursos adicionais sej
   - Exemplo em `src/environments/environment.example.ts`
 * Dentro do repositório clonado do projeto, abra um terminal/cmd e siga as seguintes instruções:
 
-:one: Entre na raíz da aplicação
-```bash
-cd application
-```
-:two: Instale as dependências do projeto
+:one: Instale as dependências do projeto
 ```bash
 npm install
 ```
-:three: Instale o Angular para linha de comando (Angular CLI)
+:two: Instale o Angular para linha de comando (Angular CLI)
 ```bash
 npm install -g @angular/cli
 ```
-:four: Execute o projeto em uma porta disponível no seu computador (default: `4200`)
+:three: Execute o projeto em uma porta disponível no seu computador (default: `4200`)
 ```bash
 ng serve --port 4200
 ```
