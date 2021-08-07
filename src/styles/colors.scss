@@ -1,12 +1,18 @@
 // Arquivo com variaveis das cores padrao do aplicativo
 
-@import "/src/app-theme.scss";
+@import "/src/app-custom-theme.scss";
+// @import "/src/app-theme.scss";
 @import "/src/styles.scss";
 
-// Angular material theme palette - App default colors
-$app-primary: mat-color($um-app-primary);
-$app-accent: mat-color($um-app-accent);
-$app-warn: mat-color($um-app-warn);
+// Angular material theme palette - App default colors (Default)
+// $app-primary: mat-color($um-app-primary);
+// $app-accent: mat-color($um-app-accent);
+// $app-warn: mat-color($um-app-warn);
+
+// Angular material theme palette - App default colors (Custom)
+$app-primary: mat-color($theme-primary);
+$app-accent: mat-color($theme-accent);
+$app-warn: mat-color($theme-warn);
 
 //=========================================================================
 

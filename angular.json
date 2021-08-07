@@ -57,7 +57,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss",
-              "src/app-theme.scss",
+              "src/app-custom-theme.scss",
               "src/app-typography.scss"
             ],
             "scripts": []
