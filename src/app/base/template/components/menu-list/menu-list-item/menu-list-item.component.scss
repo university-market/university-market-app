@@ -1,7 +1,7 @@
 @import "src/styles/colors.scss";
 
 .menu-active {
-  background-color: $app-primary-default !important;
+  background-color: $app-accent !important;
   color: #fff !important;
   font-weight: bold;
 
@@ -20,7 +20,7 @@
   text-align: left;
   margin: 2.5px 0;
   text-decoration: none;
-  color: $app-primary-default;
+  color: $app-accent;
 
   &__title {
     display: flex;

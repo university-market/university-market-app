@@ -4,6 +4,10 @@ import { NavigationGuard } from './base/guards/navigation.guard';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import("../app/auth/auth.module").then(m => m.AuthModule)
+  },
+  {
     path: '',
     canActivate: [NavigationGuard],
     loadChildren: () => import("../app/base/template/template-base.module").then(m => m.TemplateBaseModule)

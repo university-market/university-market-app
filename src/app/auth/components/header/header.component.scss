@@ -2,22 +2,20 @@
 @import "src/styles/template.scss";
 
 .header-toolbar {
+  background: $app-accent; // Default app theme palette
+  color: #fff;
+  height: $header-height;
 
-    background: $app-primary-default;
-    color: #fff;
-    height: $header-height;
+  &__spacer {
+    flex: 1 1 auto;
+  }
 
-    &__spacer {
-        flex: 1 1 auto;
+  &__btn {
+    margin-right: 15px;
+
+    &__logo {
+      display: flex;
+      width: 45px;
     }
-
-    &__btn {
-
-        margin-right: 15px;
-
-        &__logo {
-            display: flex;
-            width: 45px;
-        }
-    }
+  }
 }

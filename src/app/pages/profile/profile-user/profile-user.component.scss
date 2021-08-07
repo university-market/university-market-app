@@ -2,118 +2,118 @@
 @import "src/styles/template.scss";
 
 .selected-route {
-    background: $app-primary-default;
-    color: #fff !important;
+  background: $app-accent;
+  color: #fff !important;
 }
 
 .container {
 
-    &__header {
-        
+  &__header {
+    
+    display: flex;
+    flex-direction: row;
+    column-gap: 17.5px;
+    row-gap: 12.5px;
+
+    .user-img {
+      margin: 0;
+      max-width: 25%;
+
+      img {
+        min-width: 85px;
+        width: 180px;
+        max-width: 100%;
+        border-radius: $rounded;
+        filter: drop-shadow(2.5px 2.5px 5px rgba(0, 0, 0, 0.75));
+      }
+    }
+    .user-data {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      max-width: 100%;
+
+      &__primary {
+        display: flex;
+        flex-direction: column;
+        row-gap: 12.5px;
+        max-width: 100%;
+        word-wrap: break-word;
+
+        &__name {
+          display: flex;
+          font-size: 1.8em;
+        }
+
+        &__email {
+          display: flex;
+          align-items: center;
+          font-size: 1.3em;
+          color: #747474;
+          transition: ease-in-out 0.15s;
+
+          mat-icon {
+            margin-right: 10px;
+          }
+
+          &:hover {
+            filter: brightness(1.25);
+            cursor: pointer;
+          }
+        }
+
+        &__course {
+          font-size: 1.3em;
+          color: #858585;
+        }
+      }
+
+      &__actions {
         display: flex;
         flex-direction: row;
-        column-gap: 17.5px;
-        row-gap: 12.5px;
+        column-gap: 12.5px;
 
-        .user-img {
-            margin: 0;
-            max-width: 25%;
-
-            img {
-                min-width: 85px;
-                width: 180px;
-                max-width: 100%;
-                border-radius: $rounded;
-                filter: drop-shadow(2.5px 2.5px 5px rgba(0,0,0,0.75));
-            }
+        button {
+          color: $app-accent;
         }
-        .user-data {
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            max-width: 100%;
-
-            &__primary {
-
-                display: flex;
-                flex-direction: column;
-                row-gap: 12.5px;
-                max-width: 100%;
-                word-wrap: break-word;
-
-                &__name {
-                    display: flex;
-                    font-size: 1.8em;
-                }
-                
-                &__email {
-                    
-                    display: flex;
-                    align-items: center;
-                    font-size: 1.3em;
-                    color: #747474;
-                    transition: ease-in-out 0.15s;
-
-                    mat-icon { margin-right: 10px; }
-
-                    &:hover { filter: brightness(1.25); cursor: pointer; }
-                }
-
-                &__course {
-                    font-size: 1.3em;
-                    color: #858585;
-                }
-            }
-
-            &__actions {
-
-                display: flex;
-                flex-direction: row;
-                column-gap: 12.5px;
-
-                button {
-                    color: $app-primary-default;
-                }
-            }
-        }
+      }
     }
+  }
 }
 
 // Media query default
 @media only screen and (orientation: landscape) {
-
 }
 @media only screen and (max-width: 700px) {
-
-    .container {
-        &__header {
-            .user-data {
-                &__actions { display: none; }
-            }
+  .container {
+    &__header {
+      .user-data {
+        &__actions {
+          display: none;
         }
+      }
     }
+  }
 }
 @media only screen and (max-width: $md-port-w-screen) {
+  .container {
+    &__header {
+      .user-data {
+        font-size: 12px;
 
-    .container {
+        &__primary {
+          line-height: 1.2;
+          row-gap: 7.5px;
 
-        &__header {
-
-            .user-data {
-
-                font-size: 12px;
-
-                &__primary {
-
-                    line-height: 1.2;
-                    row-gap: 7.5px;
-
-                    &__email { display: none; }
-                }
-
-                &__actions { display: none; }
-            }
+          &__email {
+            display: none;
+          }
         }
+
+        &__actions {
+          display: none;
+        }
+      }
     }
+  }
 }

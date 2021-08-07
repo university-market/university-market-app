@@ -1,7 +1,6 @@
 @import "src/styles/colors.scss";
-@import "src/styles/template.scss";
 
-.header_img{
+.header_img {
   width: 100px;
 }
 
@@ -15,13 +14,13 @@
   margin-top: 25px;
   width: 550px;
 
-  &__title{
+  &__title {
     font-size: 3em;
     font-weight: 300;
     padding: 32px;
   }
 
-  &__form{
+  &__form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,46 +28,41 @@
     width: 90%;
     padding: 0px;
 
-    &__input{
+    &__input {
       padding: 5px 0px 0px 0px;
       width: 100%;
     }
-      
-    &__actions{
+
+    &__actions {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       width: 100%;
-  
-      &__buttons { 
-        width: 100%;
-        background-color: $app-primary-default;
-      }
 
-      &__hr{
+      &__hr {
         width: 100%;
         opacity: 50%;
       }
 
-      &__span{
+      &__span {
         margin: 0px;
-        &__a{
+        &__a {
           text-decoration: none;
-          color: $app-primary-default;
+          color: $app-accent;
         }
-      }  
+      }
     }
   }
 }
 
-.hr { 
-    font-weight: bold;
-    width: 90%;
-    opacity: 40%;
+.hr {
+  font-weight: bold;
+  width: 90%;
+  opacity: 40%;
 }
 
-@media screen and (max-width: 560px){
+@media screen and (max-width: 560px) {
   .mat-card {
     display: flex;
     justify-content: center;

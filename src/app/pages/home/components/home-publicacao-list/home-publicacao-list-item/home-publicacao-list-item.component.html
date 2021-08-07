@@ -26,7 +26,8 @@
         <button mat-button type="button" class="content-price">
           {{ sale.valor | currencyBrazil  }}
         </button>
-        <button mat-raised-button class="btn-details" type="button" [routerLink]="['/publicacao', sale.publicacaoId]">
+        <button mat-raised-button color="accent" type="button" 
+          [routerLink]="['/publicacao', sale.publicacaoId]">
           Ver detalhes
         </button>
       </div>
