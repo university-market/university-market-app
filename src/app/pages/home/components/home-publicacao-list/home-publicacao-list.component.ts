@@ -14,8 +14,10 @@ export class HomePublicacaoListComponent implements OnInit {
   constructor(private SaleHomeService: SaleHomeListService) { }
 
   ngOnInit() {
-    this.SaleHomeService.listSale().subscribe(sales => {
-      this.sales = sales;
+
+    this.SaleHomeService.listSale()
+    .subscribe(sales => {
+      this.sales = sales.slice(0, 5);
       console.log(sales)
     })
   }
