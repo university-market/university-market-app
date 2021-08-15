@@ -1,5 +1,5 @@
 # :computer: university-market-app
-Projeto **front-end** da aplicação University Market.
+Projeto **front-end** destinado a estudantes da plataforma University Market.
 
 ## Conteúdo
 
