@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { UniversityMarketBaseModule } from '../base/university-market-base.module';
+import { UniversityMarketBaseModule } from '../../base/university-market-base.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
