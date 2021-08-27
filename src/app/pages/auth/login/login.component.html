@@ -1,28 +1,28 @@
 <mat-card   class="mat-card mat-elevation-z8">
-    <img src="../../../assets/logos/Logo_U.M_Fundo_branco.png" class="header_img">
+    <img src="assets/logos/Logo_U.M_Fundo_branco.png" class="header_img">
     <mat-card-title class="mat-card__title">
         Login
     </mat-card-title>
     <hr class="hr">
     <form [formGroup]="login" class="mat-card__form">
         <mat-form-field class="mat-card__form__input">
-            <mat-label>E-mail</mat-label>
-            <input formControlName="email" type="email" matInput>
-            <mat-error *ngIf="login.get('email')?.hasError('email') && !login.get('email')?.hasError('required')">
-                Favor inserir um E-mail válido
-            </mat-error>
-            <mat-error *ngIf="login.get('email')?.hasError('required')">
-                Email é <strong>Obrigatório</strong>
-            </mat-error>
+          <mat-label>E-mail</mat-label>
+          <input formControlName="email" type="email" matInput autocomplete="off">
+          <mat-error *ngIf="login.get('email')?.touched && login.get('email')?.errors">
+            Informe um e-mail válido
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="mat-card__form__input">
             <mat-label>Senha</mat-label>
             <input formControlName="password" type="password" matInput>
-            <mat-error *ngIf="login.get('password')?.hasError('required')">
-                Senha é <strong>Obrigatória</strong>
+            <mat-error *ngIf="login.get('password')?.touched && login.get('password')?.errors">
+                Informe uma senha válida
             </mat-error>
         </mat-form-field>
-        <button (click)="doLogin()" mat-raised-button color="accent" class="w-100">
+        <button mat-raised-button class="w-100 login-btn"
+          (click)="doLogin()"
+          color="accent"
+          [disabled]="login.invalid && (triedLogin$ | async)">
             Login
         </button>
     </form>
