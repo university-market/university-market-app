@@ -5,6 +5,7 @@ import { NavigationGuard } from './base/guards/navigation.guard';
 const routes: Routes = [
   {
     path: 'auth',
+    canActivate: [NavigationGuard],
     loadChildren: () => import("./pages/auth/auth.module").then(m => m.AuthModule)
   },
   {
