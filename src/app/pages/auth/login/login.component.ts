@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { LoginModel } from '../models/login.model';
@@ -15,10 +16,13 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  login: FormGroup;
+  public form: FormGroup;
 
   private _triedLogin = new BehaviorSubject<boolean>(false);
   public triedLogin$ = this._triedLogin.asObservable();
+
+  private _incorrectLogin = new BehaviorSubject<boolean>(false);
+  public incorrectLogin$ = this._incorrectLogin.asObservable();
 
   constructor(
     private dialog: MatDialog,
@@ -28,9 +32,9 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.login = new FormGroup({
+    this.form = new FormGroup({
       email : new FormControl(null,[Validators.required,Validators.email]),
-      password : new FormControl(null,[Validators.required]),
+      senha : new FormControl(null,[Validators.required]),
     })
   }
 
@@ -38,13 +42,13 @@ export class LoginComponent implements OnInit {
   doLogin() {
 
     const model: LoginModel = {
-      email: this.login.get('email')?.value,
-      password: this.login.get('password')?.value,
+      email: this.form.get('email')?.value,
+      senha: this.form.get('senha')?.value,
     }
 
-    if (!model.email || !model.password) {
+    if (!model.email || !model.senha) {
       
-      this.login.markAllAsTouched();
+      this.form.markAllAsTouched();
       this._triedLogin.next(true);
 
       this.notification.error("Todos os campos são obrigatórios");
@@ -52,10 +56,16 @@ export class LoginComponent implements OnInit {
     }
     
     this.loginService.doLogin(model)
-      .pipe()
+      .pipe(
+        catchError((error) => {
+          this.form.reset();
+          this._incorrectLogin.next(true);
+          return throwError(error);
+        })
+      )
       .subscribe(() => {
-        this.notification.success("Login Realizado com sucesso"),
-        this.route.navigate(['/'])
+        this.notification.success("Login Realizado com sucesso");
+        // this.route.navigate(['/'])
       });
   }
 

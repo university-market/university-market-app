@@ -69,6 +69,15 @@
   opacity: 40%;
 }
 
+.incorrect-login {
+  width: 100%;
+  margin: 10px 0;
+  text-align: left;
+  > span {
+    color: $app-warn;
+  }
+}
+
 @media screen and (max-width: 560px) {
   .mat-card {
     display: flex;
