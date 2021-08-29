@@ -8,9 +8,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgBrazilValidators } from 'ng-brazil';
 import { PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
 import { finalize, take, tap } from 'rxjs/operators';
-import { env } from 'process';
-
-const API_URL = environment.apiUrl + environment.estudante;
 
 @Injectable()
 export class RegisterService {
@@ -73,14 +70,19 @@ export class RegisterService {
   }
 
   // Função Responsável por realizar o cadastro do usuário
-  doRegister (register: RegisterModel): Observable<RegisterModel> {
+  public doRegister(model: RegisterModel): Observable<string> {
     
-    return this.http.post<RegisterModel>(API_URL + '/register/', register);
+    return this._doRegister(model);
   }
-
-  validateEmail(email : string): Observable<any> {
+  
+  private _doRegister(model: RegisterModel): Observable<string> {
     
-    return this.http.post<any>(API_URL + '/emailValidate', {email: email});
+    const url = environment.apiUrl + environment.estudante;
+
+    return this.http.post<string>(url + '/cadastro', model)
+      .pipe(
+        take(1)
+      );
   }
 
   public buscarInstituicoes(): Observable<KeyValuePair<number, string>[]> {
@@ -94,6 +96,24 @@ export class RegisterService {
   private _buscarInstituicoes(): Observable<KeyValuePair<number, string>[]> {
 
     const url = environment.apiUrl + environment.instituicao;
+
+    return this.http.get<KeyValuePair<number, string>[]>(url + '/listar')
+      .pipe(
+        take(1)
+      );
+  }
+
+  public buscarCursos(): Observable<KeyValuePair<number, string>[]> {
+
+    return this._buscarCursos()
+      .pipe(
+        tap(data => this._cursos.next(data))
+      );
+  }
+
+  private _buscarCursos(): Observable<KeyValuePair<number, string>[]> {
+
+    const url = environment.apiUrl + environment.curso;
 
     return this.http.get<KeyValuePair<number, string>[]>(url + '/listar')
       .pipe(
