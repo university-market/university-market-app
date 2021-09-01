@@ -34,39 +34,8 @@ export class RegisterService {
       instituicao: new FormControl(null, Validators.required)
     });
     
-    const instituicoes: KeyValuePair<number, string>[] = [
-      {
-        key: 1,
-        value: 'Primeira Instituição de Teste - Ensino'
-      }, 
-      {
-        key: 2,
-        value: 'Outra Instituição de Ensino'
-      }
-    ];
-
-    this._instituicoes.next(instituicoes);
-
-    const cursos: KeyValuePair<number, string>[] = [
-      {
-        key: 1,
-        value: 'Administração'
-      },
-      {
-        key: 2,
-        value: 'Análise e Desenvolvimento de Sistemas'
-      },
-      {
-        key: 3,
-        value: 'Direito'
-      },
-      {
-        key: 4,
-        value: 'Medicina Veterinária'
-      }
-    ];
-
-    this._cursos.next(cursos);
+    // Busca pelas instituições de ensino disponíveis
+    this.buscarInstituicoes().subscribe();
   }
 
   // Função Responsável por realizar o cadastro do usuário
@@ -103,19 +72,19 @@ export class RegisterService {
       );
   }
 
-  public buscarCursos(): Observable<KeyValuePair<number, string>[]> {
+  public buscarCursos(instituicaoId: number): Observable<KeyValuePair<number, string>[]> {
 
-    return this._buscarCursos()
+    return this._buscarCursos(instituicaoId)
       .pipe(
         tap(data => this._cursos.next(data))
       );
   }
 
-  private _buscarCursos(): Observable<KeyValuePair<number, string>[]> {
+  private _buscarCursos(instituicaoId: number): Observable<KeyValuePair<number, string>[]> {
 
     const url = environment.apiUrl + environment.curso;
 
-    return this.http.get<KeyValuePair<number, string>[]>(url + '/listar')
+    return this.http.get<KeyValuePair<number, string>[]>(url + `/${instituicaoId}/listar`)
       .pipe(
         take(1)
       );
