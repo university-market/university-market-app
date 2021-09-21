@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { KeyValuePair } from 'src/app/base/data-types/key-value-pair';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
@@ -35,6 +36,13 @@ export class RegisterComponent implements OnInit {
     this.form = this.registerService.form;
     this.instituicaoList$ = this.registerService.instituicoes$;
     this.cursosList$ = this.registerService.cursos$;
+
+    this.form.get('instituicao').valueChanges
+      .pipe(
+        distinctUntilChanged(),
+        switchMap(instituicaoId => this.registerService.buscarCursos(instituicaoId))
+      )
+      .subscribe();
   }
 
   // Função Responsável por realizar o cadatro do novo usuário
