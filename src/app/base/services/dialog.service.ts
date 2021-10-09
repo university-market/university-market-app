@@ -29,7 +29,7 @@ export class DialogService {
       .open(BaseConfirmDialogComponent, {...this._baseConfig, data: dataModel})
       .afterClosed()
       .pipe(
-        map(r => !(!r))
+        map(r => r as boolean)
       );
   }
 

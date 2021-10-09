@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AppSummarySession } from 'src/app/pages/auth/models/app-summary-session';
 import { environment } from 'src/environments/environment';
+import { UsuarioLogadoModel } from '../models/usuario-logado.model';
 
 const API_URL = environment.apiUrl;
 
@@ -12,50 +13,56 @@ export class AuthService {
 
   private readonly authTokenKey: string = "authToken";
 
-  public isAuthenticated$ = new BehaviorSubject<boolean>(false);
+  private _isAuthenticated = new BehaviorSubject<boolean>(false);
   /**
-   * @property A boolean observable that said if user is authenticated or not
+   * @property {boolean} isAuthenticated$ A boolean observable: user is authenticated or not
    */
+  public isAuthenticated$ = this._isAuthenticated.asObservable();
 
-  private _authToken = new BehaviorSubject<string>(null);
-
+  // Model resumida de session
   private _authModel = new BehaviorSubject<AppSummarySession>(null);
+
+  /**
+   * @property {UsuarioLogadoModel} user Model com dados do usuário logado no sistema
+   */
+  public user: UsuarioLogadoModel = null;
 
   constructor() { }
 
-  public storageSummarySession(model: AppSummarySession): void {
+  public persistSummarySession(model: AppSummarySession): void {
 
-    this.isAuthenticated$.next(true);
+    // Define usuário como autenticado
+    this._isAuthenticated.next(true);
 
-    this._storageSummarySession(model);
-  }
-
-  private _storageSummarySession(model: AppSummarySession): void {
-
-    this._authToken.next(model.token);
-
-    this._getAuthToken() ? null : this._persistAuthToken(model.token);
-
+    // Persiste a model de session em subject
     this._authModel.next(model);
+
+    this.persistAuthToken(model.token);
   }
 
-  private _persistAuthToken(authToken: string): void {
+  /**
+   * @method `persistAuthToken` Realiza a persistência do token de autenticação
+   * @param {string} token Token de session recebida da API
+   * @returns `void`
+   */
+  public persistAuthToken(token: string): void {
 
-    if (!authToken)
+    this._persistAuthToken(token);
+  }
+
+  // Private methods
+
+  private _persistAuthToken(token: string): void {
+
+    const tokenExistente: string = localStorage.getItem(this.authTokenKey);
+
+    if (tokenExistente != null)
       return;
 
-    localStorage.setItem(this.authTokenKey, authToken);
+    localStorage.setItem(this.authTokenKey, token);
   }
 
-  private _getAuthToken(): string {
 
-    const token = this._authToken.getValue();
-
-    if (token)
-      return token;
-
-    return localStorage.getItem(this.authTokenKey) ?? null;
-  }
 
 
 }
