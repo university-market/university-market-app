@@ -12,6 +12,7 @@ const API_URL = environment.apiUrl;
 export class AuthService {
 
   private readonly authTokenKey: string = "authToken";
+  private readonly userModelKey: string = "userDataModel";
 
   private _isAuthenticated = new BehaviorSubject<boolean>(false);
   /**
@@ -27,7 +28,23 @@ export class AuthService {
    */
   public user: UsuarioLogadoModel = null;
 
-  constructor() { }
+  constructor() {
+
+    // Quando a service for instanciada, as propriedades devem ser preenchidas com os dados previamente persistidos
+
+    const token = this.getAuthToken();
+
+    if (token != null) {
+
+      this._isAuthenticated.next(false);
+      return;
+    }
+
+    const userModel = this.getUserModel();
+    this.user = userModel;
+
+    this._isAuthenticated.next(true);
+  }
 
   /**
    * @method `persistSession` Persiste os dados da session recebidos da API
@@ -44,6 +61,13 @@ export class AuthService {
 
     // Salvar token de autenticação da API
     this.persistAuthToken(model.token);
+
+    const userModel: UsuarioLogadoModel = {
+      usuarioId: model.userId
+    };
+
+    // Salvar dados do usuario
+    this.persistUserData(userModel);
   }
 
   /**
@@ -53,6 +77,15 @@ export class AuthService {
    public getAuthToken(): string {
 
     return this._getAuthToken();
+  }
+
+  /**
+   * @method `getUserModel()` Obtém a model de usuário persistida
+   * @returns {UsuarioLogadoModel} Model do usuário logado
+   */
+   public getUserModel(): UsuarioLogadoModel {
+
+    return this._getUserModel();
   }
 
   /**
@@ -79,6 +112,21 @@ export class AuthService {
     this._persistAuthToken(token);
   }
 
+  /**
+   * @method `persistAuthToken` Realiza a persistência do token de autenticação
+   * @param {string} token Token de session recebida da API
+   * @returns `void`
+   */
+   private persistUserData(user: UsuarioLogadoModel): void {
+
+    if (user == null)
+      return;
+
+    const userSerialized = JSON.stringify(user);
+
+    localStorage.setItem(this.userModelKey, userSerialized);
+  }
+
   // Private methods
 
   private _persistAuthToken(token: string): void {
@@ -96,5 +144,15 @@ export class AuthService {
     const token: string = localStorage.getItem(this.authTokenKey);
 
     return token ?? null;
+  }
+
+  private _getUserModel(): UsuarioLogadoModel {
+
+    const modelSerialized: string = localStorage.getItem(this.userModelKey);
+
+    if (modelSerialized == null)
+      return;
+
+    return JSON.parse(modelSerialized) as UsuarioLogadoModel;
   }
 }
