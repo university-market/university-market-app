@@ -19,6 +19,7 @@ export class AuthService {
    * @property User is authenticated or not
    */
   public isAuthenticated$ = this._isAuthenticated.asObservable();
+  public prop_isAuthenticated: boolean = false;
 
   // Model resumida de session
   // private _authModel = new BehaviorSubject<AppSummarySession>(null);
@@ -26,24 +27,25 @@ export class AuthService {
   /**
    * @property {UsuarioLogadoModel} user Model com dados do usuário logado no sistema
    */
-  public user: UsuarioLogadoModel = null;
+  public user: UsuarioLogadoModel = {} as UsuarioLogadoModel;
 
   constructor() {
 
-    // Quando a service for instanciada, as propriedades devem ser preenchidas com os dados previamente persistidos
+    // Quando a instância da service for criada, 
+    // as propriedades devem ser preenchidas com os dados previamente persistidos
 
     const token = this.getAuthToken();
 
-    if (token != null) {
-
-      this._isAuthenticated.next(false);
-      return;
+    {
+      const authStatus = !(token == null);
+      this._isAuthenticated.next(authStatus);
+      this.prop_isAuthenticated = authStatus;
     }
 
-    const userModel = this.getUserModel();
-    this.user = userModel;
+    if (token == null)
+      return;
 
-    this._isAuthenticated.next(true);
+    this.user = this.getUserModel();
   }
 
   /**
@@ -55,6 +57,7 @@ export class AuthService {
 
     // Define usuário como autenticado
     this._isAuthenticated.next(true);
+    this.prop_isAuthenticated = true;
 
     // Persiste a model de session em subject
     // this._authModel.next(model);
@@ -63,7 +66,8 @@ export class AuthService {
     this.persistAuthToken(model.token);
 
     const userModel: UsuarioLogadoModel = {
-      usuarioId: model.userId
+      usuarioId: model.userId,
+      nome: model.nome
     };
 
     // Salvar dados do usuario
@@ -97,9 +101,11 @@ export class AuthService {
 
     // Define usuário como não autenticado
     this._isAuthenticated.next(false);
+    this.prop_isAuthenticated = false;
 
     // Exclui o token de session previamente salvo
     localStorage.removeItem(this.authTokenKey);
+    localStorage.removeItem(this.userModelKey);
   }
 
   /**
