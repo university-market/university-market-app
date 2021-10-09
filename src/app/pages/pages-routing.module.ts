@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NavigationGuard } from '../base/guards/navigation.guard';
 
 const routes: Routes = [
     {
@@ -9,17 +10,21 @@ const routes: Routes = [
     },
     {
       path: 'home',
+      canActivate: [NavigationGuard],
       loadChildren: () => import("../pages/home/home.module").then(m => m.HomeModule)
     },
     {
       path: 'sales',
+      canActivate: [NavigationGuard],
       loadChildren: () => import("../pages/sale/sale.module").then(m => m.SaleModule)
 
     }, {
       path: 'publicacao',
+      canActivate: [NavigationGuard],
       loadChildren: () => import("../pages/publicacao/publicacao.module").then(m => m.PublicacaoModule)
     }, {
       path: 'perfil',
+      canActivate: [NavigationGuard],
       loadChildren: () => import("../pages/profile/profile.module").then(m => m.ProfileModule)
     }
 ];

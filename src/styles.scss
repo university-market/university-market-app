@@ -40,37 +40,37 @@ body *::-moz-selection {
  $snackbar-notify-bg-color: #4c00ff;
  $snackbar-notify-font-color: #fff;
  .snackbar-notify {
-     background: $snackbar-notify-bg-color;
-     color: $snackbar-notify-font-color;
+     background: $snackbar-notify-bg-color !important;
+     color: $snackbar-notify-font-color !important;
      button {
-         color: $snackbar-notify-font-color;
+         color: $snackbar-notify-font-color !important;
      }
  }
  $snackbar-success-bg-color: #009e47;
  $snackbar-success-font-color: #fff;
  .snackbar-success {
-     background: $snackbar-success-bg-color;
-     color: $snackbar-success-font-color;
+     background: $snackbar-success-bg-color !important;
+     color: $snackbar-success-font-color !important;
      button {
-         color: $snackbar-success-font-color;
+         color: $snackbar-success-font-color !important;
      }
  }
  $snackbar-error-bg-color: #db1111;
  $snackbar-error-font-color: #fff;
  .snackbar-error {
-     background: $snackbar-error-bg-color;
-     color: $snackbar-error-font-color;
+     background: $snackbar-error-bg-color !important;
+     color: $snackbar-error-font-color !important;
      button {
-         color: $snackbar-error-font-color;
+         color: $snackbar-error-font-color !important;
      }
  }
  $snackbar-warning-bg-color: #ffe600;
  $snackbar-warning-font-color: #3e3e3e;
  .snackbar-warning {
-     background: $snackbar-warning-bg-color;
-     color: $snackbar-warning-font-color;
+     background: $snackbar-warning-bg-color !important;
+     color: $snackbar-warning-font-color !important;
      button {
-         color: $snackbar-warning-font-color;
+         color: $snackbar-warning-font-color !important;
      }
  }
 

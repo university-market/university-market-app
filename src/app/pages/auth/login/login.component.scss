@@ -31,6 +31,10 @@
       padding: 10px 0px 0px 0px;
       width: 100%;
     }
+
+    .login-btn {
+      margin-top: 15px;
+    }
   }
 
   &__actions {
@@ -63,6 +67,15 @@
   font-weight: bold;
   width: 90%;
   opacity: 40%;
+}
+
+.incorrect-login {
+  width: 100%;
+  margin: 10px 0;
+  text-align: left;
+  > span {
+    color: $app-warn;
+  }
 }
 
 @media screen and (max-width: 560px) {

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { UniversityMarketBaseModule } from '../base/university-market-base.module';
+import { UniversityMarketBaseModule } from '../../base/university-market-base.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -12,7 +12,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 
 import { ForgotService } from './services/forgot.service';
 import { LoginService } from './services/login.service';
-import { RegisterService } from './services/register.service';
 
 import { HeaderComponent } from './components/header/header.component';
 
@@ -30,10 +29,9 @@ import { HeaderComponent } from './components/header/header.component';
     RegisterComponent,
     ForgotPasswordComponent
   ],
-  providers:[
+  providers: [
     ForgotService,
     LoginService,
-    RegisterService
   ],
   exports: [
     RouterModule
