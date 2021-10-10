@@ -51,7 +51,11 @@ export class PublicacaoDetalheComponent implements OnInit {
       this.publicacao = publicacao;
       this.tags = publicacao.tags ? this.service.makeTagsArray(publicacao.tags) : [];
     },
-    () => this.location.back());
+    () => {
+      // this.location.back();
+      this.router.navigate(['../'], {relativeTo: this.route});
+    }
+    );
   }
 
   public contatarVendedor(): void {
