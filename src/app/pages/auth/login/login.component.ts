@@ -63,9 +63,9 @@ export class LoginComponent implements OnInit {
           return throwError(error);
         })
       )
-      .subscribe(() => {
-        this.notification.success("Login Realizado com sucesso");
-        // this.route.navigate(['/'])
+      .subscribe((data) => {
+        this.notification.notify('Seja bem-vindo, ' + data.nome);
+        this.route.navigate(['/']); // Direcionar o usuário para homepage após autenticado
       });
   }
 

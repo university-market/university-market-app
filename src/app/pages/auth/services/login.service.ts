@@ -17,15 +17,17 @@ export class LoginService {
   ) { }
 
   // Função Responsável enviar os dados de login para o backend
-  doLogin(login : LoginModel): Observable<boolean> {
+  doLogin(login : LoginModel): Observable<{nome: string}> {
 
     return this.http.post<AppSummarySession>(API_URL + '/estudante/login', login)
       .pipe(
-        tap(sessionModel => {
+        tap(model => {
 
-          this.authService.storageSummarySession(sessionModel);
+          this.authService.persistSession(model);
         }),
-        map(value => true)
+        map(model => ({
+          nome: model.nome
+        }))
       )
   }
 }

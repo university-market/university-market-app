@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private notification: NotificationService,
     private registerService: RegisterService,
-    private route: Router
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -78,6 +78,17 @@ export class RegisterComponent implements OnInit {
       instituicaoId: this.form.get('instituicao').value
     };
 
-    // console.log('model is', model);
+    console.log('model is', model);
+
+    this.registerService.doRegister(model)
+    .subscribe(() => {
+
+      this.notification.success('Seu cadastro foi realizado com sucesso');
+      this.router.navigate(['/auth']);
+    }, (err) => {
+
+      console.error(err);
+      this.notification.error('Não foi possível realizar seu cadastro');
+    });
   }
 }

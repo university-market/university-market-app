@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { filter, switchMap, take } from 'rxjs/operators';
+import { catchError, filter, switchMap, take } from 'rxjs/operators';
 
 import { PublicacaoService } from '../services/publicacao.service';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
@@ -45,13 +45,16 @@ export class PublicacaoDetalheComponent implements OnInit {
   
         return this.service.init(publicacaoId);
       }),
-      filter(p => p != null)
+      filter(p => p != null),
+      catchError(err => {
+        this.router.navigate(['../'], {relativeTo: this.route});
+        throw err;
+      })
     )
     .subscribe(publicacao => {
       this.publicacao = publicacao;
       this.tags = publicacao.tags ? this.service.makeTagsArray(publicacao.tags) : [];
-    },
-    () => this.location.back());
+    });
   }
 
   public contatarVendedor(): void {

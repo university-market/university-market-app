@@ -21,6 +21,7 @@ const routes: Routes = [
     }, {
       path: 'publicacao',
       canActivate: [NavigationGuard],
+      runGuardsAndResolvers: 'always',
       loadChildren: () => import("../pages/publicacao/publicacao.module").then(m => m.PublicacaoModule)
     }, {
       path: 'perfil',
