@@ -39,16 +39,14 @@ export class RegisterService {
   }
 
   // Função Responsável por realizar o cadastro do usuário
-  public doRegister(model: RegisterModel): Observable<string> {
+  public doRegister(model: RegisterModel): Observable<void> {
     
     return this._doRegister(model);
   }
   
-  private _doRegister(model: RegisterModel): Observable<string> {
-    
-    const url = environment.apiUrl + environment.estudante;
+  private _doRegister(model: RegisterModel): Observable<void> {
 
-    return this.http.post<string>(url + '/cadastro', model)
+    return this.http.post<void>(environment.apiUrl + environment.estudante, model)
       .pipe(
         take(1)
       );
@@ -76,7 +74,11 @@ export class RegisterService {
 
     return this._buscarCursos(instituicaoId)
       .pipe(
-        tap(data => this._cursos.next(data))
+        tap(data => {
+          this._cursos.next(data);
+          console.log('cursos', data);
+          
+        })
       );
   }
 
