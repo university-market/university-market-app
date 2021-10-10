@@ -9,4 +9,6 @@ import { applicationName } from './core/static/application-name';
 export class AppComponent {
   
   public title: string = applicationName;
+
+  constructor () { }
 }

@@ -7,8 +7,6 @@ import { NotificationService } from '../services/notification.service';
 @Injectable()
 export class NavigationGuard implements CanActivate {
 
-  private _authenticationStatus: boolean = false;
-
   constructor(
     private authService: AuthService,
     private notification: NotificationService,
@@ -16,30 +14,12 @@ export class NavigationGuard implements CanActivate {
     private route: ActivatedRoute
   ) {
     
-    this.authService.isAuthenticated$
-    .subscribe(authenticated => {
-
-      this._authenticationStatus = authenticated;
-
-      console.log('auth', authenticated);
-      
-      if (!authenticated) {
-
-        // Notificar usuário
-        // this._alertNotAuthenticated();
-
-        // Navegar usuário para tela de autenticacao
-        this.router.navigate(['/auth']);
-      }
-    });
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    // /*
-    if (!this._authenticationStatus) {
-    // if (!this.authService.prop_isAuthenticated) {
+    if (!this.authService.prop_isAuthenticated) {
 
       // Notificar usuário
       this._alertNotAuthenticated();
@@ -48,7 +28,6 @@ export class NavigationGuard implements CanActivate {
       this.router.navigate(['/auth'], {relativeTo: this.route.root});
       return of(false);
     }
-    // */
 
     return of(true);
   }
