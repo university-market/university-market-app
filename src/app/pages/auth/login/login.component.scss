@@ -4,6 +4,12 @@
   width: 100px;
 }
 
+div.bg-header {
+  background: $app-accent;
+  height: 150px;
+  position: relative;
+}
+
 .mat-card {
   display: flex;
   justify-content: center;
@@ -11,8 +17,9 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
   width: 400px;
+  position: relative;
+  top: -100px;
 
   &__title {
     font-size: 3em;
@@ -70,12 +77,8 @@
 }
 
 .incorrect-login {
-  width: 100%;
-  margin: 10px 0;
   text-align: left;
-  > span {
-    color: $app-warn;
-  }
+  color: $app-warn;
 }
 
 @media screen and (max-width: 560px) {

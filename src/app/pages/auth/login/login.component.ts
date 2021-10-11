@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
 
   public form: FormGroup;
 
+  public hidePassword: boolean = true;
+
   private _triedLogin = new BehaviorSubject<boolean>(false);
   public triedLogin$ = this._triedLogin.asObservable();
 
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.form = new FormGroup({
       email : new FormControl(null,[Validators.required,Validators.email]),
       senha : new FormControl(null,[Validators.required]),
-    })
+    });
   }
 
   // Função Responsável por realizar o login do usuário
@@ -58,8 +60,12 @@ export class LoginComponent implements OnInit {
     this.loginService.doLogin(model)
       .pipe(
         catchError((error) => {
+
           this.form.reset();
+          this.form.markAllAsTouched();
+
           this._incorrectLogin.next(true);
+          
           return throwError(error);
         })
       )
