@@ -1,5 +1,28 @@
 //=========================================================================
 /*
+* Default classes for full width and full height
+*
+*/
+.full-width {
+  width: 100% !important;
+}
+.full-height {
+  height: 100% !important;
+}
+
+//=========================================================================
+/*
+* Default classes for text helpers
+*
+*/
+.truncate-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+//=========================================================================
+/*
 * Default classes for width and height
 *
 */
