@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, filter } from 'rxjs/operators';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { LoginModel } from '../models/login.model';
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
           this.form.markAllAsTouched();
 
           this._incorrectLogin.next(true);
-          
+
           return throwError(error);
         })
       )
@@ -75,9 +75,21 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  //Função responsável por abrir o modal de recuperação de senha
-  forgot(){
-    this.dialog.open(ForgotPasswordComponent);
+  // Função responsável por abrir o modal de recuperação de senha
+  esqueci(): void{
+
+    const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+      width: '650px'
+    });
+
+    dialogRef.afterClosed()
+      .pipe(
+        filter(r => r != null && r)
+      )
+      .subscribe(email => {
+
+        this.notification.notify('Um e-mail de redefinição foi enviado para: ' + email);
+      });
   }
 
 }
