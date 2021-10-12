@@ -30,7 +30,7 @@ export class ForgotPasswordComponent implements OnInit {
 
     const email = this.form.get('email')?.value;
 
-    if(!email) {
+    if(!email || this.form.invalid) {
       
       this.form.markAllAsTouched();
       this.triedSave$.next(true);
