@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, filter } from 'rxjs/operators';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { LoginModel } from '../models/login.model';
@@ -17,6 +17,8 @@ import { LoginService } from '../services/login.service';
 export class LoginComponent implements OnInit {
 
   public form: FormGroup;
+
+  public hidePassword: boolean = true;
 
   private _triedLogin = new BehaviorSubject<boolean>(false);
   public triedLogin$ = this._triedLogin.asObservable();
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.form = new FormGroup({
       email : new FormControl(null,[Validators.required,Validators.email]),
       senha : new FormControl(null,[Validators.required]),
-    })
+    });
   }
 
   // Função Responsável por realizar o login do usuário
@@ -58,8 +60,12 @@ export class LoginComponent implements OnInit {
     this.loginService.doLogin(model)
       .pipe(
         catchError((error) => {
+
           this.form.reset();
+          this.form.markAllAsTouched();
+
           this._incorrectLogin.next(true);
+
           return throwError(error);
         })
       )
@@ -69,9 +75,21 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  //Função responsável por abrir o modal de recuperação de senha
-  forgot(){
-    this.dialog.open(ForgotPasswordComponent);
+  // Função responsável por abrir o modal de recuperação de senha
+  esqueci(): void{
+
+    const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+      width: '650px'
+    });
+
+    dialogRef.afterClosed()
+      .pipe(
+        filter(r => r != null && r)
+      )
+      .subscribe(email => {
+
+        this.notification.notify('Um e-mail de redefinição foi enviado para: ' + email);
+      });
   }
 
 }

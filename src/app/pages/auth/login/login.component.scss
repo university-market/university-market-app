@@ -4,61 +4,65 @@
   width: 100px;
 }
 
-.mat-card {
+.container {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
-  width: 400px;
+  background: linear-gradient($app-accent 35%, transparent 35%);
 
-  &__title {
-    font-size: 3em;
-    font-weight: 300;
-    padding: 32px;
+  div.bg-header {
+    background: $app-accent;
+    height: 150px;
+    position: relative;
   }
 
-  &__form {
+  .mat-card {
+
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 90%;
+    margin: 0 auto;
+    width: 400px;
+    margin-top: 50px;
 
-    &__input {
-      padding: 10px 0px 0px 0px;
-      width: 100%;
+    > header {
+
+      .title {
+
+        > h2 {
+
+          font-size: 1.75em;
+          font-weight: 300;
+        }
+      }
     }
 
-    .login-btn {
-      margin-top: 15px;
-    }
-  }
-
-  &__actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 90%;
-
-    &__span {
-      margin: 10px;
-    }
-    &__a {
-      text-decoration: none;
-      color: $app-accent;
+    &__form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 90%;
     }
 
-    &__a:hover {
-      cursor: pointer;
-    }
+    &__actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 90%;
 
-    &__hr {
-      width: 100%;
-      opacity: 50%;
+      &__a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &__hr {
+        width: 100%;
+        opacity: 50%;
+      }
     }
   }
 }
@@ -70,12 +74,8 @@
 }
 
 .incorrect-login {
-  width: 100%;
-  margin: 10px 0;
   text-align: left;
-  > span {
-    color: $app-warn;
-  }
+  color: $app-warn;
 }
 
 @media screen and (max-width: 560px) {

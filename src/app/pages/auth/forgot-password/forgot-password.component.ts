@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { BehaviorSubject } from 'rxjs';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { ForgotModel } from '../models/forgot.model';
-import { ForgotService } from '../services/forgot.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,36 +12,32 @@ import { ForgotService } from '../services/forgot.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  forgot: FormGroup
+  public form: FormGroup
 
-  constructor(
-    private notification: NotificationService,
-    private forgotService: ForgotService,
-    private dialog: MatDialog,
-  ) { }
+  public triedSave$ = new BehaviorSubject<boolean>(false);
+
+  constructor (private ref: MatDialogRef<ForgotPasswordComponent>) { }
 
   ngOnInit(): void {
-    this.forgot = new FormGroup({
-      email : new FormControl(null,[Validators.required,Validators.email])
-    })
+
+    this.form = new FormGroup({
+      email : new FormControl(null, [Validators.required, Validators.email])
+    });
   }
-  //função para realizar a recuperação de senha
+
+  // Função para realizar a recuperação de senha
   doRecover(){
-    const model: ForgotModel = { 
-      email: this.forgot.get('email')?.value
-    }
 
-    if(!model.email){
+    const email = this.form.get('email')?.value;
+
+    if(!email || this.form.invalid) {
       
-      this.notification.error("E-mail é obrigatório");
-      return
+      this.form.markAllAsTouched();
+      this.triedSave$.next(true);
 
-    } else {
-
-      this.forgotService.doRecover(model).subscribe(() => {
-        this.notification.success("Link para recuperação de senha enviado ao e-mail");
-        this.dialog.closeAll();
-      })
+      return;
     }
+
+    this.ref.close(email);
   }
 }

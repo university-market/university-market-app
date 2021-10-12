@@ -10,7 +10,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
-import { ForgotService } from './services/forgot.service';
 import { LoginService } from './services/login.service';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -30,7 +29,6 @@ import { HeaderComponent } from './components/header/header.component';
     ForgotPasswordComponent
   ],
   providers: [
-    ForgotService,
     LoginService,
   ],
   exports: [

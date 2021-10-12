@@ -1,44 +1,80 @@
-<mat-card   class="mat-card mat-elevation-z8">
-    <img src="assets/logos/Logo_U.M_Fundo_branco.png" class="header_img">
-    <mat-card-title class="mat-card__title">
-        Login
-    </mat-card-title>
+<div class="container">
+  <!-- <div class="bg-header"></div> -->
+  <mat-card class="mat-card mat-elevation-z8">
+
+    <header class="full-width" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+      fxLayout.lt-sm="row" fxLayoutAlign.lt-sm="start center" fxLayoutGap.lt-sm="15px">
+      <img src="assets/logos/Logo_U.M_Fundo_branco.png" class="header_img">
+        <mat-card-title class="title m-0">
+          <h2 class="m-0">Login</h2>
+        </mat-card-title>
+    </header>
+
+    <p class="secondary-text mt-20">Efetue seu login para acessar a plataforma</p>
+
     <hr class="hr">
+
     <form [formGroup]="form" class="mat-card__form">
-        <mat-form-field class="mat-card__form__input">
-          <mat-label>E-mail</mat-label>
-          <input formControlName="email" type="email" matInput autocomplete="off">
-          <mat-error *ngIf="form.get('email')?.touched && form.get('email')?.errors">
-            Informe um e-mail válido
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="mat-card__form__input">
-            <mat-label>Senha</mat-label>
-            <input formControlName="senha" type="password" matInput>
-            <mat-error *ngIf="form.get('senha')?.touched && form.get('senha')?.errors">
-                Informe uma senha válida
-            </mat-error>
-        </mat-form-field>
-        <div *ngIf="(incorrectLogin$ | async)" class="incorrect-login">
-          <span>E-mail ou senha incorretos. Tente novamente</span>
-        </div>
-        <button mat-raised-button class="w-100 login-btn"
-          (click)="doLogin()"
-          color="accent"
-          [disabled]="form.invalid && (triedLogin$ | async)">
-            Login
-        </button>
+      
+      <!-- CAMPO EMAIL -->
+      <mat-form-field class="full-width pt-10">
+        <mat-label>E-mail</mat-label>
+        <input formControlName="email" type="email" matInput autocomplete="off">
+        <mat-icon matSuffix
+          [color]="form.get('email').errors && form.get('email').touched ? 'warn' : 'primary'">
+          alternate_email
+        </mat-icon>
+        <mat-error *ngIf="form.get('email')?.touched && form.get('email')?.errors">
+          Informe um e-mail válido
+        </mat-error>
+      </mat-form-field>
+      <!-- / CAMPO EMAIL -->
+
+      <!-- CAMPO SENHA -->
+      <mat-form-field class="full-width pt-10">
+        <mat-label>Senha</mat-label>
+        <input matInput formControlName="senha" [type]="hidePassword ? 'password' : 'text'" autocomplete="off">
+          <mat-icon matSuffix
+            (click)="hidePassword = !hidePassword"
+            class="cursor-pointer"
+            [matTooltip]="(hidePassword ? 'Mostrar' : 'Esconder') + ' senha'"
+            [color]="form.get('senha').errors && form.get('senha').touched ? 'warn' : 'primary'">
+            {{hidePassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+        <mat-error *ngIf="form.get('senha')?.touched && form.get('senha')?.errors">
+          Informe uma senha válida
+        </mat-error>
+      </mat-form-field>
+      <!-- / CAMPO SENHA -->
+
+      <!-- ALERTA -->
+      <div *ngIf="(incorrectLogin$ | async)" 
+        class="incorrect-login full-width my-10" fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon color="warn" class="mr-10">error_outlined</mat-icon>
+        E-mail ou senha incorretos. Tente novamente.
+      </div>
+      <!-- / ALERTA -->
+
+      <button mat-raised-button class="w-100 mt-16" (click)="doLogin()" color="accent"
+        [disabled]="form.invalid && (triedLogin$ | async)">
+        Login
+      </button>
     </form>
     <mat-card-actions class="mat-card__actions">
-        <a (click)="forgot()" class="mat-card__actions__a">
-            Esqueci minha senha
+      
+      <a (click)="esqueci()" class="mat-card__actions__a my-10 accent-text cursor-pointer">
+        Esqueci minha senha
+      </a>
+
+      <hr class="mat-card__actions__hr">
+      
+      <span class="my-10">
+        Novo no University Market?
+        <a routerLink="/auth/register" class="mat-card__actions__a accent-text cursor-pointer">
+          Cadastre-se aqui
         </a>
-        <hr class="mat-card__actions__hr">
-        <span class="mat-card__actions__span">
-            Novo no University Market?
-            <a routerLink='/auth/register' class="mat-card__actions__a">
-                Cadastre-se aqui
-            </a>
-        </span>
+      </span>
+
     </mat-card-actions>
-</mat-card>
+  </mat-card>
+</div>
