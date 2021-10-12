@@ -30,6 +30,6 @@ import { ProfilePublicacaoItemComponent } from './components/profile-publicacoes
     ProfilePublicacoesHeaderComponent,
     ProfilePublicacaoItemComponent,
   ],
-  providers: [ProfileService]
+   providers: [ProfileService]
 })
 export class ProfileModule { }

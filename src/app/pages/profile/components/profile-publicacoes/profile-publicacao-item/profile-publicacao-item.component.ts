@@ -8,12 +8,7 @@ import { PublicacaoListagemModel } from 'src/app/pages/publicacao/models/publica
 })
 export class ProfilePublicacaoItemComponent implements OnInit {
 
-  @Input('publicacao') publicacao: PublicacaoListagemModel = {
-    publicacaoId: 1,
-    titulo: 'Publicação teste exibição grid inicial',
-    descricao: 'Descrição teste para publicação exibida no componente grid de perfil',
-    valor: 123.45
-  }
+  @Input('publicacao') publicacao: PublicacaoListagemModel; 
 
   constructor() { }
 

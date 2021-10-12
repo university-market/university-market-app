@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/base/services/auth.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile-publicacoes',
@@ -7,17 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePublicacoesComponent implements OnInit {
 
+
   public publicacoesList = [];
 
-  constructor() {
+  
+  constructor(
+    private authService: AuthService,
+    private profileService: ProfileService
+  ) {
     
-    this.publicacoesList.push(true);
-    this.publicacoesList.push(true);
-    this.publicacoesList.push(true);
-    this.publicacoesList.push(true);
-    this.publicacoesList.push(true);
+    // this.publicacoesList.push(true);
+    // this.publicacoesList.push(true);
+    // this.publicacoesList.push(true);
+    // this.publicacoesList.push(true);
+    // this.publicacoesList.push(true);
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.profileService.searchPublibyUser(this.authService.user.usuarioId)
+      .subscribe(publicacoes => {
+        this.publicacoesList = publicacoes
+        console.log(this.publicacoesList)
+      })
+  }
 
 }
