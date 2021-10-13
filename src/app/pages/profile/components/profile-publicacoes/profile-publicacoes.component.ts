@@ -29,7 +29,6 @@ export class ProfilePublicacoesComponent implements OnInit {
     this.profileService.searchPublibyUser(this.authService.user.usuarioId)
       .subscribe(publicacoes => {
         this.publicacoesList = publicacoes
-        console.log(this.publicacoesList)
       })
   }
 

@@ -22,4 +22,10 @@ export class ProfileService {
   searchPublibyUser(id:number): Observable<ProfilePublicacoesModel[]>{
     return this.http.get<ProfilePublicacoesModel[]>(API_URL + environment.publicacao + `/estudante/${id}`)
   }
+
+  deletePublicacao(id:number){
+    this.http.delete(API_URL + environment.publicacao + `/${id}`).subscribe((result) => {
+      console.log(result)
+    })
+  }
 }
