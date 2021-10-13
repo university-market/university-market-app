@@ -6,14 +6,14 @@
     <div class="user-data">
       <div class="user-data__primary">
         <div class="user-data__primary__name">
-          Username of User
+          {{user.nome}}
         </div>
         <div class="user-data__primary__email">
           <mat-icon>mail_outline</mat-icon>
-          username.user@email.com
+          {{user.email}}
         </div>
         <div class="user-data__primary__course">
-          Estudante de {{ 'Curso Universitário' }}
+          Estudante de {{user.cursoNome }}
         </div>
       </div>
       <div class="user-data__actions">
