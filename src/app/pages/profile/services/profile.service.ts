@@ -16,16 +16,14 @@ export class ProfileService {
   ) { }
 
   searchUserById(id: number):Observable<UserModel>{
-    return this.http.get<UserModel>(API_URL + environment.estudante + `/${id}`)
+    return this.http.get<UserModel>(API_URL + environment.estudante + `/${id}`);
   }
 
   searchPublibyUser(id:number): Observable<ProfilePublicacoesModel[]>{
-    return this.http.get<ProfilePublicacoesModel[]>(API_URL + environment.publicacao + `/estudante/${id}`)
+    return this.http.get<ProfilePublicacoesModel[]>(API_URL + environment.publicacao + `/estudante/${id}`);
   }
 
   deletePublicacao(id:number){
-    this.http.delete(API_URL + environment.publicacao + `/${id}`).subscribe((result) => {
-      console.log(result)
-    })
+   return this.http.delete(API_URL + environment.publicacao + `/${id}`);
   }
 }
