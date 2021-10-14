@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogService } from 'src/app/base/services/dialog.service';
 import { PublicacaoListagemModel } from 'src/app/pages/publicacao/models/publicacao-listagem.model';
 
 @Component({
