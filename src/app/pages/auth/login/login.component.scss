@@ -7,7 +7,7 @@
 .container {
   position: relative;
   display: flex;
-  background: linear-gradient($app-accent 35%, transparent 35%);
+  background: linear-gradient($app-warn 35%, transparent 35%);
 
   div.bg-header {
     background: $app-accent;
