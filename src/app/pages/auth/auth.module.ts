@@ -13,6 +13,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginService } from './services/login.service';
 
 import { HeaderComponent } from './components/header/header.component';
+import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HeaderComponent } from './components/header/header.component';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    RedefinirSenhaComponent
   ],
   providers: [
     LoginService,
