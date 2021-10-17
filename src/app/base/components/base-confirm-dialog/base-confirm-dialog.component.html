@@ -3,10 +3,10 @@
   {{ question }}
 </div>
 <div mat-dialog-actions class="actions">
-  <button mat-button (click)="onCancel()">
+  <button mat-button (click)="onCancel()" *ngIf="btnCancel != null">
     {{ btnCancel }}
   </button>
-  <button mat-raised-button color="primary" (click)="onConfirm()">
+  <button mat-raised-button color="accent" (click)="onConfirm()">
     {{ btnConfirm }}
   </button>
 </div>

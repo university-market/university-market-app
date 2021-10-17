@@ -26,6 +26,9 @@ import { RouterModule } from '@angular/router';
     TextMaskModule,
     NgBrazil,
 
+    // Modulos de design
+    DesignBaseModule,
+
     // Application Base
     UniversityMarketPipesModule,
   ],

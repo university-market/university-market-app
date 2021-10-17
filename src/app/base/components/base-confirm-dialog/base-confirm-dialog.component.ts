@@ -5,7 +5,7 @@ import { ConfirmDialogDataModel, ConfirmDialogDefaultActions } from '../../model
 @Component({
   selector: 'app-base-confirm-dialog',
   templateUrl: './base-confirm-dialog.component.html',
-  styleUrls: ['./base-confirm-dialog.component.scss']
+  styleUrls: ['./base-confirm-dialog.component.scss'],
 })
 export class BaseConfirmDialogComponent implements OnInit {
 
