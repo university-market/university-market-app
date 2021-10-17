@@ -4,6 +4,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { NotificationService } from 'src/app/base/services/notification.service';
+import { PASSWORD_MAXLENGHT, PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
 import { RedefinicaoSenhaService } from '../../services/redefinicao-senha.service';
 
 @Component({
@@ -18,6 +19,10 @@ export class RedefinirSenhaComponent implements OnInit {
   public emailCompleted: boolean = false;
 
   public formRedefinicaoSenha: FormGroup;
+  private _senhaValidators = [
+    Validators.minLength(PASSWORD_MINLENGHT),
+    Validators.maxLength(PASSWORD_MAXLENGHT)
+  ];
 
   private _triedSave = new BehaviorSubject<boolean>(false);
   public triedSave$ = this._triedSave.asObservable();
@@ -33,8 +38,8 @@ export class RedefinirSenhaComponent implements OnInit {
     });
 
     this.formRedefinicaoSenha = new FormGroup({
-      senha: new FormControl(null, Validators.required),
-      confirmacaoSenha: new FormControl(null, Validators.required)
+      senha: new FormControl(null, [Validators.required, ...this._senhaValidators]),
+      confirmacaoSenha: new FormControl(null, [Validators.required, ...this._senhaValidators])
     });
   }
 
