@@ -13,11 +13,15 @@ import { BaseQrCodeDialogComponent } from './components/base-qr-code-dialog/base
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgBrazil } from 'ng-brazil';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 
 @NgModule({
   imports: [
+    // Commom modules
+    CommonModule,
+
     // Angular Forms
     FormsModule,
     ReactiveFormsModule,
