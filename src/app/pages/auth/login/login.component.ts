@@ -4,8 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError, filter, switchMap } from 'rxjs/operators';
+import { DialogService } from 'src/app/base/services/dialog.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
-import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { EsqueciMinhaSenhaDialogComponent } from '../dialogs/esqueci-minha-senha-dialog/esqueci-minha-senha-dialog.component';
 import { LoginModel } from '../models/login.model';
 import { LoginService } from '../services/login.service';
 
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private notification: NotificationService,
+    private dialogService: DialogService,
     private loginService: LoginService,
     private route: Router
   ) {}
@@ -78,7 +80,7 @@ export class LoginComponent implements OnInit {
   // Função responsável por abrir o modal de recuperação de senha
   esqueci(): void{
 
-    const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+    const dialogRef = this.dialog.open(EsqueciMinhaSenhaDialogComponent, {
       width: '650px'
     });
 
@@ -99,6 +101,8 @@ export class LoginComponent implements OnInit {
           this.notification.notify('Um e-mail de redefinição foi enviado para você. O link de redefinição expira em ' 
             + model.expirationTime + ' minuto(s)');
         }
+
+        this.dialogService.openConfirmDialog('Um e-mail foi enviado para você');
       });
   }
 

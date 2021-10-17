@@ -8,12 +8,12 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 import { LoginService } from './services/login.service';
 
 import { HeaderComponent } from './components/header/header.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
+import { EsqueciMinhaSenhaDialogComponent } from './dialogs/esqueci-minha-senha-dialog/esqueci-minha-senha-dialog.component';
 
 
 @NgModule({
@@ -27,8 +27,8 @@ import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent,
-    RedefinirSenhaComponent
+    RedefinirSenhaComponent,
+    EsqueciMinhaSenhaDialogComponent,
   ],
   providers: [
     LoginService,

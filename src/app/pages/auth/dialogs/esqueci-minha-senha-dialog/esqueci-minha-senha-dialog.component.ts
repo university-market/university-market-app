@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
-import { NotificationService } from 'src/app/base/services/notification.service';
-import { ForgotModel } from '../models/forgot.model';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  selector: 'app-esqueci-minha-senha-dialog',
+  templateUrl: './esqueci-minha-senha-dialog.component.html',
+  styleUrls: ['./esqueci-minha-senha-dialog.component.scss']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class EsqueciMinhaSenhaDialogComponent implements OnInit {
 
-  public form: FormGroup
+  public form: FormGroup = null;
 
   public triedSave$ = new BehaviorSubject<boolean>(false);
 
-  constructor (private ref: MatDialogRef<ForgotPasswordComponent>) { }
+  constructor (private ref: MatDialogRef<EsqueciMinhaSenhaDialogComponent>) { }
 
   ngOnInit(): void {
 
@@ -26,7 +24,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   // Função para realizar a recuperação de senha
-  doRecover(){
+  onEnviar(){
 
     const email = this.form.get('email')?.value;
 
@@ -40,4 +38,5 @@ export class ForgotPasswordComponent implements OnInit {
 
     this.ref.close(email);
   }
+
 }
