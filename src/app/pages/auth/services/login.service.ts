@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/base/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { AppSummarySession } from '../models/app-summary-session';
@@ -21,6 +21,7 @@ export class LoginService {
 
     return this.http.post<AppSummarySession>(API_URL + '/estudante/login', login)
       .pipe(
+        take(1),
         tap(model => {
 
           this.authService.persistSession(model);
@@ -29,5 +30,13 @@ export class LoginService {
           nome: model.nome
         }))
       )
+  }
+
+  public esqueciMinhaSenha(email: string): Observable<{expirationTime: number, existente: boolean}> {
+
+    return this.http.patch<any>(API_URL + `/estudante/recuperarsenha/solicitar`, {email: email})
+      .pipe(
+        take(1)
+      );
   }
 }

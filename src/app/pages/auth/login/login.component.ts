@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError, filter } from 'rxjs/operators';
+import { catchError, filter, switchMap } from 'rxjs/operators';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { LoginModel } from '../models/login.model';
@@ -84,11 +84,21 @@ export class LoginComponent implements OnInit {
 
     dialogRef.afterClosed()
       .pipe(
-        filter(r => r != null && r)
+        filter(r => r != null && r),
+        switchMap(email => this.loginService.esqueciMinhaSenha(email))
       )
-      .subscribe(email => {
+      .subscribe(model => {
 
-        this.notification.notify('Um e-mail de redefinição foi enviado para: ' + email);
+        if (model.existente) {
+
+          this.notification.notify('Já existe uma solicitação em aberto para esta conta, que expira em '
+            + model.expirationTime + ' minuto(s). Verifique seu e-mail');
+        }
+        else {
+
+          this.notification.notify('Um e-mail de redefinição foi enviado para você. O link de redefinição expira em ' 
+            + model.expirationTime + ' minuto(s)');
+        }
       });
   }
 
