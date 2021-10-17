@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { PASSWORD_MAXLENGHT, PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
 import { RedefinicaoSenhaService } from '../../services/redefinicao-senha.service';
@@ -24,14 +25,18 @@ export class RedefinirSenhaComponent implements OnInit {
     Validators.maxLength(PASSWORD_MAXLENGHT)
   ];
 
+  public invalid$ = new BehaviorSubject<boolean>(false);
+
   private _triedSave = new BehaviorSubject<boolean>(false);
   public triedSave$ = this._triedSave.asObservable();
 
   @ViewChild('stepper', {static: true}) stepper: MatStepper;
 
   constructor(
+    private service: RedefinicaoSenhaService,
     private notification: NotificationService,
-    private route: Router
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.formValidacaoEmail = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email])
@@ -43,7 +48,19 @@ export class RedefinirSenhaComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    
+    this.route.paramMap
+      .subscribe((p) => {
+
+        const token = p.get('token');
+
+        if (token) {
+
+          this.service.init(token);
+        }
+      });
+  }
 
   onValidarEmail(): void {
 
@@ -61,12 +78,49 @@ export class RedefinirSenhaComponent implements OnInit {
     }
 
     // Request para validar email
+    this.service.autenticarSolicitacaoPorEmail(email)
+      .pipe(
+        catchError(err => {
 
-    if (this._triedSave.getValue())
-      this._triedSave.next(false);
+          this._markEmailAsInvalid();
 
-    this.emailCompleted = true;
-    this.stepper.next();
+          throw err;
+        })
+      )
+      .subscribe(res => {
+
+        if (res) {
+
+          if (this._triedSave.getValue())
+            this._triedSave.next(false);
+
+          // Notificar sucesso da validação
+          this.notification.success('Verificamos sua solicitação e está tudo certo');
+
+          this.emailCompleted = true;
+          this.stepper.next();
+
+          return;
+        }
+
+        this._markEmailAsInvalid(true);
+      });
+  }
+
+  private _markEmailAsInvalid(showMessage: boolean = false) {
+
+    this.invalid$.next(true);
+
+    this.formValidacaoEmail.get('email').reset();
+
+    if (!this._triedSave.getValue())
+      this._triedSave.next(true);
+
+    this.formValidacaoEmail.get('email').markAsTouched();
+    this.formValidacaoEmail.get('email').updateValueAndValidity();
+
+    if (showMessage)
+      this.notification.error('Este e-mail não corresponde à uma solicitação válida');
   }
 
 }

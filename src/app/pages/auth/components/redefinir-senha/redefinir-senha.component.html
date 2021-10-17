@@ -16,13 +16,17 @@
     <section class="stepper w-100">
 
       <mat-horizontal-stepper linear #stepper>
-        
+
         <!-- STEP CONFIRMACAO EMAIL -->
         <mat-step [stepControl]="formValidacaoEmail" [editable]="!emailCompleted" label="Confirmação E-mail">
           <section class="stepper__content w-100">
 
             <p>
               Para fins de segurança, solicitamos que informe o seu endereço de e-mail.
+            </p>
+
+            <p class="alerta-invalido" *ngIf="invalid$ | async">
+              Não há uma solicitação de redefinição de senha ativa para o e-mail informado.
             </p>
 
             <form [formGroup]="formValidacaoEmail">
