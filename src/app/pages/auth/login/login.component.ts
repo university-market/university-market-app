@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError, filter, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 import { DialogService } from 'src/app/base/services/dialog.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { EsqueciMinhaSenhaDialogComponent } from '../dialogs/esqueci-minha-senha-dialog/esqueci-minha-senha-dialog.component';
@@ -87,22 +87,41 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed()
       .pipe(
         filter(r => r != null && r),
-        switchMap(email => this.loginService.esqueciMinhaSenha(email))
+        switchMap((email: string) => this.loginService.esqueciMinhaSenha(email)
+          .pipe(
+            map(model => {
+              return {
+                ...model,
+                email: email
+              }
+            })
+          )),
       )
       .subscribe(model => {
 
+        const config = {
+          labelMinutos: model.expirationTime == 1 ? 'minuto' : 'minutos',
+          message: null
+        };
+
         if (model.existente) {
 
-          this.notification.notify('Já existe uma solicitação em aberto para esta conta, que expira em '
-            + model.expirationTime + ' minuto(s). Verifique seu e-mail');
+          let msg = `Já existe uma solicitação pendente para esta conta. `;
+          msg += `Expira em ${model.expirationTime} ${config.labelMinutos}. Verifique seu e-mail.`;
+
+          config.message = msg;
         }
         else {
 
-          this.notification.notify('Um e-mail de redefinição foi enviado para você. O link de redefinição expira em ' 
-            + model.expirationTime + ' minuto(s)');
+          let msg = `Um e-mail de redefinição foi enviado para você. `;
+          msg += `A solicitação expira em ${model.expirationTime} ${config.labelMinutos}.`;
+
+          this.notification.notify('E-mail enviado para: ' + model.email)
+
+          config.message = msg;
         }
 
-        this.dialogService.openConfirmDialog('Um e-mail foi enviado para você');
+        this.dialogService.openConfirmDialog(config.message, 'Tudo bem', null);
       });
   }
 
