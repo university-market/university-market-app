@@ -25,6 +25,11 @@ const routes: Routes = [
         component: RegisterComponent
       },
       {
+        path: 'redefinirsenha',
+        canActivate: [RedefinirSenhaGuard],
+        component: RedefinirSenhaComponent
+      },
+      {
         path: 'redefinirsenha/:token',
         canActivate: [RedefinirSenhaGuard],
         component: RedefinirSenhaComponent
