@@ -1,0 +1,59 @@
+@import "src/styles/colors.scss";
+
+.header_img {
+  width: 100px;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  background: linear-gradient($app-accent 35%, transparent 35%);
+
+  .mat-card {
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 750px;
+    max-width: 100%;
+    margin-top: 50px;
+
+    > header {
+
+      .title {
+
+        > h2 {
+
+          // font-size: 1.75em;
+          font-weight: 300;
+        }
+      }
+    }
+
+    .stepper {
+
+      max-width: 100%;
+    }
+
+    
+  }
+}
+
+.hr {
+  font-weight: bold;
+  width: 100%;
+  opacity: 40%;
+}
+
+@media screen and (max-width: 560px) {
+  .mat-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    width: 90%;
+  }
+}

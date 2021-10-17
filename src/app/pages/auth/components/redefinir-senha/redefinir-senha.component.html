@@ -1,3 +1,112 @@
-<p>
-  redefinir-senha works!
-</p>
+<div class="container">
+  <!-- <div class="bg-header"></div> -->
+  <mat-card class="mat-card mat-elevation-z8 p-30">
+
+    <header class="full-width" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px"
+      fxLayout.lt-sm="row" fxLayoutAlign.lt-sm="start center" fxLayoutGap.lt-sm="15px">
+        <mat-card-title class="title m-0">
+          <h2 class="m-0">Redefinição de senha</h2>
+        </mat-card-title>
+    </header>
+
+    <p class="secondary-text mt-20">Siga as instruções apresentadas a seguir para redefinir a sua senha.</p>
+
+    <hr class="hr">
+
+    <section class="stepper w-100">
+
+      <mat-horizontal-stepper linear #stepper>
+        
+        <!-- STEP CONFIRMACAO EMAIL -->
+        <mat-step [stepControl]="formValidacaoEmail" [editable]="!emailCompleted" label="Confirmação E-mail">
+          <section class="stepper__content w-100">
+
+            <p>
+              Para fins de segurança, solicitamos que informe o seu endereço de e-mail.
+            </p>
+
+            <form [formGroup]="formValidacaoEmail">
+              <mat-form-field class="w-100">
+                <mat-label>Seu e-mail</mat-label>
+                <input matInput formControlName="email" autocomplete="off" required>
+                <mat-hint>
+                  Informe seu endereço de e-mail para prosseguir
+                </mat-hint>
+                <mat-error *ngIf="formValidacaoEmail.get('email')?.touched && formValidacaoEmail.get('email')?.errors">
+                  Informe um endereço de e-mail válido
+                </mat-error>
+              </mat-form-field>
+            </form>
+
+            <section class="stepper__content__actions mt-18" fxLayout="row" fxLayoutAlign="end center">
+              <button mat-raised-button type="button" color="primary" (click)="onValidarEmail()" 
+                [disabled]="formValidacaoEmail.invalid && (triedSave$ | async)">
+                Validar e-mail
+              </button>
+            </section>
+
+          </section>
+        </mat-step>
+        <!-- / STEP CONFIRMACAO EMAIL -->
+
+        <!-- STEP REDEFINICAO SENHA -->
+        <mat-step [stepControl]="formRedefinicaoSenha" label="Redefinição de senha">
+          <section class="stepper__content w-100">
+
+            <p>
+              Agora, escolha bem a sua <strong>nova senha</strong>, atendendo aos seguintes requisitos:
+            </p>
+
+            <aside>
+              <ul>
+                <li>
+                  Deve conter, no mínimo, <strong>6 caracteres</strong> e, no máximo, <strong>20 caracteres</strong>.
+                </li>
+              </ul>
+            </aside>
+
+            <form [formGroup]="formRedefinicaoSenha" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="15px">
+              
+              <!-- SENHA -->
+              <mat-form-field class="w-100">
+                <mat-label>Nova senha</mat-label>
+                <input matInput type="password" formControlName="senha" autocomplete="off" required>
+                <mat-hint>
+                  Sua nova senha
+                </mat-hint>
+                <mat-error *ngIf="formRedefinicaoSenha.get('senha')?.touched && formRedefinicaoSenha.get('senha')?.errors">
+                  A senha deve atender aos requisitos listados
+                </mat-error>
+              </mat-form-field>
+
+              <!-- CONFIRMACAO SENHA -->
+              <mat-form-field class="w-100">
+                <mat-label>Confirmação</mat-label>
+                <input matInput type="password" formControlName="confirmacaoSenha" autocomplete="off" required>
+                <mat-hint>
+                  Digite novamente a nova senha
+                </mat-hint>
+                <mat-error *ngIf="formRedefinicaoSenha.get('confirmacaoSenha')?.touched && formRedefinicaoSenha.get('confirmacaoSenha')?.errors">
+                  As senhas devem ser iguais
+                </mat-error>
+              </mat-form-field>
+              
+            </form>
+
+            <section class="stepper__content__actions mt-18" fxLayout="row" fxLayoutAlign="end center">
+              <button mat-raised-button type="button" color="accent" (click)="null" 
+                [disabled]="formRedefinicaoSenha.invalid && (triedSave$ | async)">
+                Redefinir senha
+              </button>
+            </section>
+
+          </section>
+        </mat-step>
+        <!-- / STEP REDEFINICAO SENHA -->
+
+      </mat-horizontal-stepper>
+
+    </section>
+
+  </mat-card>
+</div>
