@@ -12,6 +12,8 @@ import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { SelectedChipDirective } from './shared/directives/selected-chip.directive';
 import { RouterModule } from '@angular/router';
+import { NavigationGuard } from './base/guards/navigation.guard';
+import { RedefinirSenhaGuard } from './base/guards/redefinirsenha.guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { RouterModule } from '@angular/router';
     PagesModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [NavigationGuard, RedefinirSenhaGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,7 +17,12 @@ export class DialogService {
 
   constructor(private dialog: MatDialog) { }
 
-  public openConfirmDialog(question: string, confirmText?: string, cancelText?: string): Observable<boolean> {
+  public openConfirmDialog(question: string, confirmText?: string, cancelText: string = ''): Observable<boolean> {
+
+    if (cancelText === null) {
+
+      cancelText = undefined;
+    }
 
     const dataModel: ConfirmDialogDataModel = {
       question,

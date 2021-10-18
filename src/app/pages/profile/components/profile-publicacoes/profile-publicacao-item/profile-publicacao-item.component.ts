@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PublicacaoListagemModel } from 'src/app/pages/publicacao/models/publicacao-listagem.model';
 
 @Component({
@@ -8,15 +8,17 @@ import { PublicacaoListagemModel } from 'src/app/pages/publicacao/models/publica
 })
 export class ProfilePublicacaoItemComponent implements OnInit {
 
-  @Input('publicacao') publicacao: PublicacaoListagemModel = {
-    publicacaoId: 1,
-    titulo: 'Publicação teste exibição grid inicial',
-    descricao: 'Descrição teste para publicação exibida no componente grid de perfil',
-    valor: 123.45
-  }
+  @Input('publicacao') publicacao: PublicacaoListagemModel; 
 
-  constructor() { }
+  @Output('onDelete') onDelete = new EventEmitter<number>();
+
+  constructor(
+  ) { }
 
   ngOnInit() { }
 
+  excluir(){
+    this.onDelete.emit(this.publicacao.publicacaoId);
+  }
+  
 }

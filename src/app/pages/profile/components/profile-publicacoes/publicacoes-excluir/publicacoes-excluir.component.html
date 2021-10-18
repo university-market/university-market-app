@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Tem certeza que deseja excluir esta publicação?</h1>
+<hr class="hr">
+<!-- <div mat-dialog-content class="mat-dialog-content">
+    <mat-form-field class="mat-dialog-content__form">
+      <mat-label class="mat-dialog-content__form__label">Título</mat-label>
+      <input readonly value="{{data.titulo}}" matInput class="mat-dialog-content__form__input">
+    </mat-form-field>
+
+    <mat-form-field class="mat-dialog-content__form">
+      <mat-label class="mat-dialog-content__form__label">Valor</mat-label>
+      <input readonly value="{{data.valor | currencyBrazil}}" matInput class="mat-dialog-content__form__input">
+    </mat-form-field>
+</div> -->
+<div mat-dialog-actions>
+    <button mat-raised-button color="accent" (click)="deletePublicacao()" >Sim, desejo excluir</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+</div>

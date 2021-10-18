@@ -1,7 +1,8 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 // Dados comuns para validação de senha
-export const PASSWORD_MINLENGHT = 4;
+export const PASSWORD_MINLENGHT = 6;
+export const PASSWORD_MAXLENGHT = 20;
 
 export function confirmacaoSenhaValidator(senha: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {

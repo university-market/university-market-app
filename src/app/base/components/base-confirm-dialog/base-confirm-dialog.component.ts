@@ -5,7 +5,7 @@ import { ConfirmDialogDataModel, ConfirmDialogDefaultActions } from '../../model
 @Component({
   selector: 'app-base-confirm-dialog',
   templateUrl: './base-confirm-dialog.component.html',
-  styleUrls: ['./base-confirm-dialog.component.scss']
+  styleUrls: ['./base-confirm-dialog.component.scss'],
 })
 export class BaseConfirmDialogComponent implements OnInit {
 
@@ -26,8 +26,12 @@ export class BaseConfirmDialogComponent implements OnInit {
       data.confirmText : ConfirmDialogDefaultActions.btnConfirm;
 
     // Texto que o botão de cancelar deverá exibir
-    this.btnCancel = data.cancelText ? 
-      data.cancelText : ConfirmDialogDefaultActions.btnCancel;
+    if (data.cancelText === undefined)
+      this.btnCancel = null;
+    else {
+      this.btnCancel = data.cancelText ? 
+        data.cancelText : ConfirmDialogDefaultActions.btnCancel;
+    }
   }
 
   ngOnInit() { }

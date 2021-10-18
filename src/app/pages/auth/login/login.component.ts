@@ -3,9 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError, filter } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
+import { DialogService } from 'src/app/base/services/dialog.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
-import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { EsqueciMinhaSenhaDialogComponent } from '../dialogs/esqueci-minha-senha-dialog/esqueci-minha-senha-dialog.component';
 import { LoginModel } from '../models/login.model';
 import { LoginService } from '../services/login.service';
 
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private notification: NotificationService,
+    private dialogService: DialogService,
     private loginService: LoginService,
     private route: Router
   ) {}
@@ -78,17 +80,48 @@ export class LoginComponent implements OnInit {
   // Função responsável por abrir o modal de recuperação de senha
   esqueci(): void{
 
-    const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+    const dialogRef = this.dialog.open(EsqueciMinhaSenhaDialogComponent, {
       width: '650px'
     });
 
     dialogRef.afterClosed()
       .pipe(
-        filter(r => r != null && r)
+        filter(r => r != null && r),
+        switchMap((email: string) => this.loginService.esqueciMinhaSenha(email)
+          .pipe(
+            map(model => {
+              return {
+                ...model,
+                email: email
+              }
+            })
+          )),
       )
-      .subscribe(email => {
+      .subscribe(model => {
 
-        this.notification.notify('Um e-mail de redefinição foi enviado para: ' + email);
+        const config = {
+          labelMinutos: model.expirationTime == 1 ? 'minuto' : 'minutos',
+          message: null
+        };
+
+        if (model.existente) {
+
+          let msg = `Já existe uma solicitação pendente para esta conta. `;
+          msg += `Expira em ${model.expirationTime} ${config.labelMinutos}. Verifique seu e-mail.`;
+
+          config.message = msg;
+        }
+        else {
+
+          let msg = `Um e-mail de redefinição foi enviado para você. `;
+          msg += `A solicitação expira em ${model.expirationTime} ${config.labelMinutos}.`;
+
+          this.notification.notify('E-mail enviado para: ' + model.email)
+
+          config.message = msg;
+        }
+
+        this.dialogService.openConfirmDialog(config.message, 'Tudo bem', null);
       });
   }
 
