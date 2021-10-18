@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
+import { MatHorizontalStepper, MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, filter } from 'rxjs/operators';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { PASSWORD_MAXLENGHT, PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
 import { RedefinicaoSenhaService } from '../../services/redefinicao-senha.service';
@@ -16,8 +16,11 @@ import { RedefinicaoSenhaService } from '../../services/redefinicao-senha.servic
 })
 export class RedefinirSenhaComponent implements OnInit {
 
+  public onSuccess$ = new BehaviorSubject<boolean>(false);
+
   public formValidacaoEmail: FormGroup;
   public emailCompleted: boolean = false;
+  public emailNaoValidado: boolean = false;
 
   public formRedefinicaoSenha: FormGroup;
   private _senhaValidators = [
@@ -30,7 +33,7 @@ export class RedefinirSenhaComponent implements OnInit {
   private _triedSave = new BehaviorSubject<boolean>(false);
   public triedSave$ = this._triedSave.asObservable();
 
-  @ViewChild('stepper', {static: true}) stepper: MatStepper;
+  @ViewChild('stepper', {static: false}) stepper: MatStepper;
 
   constructor(
     private service: RedefinicaoSenhaService,
@@ -62,7 +65,7 @@ export class RedefinirSenhaComponent implements OnInit {
       });
   }
 
-  onValidarEmail(): void {
+  public onValidarEmail(): void {
 
     const email = this.formValidacaoEmail.get('email')?.value;
 
@@ -91,13 +94,17 @@ export class RedefinirSenhaComponent implements OnInit {
 
         if (res) {
 
-          if (this._triedSave.getValue())
+          if (this._triedSave.getValue()) // Reset tentativa de salvar
             this._triedSave.next(false);
+
+          if (this.invalid$.getValue()) // Reset status invalido
+            this.invalid$.next(false);
 
           // Notificar sucesso da validação
           this.notification.success('Verificamos sua solicitação e está tudo certo');
 
           this.emailCompleted = true;
+          this.emailNaoValidado = false;
           this.stepper.next();
 
           return;
@@ -107,9 +114,79 @@ export class RedefinirSenhaComponent implements OnInit {
       });
   }
 
+  public onAlterarSenha(): void {
+
+    const novaSenha = this.formRedefinicaoSenha.get('senha')?.value;
+    const confirmacao = this.formRedefinicaoSenha.get('confirmacaoSenha')?.value;
+
+    if (novaSenha != confirmacao) {
+
+      this.formRedefinicaoSenha.get('senha').reset();
+
+      this.formRedefinicaoSenha.markAllAsTouched();
+      this.formRedefinicaoSenha.updateValueAndValidity();
+
+      this.notification.error('A nova senha e a confirmação devem ser iguais');
+
+      this._triedSave.next(true);
+      return;
+    }
+
+    if (this.formRedefinicaoSenha.invalid || !novaSenha) {
+
+      this._triedSave.next(true);
+
+      this.formRedefinicaoSenha.reset();
+      this.formRedefinicaoSenha.markAllAsTouched();
+
+      const msg = novaSenha ? 'A senha deve atender aos requisitos apresentados' : 'Uma senha válida deve ser informada';
+      this.notification.error(msg);
+
+      return;
+    }
+
+    this.service.alterarSenha(novaSenha)
+      .pipe(
+        filter(r => {
+
+          if (!r) {
+
+            this.notification.warn('Um e-mail válido deve ser devidamente informado');
+            this.stepper.previous();
+
+            this.invalid$.next(false);
+            this.emailCompleted = false;
+            this.emailNaoValidado = true;
+
+            return false;
+          }
+          return true;
+        }),
+        catchError(err => {
+
+          this._triedSave.next(true);
+          this.invalid$.next(true);
+
+          this.formRedefinicaoSenha.reset();
+          this.formRedefinicaoSenha.markAllAsTouched();
+
+          throw err;
+        })
+      )
+      .subscribe(() => {
+
+        this.onSuccess$.next(true);
+
+        this.notification.success('Sucesso! Sua solicitação foi concluída');
+      });
+  }
+
+  // Private methods
+
   private _markEmailAsInvalid(showMessage: boolean = false) {
 
-    this.invalid$.next(true);
+    if (!this.invalid$.getValue())
+      this.invalid$.next(true);
 
     this.formValidacaoEmail.get('email').reset();
 

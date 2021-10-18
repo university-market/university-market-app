@@ -9,11 +9,11 @@
         </mat-card-title>
     </header>
 
-    <p class="secondary-text mt-20">Siga as instruções apresentadas a seguir para redefinir a sua senha.</p>
+    <p class="secondary-text mt-20" *ngIf="!(onSuccess$ | async)">Siga as instruções apresentadas a seguir para redefinir a sua senha.</p>
 
     <hr class="hr">
 
-    <section class="stepper w-100">
+    <section class="stepper w-100" *ngIf="!(onSuccess$ | async); else success">
 
       <mat-horizontal-stepper linear #stepper>
 
@@ -27,6 +27,10 @@
 
             <p class="alerta-invalido" *ngIf="invalid$ | async">
               Não há uma solicitação de redefinição de senha ativa para o e-mail informado.
+            </p>
+
+            <p class="alerta-invalido" *ngIf="emailNaoValidado">
+              Você deve clicar em <b>Validar e-mail</b> para concluir sua solicitação.
             </p>
 
             <form [formGroup]="formValidacaoEmail">
@@ -54,7 +58,7 @@
         <!-- / STEP CONFIRMACAO EMAIL -->
 
         <!-- STEP REDEFINICAO SENHA -->
-        <mat-step [stepControl]="formRedefinicaoSenha" label="Redefinição de senha">
+        <mat-step [stepControl]="formRedefinicaoSenha" [editable]="emailCompleted" label="Redefinição de senha">
           <section class="stepper__content w-100">
 
             <p>
@@ -64,7 +68,13 @@
             <aside>
               <ul>
                 <li>
-                  Deve conter, no mínimo, <strong>6 caracteres</strong> e, no máximo, <strong>20 caracteres</strong>.
+                  Deve conter no mínimo <strong>6 caracteres</strong>;
+                </li>
+                <li>
+                  Deve conter no máximo <strong>20 caracteres</strong>;
+                </li>
+                <li>
+                  Não pode ser igual à sua senha atual.
                 </li>
               </ul>
             </aside>
@@ -98,7 +108,7 @@
             </form>
 
             <section class="stepper__content__actions mt-18" fxLayout="row" fxLayoutAlign="end center">
-              <button mat-raised-button type="button" color="accent" (click)="null" 
+              <button mat-raised-button type="button" color="accent" (click)="onAlterarSenha()" 
                 [disabled]="formRedefinicaoSenha.invalid && (triedSave$ | async)">
                 Redefinir senha
               </button>
@@ -114,3 +124,21 @@
 
   </mat-card>
 </div>
+
+<ng-template #success>
+
+  <section class="stepper w-100 py-14">
+
+    <p class="sucesso-redefinicao">
+      Sua redefinição de senha foi concluída com sucesso!
+    </p>
+
+    <div>
+      <button mat-raised-button color="accent" class="w-100" routerLink="/auth">
+        Ir para página de login
+      </button>
+    </div>
+
+  </section>
+
+</ng-template>

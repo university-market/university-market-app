@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 const API_URL = environment.apiUrl + environment.auth;
@@ -10,6 +10,7 @@ const API_URL = environment.apiUrl + environment.auth;
 export class RedefinicaoSenhaService {
 
   private _token = new BehaviorSubject<string>(null);
+  private _email = new BehaviorSubject<string>(null);
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +21,29 @@ export class RedefinicaoSenhaService {
 
   public autenticarSolicitacaoPorEmail(email: string): Observable<boolean> {
 
-    return this._autenticarSolicitacaoPorEmail(email, this._token.getValue());
+    this._email.next(email);
+
+    return this._autenticarSolicitacaoPorEmail(email, this._token.getValue())
+      .pipe(
+        catchError(err => {
+
+          this._email.next(null);
+          throw err;
+        })
+      );
+  }
+
+  public alterarSenha(novaSenha: string): Observable<boolean> {
+
+    const email = this._email.getValue();
+
+    if (!email)
+      return of(false);
+
+    return this._alterarSenha(novaSenha, email)
+      .pipe(
+        map(() => true)
+      )
   }
 
   // Private methods
@@ -35,6 +58,17 @@ export class RedefinicaoSenhaService {
     }).pipe(
       take(1)
     );
+  }
+
+  private _alterarSenha(novaSenha: string, email: string): Observable<void> {
+
+    return this.http.put<void>(API_URL + '/estudante/recuperarsenha', {
+        senha: novaSenha,
+        email: this._email.getValue(),
+        token: this._token.getValue()
+      }).pipe(
+        take(1)
+      );
   }
 
 }
