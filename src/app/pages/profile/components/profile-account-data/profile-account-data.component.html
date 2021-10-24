@@ -1,3 +1,34 @@
-<p>
-  profile-account-data works!
-</p>
+<mat-accordion >
+  <!-- Meus Dados -->
+  <mat-expansion-panel hideToggle [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <mat-icon color="accent" fxLayout="row" fxLayoutAlign="start center">person</mat-icon>
+       <h3 class="m-0">Meus Dados</h3> 
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-meus-dados [user]="user"></app-meus-dados>
+  </mat-expansion-panel>
+
+  <!-- Meus Contatos -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <mat-icon color="accent" fxLayout="row" fxLayoutAlign="start center">remember_me</mat-icon>
+        <h3 class="m-0">Meus Contatos</h3> 
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-meus-contatos></app-meus-contatos>
+  </mat-expansion-panel>
+
+  <!-- Meus Endereços -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px"> 
+        <mat-icon color="accent" fxLayout="row" fxLayoutAlign="start center">home</mat-icon>
+        <h3 class="m-0">Meus Endereços</h3> 
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-meus-enderecos></app-meus-enderecos>
+  </mat-expansion-panel>
+</mat-accordion>

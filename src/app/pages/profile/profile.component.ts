@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/base/services/auth.service';
-import { UserModel } from './models/profile-user.model';
+import { PerfilUserModel } from './models/profile-user.model';
 import { ProfileService } from './services/profile.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { ProfileService } from './services/profile.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user : UserModel = {} as UserModel;
+  user : PerfilUserModel = {} as PerfilUserModel;
 
   constructor(
     private authService: AuthService,

@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MeusDadosUserModel } from '../models/meus-dados-user.model';
 import { ProfilePublicacoesModel } from '../models/profile-publicacaoes.model';
-import { UserModel } from '../models/profile-user.model';
+import { PerfilUserModel } from '../models/profile-user.model';
 
 
 const API_URL = environment.apiUrl ;
@@ -15,8 +16,8 @@ export class ProfileService {
     private http: HttpClient
   ) { }
 
-  searchUserById(id: number):Observable<UserModel>{
-    return this.http.get<UserModel>(API_URL + environment.estudante + `/${id}`);
+  searchUserById(id: number):Observable<PerfilUserModel>{
+    return this.http.get<PerfilUserModel>(API_URL + environment.estudante + `/dados/${id}`);
   }
 
   searchPublibyUser(id:number): Observable<ProfilePublicacoesModel[]>{
@@ -25,5 +26,9 @@ export class ProfileService {
 
   deletePublicacao(id:number){
    return this.http.delete(API_URL + environment.publicacao + `/${id}`);
+  }
+
+  DadosUserbyId(id:number): Observable<MeusDadosUserModel>{
+    return this.http.get<MeusDadosUserModel>(API_URL + environment.estudante + `/${id}`);
   }
 }

@@ -1,0 +1,57 @@
+<div class="main-content">
+  <div class="informacoes">
+    <mat-icon class="icon" color="primary">badge</mat-icon>
+    <div class="informacoes__data">
+      <label>Nome</label>
+      <span >
+        {{user.nome}}
+      </span>
+    </div>
+  </div>
+
+  <div class="informacoes">
+    <mat-icon class="icon" color="primary">date_range</mat-icon>
+    <div class="informacoes__data">
+      <label>Data Nascimento</label>
+      <span>
+        {{user.dataNascimento | date: 'dd/MM/yyyy'}}
+      </span>
+    </div>
+  </div>
+
+  <div class="informacoes">
+    <mat-icon class="icon" color="primary">alternate_email</mat-icon>
+    <div class="informacoes__data">
+      <label>E-mail</label>
+      <span>
+        {{user.email}}
+      </span>
+    </div>
+  </div>
+
+  <div class="informacoes">
+    <mat-icon class="icon" color="primary">business</mat-icon>
+    <div class="informacoes__data">
+      <label>Instituição</label>
+      <span >
+        {{user.instituicaoRazaoSocial}}
+      </span>
+    </div>
+  </div>
+
+  <div class="informacoes">
+    <mat-icon class="icon" color="primary">school</mat-icon>
+    <div class="informacoes__data">
+      <label>Curso</label>
+      <span >
+        {{user.cursoNome}}
+      </span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <mat-action-row>
+      <button mat-button color="accent">Editar</button>
+    </mat-action-row>
+  </div>
+</div>
