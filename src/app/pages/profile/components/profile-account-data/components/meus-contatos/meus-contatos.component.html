@@ -14,8 +14,8 @@
       </span>
     </div>
     <div class="ml-auto">
-      <button mat-icon-button><mat-icon color="accent">edit_outline</mat-icon></button>
-      <button mat-icon-button><mat-icon color="warn">delete_outline</mat-icon></button>    
+      <button mat-icon-button (click)="editarContato(contato)"><mat-icon color="accent" >edit_outline</mat-icon></button>
+      <button mat-icon-button (click)="deletarContato(contato.id)"><mat-icon color="warn">delete_outline</mat-icon></button>    
     </div>
   </div>
   <div class="actions">

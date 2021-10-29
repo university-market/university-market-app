@@ -38,12 +38,23 @@ export class ProfileService {
   }
 
   //Cadastro de contato
-  cadastraContato(model: MeusContatosModel):Observable<void>{
-    return this.http.post<void>(API_URL + environment.estudante + '/contatos', model);
+  cadastraContato(model: MeusContatosModel):Observable<MeusContatosModel>{
+    return this.http.post<MeusContatosModel>(API_URL + environment.estudante + '/contatos', model);
   }
 
   //Pesquisa todos os contatos do usuário
   searchContatosByUser(id:number):Observable<MeusContatosModel[]>{
     return this.http.get<MeusContatosModel[]>(API_URL + environment.estudante + `/contatos/${id}`);
+  }
+
+  //deleta contato do usuário
+  deleteContato(id: number){
+    return this.http.delete(API_URL + environment.estudante + `/contatos/${id}`);
+  }
+
+  //Editar Contato do usuário
+
+  editarContato(model: MeusContatosModel):Observable<MeusContatosModel>{
+    return this.http.put<MeusContatosModel>(API_URL + environment.estudante + `/contatos`,model);
   }
 }

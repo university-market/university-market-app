@@ -1,23 +1,25 @@
-<h1 mat-dialog-title>Adicionar Contato</h1>
+<h1 mat-dialog-title>
+  {{isEdicao? "Editar": "Cadastrar"}} Contato
+</h1>
 <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
   <mat-icon fxLayout="row" fxLayoutAlign="start center" color='accent'>privacy_tip</mat-icon>
   Este contato será mostrado em todas suas publicações.
 </span>
 <hr>
 <form class="form" [formGroup]="form">
-  <mat-form-field class="form__field">
+  <mat-form-field class="form__field" *ngIf="!isEdicao">
     <mat-label>Selecione o tipo do contato</mat-label>
     <mat-select formControlName="tipoContato">
-      <mat-option value=1>
+      <mat-option value="1">
         Telefone
       </mat-option>
-      <mat-option value=2>
+      <mat-option value="2">
         Whatsapp
       </mat-option>
-      <mat-option value=3>
+      <mat-option value="3">
         Telegram
       </mat-option>
-      <mat-option value=4>
+      <mat-option value="4">
         E-mail
       </mat-option>
     </mat-select>
@@ -72,6 +74,6 @@
   </div>
   <mat-dialog-actions align="end" class="form__actions">
     <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
-    <button mat-raised-button color="accent" (click)="cadastrar()">Confirmar</button>
+    <button mat-raised-button color="accent" (click)="isEdicao? editar() : cadastrar()">Confirmar</button>
   </mat-dialog-actions>
 </form>

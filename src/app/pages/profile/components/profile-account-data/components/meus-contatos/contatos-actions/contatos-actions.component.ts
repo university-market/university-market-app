@@ -1,6 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { AuthService } from 'src/app/base/services/auth.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
@@ -16,18 +16,26 @@ export class ContatosActionsComponent implements OnInit {
 
   public form: FormGroup;
   public MASKS = MASKS;
-
+  public isEdicao = false;
   constructor(
     private authService: AuthService,
     private notification: NotificationService,
     private profile: ProfileService,
-    private dialogRef : MatDialogRef<ContatosActionsComponent>  
-
+    private dialogRef : MatDialogRef<ContatosActionsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: MeusContatosModel
   ) {
     this.form = new FormGroup({
       tipoContato : new FormControl(null,[Validators.required]),
       valor       : new FormControl(null)
     });
+    if(this.data){
+      this.isEdicao = true;
+      this.form.patchValue({
+        tipoContato: this.data?.tipo_contato_id,
+        valor: this.data?.conteudo
+      })
+    }
+
   }
 
   ngOnInit() {
@@ -47,25 +55,45 @@ export class ContatosActionsComponent implements OnInit {
       })
   }
 
-  cadastrar(){
-
+  validar(){
     if(this.form.invalid){
       this.notification.error('Favor informar um contato válido')
-      return;
-    }
-    const model: MeusContatosModel = {
-      estudante_id: this.authService.user.usuarioId,
-      conteudo: this.form.get('valor')?.value,
-      tipo_contato_id: this.form.get('tipoContato')?.value
-
+      return false;
     }
 
-    if (!model.conteudo || !model.tipo_contato_id) {
+    if (!this.form.get('valor')?.value || !this.form.get('tipoContato')?.value) {
       
       this.form.markAllAsTouched();
 
       this.notification.error("Todos os campos são obrigatórios");
+      return false;
+    }
+
+    return true;
+  }
+
+  cadastrar(){
+
+    if(!this.validar()){
       return;
+    }
+    const model: MeusContatosModel = {
+      conteudo: this.form.get('valor')?.value,
+      tipo_contato_id: this.form.get('tipoContato')?.value
+    }
+
+    this.dialogRef.close(model);
+  }
+
+  editar(){
+
+    if(!this.validar()){
+      return;
+    }
+    const model: MeusContatosModel = {
+      id: this.data?.id,
+      conteudo: this.form.get('valor')?.value,
+      tipo_contato_id: this.form.get('tipoContato')?.value
     }
 
     this.dialogRef.close(model);
