@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserModel } from '../models/profile-user.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { UserModel } from '../models/profile-user.model';
 export class ProfileUserComponent implements OnInit {
 
   @Input() user: UserModel;
+  @Output() onLogout = new EventEmitter<void>();
 
   constructor() {}
 
