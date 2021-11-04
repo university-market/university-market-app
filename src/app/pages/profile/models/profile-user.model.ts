@@ -1,10 +1,5 @@
-export interface UserModel{
-    estudanteId: number;
+export interface PerfilUserModel{
     nome: string;
     email: string;
-    telefone: string;
-    dataNascimento: string;
-    pathFotoPerfil: string;
     cursoNome: string;
-    instituicaoRazaoSocial: string;
 }

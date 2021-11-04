@@ -1,0 +1,28 @@
+<div class="main-content"  >
+  <div class="informacoes full-width"*ngFor="let contato of contatos" [ngSwitch]="contato.tipo_contato_id" >
+    <mat-icon class="icon" color="primary" *ngSwitchCase="1" >call</mat-icon>
+    <mat-icon class="icon" color="primary" *ngSwitchCase="2" >whatsapp</mat-icon>
+    <mat-icon class="icon" color="primary" *ngSwitchCase="3" >telegram</mat-icon>
+    <mat-icon class="icon" color="primary" *ngSwitchCase="4" >email</mat-icon>
+    <div class="informacoes__data">
+      <label *ngSwitchCase="1">Telefone</label>
+      <label *ngSwitchCase="2">Whatsapp</label>
+      <label *ngSwitchCase="3">Telegram</label>
+      <label *ngSwitchCase="4">E-mail</label>
+      <span>
+        {{contato.conteudo}}
+      </span>
+    </div>
+    <div class="ml-auto">
+      <button mat-icon-button (click)="editarContato(contato)"><mat-icon color="accent" >edit_outline</mat-icon></button>
+      <button mat-icon-button (click)="deletarContato(contato.id)"><mat-icon color="warn">delete_outline</mat-icon></button>    
+    </div>
+  </div>
+  <div class="actions">
+    <mat-action-row>
+      <button mat-button color="accent" (click)="adicionar()" ><mat-icon color="accent">add</mat-icon>Adicionar</button>
+    </mat-action-row>
+  </div>
+</div>
+
+

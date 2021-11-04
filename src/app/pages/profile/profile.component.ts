@@ -4,7 +4,7 @@ import { filter, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/base/services/auth.service';
 import { DialogService } from 'src/app/base/services/dialog.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
-import { UserModel } from './models/profile-user.model';
+import { PerfilUserModel } from './models/profile-user.model';
 import { ProfileService } from './services/profile.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { ProfileService } from './services/profile.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user : UserModel = {} as UserModel;
+  user : PerfilUserModel = {} as PerfilUserModel;
 
   constructor(
     private router: Router,

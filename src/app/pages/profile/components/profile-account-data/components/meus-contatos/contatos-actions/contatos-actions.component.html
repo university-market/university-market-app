@@ -1,0 +1,79 @@
+<h1 mat-dialog-title>
+  {{isEdicao? "Editar": "Cadastrar"}} Contato
+</h1>
+<span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+  <mat-icon fxLayout="row" fxLayoutAlign="start center" color='accent'>privacy_tip</mat-icon>
+  Este contato será mostrado em todas suas publicações.
+</span>
+<hr>
+<form class="form" [formGroup]="form">
+  <mat-form-field class="form__field" *ngIf="!isEdicao">
+    <mat-label>Selecione o tipo do contato</mat-label>
+    <mat-select formControlName="tipoContato">
+      <mat-option value="1">
+        Telefone
+      </mat-option>
+      <mat-option value="2">
+        Whatsapp
+      </mat-option>
+      <mat-option value="3">
+        Telegram
+      </mat-option>
+      <mat-option value="4">
+        E-mail
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div [ngSwitch]="form.get('tipoContato')?.value">
+    <mat-form-field class=" full-width pt-10" *ngSwitchCase=4>
+      <mat-label>Insira o E-mail</mat-label>
+      <input formControlName="valor" type="email" matInput autocomplete="off">
+      <mat-icon matSuffix [color]="form.get('valor')?.errors && form.get('valor')?.touched ? 'warn' : 'primary'">
+        alternate_email
+      </mat-icon>
+      <mat-error *ngIf="form.get('valor')?.touched && form.get('valor')?.errors">
+        Informe um e-mail válido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class=" full-width pt-10" *ngSwitchCase=1>
+      <mat-label>Insira o Telefone</mat-label>
+      <input formControlName="valor" type="text" matInput autocomplete="off" [textMask]="{mask: MASKS.telefone.textMask}">
+      <mat-icon matSuffix [color]="form.get('valor')?.errors && form.get('valor')?.touched ? 'warn' : 'primary'">
+        call
+      </mat-icon>
+      <mat-error *ngIf="form.get('valor')?.touched && form.get('valor')?.errors">
+        Informe um telefone válido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class=" full-width pt-10" *ngSwitchCase=2>
+      <mat-label>Insira o Whatsapp</mat-label>
+      <input formControlName="valor" type="text" matInput autocomplete="off" [textMask]="{mask: MASKS.telefone.textMask}">
+      <mat-icon matSuffix [color]="form.get('valor')?.errors && form.get('valor')?.touched ? 'warn' : 'primary'">
+        whatsapp
+      </mat-icon>
+      <mat-error *ngIf="form.get('valor')?.touched && form.get('valor')?.errors">
+        Informe um Whatsapp válido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class=" full-width pt-10" *ngSwitchCase=3>
+      <mat-label>Insira o Telegram</mat-label>
+      <input formControlName="valor" type="text" matInput autocomplete="off" [textMask]="{mask: MASKS.telefone.textMask}">
+      <mat-icon matSuffix [color]="form.get('valor')?.errors && form.get('valor')?.touched ? 'warn' : 'primary'">
+        telegram
+      </mat-icon>
+      <mat-error *ngIf="form.get('valor')?.touched && form.get('valor')?.errors">
+        Informe um Telegram válido
+      </mat-error>
+    </mat-form-field>
+
+
+  </div>
+  <mat-dialog-actions align="end" class="form__actions">
+    <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+    <button mat-raised-button color="accent" (click)="isEdicao? editar() : cadastrar()">Confirmar</button>
+  </mat-dialog-actions>
+</form>

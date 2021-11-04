@@ -14,6 +14,10 @@ import { ProfileContentComponent } from './profile-content/profile-content.compo
 import { ProfilePublicacoesHeaderComponent } from './components/profile-publicacoes/profile-publicacoes-header/profile-publicacoes-header.component';
 import { ProfilePublicacaoItemComponent } from './components/profile-publicacoes/profile-publicacao-item/profile-publicacao-item.component';
 import { PublicacoesExcluirComponent } from './components/profile-publicacoes/publicacoes-excluir/publicacoes-excluir.component';
+import { MeusContatosComponent } from './components/profile-account-data/components/meus-contatos/meus-contatos.component';
+import { MeusDadosComponent } from './components/profile-account-data/components/meus-dados/meus-dados.component';
+import { MeusEnderecosComponent } from './components/profile-account-data/components/meus-enderecos/meus-enderecos.component';
+import { ContatosActionsComponent } from './components/profile-account-data/components/meus-contatos/contatos-actions/contatos-actions.component';
 
 @NgModule({
   imports: [
@@ -30,7 +34,11 @@ import { PublicacoesExcluirComponent } from './components/profile-publicacoes/pu
     ProfileContentComponent,
     ProfilePublicacoesHeaderComponent,
     ProfilePublicacaoItemComponent,
-    PublicacoesExcluirComponent
+    PublicacoesExcluirComponent,
+    MeusContatosComponent,
+    MeusDadosComponent,
+    MeusEnderecosComponent,
+    ContatosActionsComponent
   ],
    providers: [ProfileService]
 })
