@@ -15,9 +15,9 @@ import { PublicacaoFormService } from '../services/publicacao-form.service';
 import { PublicacaoService } from '../services/publicacao.service';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
-import { DialogConfirmDetalhesTecnicosComponent } from '../dialogs/dialog-confirm-detalhes-tecnicos/dialog-confirm-detalhes-tecnicos.component';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NotificationService } from 'src/app/base/services/notification.service';
+import { DialogService } from 'src/app/base/services/dialog.service';
 
 @UntilDestroy()
 @Component({
@@ -54,9 +54,9 @@ export class PublicacaoEdicaoComponent implements OnInit {
   public tags: PublicacaoTag[] = [];
 
   // Detalhes tecnicos
-  public readonly detalhesTecnicosMaxLength = 256;
-  private _hasDetalhesTecnicos = new BehaviorSubject<boolean>(false);
-  public hasDetalhesTecnicos$ = this._hasDetalhesTecnicos.asObservable();
+  public readonly especificacoesTecnicasMaxLength = 256;
+  private _hasEspecificacoesTecnicas = new BehaviorSubject<boolean>(false);
+  public hasEspecificacoesTecnicas$ = this._hasEspecificacoesTecnicas.asObservable();
 
   // Imagem
   public imagePath: string;
@@ -72,6 +72,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
     public service: PublicacaoService,
     private notification: NotificationService,
     private dialog: MatDialog,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit() {
@@ -87,7 +88,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       filter(p => p != null)
     )
     .subscribe(publicacao => {
-      this._hasDetalhesTecnicos.next(publicacao.detalhesTecnicos != null);
+      this._hasEspecificacoesTecnicas.next(publicacao.especificacoesTecnicas != null);
       this.patchValue(publicacao as PublicacaoCriacaoModel);
     },
     () => this.location.back());
@@ -104,7 +105,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       titulo: publicacao.titulo,
       descricao: publicacao.descricao,
       valor: this._makeValor(publicacao.valor),
-      detalhesTecnicos: publicacao.detalhesTecnicos
+      especificacoesTecnicas: publicacao.especificacoesTecnicas
     });
   }
 
@@ -131,7 +132,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       descricao: this.form.get('descricao').value,
       valor: <number>this._makeValor(this.form.get('valor').value),
       tags: this.service.makeTagsString(this.tags),
-      detalhesTecnicos: this.form.get('detalhesTecnicos').value ?? null,
+      especificacoesTecnicas: this.form.get('especificacoesTecnicas').value ?? null,
       // pathImagem: this.selectedImage
     };
 
@@ -159,7 +160,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
       descricao: this.form.get('descricao').value,
       valor: <number>this._makeValor(this.form.get('valor').value),
       tags: this.service.makeTagsString(this.tags),
-      detalhesTecnicos: this.form.get('detalhesTecnicos').value
+      especificacoesTecnicas: this.form.get('especificacoesTecnicas').value
     };
 
     // Metodo de editar no back-end
@@ -237,55 +238,56 @@ export class PublicacaoEdicaoComponent implements OnInit {
   // Manipulacao detalhes (ambiente de testes)
   public onBlurFn(event: any): void {
 
-    const lorem = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos non similique molestiae culpa pariatur repellendus tempora distinctio laboriosam voluptatum perspiciatis, incidunt inventore suscipit, sapiente corrupti voluptatem quaerat mollitia qui placeat?'
+    const lorem = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos non similique molestiae culpa pariatur repellendus tempora';
     if (event.target.value == 'lorem')
       this.form.get('descricao').setValue(lorem);
   }
 
   // Manipulacao detalhes tecnicos
-  public changeDetalhesTecnicos(): void {
+  public changeEspecificacoesTecnicas(): void {
 
-    const hasDetails = this._hasDetalhesTecnicos.getValue();
-    const detalhesTecnicosRef = this.form.get('detalhesTecnicos') as FormControl;
+    const hasDetails = this._hasEspecificacoesTecnicas.getValue();
+    const especificacoesTecnicasRef = this.form.get('especificacoesTecnicas') as FormControl;
 
     if (hasDetails) {
 
-      if (detalhesTecnicosRef.value)
-        this._confirmarExclusaoDetalhesTecnicos().afterClosed()
-        .pipe(
-          filter(res => res)
-        )
-        .subscribe(() => {
-          
-          detalhesTecnicosRef.reset(); // Reset do campo de detalhes tecnicos
+      if (especificacoesTecnicasRef.value) {
 
-          detalhesTecnicosRef.clearValidators();
-          this.notification.warn('Detalhes técnicos apagados');
-          this._changeDetalhesTecnicos(!hasDetails);
-        });
+        const message = `Ao desmarcar esta opção, os detalhes técnicos cadastrados serão excluídos. Deseja continuar?`;
+        this.dialogService.openConfirmDialog(message)
+          .pipe(
+            filter(res => res)
+          )
+          .subscribe(() => {
+            
+            especificacoesTecnicasRef.reset(); // Reset do campo de detalhes tecnicos
+  
+            especificacoesTecnicasRef.clearValidators();
+            this.notification.warn('Detalhes técnicos apagados');
+            this._changeEspecificacoesTecnicas(!hasDetails);
+          });
+      }
       else {
 
-        detalhesTecnicosRef.clearValidators();
-        this._changeDetalhesTecnicos(!hasDetails);
+        especificacoesTecnicasRef.clearValidators();
+        this._changeEspecificacoesTecnicas(!hasDetails);
       }
 
     } else {
 
-      detalhesTecnicosRef.reset(); // Reset do campo de detalhes tecnicos
+      especificacoesTecnicasRef.reset(); // Reset do campo de detalhes tecnicos
 
-      detalhesTecnicosRef.setValidators(Validators.required);
-      this._changeDetalhesTecnicos(!hasDetails);
+      especificacoesTecnicasRef.setValidators(Validators.required);
+      this._changeEspecificacoesTecnicas(!hasDetails);
     }
   }
 
-  private _changeDetalhesTecnicos(value: boolean) {
+  private _changeEspecificacoesTecnicas(value: boolean) {
 
     // Salvar alteracoes de validators
-    (this.form.get('detalhesTecnicos') as FormControl).updateValueAndValidity();
+    (this.form.get('especificacoesTecnicas') as FormControl).updateValueAndValidity();
 
-    this._hasDetalhesTecnicos.next(value);
+    this._hasEspecificacoesTecnicas.next(value);
   }
-
-  private _confirmarExclusaoDetalhesTecnicos = () => this.dialog.open(DialogConfirmDetalhesTecnicosComponent);
 
 }

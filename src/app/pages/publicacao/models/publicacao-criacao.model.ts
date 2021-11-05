@@ -4,5 +4,5 @@ export interface PublicacaoCriacaoModel {
   descricao: string;
   valor: number;
   tags?: string;
-  detalhesTecnicos?: string;
+  especificacoesTecnicas?: string;
 }

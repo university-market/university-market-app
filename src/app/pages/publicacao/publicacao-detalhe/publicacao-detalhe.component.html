@@ -23,9 +23,9 @@
                   {{ publicacao.descricao }}
                 </div>
               </mat-tab>
-              <mat-tab label="Informações técnicas" *ngIf="publicacao?.detalhesTecnicos != null">
+              <mat-tab label="Informações técnicas" *ngIf="publicacao?.especificacoesTecnicas != null">
                 <div class="content">
-                  {{ publicacao?.detalhesTecnicos }}
+                  {{ publicacao?.especificacoesTecnicas }}
                 </div>
               </mat-tab>
             </mat-tab-group>
