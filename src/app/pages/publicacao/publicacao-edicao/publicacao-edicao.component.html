@@ -138,7 +138,8 @@
           </mat-form-field>
         </div>
 
-        <div class="input-full-width input-group-file mt-20">
+        <!-- UPLOAD DE IMAGEM PODERÁ SER REALIZADO SOMENTE NO MOMENTO DA CRIACAO -->
+        <div class="input-full-width input-group-file mt-20" *ngIf="!(this.service.isEdicao$ | async)">
           <span class="input-group-file__title">
             {{ imgURL ? 'Foto selecionada' : 'Selecione uma foto' }}
           </span>
