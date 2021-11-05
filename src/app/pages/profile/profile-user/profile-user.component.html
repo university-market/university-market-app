@@ -27,10 +27,9 @@
           <mat-icon>account_circle</mat-icon>
           Meus dados
         </button>
-        <button mat-raised-button class="btn-edit-config" 
-          routerLink="settings" routerLinkActive="selected-route">
-          <mat-icon>settings</mat-icon>
-          Configurações da conta
+        <button mat-raised-button class="btn-edit-config" (click)="onLogout.emit()">
+          <mat-icon>logout</mat-icon>
+          Logout
         </button>
       </div>
     </div>

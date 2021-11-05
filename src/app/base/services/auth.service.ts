@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
 import { AppSummarySession } from 'src/app/pages/auth/models/app-summary-session';
 import { environment } from 'src/environments/environment';
 import { UsuarioLogadoModel } from '../models/usuario-logado.model';
@@ -29,7 +31,7 @@ export class AuthService {
    */
   public user: UsuarioLogadoModel = {} as UsuarioLogadoModel;
 
-  constructor() {
+  constructor(private http: HttpClient) {
 
     // Quando a instância da service for criada, 
     // as propriedades devem ser preenchidas com os dados previamente persistidos
@@ -90,6 +92,15 @@ export class AuthService {
    public getUserModel(): UsuarioLogadoModel {
 
     return this._getUserModel();
+  }
+
+  public logout(): Observable<void> {
+
+    return this.http.post<void>(environment.apiUrl + environment.auth + '/estudante/logout', {})
+      .pipe(
+        tap(() => this.setAsUnauthenticated()),
+        take(1)
+      );
   }
 
   /**
