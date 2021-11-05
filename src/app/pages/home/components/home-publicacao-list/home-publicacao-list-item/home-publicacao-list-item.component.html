@@ -5,7 +5,7 @@
       <mat-card-title>{{ sale.titulo }}</mat-card-title>
       <mat-card-subtitle>{{ sale.name }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{sale.pathImagem}}" alt="Image of {{ sale.descricao }}">
+    <img mat-card-image [src]="sale.pathImagem" alt="Image of {{ sale.descricao }}">
     <mat-card-content>
       <div class="publicacao-card__content">
         <div class="publicacao-card__content__important-tags">

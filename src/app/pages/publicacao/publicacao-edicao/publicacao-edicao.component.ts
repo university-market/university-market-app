@@ -132,14 +132,16 @@ export class PublicacaoEdicaoComponent implements OnInit {
       valor: <number>this._makeValor(this.form.get('valor').value),
       tags: this.service.makeTagsString(this.tags),
       detalhesTecnicos: this.form.get('detalhesTecnicos').value ?? null,
-      pathImagem: this.selectedImage
+      // pathImagem: this.selectedImage
     };
 
     // Metodo de criar no back-end
     this.service.criar(model)
     .pipe(
-      take(1)
-    ).subscribe(publicacaoId => {
+      take(1),
+      switchMap(id => this.service.uploadImage(id, this.selectedImage))
+    ).subscribe((publicacaoId) => {
+      
       this.notification.success('Publicação criada com sucesso');
       // Navegar para pagina de detalhes da publicacao
       this.router.navigate(['publicacao', publicacaoId], { relativeTo: this.route.root });
