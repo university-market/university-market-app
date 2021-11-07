@@ -31,8 +31,17 @@
                 right: 7.5px;
                 background: $primary-chip-bg;
                 color: $primary-chip-text;
-                padding: 5px 10px;
-                border-radius: $rounded;
+                // padding: 5px 10px;
+              }
+              
+              .chip {
+              position: absolute;
+              background: $app-accent;
+              color: #fff;
+              padding: 5px 10px;
+              border-radius: $rounded;
+              right: 2.5px;
+              bottom: 7.5px;
             }
         }
     }

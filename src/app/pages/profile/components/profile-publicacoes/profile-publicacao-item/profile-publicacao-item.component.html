@@ -25,7 +25,9 @@
   <div class="container__img mb-10">
     <div class="img">
       <img src="assets/publicacao/default/no-image.png" alt="publicacao-image">
-      <mat-chip class="value">{{ publicacao.valor | currencyBrazil }}</mat-chip>
+      <div class="chip cursor-pointer" matRipple>
+        {{ publicacao.valor | currencyBrazil }}
+      </div>
     </div>
   </div>
 </div>
