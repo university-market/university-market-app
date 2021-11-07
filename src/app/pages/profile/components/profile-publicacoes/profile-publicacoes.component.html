@@ -6,6 +6,8 @@
     <div class="grid-publicacoes mt-10">
       <app-profile-publicacao-item *ngFor="let publicacao of publicacoesList" [publicacao]='publicacao' (onDelete)="excluir($event)">
       </app-profile-publicacao-item>
+      <app-profile-publicacao-item-novo (click)="onNovaPublicacaoClick()">
+      </app-profile-publicacao-item-novo>
     </div>
   </div>
 </div>
