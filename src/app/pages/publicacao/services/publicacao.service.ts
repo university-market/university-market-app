@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -70,21 +70,21 @@ export class PublicacaoService {
     this._loadingEdicao.next(true);
 
     // Construcao FormData
-    const formData = new FormData();
-    formData.append('titulo', publicacao.titulo);
-    formData.append('descricao', publicacao.descricao);
-    formData.append('tags', publicacao.tags);
-    formData.append('detalhesTecnicos', publicacao.detalhesTecnicos);
-    formData.append('valor', publicacao.valor.toString());
-    formData.append('image', publicacao.pathImagem);
+    // const formData = new FormData();
+    // formData.append('titulo', publicacao.titulo);
+    // formData.append('descricao', publicacao.descricao);
+    // formData.append('tags', publicacao.tags);
+    // formData.append('detalhesTecnicos', publicacao.detalhesTecnicos);
+    // formData.append('valor', publicacao.valor.toString());
+    // formData.append('image', publicacao.pathImagem);
 
-    return this._criar(formData)
+    return this._criar(publicacao)
       .pipe(
         finalize(() => this._loadingEdicao.next(false))
       );
   }
 
-  private _criar(publicacao: any): Observable<number> {
+  private _criar(publicacao: PublicacaoCriacaoModel): Observable<number> {
     
     return this.http.post<number>(`${API_URL}/create`, publicacao)
       .pipe(
@@ -112,26 +112,29 @@ export class PublicacaoService {
       );
   }
 
-  public uploadImage(image: any): Observable<void> {
+  public uploadImage(publicacaoId: number, image: any): Observable<number> {
 
     // Iniciando loading
     this._loadingEdicao.next(true);
 
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append('publicacaoImage', image);
 
-    return this._uploadImage(formData)
+    return this._uploadImage(publicacaoId, formData)
       .pipe(
-        finalize(() => this._loadingEdicao.next(false))
+        finalize(() => this._loadingEdicao.next(false)),
+        map(() => publicacaoId)
       );
   }
 
-  private _uploadImage(image: any): Observable<void> {
+  private _uploadImage(publicacaoId: number, image: any): Observable<void> {
 
-    // const headers = new HttpHeaders();
-    // headers.append('Content-Type', 'multipart/form-data');
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
 
-    return this.http.post<void>(`${API_URL}/image`, image)
+    return this.http.post<void>(API_URL + `/${publicacaoId}/image`, image, {
+      headers
+    })
       .pipe(
         take(1)
       );

@@ -16,7 +16,7 @@ export class PublicacaoFormService {
       descricao: this.fb.control(null),
       // tags: this.fb.control(null),
       valor: this.fb.control(null, [NgBrazilValidators.currency]),
-      detalhesTecnicos: this.fb.control(null),
+      especificacoesTecnicas: this.fb.control(null),
       imagem: this.fb.control(null)
     });
   }

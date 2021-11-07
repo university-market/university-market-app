@@ -14,8 +14,7 @@
               #publicacaoImg
               alt="publicacao-imagem"
               [src]="publicacao.pathImagem ? 
-              baseImageResource + publicacao.pathImagem : 
-              'assets/publicacao/' + noImage">
+              publicacao.pathImagem : 'assets/publicacao/' + noImage">
           </div>
           <div class="publicacao-design__content__sup-section__details">
             <mat-tab-group dynamicHeight class="tab-group">
@@ -24,9 +23,9 @@
                   {{ publicacao.descricao }}
                 </div>
               </mat-tab>
-              <mat-tab label="Informações técnicas" *ngIf="publicacao?.detalhesTecnicos != null">
+              <mat-tab label="Informações técnicas" *ngIf="publicacao?.especificacoesTecnicas != null">
                 <div class="content">
-                  {{ publicacao?.detalhesTecnicos }}
+                  {{ publicacao?.especificacoesTecnicas }}
                 </div>
               </mat-tab>
             </mat-tab-group>

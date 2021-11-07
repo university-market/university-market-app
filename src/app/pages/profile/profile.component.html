@@ -1,6 +1,6 @@
 <div class="container">
   <div class="container__header">
-    <app-profile-user [user]="user"></app-profile-user>
+    <app-profile-user [user]="user" (onLogout)="logout()"></app-profile-user>
   </div>
   <div class="container__content">
     <app-profile-content>
