@@ -45,7 +45,7 @@ export class ProfilePublicacoesComponent implements OnInit {
 
   onNovaPublicacaoClick(): void {
 
-    this.router.navigate(['publicacao', 'edit', 'new'], {relativeTo: this.route.root});
+    this.router.navigate(['/publicacao', 'nova'], {relativeTo: this.route.root});
   }
 
 }

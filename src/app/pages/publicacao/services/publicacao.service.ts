@@ -30,7 +30,7 @@ export class PublicacaoService {
 
   public init(publicacaoId: number): Observable<PublicacaoDetalheModel|null> {
 
-    if (isNaN(publicacaoId)) {
+    if (isNaN(publicacaoId) || publicacaoId == 0) {
 
       this._isEdicao.next(false);
       return of(null);

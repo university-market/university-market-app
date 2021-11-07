@@ -25,6 +25,13 @@ export const navigation: NavigationItemModel[] = [
     type: 'section',
   },
   {
+    title: 'Criar Anúncio',
+    route: 'publicacao/nova',
+    type: 'item',
+    icon: 'post_add',
+    label: 'Ir para criação de anúncio',
+  },
+  {
     title: 'Perfil',
     type: 'group',
     icon: 'person',
@@ -51,7 +58,7 @@ export const navigation: NavigationItemModel[] = [
   },
   {
     title: 'Publicações',
-    route: 'publicacao',
+    route: 'publicacao/lista',
     type: 'item',
     icon: 'dashboard',
     label: 'Publicações em alta',
@@ -62,6 +69,7 @@ export const navigation: NavigationItemModel[] = [
     type: 'item',
     icon: 'search',
     label: 'Pesquisar no aplicativo',
+    disabled: true
   },
   {
     title: 'Galeria',
