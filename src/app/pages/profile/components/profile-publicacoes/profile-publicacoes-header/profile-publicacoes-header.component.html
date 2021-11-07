@@ -9,7 +9,15 @@
 
   <div class="info secondary-text">
     <mat-icon>info_outline</mat-icon>
-    <span>As suas publicações são exibidas aqui</span>
+    <span *ngIf="hasPublicacoes; else semPublicacoes" fxLayout="row" fxLayoutAlign="start center">
+      As suas publicações são exibidas aqui. Utilize o menu de contexto (<mat-icon>more_vert</mat-icon>) para ver mais ações
+    </span>
   </div>
 
 </section>
+
+<ng-template #semPublicacoes>
+  <span>
+    Você ainda não tem nenhuma publicação. Quando tiver, elas serão apresentadas aqui
+  </span>
+</ng-template>

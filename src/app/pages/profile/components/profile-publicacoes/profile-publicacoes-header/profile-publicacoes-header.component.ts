@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-profile-publicacoes-header',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-publicacoes-header.component.scss']
 })
 export class ProfilePublicacoesHeaderComponent implements OnInit {
+
+  @Input() hasPublicacoes: boolean = false;
 
   constructor() { }
 
