@@ -4,16 +4,23 @@
 <div class="container">
   <div class="container__form">
     <div class="container__form__header">
-      <h1>
+      <div class="description">
         <span class="title-icon">
           <mat-icon color="accent">
             dashboard
           </mat-icon>
         </span>
-        <span>
-          {{ (this.service.isEdicao$ | async) ? 'Editando' : 'Criando' }}
-        </span>
-      </h1>
+        <div class="text">
+          <h1 class="m-0">
+            <span>
+              {{ (this.service.isEdicao$ | async) ? 'Editando' : 'Criando' }} anúncio
+            </span>
+          </h1>
+          <small>
+            Preencha o formulário abaixo para criar seu anúncio
+          </small>
+        </div>
+      </div>
       <div class="actions">
         <button mat-button type="button" (click)="onCancel()">Cancelar</button>
         <button *ngIf="this.service.isEdicao$ | async; else btnCriar" 
@@ -40,6 +47,9 @@
         <mat-form-field class="input-full-width">
           <mat-label>Título</mat-label>
           <input matInput formControlName="titulo" placeholder="Ex. Livro de estudos" autocomplete="off" required>
+            <mat-hint>
+              Título principal que será exibido aos usuários
+            </mat-hint>
             <mat-error  *ngIf="form.get('titulo')?.touched && form.get('titulo')?.hasError('required')">
               O título é obrigatório
             </mat-error>
@@ -51,6 +61,7 @@
         <mat-form-field class="input-full-width description">
           <mat-label>Descrição</mat-label>
           <textarea matInput #descricao [maxlength]="descricaoMaxLength" 
+            rows="5"
             formControlName="descricao" 
             placeholder="Uma breve descrição do item anunciado..."
             (blur)="onBlurFn($event)"
@@ -102,6 +113,9 @@
               [textMask]="{mask: MASKS.currency.textMask}" 
               autocomplete="off"
               required>
+              <mat-hint>
+                Valor do produto anunciado
+              </mat-hint>
               <mat-error  *ngIf="form.get('valor')?.touched && form.get('valor')?.hasError('required')">
                 O valor é obrigatório
               </mat-error>
@@ -111,20 +125,28 @@
           </mat-form-field>
         </div>
 
-        <div>
-          <mat-checkbox class="checkbox" color="accent" 
+        <div class="mt-14" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-checkbox class="checkbox" color="accent" fxLayout="row" fxLayoutAlign="start center"
             [checked]="(hasEspecificacoesTecnicas$ | async)"
             (click)="changeEspecificacoesTecnicas()">
-            Informar detalhes técnicos do produto
+            <span fxLayout="row" fxLayoutAlign="start center">
+              <span>
+                Informar especificações técnicas do produto
+              </span>
+            </span>
           </mat-checkbox>
+          <mat-icon matTooltip="Informações de nível técnico do produto, direcionado à estudantes/conhecedores da área">
+            help_outline
+          </mat-icon>
         </div>
 
         <div *ngIf="(hasEspecificacoesTecnicas$ | async)" class="mt-20">
           <mat-form-field class="input-full-width">
-            <mat-label>Detalhes técnicos</mat-label>
+            <mat-label>Especificações técnicas</mat-label>
             <textarea matInput #especificacoesTecnicas [maxlength]="especificacoesTecnicasMaxLength" 
+              rows="5"
               formControlName="especificacoesTecnicas" 
-              placeholder="Detalhes técnicos deste produto..."
+              placeholder="Especificações técnicas relacionadas a este produto..."
               required></textarea>
             <mat-hint align="start">
               <strong>Considere pontos técnios relevantes</strong>
@@ -161,7 +183,7 @@
       </form>
     </div>
   </div>
-  <div class="container__design-bg">
 
-  </div>
+  <div class="container__design-bg"></div>
+  
 </div>
