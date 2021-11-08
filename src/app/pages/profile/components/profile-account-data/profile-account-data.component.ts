@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/base/services/auth.service';
 import { MeusDadosUserModel } from '../../models/meus-dados-user.model';
 import { ProfileService } from '../../services/profile.service';

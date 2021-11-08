@@ -18,7 +18,7 @@ export class MeusContatosComponent implements OnInit {
   contatos: MeusContatosModel[]
 
   constructor(
-    public dialog: MatDialog,
+    public  dialog: MatDialog,
     private profile: ProfileService,
     private notification: NotificationService,
     private auth: AuthService,

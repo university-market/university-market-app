@@ -1,6 +1,6 @@
-<mat-accordion >
+<mat-accordion class="main" >
   <!-- Meus Dados -->
-  <mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel [expanded]="false">
     <mat-expansion-panel-header>
       <mat-panel-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
         <mat-icon color="accent" fxLayout="row" fxLayoutAlign="start center">person</mat-icon>
@@ -22,7 +22,7 @@
   </mat-expansion-panel>
 
   <!-- Meus Endereços -->
-  <mat-expansion-panel>
+  <mat-expansion-panel [expanded]="true">
     <mat-expansion-panel-header>
       <mat-panel-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px"> 
         <mat-icon color="accent" fxLayout="row" fxLayoutAlign="start center">home</mat-icon>

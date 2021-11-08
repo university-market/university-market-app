@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MeusContatosModel } from '../models/meus-contatos.model';
 import { MeusDadosUserModel } from '../models/meus-dados-user.model';
+import { MeusEnderecosModel } from '../models/meus-enderecos.model';
 import { ProfilePublicacoesModel } from '../models/profile-publicacaoes.model';
 import { PerfilUserModel } from '../models/profile-user.model';
 
@@ -53,8 +54,17 @@ export class ProfileService {
   }
 
   //Editar Contato do usuário
-
   editarContato(model: MeusContatosModel):Observable<MeusContatosModel>{
     return this.http.put<MeusContatosModel>(API_URL + environment.estudante + `/contatos`,model);
+  }
+
+   //Pesquisa todos os contatos do usuário
+   searchEnderecosByUser(id:number):Observable<MeusEnderecosModel[]>{
+    return this.http.get<MeusEnderecosModel[]>(API_URL + environment.estudante + `/endereco/${id}`);
+  }
+
+  //Cadastro de contato
+  cadastraEndereco(model: MeusEnderecosModel):Observable<MeusEnderecosModel>{
+    return this.http.post<MeusEnderecosModel>(API_URL + environment.estudante + '/endereco', model);
   }
 }
