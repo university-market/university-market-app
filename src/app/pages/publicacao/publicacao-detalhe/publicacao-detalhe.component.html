@@ -4,8 +4,14 @@
 <div class="publicacao-detalhe">
   <div class="container">
     <div class="publicacao-design">
-      <div class="publicacao-design__header">
+      <div class="publicacao-design__header mb-10">
         <h2>{{ publicacao.titulo }}</h2>
+        <div class="created-at">
+          <mat-icon color="accent">event</mat-icon>
+          <span>
+            Criada em {{ publicacao.dataHoraCriacao | date: 'dd/MM/yyyy, h:mm a' }}
+          </span>
+        </div>
       </div>
       <div class="publicacao-design__content">
         <div class="publicacao-design__content__sup-section">
@@ -23,7 +29,7 @@
                   {{ publicacao.descricao }}
                 </div>
               </mat-tab>
-              <mat-tab label="Informações técnicas" *ngIf="publicacao?.especificacoesTecnicas != null">
+              <mat-tab label="Especificações técnicas" *ngIf="publicacao?.especificacoesTecnicas != null">
                 <div class="content">
                   {{ publicacao?.especificacoesTecnicas }}
                 </div>
@@ -39,7 +45,7 @@
               <button mat-raised-button type="button" 
                 (click)="contatarVendedor()"
                 color="accent"
-                class="full-width">
+                class="w-100 m-0 py-4">
                 Entrar em contato com o vendedor
               </button>
             </div>

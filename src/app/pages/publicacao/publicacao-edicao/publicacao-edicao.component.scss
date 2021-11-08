@@ -1,12 +1,14 @@
 @import "src/styles/colors.scss";
 @import "src/styles/template.scss";
 
-$template-witdh: 500px;
+$template-witdh: 650px;
 
 .container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
     padding-bottom: 50px;
+    // min-height: calc(100% - #{$header-height});
+    min-height: 100%;
     overflow-x: hidden;
 
     &__form {
@@ -23,15 +25,32 @@ $template-witdh: 500px;
             align-items: center;
             max-width: $template-witdh;
 
-            h1 {
+            .description {
+
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              align-items: center;
+              gap: 10px;
+
+              .text {
+
                 display: flex;
-                flex-direction: row;
-                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
 
                 .title-icon {
-                    display: flex;
-                    margin-right: 7.5px;
+                  display: flex;
+                  margin-right: 7.5px;
                 }
+  
+                h1 {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                }
+              }
             }
 
             div.actions {
@@ -45,7 +64,7 @@ $template-witdh: 500px;
 
             form.input-form {
                 min-width: 150px;
-                max-width: 500px;
+                max-width: $template-witdh;
                 width: 100%;
                 padding-bottom: 50px;
 
@@ -115,8 +134,9 @@ $template-witdh: 500px;
 
     &__design-bg {
         display: flex;
+        position: relative;
         background: url("/assets/backgrounds/edit-publicacao-bg.png");
-        opacity: 0.75;
+        opacity: 0.65;
     }
 }
 

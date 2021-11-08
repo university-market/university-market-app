@@ -18,6 +18,7 @@ import { MeusContatosComponent } from './components/profile-account-data/compone
 import { MeusDadosComponent } from './components/profile-account-data/components/meus-dados/meus-dados.component';
 import { MeusEnderecosComponent } from './components/profile-account-data/components/meus-enderecos/meus-enderecos.component';
 import { ContatosActionsComponent } from './components/profile-account-data/components/meus-contatos/contatos-actions/contatos-actions.component';
+import { ProfilePublicacaoItemNovoComponent } from './components/profile-publicacoes/profile-publicacao-item-novo/profile-publicacao-item-novo.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { ContatosActionsComponent } from './components/profile-account-data/comp
     MeusContatosComponent,
     MeusDadosComponent,
     MeusEnderecosComponent,
-    ContatosActionsComponent
+    ContatosActionsComponent,
+    ProfilePublicacaoItemNovoComponent,
   ],
    providers: [ProfileService]
 })

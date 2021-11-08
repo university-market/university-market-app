@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { filter, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/base/services/auth.service';
 import { DialogService } from 'src/app/base/services/dialog.service';
@@ -19,7 +20,9 @@ export class ProfilePublicacoesComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private profileService: ProfileService,
-    private dialogService : DialogService
+    private dialogService : DialogService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() { 
@@ -38,6 +41,11 @@ export class ProfilePublicacoesComponent implements OnInit {
         var list = this.publicacoesList.filter(e => e.publicacaoId != publicacaoId)
         this.publicacoesList = list;
       })
+  }
+
+  onNovaPublicacaoClick(): void {
+
+    this.router.navigate(['/publicacao', 'nova'], {relativeTo: this.route.root});
   }
 
 }
