@@ -20,6 +20,22 @@
             }
         }
 
+        .publicacao-image {
+
+          height: 175px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+
+          > img {
+            max-height: 100%;
+            max-width: 100%;
+          }
+
+        }
+
         &__actions {
             display: flex;
             justify-content: space-between;
