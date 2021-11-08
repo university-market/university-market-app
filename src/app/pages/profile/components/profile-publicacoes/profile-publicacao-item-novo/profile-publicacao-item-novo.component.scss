@@ -11,6 +11,7 @@ section {
 
   border: dashed 2.5px $color;
 
+  background: linear-gradient(to right, rgba(204, 204, 204, 0.5), rgba(0, 0, 0, 0));
   color: $color;
 
   transition: ease-in 0.15s;
@@ -27,7 +28,7 @@ section {
 
   &:hover {
 
-    background: rgba(204, 204, 204, 0.2);
+    background: linear-gradient(to left, rgba(204, 204, 204, 0.5), rgba(0, 0, 0, 0));
 
     .icon {
       transform: scale(2.15);

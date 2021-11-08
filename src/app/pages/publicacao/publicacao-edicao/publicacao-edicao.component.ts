@@ -253,7 +253,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
 
       if (especificacoesTecnicasRef.value) {
 
-        const message = `Ao desmarcar esta opção, os detalhes técnicos cadastrados serão excluídos. Deseja continuar?`;
+        const message = `Ao desmarcar esta opção, as especificações técnicas cadastradas serão excluídas. Deseja continuar?`;
         this.dialogService.openConfirmDialog(message)
           .pipe(
             filter(res => res)
@@ -263,7 +263,7 @@ export class PublicacaoEdicaoComponent implements OnInit {
             especificacoesTecnicasRef.reset(); // Reset do campo de detalhes tecnicos
   
             especificacoesTecnicasRef.clearValidators();
-            this.notification.warn('Detalhes técnicos apagados');
+            this.notification.warn('Especificações técnicas apagadas');
             this._changeEspecificacoesTecnicas(!hasDetails);
           });
       }
