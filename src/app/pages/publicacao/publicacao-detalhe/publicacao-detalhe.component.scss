@@ -17,8 +17,16 @@ $publicacao-img-min-width: 350px;
 
     .publicacao-design {
       width: 100% !important;
+      
       &__header {
-        font-weight: bold;
+
+        .created-at {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+        }
       }
 
       &__content {

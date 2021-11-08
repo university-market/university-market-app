@@ -8,14 +8,30 @@ import { PublicacaoEdicaoComponent } from './publicacao-edicao/publicacao-edicao
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'prefix',
+    redirectTo: 'lista'
+  },
+  {
+    path: 'lista',
     component: PublicacaoComponent,
-  }, {
-    path: ':publicacaoId',
-    component: PublicacaoDetalheComponent,
-  }, {
-    path: 'edit/:publicacaoId',
+  }, 
+  {
+    path: 'nova',
     component: PublicacaoEdicaoComponent
-  }
+  },
+  {
+    path: ':publicacaoId',
+    children: [
+      {
+        path: '',
+        component: PublicacaoDetalheComponent,
+      },
+      {
+        path: 'editar',
+        component: PublicacaoEdicaoComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({

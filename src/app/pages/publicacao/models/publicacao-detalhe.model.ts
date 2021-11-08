@@ -4,7 +4,7 @@ export interface PublicacaoDetalheModel {
     descricao: string;
     valor: number;
     tags?: string;
-    detalhesTecnicos?: string;
+    especificacoesTecnicas?: string;
     pathImagem?: string;
     dataHoraCriacao: Date;
 }

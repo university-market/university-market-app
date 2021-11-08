@@ -11,7 +11,11 @@
           <mat-icon>verified</mat-icon>
           <span>Vendido</span>
         </button>
-        <button mat-menu-item [routerLink]="['/publicacao', 'edit', publicacao.publicacaoId]">
+        <button mat-menu-item [routerLink]="['/publicacao', publicacao.publicacaoId]">
+          <mat-icon>visibility</mat-icon>
+          <span>Visualizar</span>
+        </button>
+        <button mat-menu-item [routerLink]="['/publicacao', publicacao.publicacaoId, 'editar']">
           <mat-icon>edit_outline</mat-icon>
           <span>Editar</span>
         </button>
@@ -24,8 +28,11 @@
   </div>
   <div class="container__img mb-10">
     <div class="img">
-      <img src="assets/publicacao/default/no-image.png" alt="publicacao-image">
-      <mat-chip class="value">{{ publicacao.valor | currencyBrazil }}</mat-chip>
+      <!-- <img src="assets/publicacao/default/no-image.png" alt="publicacao-image"> -->
+      <img [src]="publicacao.pathImagem" alt="publicacao-image">
+      <div class="chip cursor-pointer noselect" matRipple>
+        {{ publicacao.valor | currencyBrazil }}
+      </div>
     </div>
   </div>
 </div>

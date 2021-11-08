@@ -3,7 +3,7 @@
 .menu-active {
   background-color: $app-accent !important;
   color: #fff !important;
-  font-weight: bold;
+  // font-weight: bold;
 
   &:hover {
     filter: saturate(0.75);

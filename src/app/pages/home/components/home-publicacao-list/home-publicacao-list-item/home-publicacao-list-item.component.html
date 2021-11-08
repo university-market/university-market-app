@@ -1,11 +1,16 @@
 <div class="container">
   <mat-card class="publicacao-card">
-    <mat-card-header>
+    <mat-card-header class="mb-4">
       <div mat-card-avatar class="publicacao-header-image"></div>
-      <mat-card-title>{{ sale.titulo }}</mat-card-title>
-      <mat-card-subtitle>{{ sale.name }}</mat-card-subtitle>
+      <mat-card-title class="m-0">
+        {{ sale.titulo }}
+      </mat-card-title>
+      <!-- <mat-card-subtitle>{{ sale.name }}</mat-card-subtitle> -->
     </mat-card-header>
-    <img mat-card-image src="{{sale.pathImagem}}" alt="Image of {{ sale.descricao }}">
+    <div mat-card-image class="publicacao-image">
+      <img [src]="sale.pathImagem" alt="Image of {{ sale.descricao }}">
+    </div>
+    <!-- <img mat-card-image [src]="sale.pathImagem" alt="Image of {{ sale.descricao }}"> -->
     <mat-card-content>
       <div class="publicacao-card__content">
         <div class="publicacao-card__content__important-tags">

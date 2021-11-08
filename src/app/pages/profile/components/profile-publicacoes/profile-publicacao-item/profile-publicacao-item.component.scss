@@ -22,8 +22,15 @@
             border: solid 1px #ccc;
             position: relative;
 
+            height: 175px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
             img {
-                max-width: 100%;
+              max-height: 100%;
+              max-width: 100%;
             }
             .value {
                 position: absolute;
@@ -31,8 +38,17 @@
                 right: 7.5px;
                 background: $primary-chip-bg;
                 color: $primary-chip-text;
-                padding: 5px 10px;
-                border-radius: $rounded;
+                // padding: 5px 10px;
+              }
+              
+              .chip {
+              position: absolute;
+              background: $app-accent;
+              color: #fff;
+              padding: 5px 10px;
+              border-radius: $rounded;
+              right: 2.5px;
+              bottom: 7.5px;
             }
         }
     }

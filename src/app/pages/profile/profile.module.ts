@@ -20,6 +20,7 @@ import { MeusEnderecosComponent } from './components/profile-account-data/compon
 import { ContatosActionsComponent } from './components/profile-account-data/components/meus-contatos/contatos-actions/contatos-actions.component';
 import { MeusDadosEditarComponent } from './components/profile-account-data/components/meus-dados/meus-dados-editar/meus-dados-editar.component';
 import { EnderecosActionsComponent } from './components/profile-account-data/components/meus-enderecos/enderecos-actions/enderecos-actions.component';
+import { ProfilePublicacaoItemNovoComponent } from './components/profile-publicacoes/profile-publicacao-item-novo/profile-publicacao-item-novo.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { EnderecosActionsComponent } from './components/profile-account-data/com
     MeusEnderecosComponent,
     ContatosActionsComponent,
     MeusDadosEditarComponent,
-    EnderecosActionsComponent
+    EnderecosActionsComponent,
+    ProfilePublicacaoItemNovoComponent,
   ],
    providers: [ProfileService]
 })

@@ -21,21 +21,35 @@ export const navigation: NavigationItemModel[] = [
     label: 'Ir para homepage',
   },
   {
-    title: 'Sobre você',
+    title: 'Sua conta',
     type: 'section',
   },
   {
-    title: 'Minha conta',
+    title: 'Criar Anúncio',
+    route: 'publicacao/nova',
+    type: 'item',
+    icon: 'post_add',
+    label: 'Ir para criação de anúncio',
+  },
+  {
+    title: 'Perfil',
     type: 'group',
-    icon: 'account_circle',
+    icon: 'person',
     children: [
       {
-        title: 'Perfil',
-        route: 'perfil',
+        title: 'Meus Dados',
+        route: 'perfil/account',
         type: 'item',
-        icon: 'person',
+        icon: 'account_circle',
         label: 'Ir para o perfil',
       },
+      {
+        title: 'Minhas Publicações',
+        route: 'perfil/posts',
+        type: 'item',
+        icon: 'dashboard',
+        label: 'Ir para minhas publicações',
+      }
     ]
   },
   {
@@ -44,7 +58,7 @@ export const navigation: NavigationItemModel[] = [
   },
   {
     title: 'Publicações',
-    route: 'publicacao',
+    route: 'publicacao/lista',
     type: 'item',
     icon: 'dashboard',
     label: 'Publicações em alta',
@@ -55,6 +69,7 @@ export const navigation: NavigationItemModel[] = [
     type: 'item',
     icon: 'search',
     label: 'Pesquisar no aplicativo',
+    disabled: true
   },
   {
     title: 'Galeria',
