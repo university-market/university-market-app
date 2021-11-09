@@ -4,6 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { finalize, map, take, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { PublicacaoContatosModel } from '../models/publicacao-contatos.model';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
@@ -138,6 +139,10 @@ export class PublicacaoService {
       .pipe(
         take(1)
       );
+  }
+
+  public obterContatos(id:number): Observable<PublicacaoContatosModel[]>{
+    return this.http.get<PublicacaoContatosModel[]>(environment.apiUrl + environment.estudante + `/contatos/${id}`);
   }
 
   // Operacoes com tags de publicacao

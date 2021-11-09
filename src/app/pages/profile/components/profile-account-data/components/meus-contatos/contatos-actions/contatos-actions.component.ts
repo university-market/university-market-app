@@ -79,6 +79,10 @@ export class ContatosActionsComponent implements OnInit {
       tipo_contato_id: this.form.get('tipoContato')?.value
     }
 
+    if(model.tipo_contato_id == 1 || model.tipo_contato_id == 2 || model.tipo_contato_id == 3 ){
+      model.conteudo = (model.conteudo as string).replace(/\D/g, '');
+    }
+
     this.dialogRef.close(model);
   }
 
@@ -93,6 +97,9 @@ export class ContatosActionsComponent implements OnInit {
       tipo_contato_id: this.form.get('tipoContato')?.value
     }
 
+    if(model.tipo_contato_id == 1 || model.tipo_contato_id == 2 || model.tipo_contato_id == 3 ){
+      model.conteudo = (model.conteudo as string).replace(/\D/g, '');
+    }
     this.dialogRef.close(model);
   }
 
