@@ -15,7 +15,7 @@ export class ProfilePublicacaoItemComponent implements OnInit {
   constructor(
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   excluir(){
     this.onDelete.emit(this.publicacao.publicacaoId);
