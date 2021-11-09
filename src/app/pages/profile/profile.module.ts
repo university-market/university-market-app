@@ -44,7 +44,7 @@ import { ProfilePublicacaoItemNovoComponent } from './components/profile-publica
     ContatosActionsComponent,
     MeusDadosEditarComponent,
     EnderecosActionsComponent,
-    ProfilePublicacaoItemNovoComponent,
+    ProfilePublicacaoItemNovoComponent
   ],
    providers: [ProfileService]
 })

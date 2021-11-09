@@ -67,4 +67,14 @@ export class ProfileService {
   cadastraEndereco(model: MeusEnderecosModel):Observable<MeusEnderecosModel>{
     return this.http.post<MeusEnderecosModel>(API_URL + environment.estudante + '/endereco', model);
   }
+
+  //deleta contato do usuário
+  deleteEndereco(id: number){
+    return this.http.delete(API_URL + environment.estudante + `/endereco/${id}`);
+  }
+
+  //Editar Contato do usuário
+  editarEndereco(model: MeusEnderecosModel):Observable<MeusEnderecosModel>{
+    return this.http.put<MeusEnderecosModel>(API_URL + environment.estudante + `/endereco`,model);
+  }
 }

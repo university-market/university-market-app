@@ -15,6 +15,7 @@ export class ContatosActionsComponent implements OnInit {
   public form: FormGroup;
   public MASKS = MASKS;
   public isEdicao = false;
+  
   constructor(
     private notification: NotificationService,
     private dialogRef : MatDialogRef<ContatosActionsComponent>,

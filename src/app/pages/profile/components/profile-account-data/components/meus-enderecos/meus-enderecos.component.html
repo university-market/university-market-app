@@ -1,11 +1,13 @@
 <div class="main-content">
   <div class="informacoes full-width" *ngFor="let endereco of enderecos">
-    <div class="informacoes__data" fxLayout="row" fxLayout.lt-sm="column" >
-      <div class="informacoes__data__field" >
-        <label>Rua</label>
-        <span>
-          {{endereco.rua}}
-        </span>
+    <div class="informacoes__data" fxLayout="row" fxLayout.lt-sm="column">
+      <div class="rua">
+        <div class="informacoes__data__field">
+          <label>Rua</label>
+          <span>
+            {{endereco.rua}}
+          </span>
+        </div>
       </div>
       <div class="informacoes__data__field">
         <label>Número</label>
@@ -16,10 +18,10 @@
       <div class="informacoes__data__field">
         <label>CEP</label>
         <span>
-          {{endereco.cep}}
+          {{endereco.cep | cep}}
         </span>
       </div>
-      <div class="informacoes__data__field">
+      <div class="informacoes__data__field" *ngIf="endereco.complemento">
         <label>Complemento</label>
         <span>
           {{endereco.complemento}}
@@ -28,13 +30,13 @@
       <!-- <div class="informacoes__data__field">
         <mat-checkbox  checked="true" disabled>Endereço principal</mat-checkbox>
       </div> -->
-      
+
     </div>
     <div class="ml-auto">
-      <button mat-icon-button>
+      <button mat-icon-button (click)="editarEndereco(endereco)">
         <mat-icon color="accent">edit_outline</mat-icon>
       </button>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="deletarEndereco(endereco.id)">
         <mat-icon color="warn">delete_outline</mat-icon>
       </button>
     </div>
