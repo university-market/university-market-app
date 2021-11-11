@@ -56,7 +56,7 @@ export class RegistroInstituicaoEnsinoDialogComponent implements OnInit {
     // Buscar cursos pela instituicao de ensino
     this.form.get('instituicao').valueChanges
       .pipe(
-        distinctUntilChanged(),
+        // distinctUntilChanged(),
         switchMap(instituicaoId => {
 
           if (instituicaoId) {
@@ -69,6 +69,7 @@ export class RegistroInstituicaoEnsinoDialogComponent implements OnInit {
       )
       .subscribe();
 
+    // Quando flag sem instituicao é marcada, desabilitar campo de instituicao
     this.form.get('flagSemInstituicao').valueChanges
       .subscribe(selected => {
 
@@ -77,7 +78,8 @@ export class RegistroInstituicaoEnsinoDialogComponent implements OnInit {
           return;
         }
 
-        this.form.get('instituicao').reset(null);
+        // this.form.get('instituicao').patchValue(null, {onlySelf: false, emitEvent: true});
+        this.form.get('instituicao').reset(null, {onlySelf: false, emitEvent: true});
         this.form.get('instituicao').disable();
       })
   }

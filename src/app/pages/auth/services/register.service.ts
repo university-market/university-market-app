@@ -57,7 +57,7 @@ export class RegisterService {
 
     return this._buscarInstituicoes()
       .pipe(
-        tap(data => this._instituicoes.next(data))
+        tap(data => this._instituicoes.next([...data]))
       );
   }
 
@@ -76,7 +76,7 @@ export class RegisterService {
     return this._buscarCursos(instituicaoId)
       .pipe(
         tap(data => {
-          this._cursos.next(data);
+          this._cursos.next([...data]);
         })
       );
   }
@@ -98,7 +98,7 @@ export class RegisterService {
 
     return this._buscarCursos(null)
       .pipe(
-        tap(data => this._cursos.next(data)),
+        tap(data => this._cursos.next([...data])),
         finalize(() => this._loading.next(false))
       );
   }
