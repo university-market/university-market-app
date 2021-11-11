@@ -14,6 +14,7 @@ import { LoginService } from './services/login.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 import { EsqueciMinhaSenhaDialogComponent } from './dialogs/esqueci-minha-senha-dialog/esqueci-minha-senha-dialog.component';
+import { RegistroInstituicaoEnsinoDialogComponent } from './dialogs/registro-instituicao-ensino-dialog/registro-instituicao-ensino-dialog.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { EsqueciMinhaSenhaDialogComponent } from './dialogs/esqueci-minha-senha-
     RegisterComponent,
     RedefinirSenhaComponent,
     EsqueciMinhaSenhaDialogComponent,
+    RegistroInstituicaoEnsinoDialogComponent,
   ],
   providers: [
     LoginService,
