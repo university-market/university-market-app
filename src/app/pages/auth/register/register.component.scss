@@ -1,74 +1,81 @@
 @import "src/styles/colors.scss";
 
-.header_img {
-  width: 100px;
-}
-
-.mat-card {
+.container {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 25px;
-  width: 550px;
+  background: linear-gradient($app-accent 35%, transparent 35%);
 
-  &__title {
-    font-size: 3em;
-    font-weight: 300;
-    padding: 32px;
+  .header_img {
+    width: 100px;
   }
-
-  &__form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 90%;
-    padding: 0px;
-
-    &__input {
-      padding: 5px 0px 0px 0px;
-      width: 100%;
-    }
-
-    &__actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 100%;
-
-      &__hr {
-        width: 100%;
-        opacity: 50%;
-      }
-
-      &__span {
-        margin: 0px;
-        &__a {
-          text-decoration: none;
-          color: $app-accent;
-        }
-      }
-    }
-  }
-}
-
-.hr {
-  font-weight: bold;
-  width: 90%;
-  opacity: 40%;
-}
-
-@media screen and (max-width: 560px) {
+  
   .mat-card {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    width: 550px;
+  
+    &__title {
+      font-size: 3em;
+      font-weight: 300;
+      padding: 32px;
+    }
+  
+    &__form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 90%;
+      padding: 0px;
+  
+      &__input {
+        padding: 5px 0px 0px 0px;
+        width: 100%;
+      }
+  
+      &__actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+  
+        &__hr {
+          width: 100%;
+          opacity: 50%;
+        }
+  
+        &__span {
+          margin: 0px;
+          &__a {
+            text-decoration: none;
+            color: $app-accent;
+          }
+        }
+      }
+    }
+  }
+  
+  .hr {
+    font-weight: bold;
     width: 90%;
+    opacity: 40%;
+  }
+  
+  @media screen and (max-width: 560px) {
+    .mat-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: auto;
+      width: 90%;
+    }
   }
 }
+
