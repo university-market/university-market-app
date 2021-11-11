@@ -20,6 +20,10 @@ export class RegisterService {
 
   public form: FormGroup = null;
 
+  // Loading
+  private _loading = new BehaviorSubject<boolean>(false);
+  public loading$ = this._loading.asObservable();
+
   constructor(private http: HttpClient) {
 
     this.form = new FormGroup({
@@ -33,9 +37,6 @@ export class RegisterService {
       curso: new FormControl(null, Validators.required),
       instituicao: new FormControl(null, Validators.required)
     });
-    
-    // Busca pelas instituições de ensino disponíveis
-    this.buscarInstituicoes().subscribe();
   }
 
   // Função Responsável por realizar o cadastro do usuário
@@ -84,9 +85,21 @@ export class RegisterService {
 
     const url = environment.apiUrl + environment.curso;
 
-    return this.http.get<KeyValuePair<number, string>[]>(url + `/${instituicaoId}/listar`)
+    return this.http.get<KeyValuePair<number, string>[]>(url + `/${instituicaoId ?? 'padrao'}/listar`)
       .pipe(
         take(1)
+      );
+  }
+
+  public buscarCursosPadrao(): Observable<KeyValuePair<number, string>[]> {
+
+    // Start loading
+    this._loading.next(true);
+
+    return this._buscarCursos(null)
+      .pipe(
+        tap(data => this._cursos.next(data)),
+        finalize(() => this._loading.next(false))
       );
   }
 }
