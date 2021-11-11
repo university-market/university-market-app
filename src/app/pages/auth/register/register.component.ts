@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { KeyValuePair } from 'src/app/base/data-types/key-value-pair';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
+import { RegistroInstituicaoEnsinoDialogComponent } from '../dialogs/registro-instituicao-ensino-dialog/registro-instituicao-ensino-dialog.component';
 import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
 
@@ -13,7 +15,7 @@ import { RegisterService } from '../services/register.service';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [RegisterService]
+  // providers: [RegisterService]
 })
 export class RegisterComponent implements OnInit {
 
@@ -28,14 +30,29 @@ export class RegisterComponent implements OnInit {
   constructor(
     private notification: NotificationService,
     private registerService: RegisterService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
 
     this.form = this.registerService.form;
     this.instituicaoList$ = this.registerService.instituicoes$;
     this.cursosList$ = this.registerService.cursos$;
+
+    // Validacao de instituicao de ensino
+    this.dialog.open(RegistroInstituicaoEnsinoDialogComponent, {
+      disableClose: true,
+      width: '950px',
+
+    })
+      .afterClosed()
+      .pipe()
+      .subscribe(data => {
+
+        console.log(data);
+      });
+
 
     this.form.get('instituicao').valueChanges
       .pipe(

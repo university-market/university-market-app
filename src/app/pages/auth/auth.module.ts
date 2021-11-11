@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 import { EsqueciMinhaSenhaDialogComponent } from './dialogs/esqueci-minha-senha-dialog/esqueci-minha-senha-dialog.component';
 import { RegistroInstituicaoEnsinoDialogComponent } from './dialogs/registro-instituicao-ensino-dialog/registro-instituicao-ensino-dialog.component';
+import { RegisterService } from './services/register.service';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { RegistroInstituicaoEnsinoDialogComponent } from './dialogs/registro-ins
   ],
   providers: [
     LoginService,
+    RegisterService
   ],
   exports: [
     RouterModule
