@@ -76,8 +76,6 @@ export class RegisterService {
       .pipe(
         tap(data => {
           this._cursos.next(data);
-          console.log('cursos', data);
-          
         })
       );
   }
