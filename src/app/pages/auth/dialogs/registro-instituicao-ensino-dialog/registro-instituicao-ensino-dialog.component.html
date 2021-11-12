@@ -40,9 +40,9 @@
               {{ instituicaoEnsino.value }}
             </mat-option>
           </mat-select>
-          <!-- <mat-hint>
-            Informe a sua instituição de ensino para prosseguir com o cadastro
-          </mat-hint> -->
+          <mat-error *ngIf="form?.get('instituicao')?.touched && form?.get('instituicao')?.errors">
+            Você deve selecionar sua instituição de ensino ou marcar a opção abaixo
+          </mat-error>
         </mat-form-field>
 
         <mat-checkbox class="example-margin full-width truncate-text" formControlName="flagSemInstituicao">
@@ -103,6 +103,7 @@
   
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [mat-dialog-close]="true">Ok</button>
+  <button mat-raised-button color="accent" (click)="onConcluir()" [disabled]="form.invalid">
+    Prosseguir cadastro
+  </button>
 </mat-dialog-actions>
