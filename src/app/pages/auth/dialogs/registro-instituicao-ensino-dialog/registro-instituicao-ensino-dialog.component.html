@@ -103,6 +103,9 @@
   
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+  <button mat-button color="primary" mat-dialog-close [routerLink]="['/auth', 'login']">
+    Ir para Login
+  </button>
   <button mat-raised-button color="accent" (click)="onConcluir()" [disabled]="form.invalid">
     Prosseguir cadastro
   </button>
