@@ -28,14 +28,12 @@ export class RegisterService {
 
     this.form = new FormGroup({
       nome : new FormControl(null, Validators.required),
-      ra : new FormControl(null, Validators.required),
       email : new FormControl(null, [Validators.required, Validators.email]),
-      telefone : new FormControl(null, [Validators.required, NgBrazilValidators.telefone]),
       dataNascimento :new FormControl(null,[Validators.required]),
       senha: new FormControl(null, [Validators.required, Validators.minLength(PASSWORD_MINLENGHT)]),
       confirmacaoSenha: new FormControl(null, Validators.required),
       curso: new FormControl(null, Validators.required),
-      instituicao: new FormControl(null, Validators.required)
+      instituicao: new FormControl(null)
     });
   }
 

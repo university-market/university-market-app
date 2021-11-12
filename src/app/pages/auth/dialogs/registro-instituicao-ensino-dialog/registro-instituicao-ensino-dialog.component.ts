@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { KeyValuePair } from 'src/app/base/data-types/key-value-pair';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { RegisterService } from '../../services/register.service';
@@ -81,10 +81,11 @@ export class RegistroInstituicaoEnsinoDialogComponent implements OnInit {
 
         if (!selected) {
           this.form.get('instituicao').enable();
+          this.form.get('instituicao').setValidators(Validators.required);
           return;
         }
 
-        this.form.get('instituicao').patchValue(null, {onlySelf: true, emitEvent: true});
+        this.form.get('instituicao').reset(null, {onlySelf: true, emitEvent: true});
         this.form.get('instituicao').disable();
       })
   }
