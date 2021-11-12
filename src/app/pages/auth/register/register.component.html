@@ -11,54 +11,6 @@
     <hr class="hr">
     <form [formGroup]="form" class="mat-card__form" (ngSubmit)="doRegister()">
   
-      <section class="dados-instituicao mat-card__form__input">
-  
-        <!-- instituição de ensino -->
-        <mat-form-field appearance="legacy" class="mat-card__form__input">
-          <mat-label>Instituição de ensino</mat-label>
-          <mat-select formControlName="instituicao">
-            <mat-option *ngFor="let instituicaoEnsino of (instituicaoList$ | async)" [value]="instituicaoEnsino.key">
-              {{ instituicaoEnsino.value }}
-            </mat-option>
-          </mat-select>
-          <mat-hint>
-            Informe a sua instituição de ensino para prosseguir com o cadastro
-          </mat-hint>
-          <mat-error *ngIf="form?.get('instituicao')?.touched && form?.get('instituicao')?.errors">
-            Você deve selecionar uma instituição de ensino para prosseguir com o cadastro
-          </mat-error>
-        </mat-form-field>
-  
-        <!-- curso -->
-        <mat-form-field appearance="legacy" class="mat-card__form__input">
-          <mat-label>Curso</mat-label>
-          <mat-select formControlName="curso">
-            <mat-option *ngFor="let curso of (cursosList$ | async)" [value]="curso.key">
-              {{ curso.value }}
-            </mat-option>
-          </mat-select>
-          <mat-hint>
-            Informe seu curso atual
-          </mat-hint>
-          <mat-error *ngIf="form?.get('curso')?.touched && form?.get('curso')?.errors">
-            Informe um curso válido
-          </mat-error>
-        </mat-form-field>
-  
-        <!-- registro academico -->
-        <mat-form-field class="mat-card__form__input">
-          <mat-label>Registro acadêmico</mat-label>
-          <input formControlName="ra" type="text" matInput autocomplete="off">
-          <mat-hint>
-            Informe o seu número de registro acadêmico da sua instituição de ensino
-          </mat-hint>
-          <mat-error *ngIf="form?.get('ra')?.touched && form?.get('ra')?.errors">
-            Informe um R.A. válido
-          </mat-error>
-        </mat-form-field>
-  
-      </section>
-  
       <!-- nome -->
       <mat-form-field class="mat-card__form__input">
         <mat-label>Nome Completo</mat-label>
@@ -74,15 +26,6 @@
         <input formControlName="email" type="email" matInput autocomplete="off">
         <mat-error *ngIf="form?.get('email')?.touched && form?.get('email')?.errors">
           Informe um e-mail válido
-        </mat-error>
-      </mat-form-field>
-  
-      <!-- telefone -->
-      <mat-form-field class="mat-card__form__input">
-        <mat-label>Telefone</mat-label>
-        <input formControlName="telefone" type="text" matInput autocomplete="off">
-        <mat-error *ngIf="form?.get('telefone')?.touched && form?.get('telefone')?.errors">
-          Informe um telefone válido
         </mat-error>
       </mat-form-field>
   
