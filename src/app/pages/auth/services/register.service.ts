@@ -81,16 +81,6 @@ export class RegisterService {
       );
   }
 
-  private _buscarCursos(instituicaoId: number): Observable<KeyValuePair<number, string>[]> {
-
-    const url = environment.apiUrl + environment.curso;
-
-    return this.http.get<KeyValuePair<number, string>[]>(url + `/${instituicaoId ?? 'padrao'}/listar`)
-      .pipe(
-        take(1)
-      );
-  }
-
   public buscarCursosPadrao(): Observable<KeyValuePair<number, string>[]> {
 
     // Start loading
@@ -100,6 +90,18 @@ export class RegisterService {
       .pipe(
         tap(data => this._cursos.next([...data])),
         finalize(() => this._loading.next(false))
+      );
+  }
+
+  private _buscarCursos(instituicaoId: number): Observable<KeyValuePair<number, string>[]> {
+
+    const url = environment.apiUrl + environment.curso;
+
+    const complementoUri = instituicaoId ? `/${instituicaoId}/listar` : '/all';
+
+    return this.http.get<KeyValuePair<number, string>[]>(url + complementoUri)
+      .pipe(
+        take(1)
       );
   }
 }
