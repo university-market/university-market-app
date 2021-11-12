@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
       }, (err) => {
 
         console.error(err);
-        this.notification.error('Não foi possível realizar seu cadastro');
+        // this.notification.error('Não foi possível realizar seu cadastro');
       });
   }
 }
