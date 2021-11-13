@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { PublicacaoListagemModel } from '../../publicacao/models/publicacao-listagem.model';
 import { MeusContatosModel } from '../models/meus-contatos.model';
 import { MeusDadosUserModel } from '../models/meus-dados-user.model';
 import { MeusEnderecosModel } from '../models/meus-enderecos.model';
@@ -76,5 +77,10 @@ export class ProfileService {
   //Editar Contato do usuário
   editarEndereco(model: MeusEnderecosModel):Observable<MeusEnderecosModel>{
     return this.http.put<MeusEnderecosModel>(API_URL + environment.estudante + `/endereco`,model);
+  }
+
+  //Marcar publicacao como vendida
+  marcarVendida(model:ProfilePublicacoesModel):Observable<ProfilePublicacoesModel>{
+    return this.http.post<ProfilePublicacoesModel>(API_URL + environment.publicacao + `/marcarVendida`,model);
   }
 }
