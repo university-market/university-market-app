@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable, of } from "rxjs";
+import { map } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { NotificationService } from '../services/notification.service';
 
@@ -26,7 +27,11 @@ export class NavigationGuard implements CanActivate {
 
       // Navegar usuário para tela de autenticacao
       this.router.navigate(['/auth'], {relativeTo: this.route.root});
-      return of(false);
+
+      return this.authService.logout()
+        .pipe(
+          map(() => false)
+        );
     }
 
     return of(true);
