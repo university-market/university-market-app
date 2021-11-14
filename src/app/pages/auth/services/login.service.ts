@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 import { LoginModel } from '../models/login.model';
 import { AuthService } from 'src/app/base/services/auth.service';
 
-const API_URL = environment.apiUrl + environment.auth;
 @Injectable()
 export class LoginService {
 
@@ -29,7 +28,7 @@ export class LoginService {
 
   public esqueciMinhaSenha(email: string): Observable<{expirationTime: number, existente: boolean}> {
 
-    return this.http.patch<any>(API_URL + `/estudante/recuperarsenha/solicitar`, {email: email})
+    return this.http.post<any>(environment.apiUrl + environment.account + `/recuperacaosenha/solicitar`, {email: email})
       .pipe(
         take(1)
       );
