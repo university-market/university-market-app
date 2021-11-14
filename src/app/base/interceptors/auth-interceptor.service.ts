@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { applicationSessionType } from 'src/app/core/static/application-session-type';
 import { SessionTypeEnum } from 'src/app/core/static/session-type.enum';
+import { AuthTokenService } from '../helpers/auth-token.service';
 import { AuthService } from '../services/auth.service';
 import { NotificationService } from '../services/notification.service';
 
@@ -18,6 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private _notification: NotificationService,
     private authService: AuthService,
+    private authTokenHelper: AuthTokenService,
     private router: Router
   ) {}
 
@@ -25,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
     
     // Header for http requests, like authentication token, should be inserted here
     
-    const token = this.authService.getAuthToken();
+    const token = this.authTokenHelper.getAuthToken();
 
     const request = req.clone({
       setHeaders: {
@@ -47,7 +49,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this._notification.warn(error?.error, 0); // Emissão erro 'Não autenticado' lançado pela API
 
             // Atualizar status de autenticação da aplicação
-            this.authService.setAsUnauthenticated();
+            this.authService.logout();
 
             // Redirecionar usuário para tela de autenticação
             this.router.navigate(['/auth']);
