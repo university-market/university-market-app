@@ -81,6 +81,8 @@ export class EnderecosActionsComponent implements OnInit {
       complemento: this.form.get('complemento')?.value,
     }
 
+    model.cep = (model.cep as string).replace(/\D/g, '');
+
     this.dialogRef.close(model);
 
   }

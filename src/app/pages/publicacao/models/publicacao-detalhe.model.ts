@@ -7,4 +7,5 @@ export interface PublicacaoDetalheModel {
     especificacoesTecnicas?: string;
     pathImagem?: string;
     dataHoraCriacao: Date;
+    estudanteId?: number; 
 }

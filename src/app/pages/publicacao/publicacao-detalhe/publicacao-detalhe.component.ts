@@ -58,7 +58,10 @@ export class PublicacaoDetalheComponent implements OnInit {
   }
 
   public contatarVendedor(): void {
-    this._bottomSheet.open(PublicacaoDetalheContatoComponent);
+    this._bottomSheet.open(PublicacaoDetalheContatoComponent,{
+      data: {id: this.publicacao.estudanteId,
+            titulo: this.publicacao.titulo}
+    });
   }
 
 }

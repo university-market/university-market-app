@@ -7,7 +7,7 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item disabled>
+        <button mat-menu-item (click)="marcarVendida(publicacao)" *ngIf="!publicacao.vendida">
           <mat-icon>verified</mat-icon>
           <span>Vendido</span>
         </button>
@@ -15,7 +15,7 @@
           <mat-icon>visibility</mat-icon>
           <span>Visualizar</span>
         </button>
-        <button mat-menu-item [routerLink]="['/publicacao', publicacao.publicacaoId, 'editar']">
+        <button mat-menu-item [routerLink]="['/publicacao', publicacao.publicacaoId, 'editar']" *ngIf="!publicacao.vendida">
           <mat-icon>edit_outline</mat-icon>
           <span>Editar</span>
         </button>
@@ -26,12 +26,15 @@
       </mat-menu>
     </div>
   </div>
-  <div class="container__img mb-10">
+  <div class="container__img mb-10" >
     <div class="img">
       <!-- <img src="assets/publicacao/default/no-image.png" alt="publicacao-image"> -->
       <img [src]="publicacao.pathImagem" alt="publicacao-image">
-      <div class="chip cursor-pointer noselect" matRipple>
-        {{ publicacao.valor | currencyBrazil }}
+      <div class="chip cursor-pointer noselect" matRipple *ngIf="!publicacao.vendida">
+        {{publicacao.valor | currencyBrazil }}
+      </div>
+      <div class="chip cursor-pointer noselect" matRipple *ngIf="publicacao.vendida">
+        Vendido
       </div>
     </div>
   </div>

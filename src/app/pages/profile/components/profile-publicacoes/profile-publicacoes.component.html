@@ -8,7 +8,7 @@
   <div class="container__content">
     <div class="grid-publicacoes mt-10">
       
-      <app-profile-publicacao-item *ngFor="let publicacao of publicacoesList" [publicacao]='publicacao' (onDelete)="excluir($event)">
+      <app-profile-publicacao-item *ngFor="let publicacao of publicacoesList" [publicacao]='publicacao' (onDelete)="excluir($event)" (onVendida)="marcarVendida($event)">
       </app-profile-publicacao-item>
 
       <app-profile-publicacao-item-novo (click)="onNovaPublicacaoClick()">
