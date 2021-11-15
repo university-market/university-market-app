@@ -7,7 +7,7 @@ import { map, switchMap, take, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { LoginModel } from 'src/app/base/models/auth/login.model';
-import { ProfileEstudanteModel } from '../models/profile-estudante.model';
+import { ProfileModel } from '../models/profile.model';
 import { AuthTokenService } from '../helpers/auth-token.service';
 
 @Injectable({
@@ -25,9 +25,9 @@ export class AuthService {
   public prop_isAuthenticated: boolean = false;
 
   /**
-   * @property {ProfileEstudanteModel} estudante Model de profile do estudante logado no sistema
+   * @property {ProfileModel} estudante Model de profile do estudante logado no sistema
    */
-  public estudante: ProfileEstudanteModel = {} as ProfileEstudanteModel;
+  public estudante: ProfileModel = {} as ProfileModel;
 
   constructor (
     private http: HttpClient,
@@ -62,7 +62,7 @@ export class AuthService {
           this.prop_isAuthenticated = false;
 
           // Remover instancia de estudante
-          this.estudante = {} as ProfileEstudanteModel;
+          this.estudante = {} as ProfileModel;
 
           this._clearLocalProfile();
           this.authTokenHelper.clearAuthToken();
@@ -70,7 +70,7 @@ export class AuthService {
       );
   }
 
-  public login(model: LoginModel): Observable<ProfileEstudanteModel> {
+  public login(model: LoginModel): Observable<ProfileModel> {
 
     return this._login(model)
       .pipe(
@@ -121,9 +121,9 @@ export class AuthService {
       );
   }
 
-  private _obterProfile(): Observable<ProfileEstudanteModel> {
+  private _obterProfile(): Observable<ProfileModel> {
 
-    return this.http.get<ProfileEstudanteModel>(environment.apiUrl + environment.account + '/profile')
+    return this.http.get<ProfileModel>(environment.apiUrl + environment.account + '/profile')
       .pipe(
         take(1)
       );
@@ -137,17 +137,17 @@ export class AuthService {
    * 
    */
 
-  private _getProfileModel(): ProfileEstudanteModel {
+  private _getProfileModel(): ProfileModel {
 
     const modelSerialized: string = localStorage.getItem(this.profileModelKey);
 
     if (modelSerialized == null)
       return;
 
-    return JSON.parse(modelSerialized) as ProfileEstudanteModel;
+    return JSON.parse(modelSerialized) as ProfileModel;
   }
 
-  private _persistProfile(estudante: ProfileEstudanteModel): void {
+  private _persistProfile(estudante: ProfileModel): void {
 
     if (estudante == null)
       return;
