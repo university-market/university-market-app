@@ -6,7 +6,7 @@ import { map, take } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 
-import { LoginModel } from '../models/login.model';
+import { LoginModel } from 'src/app/base/models/auth/login.model';
 import { AuthService } from 'src/app/base/services/auth.service';
 
 @Injectable()
