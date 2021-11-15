@@ -1,13 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
-import { AuthService } from 'src/app/base/services/auth.service';
-import { environment } from 'src/environments/environment';
-import { AppSummarySession } from '../models/app-summary-session';
-import { LoginModel } from '../models/login.model';
+import { HttpClient } from '@angular/common/http';
 
-const API_URL = environment.apiUrl + environment.auth;
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
+
+import { environment } from 'src/environments/environment';
+
+import { LoginModel } from 'src/app/base/models/auth/login.model';
+import { AuthService } from 'src/app/base/services/auth.service';
+
 @Injectable()
 export class LoginService {
 
@@ -19,22 +20,15 @@ export class LoginService {
   // Função Responsável enviar os dados de login para o backend
   doLogin(login : LoginModel): Observable<{nome: string}> {
 
-    return this.http.post<AppSummarySession>(API_URL + '/estudante/login', login)
+    return this.authService.login(login)
       .pipe(
-        take(1),
-        tap(model => {
-
-          this.authService.persistSession(model);
-        }),
-        map(model => ({
-          nome: model.nome
-        }))
-      )
+        map(model => ({ nome: model.nome }))
+      );
   }
 
   public esqueciMinhaSenha(email: string): Observable<{expirationTime: number, existente: boolean}> {
 
-    return this.http.patch<any>(API_URL + `/estudante/recuperarsenha/solicitar`, {email: email})
+    return this.http.post<any>(environment.apiUrl + environment.account + `/recuperacaosenha/solicitar`, {email: email})
       .pipe(
         take(1)
       );

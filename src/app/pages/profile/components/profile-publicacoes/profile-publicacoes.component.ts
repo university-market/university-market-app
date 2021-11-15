@@ -29,7 +29,7 @@ export class ProfilePublicacoesComponent implements OnInit {
   ) {}
 
   ngOnInit() { 
-    this.profileService.searchPublibyUser(this.authService.user.usuarioId)
+    this.profileService.searchPublibyUser(this.authService.estudante.estudanteId)
       .subscribe(publicacoes => {
         this.publicacoesList = publicacoes
       })

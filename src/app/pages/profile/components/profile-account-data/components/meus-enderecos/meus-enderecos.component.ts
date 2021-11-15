@@ -27,7 +27,7 @@ export class MeusEnderecosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.profile.searchEnderecosByUser(this.auth.user.usuarioId)
+    this.profile.searchEnderecosByUser(this.auth.estudante.estudanteId)
       .subscribe(enderecos => {
         this.enderecos = enderecos
       })

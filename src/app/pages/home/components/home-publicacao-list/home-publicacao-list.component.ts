@@ -16,10 +16,9 @@ export class HomePublicacaoListComponent implements OnInit {
   ngOnInit() {
 
     this.SaleHomeService.listSale()
-    .subscribe(sales => {
-      this.sales = sales.slice(0, 5);
-      console.log(sales)
-    })
+      .subscribe(sales => {
+        this.sales = sales.slice(0, 5);
+      });
   }
 
 

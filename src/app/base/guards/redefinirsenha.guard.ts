@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth.service';
 import { NotificationService } from '../services/notification.service';
 
-const API_URL = environment.apiUrl + environment.auth;
+const API_URL = environment.apiUrl + environment.account;
 
 @Injectable()
 export class RedefinirSenhaGuard implements CanActivate {
@@ -52,7 +52,7 @@ export class RedefinirSenhaGuard implements CanActivate {
 
   private validarToken(token: string): Observable<boolean> {
 
-    return this.http.get<boolean>(API_URL + `/estudante/recuperarsenha/${token}`)
+    return this.http.get<boolean>(API_URL + `/recuperacaosenha/validar/token/${token}`)
       .pipe(
         take(1)
       );

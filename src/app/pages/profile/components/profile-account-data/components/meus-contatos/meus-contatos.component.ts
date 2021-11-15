@@ -26,7 +26,7 @@ export class MeusContatosComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.profile.searchContatosByUser(this.auth.user.usuarioId)
+    this.profile.searchContatosByUser(this.auth.estudante.estudanteId)
       .subscribe(contatos => {
         this.contatos = contatos;
       });

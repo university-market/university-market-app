@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.profileService.searchUserById(this.authService.user.usuarioId)
+    this.profileService.searchUserById(this.authService.estudante.estudanteId)
         .subscribe( user => {
           this.user = user;
         }

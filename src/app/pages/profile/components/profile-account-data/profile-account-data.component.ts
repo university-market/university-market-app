@@ -18,10 +18,10 @@ export class ProfileAccountDataComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.profileService.DadosUserbyId(this.authService.user.usuarioId)
-    .subscribe(user => {
-      this.user = user;
-    })
+    this.profileService.DadosUserbyId(this.authService.estudante.estudanteId)
+      .subscribe(user => {
+        this.user = user;
+      });
   }
 
 }
