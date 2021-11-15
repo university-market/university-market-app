@@ -13,13 +13,18 @@ import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   imports: [
+    // Common and 
     CommonModule,
     PagesRoutingModule,
-    HomeModule,
+
+    // Shared
     SharedModule,
-    SaleModule,
+
+    // Pages Module
+    HomeModule,
     PublicacaoModule,
-    ProfileModule
+    ProfileModule,
+    SaleModule,
 
   ],
   declarations: [
