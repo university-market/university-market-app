@@ -63,7 +63,7 @@ export class RegisterService {
 
     const url = environment.apiUrl + environment.instituicao;
 
-    return this.http.get<KeyValuePair<number, string>[]>(url + '/listar')
+    return this.http.get<KeyValuePair<number, string>[]>(url + '/buscar/disponiveis')
       .pipe(
         take(1)
       );
