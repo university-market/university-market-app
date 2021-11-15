@@ -6,7 +6,7 @@ import { map, switchMap, take, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 
-import { LoginModel } from 'src/app/pages/auth/models/login.model';
+import { LoginModel } from 'src/app/base/models/auth/login.model';
 import { ProfileEstudanteModel } from '../models/profile-estudante.model';
 import { AuthTokenService } from '../helpers/auth-token.service';
 
