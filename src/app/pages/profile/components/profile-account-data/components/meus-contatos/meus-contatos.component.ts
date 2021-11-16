@@ -51,6 +51,7 @@ export class MeusContatosComponent implements OnInit {
     ).subscribe((model) => {
       this.notification.success('Contato cadastrado com sucesso');  
       this.contatos.push(model)
+      console.log(this.contatos)
     })
   }
 
