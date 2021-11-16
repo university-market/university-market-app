@@ -14,11 +14,6 @@ const routes: Routes = [
       loadChildren: () => import("../pages/home/home.module").then(m => m.HomeModule)
     },
     {
-      path: 'sales',
-      canActivate: [NavigationGuard],
-      loadChildren: () => import("../pages/sale/sale.module").then(m => m.SaleModule)
-
-    }, {
       path: 'publicacao',
       canActivate: [NavigationGuard],
       runGuardsAndResolvers: 'always',

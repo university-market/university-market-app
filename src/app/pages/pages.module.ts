@@ -6,7 +6,6 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
 
-import { SaleModule } from './sale/sale.module';
 
 import { PublicacaoModule } from './publicacao/publicacao.module';
 import { ProfileModule } from './profile/profile.module';
@@ -24,7 +23,6 @@ import { ProfileModule } from './profile/profile.module';
     HomeModule,
     PublicacaoModule,
     ProfileModule,
-    SaleModule,
 
   ],
   declarations: [
