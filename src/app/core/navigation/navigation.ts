@@ -55,6 +55,7 @@ export const navigation: NavigationItemModel[] = [
   {
     title: 'Publicações recomendadas',
     type: 'section',
+    disabled: true
   },
   {
     title: 'Publicações',
@@ -62,6 +63,7 @@ export const navigation: NavigationItemModel[] = [
     type: 'item',
     icon: 'dashboard',
     label: 'Publicações em alta',
+    disabled: true
   },
   {
     title: 'Pesquisar',
