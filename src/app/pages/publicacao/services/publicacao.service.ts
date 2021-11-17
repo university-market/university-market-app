@@ -6,6 +6,7 @@ import { finalize, map, take, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { PublicacaoContatosModel } from '../models/publicacao-contatos.model';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
+import { PublicacaoDenunciaModel } from '../models/publicacao-denuncia.model';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 
@@ -143,6 +144,10 @@ export class PublicacaoService {
 
   public obterContatos(id:number): Observable<PublicacaoContatosModel[]>{
     return this.http.get<PublicacaoContatosModel[]>(environment.apiUrl + environment.estudante + `/contatos/${id}`);
+  }
+
+  public denunciar(model: PublicacaoDenunciaModel){
+    return this.http.post<PublicacaoDenunciaModel>(environment.apiUrl + environment.publicacao + `/denunciar`,model);
   }
 
   // Operacoes com tags de publicacao

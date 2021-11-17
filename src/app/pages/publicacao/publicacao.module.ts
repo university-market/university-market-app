@@ -15,6 +15,7 @@ import { PublicacaoLoadingComponent } from './components/publicacao-loading/publ
 import { PublicacaoListHeaderComponent } from './components/publicacao-list-header/publicacao-list-header.component';
 import { PublicacaoImportantTagComponent } from './components/publicacao-important-tag/publicacao-important-tag.component';
 import { PublicacaoDetalheContatoComponent } from './publicacao-detalhe/publicacao-detalhe-contato/publicacao-detalhe-contato.component';
+import { PublicacaoDenunciaComponent } from './publicacao-detalhe/publicacao-denuncia/publicacao-denuncia.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { PublicacaoDetalheContatoComponent } from './publicacao-detalhe/publicac
     PublicacaoListHeaderComponent,
     PublicacaoImportantTagComponent,
     PublicacaoDetalheContatoComponent,
+    PublicacaoDenunciaComponent
   ],
   providers: [
     PublicacaoService,

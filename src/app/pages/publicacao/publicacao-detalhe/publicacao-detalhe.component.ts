@@ -9,6 +9,9 @@ import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 import { PublicacaoDetalheContatoComponent } from './publicacao-detalhe-contato/publicacao-detalhe-contato.component';
 import { environment } from 'src/environments/environment';
+import { PublicacaoDenunciaComponent } from './publicacao-denuncia/publicacao-denuncia.component';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationService } from 'src/app/base/services/notification.service';
 
 @Component({
   selector: 'app-publicacao-detalhe',
@@ -32,7 +35,9 @@ export class PublicacaoDetalheComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private service: PublicacaoService,
-    private _bottomSheet: MatBottomSheet
+    private _bottomSheet: MatBottomSheet,
+    public  dialog: MatDialog,
+    private notification: NotificationService,
     ) { }
 
   ngOnInit() {
@@ -62,6 +67,29 @@ export class PublicacaoDetalheComponent implements OnInit {
       data: {id: this.publicacao.estudanteId,
             titulo: this.publicacao.titulo}
     });
+  }
+
+  denunciar(publicacao:PublicacaoDetalheModel ){
+    this.dialog.open(PublicacaoDenunciaComponent,{
+      width : '700px',
+      maxWidth: '80%',
+      data: publicacao
+    }).afterClosed().pipe( 
+      filter((model) => {
+        
+        if(!model){
+          return false;
+        }
+        return true;
+      }),
+      switchMap(model => 
+        this.service.denunciar(model)
+      ),
+    ).subscribe((model) => {
+      this.notification.success('Denúncia cadastrada com sucesso');  
+      // this.contatos.push(model)
+      // console.log(this.contatos)
+    })
   }
 
 }
