@@ -15,6 +15,10 @@ import { HomePublicacaoListHeaderComponent } from './components/home-publicacao-
 import { AboutUmComponent } from './components/about-um/about-um.component';
 import { AboutUmItemComponent } from './components/about-um/about-um-item/about-um-item.component';
 import { AboutUmHeaderComponent } from './components/about-um-header/about-um-header.component';
+import { HomeCursoPublicacaoComponent } from './components/home-curso-publicacao/home-curso-publicacao.component';
+import { HomeCursoPublicacaoHeaderComponent } from './components/home-curso-publicacao/components/home-curso-publicacao-header/home-curso-publicacao-header.component';
+import { HomeCursoPublicacaoListComponent } from './components/home-curso-publicacao/components/home-curso-publicacao-list/home-curso-publicacao-list.component';
+import { HomeCursoPublicacaoListItemComponent } from './components/home-curso-publicacao/components/home-curso-publicacao-list/home-curso-publicacao-list-item/home-curso-publicacao-list-item.component';
 
 
 @NgModule({
@@ -32,7 +36,12 @@ import { AboutUmHeaderComponent } from './components/about-um-header/about-um-he
     HomePublicacaoListHeaderComponent,
     AboutUmComponent,
     AboutUmItemComponent,
-    AboutUmHeaderComponent
+    AboutUmHeaderComponent,
+    HomeCursoPublicacaoComponent,
+    HomeCursoPublicacaoHeaderComponent,
+    HomeCursoPublicacaoListComponent,
+    HomeCursoPublicacaoListItemComponent
+    
   ],
   providers:[
     SaleHomeListService,
