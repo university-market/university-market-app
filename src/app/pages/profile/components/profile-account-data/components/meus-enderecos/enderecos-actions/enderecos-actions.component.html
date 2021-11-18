@@ -10,13 +10,31 @@
   <div>
     <mat-form-field class=" full-width pt-10">
       <mat-label>Rua</mat-label>
-      <input formControlName="rua" type="text" matInput autocomplete="off">
+      <input formControlName="rua" maxlength="150" type="text" matInput autocomplete="off">
     </mat-form-field>
 
     <div fxLayout="row">
       <mat-form-field class="mr-10 full-width pt-10">
         <mat-label>Número</mat-label>
         <input formControlName="numero" type="number" matInput autocomplete="off">
+      </mat-form-field>
+
+      <mat-form-field class=" full-width pt-10">
+        <mat-label>Bairro</mat-label>
+        <input formControlName="bairro" maxlength="25" type="text" matInput autocomplete="off">
+        <mat-error *ngIf="form.get('bairro')?.touched && form.get('bairro')?.errors">
+          Informe um bairro
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field class="mr-10 full-width pt-10">
+        <mat-label>Município</mat-label>
+        <input formControlName="municipio" maxlength="50" type="text" matInput autocomplete="off">
+        <mat-error *ngIf="form.get('municipio')?.touched && form.get('municipio')?.errors">
+          Informe um município
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class=" full-width pt-10">
@@ -30,7 +48,7 @@
 
     <mat-form-field class=" full-width pt-10">
       <mat-label>Complemento</mat-label>
-      <input formControlName="complemento" type="text" matInput autocomplete="off" maxlength="25">
+      <input formControlName="complemento" type="text" matInput autocomplete="off" maxlength="50">
     </mat-form-field>
 
   </div>

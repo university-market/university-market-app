@@ -1,7 +1,9 @@
 @import "src/styles/colors.scss";
 @import "src/styles/template.scss";
 
-.container {
-    padding: 15px;
-    padding-bottom: 75px;
+div{
+    display: flex;
 }
+span {
+    color: #707070;
+  }

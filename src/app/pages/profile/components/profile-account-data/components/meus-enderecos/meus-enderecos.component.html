@@ -16,6 +16,18 @@
         </span>
       </div>
       <div class="informacoes__data__field">
+        <label>Bairro</label>
+        <span>
+          {{endereco.bairro}}
+        </span>
+      </div>
+      <div class="informacoes__data__field">
+        <label>Município</label>
+        <span>
+          {{endereco.municipio}}
+        </span>
+      </div>
+      <div class="informacoes__data__field">
         <label>CEP</label>
         <span>
           {{endereco.cep | cep}}
@@ -27,10 +39,6 @@
           {{endereco.complemento}}
         </span>
       </div>
-      <!-- <div class="informacoes__data__field">
-        <mat-checkbox  checked="true" disabled>Endereço principal</mat-checkbox>
-      </div> -->
-
     </div>
     <div class="ml-auto">
       <button mat-icon-button (click)="editarEndereco(endereco)">

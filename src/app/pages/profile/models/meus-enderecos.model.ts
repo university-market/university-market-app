@@ -4,5 +4,7 @@ export interface MeusEnderecosModel{
     rua: string;
     numero: string;
     cep: string;
-    complemento?: string
+    complemento?: string;
+    bairro: string;
+    municipio: string
 }
