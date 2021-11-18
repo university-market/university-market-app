@@ -8,4 +8,6 @@ export interface PublicacaoDetalheModel {
     pathImagem?: string;
     dataHoraCriacao: Date;
     estudanteId?: number; 
+    cep?: string,
+    rua?: string
 }

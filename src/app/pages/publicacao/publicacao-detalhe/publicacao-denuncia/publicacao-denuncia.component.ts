@@ -29,7 +29,7 @@ export class PublicacaoDenunciaComponent implements OnInit {
       motivo : new FormControl(null,[Validators.required]),
       publicacao_id : new FormControl(null),
       estudande_denunciado_id : new FormControl(null),
-      tipo_denuncia_id: new FormControl(false)
+      tipo_denuncia_id: new FormControl(null,[Validators.required])
     });
   }
 
@@ -51,6 +51,12 @@ export class PublicacaoDenunciaComponent implements OnInit {
       this.form.markAllAsTouched();
 
       this.notification.error("O motivo da denúncia é obrigatório");
+      return false;
+    }
+
+    if (!this.form.get('tipo_denuncia_id')?.value) {
+
+      this.notification.error("O problema da denúncia é obrigatório");
       return false;
     }
 

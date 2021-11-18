@@ -1,6 +1,10 @@
 <h1 mat-dialog-title>
   {{isEdicao? "Editar": "Cadastrar"}} Endereço
 </h1>
+<span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+  <mat-icon fxLayout="row" fxLayoutAlign="start center" color='accent'>privacy_tip</mat-icon>
+  Este endereço será mostrado em todas suas publicações.
+</span>
 <hr>
 <form class="form" [formGroup]="form">
   <div>

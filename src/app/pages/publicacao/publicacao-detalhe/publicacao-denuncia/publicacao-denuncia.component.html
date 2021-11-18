@@ -13,6 +13,9 @@
   <mat-radio-group formControlName="tipo_denuncia_id">
       <mat-radio-button class="w-100 mb-10" *ngFor="let denuncia of denuncias" value="{{denuncia.id}}" >{{denuncia.descricao}}
       </mat-radio-button>
+      <mat-error *ngIf="form.get('tipo_denuncia_id')?.touched && form.get('tipo_denuncia_id')?.errors">
+        O problema da denúncia é obrigatório.
+      </mat-error>
   </mat-radio-group>
 
     <mat-form-field class=" full-width pt-10">
