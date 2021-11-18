@@ -6,12 +6,18 @@
   Livro de análise e desenvolvimento de sistemas.
 </span> -->
 <hr>
+<h3>Qual o problema deste anúncio?</h3>
 <form class="form" [formGroup]="form">
   <div>
+
+  <mat-radio-group formControlName="tipo_denuncia_id">
+      <mat-radio-button class="w-100 mb-10" *ngFor="let denuncia of denuncias" value="{{denuncia.id}}" >{{denuncia.descricao}}
+      </mat-radio-button>
+  </mat-radio-group>
+
     <mat-form-field class=" full-width pt-10">
-      <!-- <mat-label>Insira o motivo de sua denúncia</mat-label> -->
-      <textarea formControlName="motivo" maxlength="150" matInput placeholder="Explique em poucas palavras o motivo de sua denúncia."></textarea>
-      <!-- <input formControlName="motivo" maxlength="150" type="text-area" matInput autocomplete="off"> -->
+      <textarea formControlName="motivo" maxlength="150" matInput
+        placeholder="Explique em poucas palavras o motivo de sua denúncia."></textarea>
       <mat-error *ngIf="form.get('motivo')?.touched && form.get('motivo')?.errors">
         O motivo da denúncia é obrigatório.
       </mat-error>

@@ -146,10 +146,6 @@ export class PublicacaoService {
     return this.http.get<PublicacaoContatosModel[]>(environment.apiUrl + environment.estudante + `/contatos/${id}`);
   }
 
-  public denunciar(model: PublicacaoDenunciaModel){
-    return this.http.post<PublicacaoDenunciaModel>(environment.apiUrl + environment.publicacao + `/denunciar`,model);
-  }
-
   // Operacoes com tags de publicacao
   public makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
 

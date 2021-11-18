@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { PublicacaoDenunciaComponent } from './publicacao-denuncia/publicacao-denuncia.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/base/services/notification.service';
+import { DenunciaService } from '../services/denuncia.service';
 
 @Component({
   selector: 'app-publicacao-detalhe',
@@ -35,6 +36,7 @@ export class PublicacaoDetalheComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private service: PublicacaoService,
+    private denunciaService: DenunciaService,
     private _bottomSheet: MatBottomSheet,
     public  dialog: MatDialog,
     private notification: NotificationService,
@@ -71,7 +73,7 @@ export class PublicacaoDetalheComponent implements OnInit {
 
   denunciar(publicacao:PublicacaoDetalheModel ){
     this.dialog.open(PublicacaoDenunciaComponent,{
-      width : '700px',
+      width : '500px',
       maxWidth: '80%',
       data: publicacao
     }).afterClosed().pipe( 
@@ -83,12 +85,10 @@ export class PublicacaoDetalheComponent implements OnInit {
         return true;
       }),
       switchMap(model => 
-        this.service.denunciar(model)
+        this.denunciaService.denunciar(model)
       ),
     ).subscribe((model) => {
-      this.notification.success('Denúncia cadastrada com sucesso');  
-      // this.contatos.push(model)
-      // console.log(this.contatos)
+      this.notification.success('Denúncia cadastrada com sucesso');
     })
   }
 
