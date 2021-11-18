@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Tile } from '../models/grid-courses.mode';
-import { GridCoursesService } from '../services/grid-courses.service';
+import { GridItem } from '../models/grid-item.model';
 
 @Component({
   selector: 'app-grid-courses',
@@ -10,43 +9,40 @@ import { GridCoursesService } from '../services/grid-courses.service';
 })
 export class GridCoursesComponent implements OnInit {
   
-  tiles: Tile[];
+  itens: GridItem[] = [
+    {curso: 'Arquitetura e Urbanismo', cols: 2, rows: 2, color: 'lightblue'},
+    {curso: 'Engenharia Civil', cols: 1, rows: 1, color: 'lightblue'},
+    {curso: 'Medicina', cols: 1, rows: 2, color: 'lightblue'},
+    {curso: 'Pedagogia', cols: 1, rows: 2, color: 'lightblue'},
+    {curso: 'Psicologia', cols: 1, rows: 1, color: 'lightblue'},
+    {curso: 'Ciência da Computação', cols: 1, rows: 1, color: 'lightblue'},
+    {curso: 'Gastronomia', cols: 1, rows: 1, color: 'lightblue'},
+  ];
 
   columns: number = 4;
 
-  constructor(private gridService: GridCoursesService,
-              private route : Router) { }
+  constructor(private route : Router) { }
 
-  ngOnInit() {
-
-    this.gridService.onInit().subscribe(tiles => {
-      this.tiles = tiles
-      console.log(tiles)
-    })
-
-    window.onresize = () => {
-      const width = window.innerWidth;
-      this.setColumn(width);
-    }
+  ngOnInit() { 
+    console.log(this.itens)
   }
-
   setColumn(width: number){
     if(width < 1000){
       this.columns = 3;
-      this.tiles.forEach(e =>  {
-        e.grid_cols = this.columns
-        e.grid_rows = 1})
+      this.itens.forEach(e =>  {
+        e.cols = this.columns
+        e.rows = 1})
     }
-    if(width > 1000){
-      this.columns = 4
-      this.gridService.onInit().subscribe(tiles => {
-        this.tiles = tiles
-        console.log(tiles)
-      })
-    }
+    // if(width > 1000){
+    //   this.columns = 4
+    //   this.gridService.onInit().subscribe(tiles => {
+    //     this.tiles = tiles
+    //     console.log(tiles)
+    //   })
+    // }
   }
 
-  courseSearch(id: number){
-    this.route.navigate(['/sales/course/'+ id]);
-  }
+  // courseSearch(id: number){
+  //   this.route.navigate(['/sales/course/'+ id]);
+  // }
 }

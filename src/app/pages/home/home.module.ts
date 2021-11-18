@@ -10,7 +10,6 @@ import { HomePublicacaoImportantTagComponent } from './components/home-publicaca
 import { HomePublicacaoListComponent } from './components/home-publicacao-list/home-publicacao-list.component';
 import { HomePublicacaoListItemComponent } from './components/home-publicacao-list/home-publicacao-list-item/home-publicacao-list-item.component';
 import { SaleHomeListService } from './components/services/sale-home-list.service';
-import { GridCoursesService } from './components/services/grid-courses.service';
 import { HomePublicacaoListHeaderComponent } from './components/home-publicacao-list-header/home-publicacao-list-header.component';
 import { AboutUmComponent } from './components/about-um/about-um.component';
 import { AboutUmItemComponent } from './components/about-um/about-um-item/about-um-item.component';
@@ -46,8 +45,7 @@ import { HomeFooterComponent } from './components/home-footer/home-footer.compon
     
   ],
   providers:[
-    SaleHomeListService,
-    GridCoursesService
+    SaleHomeListService
   ]
 })
 export class HomeModule { }
