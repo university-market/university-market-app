@@ -1,0 +1,37 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+
+.input[type=text] {
+    width: 90%;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    border: 3px solid #9aa9ff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+  
+  .input[type=text]:focus {
+    border: 3px solid #435fff;
+  }
+
+  .button {
+      width: 10%;
+      padding: 14px;
+      background-color: #536DFE;
+      color: #ffffff;
+      font-size: 14px;
+      border: 0px;
+      cursor: pointer;
+      float: right;
+      border: 3px solid #9aa9ff;
+      box-sizing: border-box;
+  }
+  
+  .button:hover{
+    background-color: #ffffff;
+    transition: 0.5s;
+    color: #536DFE;
+    padding: 14px;
+  }

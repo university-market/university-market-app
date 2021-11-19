@@ -19,6 +19,7 @@ import { HomeCursoPublicacaoHeaderComponent } from './components/home-curso-publ
 import { HomeCursoPublicacaoListComponent } from './components/home-curso-publicacao/components/home-curso-publicacao-list/home-curso-publicacao-list.component';
 import { HomeCursoPublicacaoListItemComponent } from './components/home-curso-publicacao/components/home-curso-publicacao-list/home-curso-publicacao-list-item/home-curso-publicacao-list-item.component';
 import { HomeFooterComponent } from './components/home-footer/home-footer.component';
+import { PesquisaComponent } from './components/pesquisa/pesquisa.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { HomeFooterComponent } from './components/home-footer/home-footer.compon
     HomeCursoPublicacaoHeaderComponent,
     HomeCursoPublicacaoListComponent,
     HomeCursoPublicacaoListItemComponent,
-    HomeFooterComponent
+    HomeFooterComponent,
+    PesquisaComponent
     
   ],
   providers:[
