@@ -1,7 +1,27 @@
 @import "src/styles/colors.scss";
 @import "src/styles/template.scss";
 
-.container {
-    padding: 15px;
-    padding-bottom: 75px;
+// .container {
+//     // padding: 15px;
+//     // padding-bottom: 75px;
+// }
+
+.grid{
+    padding: 5px 0px 5px 0px;
+    width: 100%;
+    background-color: #536DFE;
 }
+
+// @media only screen and (max-width: 1000px) {
+//   .grid{
+//     width: 85%;
+//     background-color: transparent;
+//   }
+// }
+
+@media only screen and (max-width: 650px) {
+    .grid{
+      width: 95%;
+      background-color: transparent;
+    }
+  }
