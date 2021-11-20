@@ -26,9 +26,10 @@ export class GridCoursesComponent implements OnInit {
   constructor(private route : Router) { }
 
   ngOnInit() { 
-
+    const width = window.innerWidth; 
+    this.setColumn(width)
+    
     window.onresize = () => {
-      const width = window.innerWidth;
       this.setColumn(width);
     }
 

@@ -18,11 +18,10 @@
 
   .button {
       width: 10%;
-      padding: 14px;
+      padding: 14px 0 14px 0;
       background-color: #536DFE;
       color: #ffffff;
       font-size: 14px;
-      border: 0px;
       cursor: pointer;
       float: right;
       border: 3px solid #9aa9ff;
@@ -33,5 +32,13 @@
     background-color: #ffffff;
     transition: 0.5s;
     color: #536DFE;
-    padding: 14px;
   }
+
+@media only screen and (max-width: 650px) {
+  .input[type=text] {
+    width: 80%;
+  }
+  .button {
+    width: 20%;
+}
+}
