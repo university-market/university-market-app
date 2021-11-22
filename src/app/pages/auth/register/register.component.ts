@@ -3,7 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { LoginModel } from 'src/app/base/models/auth/login.model';
+import { AuthService } from 'src/app/base/services/auth.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
 import { RegistroInstituicaoEnsinoDialogComponent } from '../dialogs/registro-instituicao-ensino-dialog/registro-instituicao-ensino-dialog.component';
@@ -23,6 +25,7 @@ export class RegisterComponent implements OnInit {
   public triedSave$ = new BehaviorSubject<boolean>(false);
 
   constructor (
+    private authService: AuthService,
     private notification: NotificationService,
     private registerService: RegisterService,
     private router: Router,
@@ -86,15 +89,25 @@ export class RegisterComponent implements OnInit {
       instituicaoId: this.form.get('instituicao').value
     };
 
+    // Registrar estudante e fazer login automático
     this.registerService.doRegister(model)
-      .subscribe(() => {
+      .pipe(
+        switchMap(() => {
+          
+          this.notification.success('Seu cadastro foi realizado com sucesso');
 
-        this.notification.success('Seu cadastro foi realizado com sucesso');
-        this.router.navigate(['/auth']);
-      }, (err) => {
+          const modelLogin: LoginModel = {
+            email: model.email,
+            senha: model.senha
+          };
+          // Realizar login ao finalizar cadastro
+          return this.authService.login(modelLogin)
+        })
+      )
+      .subscribe((data) => {
 
-        console.error(err);
-        // this.notification.error('Não foi possível realizar seu cadastro');
+        this.notification.notify('Seja bem-vindo, ' + data.nome);
+        this.router.navigate(['/']); // Direcionar o usuário para homepage após autenticado
       });
   }
 }
