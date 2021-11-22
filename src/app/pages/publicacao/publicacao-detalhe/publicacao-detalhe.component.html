@@ -62,26 +62,32 @@
         </div>
         <div class="mt-10">
           <h3>Localização</h3>
-          <div class="data">
-            <div class="data__endereco">
-              <label>CEP</label>
-              <span>
-                {{publicacao.cep | cep}}
-              </span>
+          <p class="secondary-text" 
+            *ngIf="publicacao?.cep == null && publicacao?.municipio == null && publicacao?.bairro == null; else endereco">
+            Este usuário não possui endereço cadastrado
+          </p>
+          <ng-template #endereco>
+            <div class="data">
+              <div class="data__endereco">
+                <label>CEP</label>
+                <span>
+                  {{publicacao.cep | cep}}
+                </span>
+              </div>
+              <div class="data__endereco">
+                <label>Município</label>
+                <span>
+                  {{publicacao.municipio}}
+                </span>
+              </div>
+              <div class="data__endereco">
+                <label>Bairro</label>
+                <span>
+                  {{publicacao.bairro}}
+                </span>
+              </div>
             </div>
-            <div class="data__endereco">
-              <label>Município</label>
-              <span>
-                {{publicacao.municipio}}
-              </span>
-            </div>
-            <div class="data__endereco">
-              <label>Bairro</label>
-              <span>
-                {{publicacao.bairro}}
-              </span>
-            </div>
-          </div>
+          </ng-template>
         </div>
         <mat-divider></mat-divider>
         <button mat-stroked-button color="warn" class="w-20 ml-0" (click)="denunciar(publicacao)">
