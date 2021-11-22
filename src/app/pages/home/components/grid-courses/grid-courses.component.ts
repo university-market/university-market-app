@@ -30,6 +30,7 @@ export class GridCoursesComponent implements OnInit {
     this.setColumn(width)
     
     window.onresize = () => {
+      const width = window.innerWidth; 
       this.setColumn(width);
     }
 

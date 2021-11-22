@@ -146,6 +146,14 @@ export class PublicacaoService {
     return this.http.get<PublicacaoContatosModel[]>(environment.apiUrl + environment.estudante + `/contatos/${id}`);
   }
 
+  public pesquisar(pesquisa :string): Observable<PublicacaoDetalheModel[]>{
+    return this.http.get<PublicacaoDetalheModel[]>(`${API_URL}/buscar/pesquisarPublicacoes/`,{
+      params: {
+        pesquisa
+      }
+    });
+  }
+
   // Operacoes com tags de publicacao
   public makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
 

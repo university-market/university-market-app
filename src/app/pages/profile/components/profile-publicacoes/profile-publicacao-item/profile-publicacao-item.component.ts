@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PublicacaoListagemModel } from 'src/app/pages/publicacao/models/publicacao-listagem.model';
 import { ProfilePublicacoesModel } from '../../../models/profile-publicacaoes.model';
 
 @Component({

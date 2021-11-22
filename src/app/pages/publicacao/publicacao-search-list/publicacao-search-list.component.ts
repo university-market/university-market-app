@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-publicacao-search-list',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicacaoSearchListComponent implements OnInit {
 
-  constructor() { }
+  pesquisa: string;
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.pesquisa = this.activatedRoute.snapshot.queryParams['pesquisa'];
   }
 
 }
