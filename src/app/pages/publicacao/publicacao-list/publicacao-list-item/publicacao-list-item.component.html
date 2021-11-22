@@ -1,41 +1,41 @@
 <div class="container">
-  <mat-card class="publicacao-card">
-    <mat-card-header class="mb-4">
-      <div mat-card-avatar class="publicacao-header-image"></div>
-      <mat-card-title class="m-0">
-        {{ publicacao.titulo }}
-      </mat-card-title>
-      <!-- <mat-card-subtitle>{{ publicacao.name }}</mat-card-subtitle> -->
-    </mat-card-header>
-    <div mat-card-image class="publicacao-image">
-      <img [src]="publicacao.pathImagem" alt="Image of {{ publicacao.descricao }}">
-    </div>
-    <!-- <img mat-card-image [src]="publicacao.pathImagem" alt="Image of {{ publicacao.descricao }}"> -->
-    <mat-card-content>
-      <div class="publicacao-card__content">
-        <div class="publicacao-card__content__important-tags">
-          <app-publicacao-important-tag color="primary">
-            Detalhes técnicos
-          </app-publicacao-important-tag>
-          <app-publicacao-important-tag>
-            Novo
-          </app-publicacao-important-tag>
-        </div>
-        <div class="publicacao-card__content__description">
-          <p>{{ publicacao.descricao }}</p>
-        </div>
+    <mat-card class="publicacao-card">
+      <mat-card-header class="mb-4">
+        <div mat-card-avatar class="publicacao-header-image"></div>
+        <mat-card-title class="m-0">
+          {{ publicacao.titulo }}
+        </mat-card-title>
+        <!-- <mat-card-subtitle>{{ publicacao.name }}</mat-card-subtitle> -->
+      </mat-card-header>
+      <div mat-card-image class="publicacao-image">
+        <img [src]="publicacao.pathImagem" alt="Image of {{ publicacao.descricao }}">
       </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <div class="publicacao-card__actions">
-        <button mat-button type="button" class="content-price">
-          {{ publicacao.valor | currencyBrazil  }}
-        </button>
-        <button mat-raised-button color="accent" type="button" 
-          [routerLink]="['/publicacao', publicacao.publicacaoId]">
-          Ver detalhes
-        </button>
-      </div>
-    </mat-card-actions>
-  </mat-card>
+      <!-- <img mat-card-image [src]="publicacao.pathImagem" alt="Image of {{ publicacao.descricao }}"> -->
+      <mat-card-content>
+        <div class="publicacao-card__content">
+          <div class="publicacao-card__content__important-tags">
+            <app-publicacao-important-tag color="primary">
+              Detalhes técnicos
+            </app-publicacao-important-tag>
+            <app-publicacao-important-tag>
+              Novo
+            </app-publicacao-important-tag>
+          </div>
+          <div class="publicacao-card__content__description">
+            <p>{{ publicacao.descricao }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="publicacao-card__actions">
+          <button mat-button type="button" class="content-price">
+            {{ publicacao.valor | currencyBrazil }}
+          </button>
+          <button mat-raised-button color="accent" type="button"
+            [routerLink]="['/publicacao', publicacao.publicacaoId]">
+            Ver detalhes
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
 </div>

@@ -13,12 +13,13 @@ export class PublicacaoListComponent implements OnInit {
 
   public publicacaoList : PublicacaoDetalheModel[];
 
+  public lista: number
+
   constructor(
     private publicacaoService : PublicacaoService
   ) { }
 
   ngOnInit() {
-    console.log(this.pesquisa)
     this.publicacaoService.pesquisar(this.pesquisa)
       .subscribe(publicacoes => {
         this.publicacaoList = publicacoes
