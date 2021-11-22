@@ -9,12 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 export class PublicacaoSearchListComponent implements OnInit {
 
   pesquisa: string;
+  result: number;
+
   constructor(
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.pesquisa = this.activatedRoute.snapshot.queryParams['pesquisa'];
+    this.result = this.pesquisa.length
   }
-
 }
