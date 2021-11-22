@@ -17,7 +17,8 @@ import { PublicacaoImportantTagComponent } from './components/publicacao-importa
 import { PublicacaoDetalheContatoComponent } from './publicacao-detalhe/publicacao-detalhe-contato/publicacao-detalhe-contato.component';
 import { PublicacaoDenunciaComponent } from './publicacao-detalhe/publicacao-denuncia/publicacao-denuncia.component';
 import { DenunciaService } from './services/denuncia.service';
-
+import { PublicacaoSearchListComponent } from './publicacao-search-list/publicacao-search-list.component';
+import { PesquisaComponent } from './publicacao-search-list/pesquisa/pesquisa.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -34,7 +35,9 @@ import { DenunciaService } from './services/denuncia.service';
     PublicacaoListHeaderComponent,
     PublicacaoImportantTagComponent,
     PublicacaoDetalheContatoComponent,
-    PublicacaoDenunciaComponent
+    PublicacaoDenunciaComponent,
+    PublicacaoSearchListComponent,
+    PesquisaComponent
   ],
   providers: [
     PublicacaoService,
