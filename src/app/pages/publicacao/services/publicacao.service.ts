@@ -154,6 +154,10 @@ export class PublicacaoService {
     });
   }
 
+  public pesquisarByCurso(cursoId :number): Observable<PublicacaoDetalheModel[]>{
+    return this.http.get<PublicacaoDetalheModel[]>(`${API_URL}/buscar/curso/publicacoes/${cursoId}`,);
+  }
+
   // Operacoes com tags de publicacao
   public makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
 

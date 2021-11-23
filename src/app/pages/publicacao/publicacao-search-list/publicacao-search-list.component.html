@@ -6,7 +6,7 @@
     Exibindo resultados de "{{pesquisa}}"
   </h2>
   <h5 class="w-75 m-auto">
-    Exibindo 1 - 50 de {{result}} resultados.
+    Exibindo todos os resultados para a pesquisa.
   </h5>
   <mat-divider class="m-auto w-75"></mat-divider>
   <div class="w-75 m-auto listagem mt-20">
@@ -14,7 +14,7 @@
       bloco de informações  
     </div> -->
     <div class="w-100">
-      <app-publicacao-list [pesquisa]="pesquisa"></app-publicacao-list>
+      <app-publicacao-list [pesquisa]="pesquisa" [tipo_pesquisa]="tipo_pesquisa" [cursoId]="cursoId"></app-publicacao-list>
     </div>
   </div>
 </div>

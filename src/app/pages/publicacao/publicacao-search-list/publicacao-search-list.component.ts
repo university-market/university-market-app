@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class PublicacaoSearchListComponent implements OnInit {
 
   pesquisa: string;
+  cursoId: number;
+  tipo_pesquisa: number;
   result: number;
 
   constructor(
@@ -16,7 +18,13 @@ export class PublicacaoSearchListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pesquisa = this.activatedRoute.snapshot.queryParams['pesquisa'];
-    this.result = this.pesquisa.length
+    if(this.activatedRoute.snapshot.queryParams['pesquisa']){
+      this.pesquisa = this.activatedRoute.snapshot.queryParams['pesquisa'];
+      this.tipo_pesquisa = 1;
+    }else{
+      this.pesquisa = this.activatedRoute.snapshot.queryParams['curso'];
+      this.cursoId  = this.activatedRoute.snapshot.queryParams['cursoId'];
+      this.tipo_pesquisa = 2;
+    }
   }
 }

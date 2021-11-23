@@ -25,6 +25,10 @@ const routes: Routes = [
     component: PublicacaoSearchListComponent
   },
   {
+    path: 'busca/curso',
+    component: PublicacaoSearchListComponent
+  },
+  {
     path: ':publicacaoId',
     children: [
       {

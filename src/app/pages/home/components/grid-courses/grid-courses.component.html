@@ -1,5 +1,5 @@
 <mat-grid-list class="grid mat-elevation-z6" [cols]="columns" rowHeight="150px">
-  <mat-grid-tile  *ngFor="let item of itens" class="grid__tile" [colspan]="item.cols" [rowspan]="item.rows" class="grid__tile" >
+  <mat-grid-tile (click)="courseSearch(item.id, item.curso)"  *ngFor="let item of itens" class="grid__tile" [colspan]="item.cols" [rowspan]="item.rows" class="grid__tile" >
     <div class="grid__tile__div" style="background-image: url('{{item.img}}');">
       <a class="grid__tile__div__a" routerLink="">{{item.curso}}</a>
     </div>

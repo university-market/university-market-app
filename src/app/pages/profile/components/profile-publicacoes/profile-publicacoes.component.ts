@@ -57,6 +57,11 @@ export class ProfilePublicacoesComponent implements OnInit {
         filter((r) => r),
         switchMap(() => this.profileService.marcarVendida(publicacao))
       ).subscribe(()=>{
+        this.publicacoesList.filter(e => {
+          if(e.publicacaoId == publicacao.publicacaoId){
+            e.vendida = true
+          }
+        })
         this.notification.success('Publicação marcada como vendida com sucesso.')
       })
   }
