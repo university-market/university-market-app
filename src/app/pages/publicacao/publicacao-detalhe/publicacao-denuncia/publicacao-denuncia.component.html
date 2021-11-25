@@ -1,34 +1,36 @@
-<h1 mat-dialog-title>
-  Denunciar Publicação
-</h1>
-<!-- <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-  <mat-icon fxLayout="row" fxLayoutAlign="start center" color='accent'>privacy_tip</mat-icon>
-  Livro de análise e desenvolvimento de sistemas.
-</span> -->
+<h1 mat-dialog-title>Denunciar Publicação</h1>
 <hr>
-<h3>Qual o problema deste anúncio?</h3>
-<form class="form" [formGroup]="form">
-  <div>
 
-  <mat-radio-group formControlName="tipo_denuncia_id">
+<h3>Qual o problema deste anúncio?</h3>
+
+<form class="form" [formGroup]="form">
+
+  <section>
+
+    <mat-radio-group formControlName="tipo_denuncia_id">
       <mat-radio-button class="w-100 mb-10" *ngFor="let denuncia of denuncias" value="{{denuncia.id}}" >{{denuncia.descricao}}
       </mat-radio-button>
       <mat-error *ngIf="form.get('tipo_denuncia_id')?.touched && form.get('tipo_denuncia_id')?.errors">
         O problema da denúncia é obrigatório.
       </mat-error>
-  </mat-radio-group>
+    </mat-radio-group>
 
     <mat-form-field class=" full-width pt-10">
-      <textarea formControlName="motivo" maxlength="150" matInput
-        placeholder="Explique em poucas palavras o motivo de sua denúncia."></textarea>
+      <mat-label>Motivo</mat-label>
+      <textarea formControlName="motivo" maxlength="150" matInput required
+        placeholder="Explique em poucas palavras o motivo da denúncia"></textarea>
       <mat-error *ngIf="form.get('motivo')?.touched && form.get('motivo')?.errors">
         O motivo da denúncia é obrigatório.
       </mat-error>
     </mat-form-field>
 
-  </div>
+  </section>
+
   <mat-dialog-actions align="end" class="form__actions">
-    <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
-    <button mat-raised-button color="accent" (click)="cadastrarDenuncia()">Confirmar</button>
+    <button mat-button mat-dialog-close color="warn">Cancelar</button>
+    <button mat-raised-button color="accent" (click)="cadastrarDenuncia()">
+      Enviar denúncia
+    </button>
   </mat-dialog-actions>
+
 </form>

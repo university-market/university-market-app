@@ -71,25 +71,13 @@ export class PublicacaoDetalheComponent implements OnInit {
     });
   }
 
-  denunciar(publicacao:PublicacaoDetalheModel ){
+  public denunciar(): void {
+
     this.dialog.open(PublicacaoDenunciaComponent,{
       width : '500px',
       maxWidth: '80%',
-      data: publicacao
-    }).afterClosed().pipe( 
-      filter((model) => {
-        
-        if(!model){
-          return false;
-        }
-        return true;
-      }),
-      switchMap(model => 
-        this.denunciaService.denunciar(model)
-      ),
-    ).subscribe((model) => {
-      this.notification.success('Denúncia cadastrada com sucesso');
-    })
+      data: this.publicacao
+    });
   }
 
 }

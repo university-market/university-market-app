@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { PublicacaoDenunciaModel } from '../../models/publicacao-denuncia.model';
 import { PublicacaoDetalheModel } from '../../models/publicacao-detalhe.model';
@@ -16,8 +17,12 @@ import { PublicacaoDetalheComponent } from '../publicacao-detalhe.component';
 })
 export class PublicacaoDenunciaComponent implements OnInit {
 
+  private _publicacaoId: number = 0;
+
   public form: FormGroup;
-  denuncias: TipoDenunciaModel[];
+  denuncias: TipoDenunciaModel[] = [];
+
+  public loading$: Observable<boolean> = null;
 
   constructor(
     private notification: NotificationService,
@@ -25,6 +30,14 @@ export class PublicacaoDenunciaComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: PublicacaoDetalheModel,
     private service: DenunciaService
   ) { 
+
+    // Inicializacao loading da dialog
+    this.loading$ = this.service.loading$;
+
+    // Inicializacao publicacao
+    this._publicacaoId = data?.publicacaoId;
+
+    // Inicializacao form
     this.form = new FormGroup({
       motivo : new FormControl(null,[Validators.required]),
       publicacao_id : new FormControl(null),
@@ -34,15 +47,17 @@ export class PublicacaoDenunciaComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.service.obterTipoDenuncias()
       .subscribe( denuncias => {
         this.denuncias = denuncias;
-      })
+      });
   }
 
-  validar(){
-    if(this.form.invalid){
-      this.notification.error('O motivo da denúncia é obrigatório')
+  validar(): boolean {
+
+    if (this.form.invalid) {
+      this.notification.error("O motivo da denúncia é obrigatório");
       return false;
     }
 
@@ -63,7 +78,8 @@ export class PublicacaoDenunciaComponent implements OnInit {
     return true;
   }
 
-  cadastrarDenuncia(){
+  public cadastrarDenuncia(): void {
+
     if(!this.validar()){
       return;
     }
@@ -74,7 +90,13 @@ export class PublicacaoDenunciaComponent implements OnInit {
       estudante_id_denunciado: this.data?.estudanteId,
       tipo_denuncia_id: this.form.get('tipo_denuncia_id')?.value
     }
-    this.dialogRef.close(model);
+
+    this.service.denunciar(this._publicacaoId, model)
+      .subscribe(() => {
+
+        this.notification.success("Denúncia cadastrada com sucesso");
+        this.dialogRef.close();
+      });
   }
 
 }
