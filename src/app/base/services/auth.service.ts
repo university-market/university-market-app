@@ -72,6 +72,10 @@ export class AuthService {
 
   public login(model: LoginModel): Observable<ProfileModel> {
 
+    // Limpar dados persistidos localmente
+    this._clearLocalProfile();
+    this.authTokenHelper.clearAuthToken();
+
     return this._login(model)
       .pipe(
         tap(res => {
