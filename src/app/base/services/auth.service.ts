@@ -71,7 +71,8 @@ export class AuthService {
   }
 
   public login(model: LoginModel): Observable<ProfileModel> {
-
+    this._clearLocalProfile();
+    this.authTokenHelper.clearAuthToken();
     return this._login(model)
       .pipe(
         tap(res => {
@@ -82,8 +83,7 @@ export class AuthService {
 
           this.authTokenHelper.persistAuthToken(res.token);
         }),
-        switchMap(() => {
-
+        switchMap(() => {          
           return this._obterProfile();
         }),
         map(model => {
