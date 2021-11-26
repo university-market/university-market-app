@@ -86,8 +86,7 @@ export class AuthService {
 
           this.authTokenHelper.persistAuthToken(res.token);
         }),
-        switchMap(() => {
-
+        switchMap(() => {          
           return this._obterProfile();
         }),
         map(model => {
