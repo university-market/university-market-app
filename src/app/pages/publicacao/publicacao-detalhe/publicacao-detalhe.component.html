@@ -39,7 +39,7 @@
                   {{ publicacao.valor | currencyBrazil }}
                 </span>
               </mat-card>
-              <button mat-raised-button type="button" (click)="contatarVendedor()" color="accent"
+              <button mat-raised-button type="button" *ngIf="publicacao.estudanteId != sessionId" (click)="contatarVendedor()" color="accent"
                 class="w-100 m-0 py-4">
                 Entrar em contato com o vendedor
               </button>
@@ -62,7 +62,7 @@
         </div>
         <div class="mt-10">
           <h3>Localização</h3>
-          <p class="secondary-text" 
+          <p class="secondary-text"
             *ngIf="publicacao?.cep == null && publicacao?.municipio == null && publicacao?.bairro == null; else endereco">
             Este usuário não possui endereço cadastrado
           </p>
@@ -90,6 +90,11 @@
           </ng-template>
         </div>
         <mat-divider></mat-divider>
+      </div>
+      <div class="mt-20" *ngIf="publicacao.estudanteId != sessionId">
+        <button mat-stroked-button color="accent" class="w-20 ml-0"  (click)="favoritar()">
+          <mat-icon>favorite</mat-icon> Favoritar
+        </button>
         <button mat-stroked-button color="warn" class="w-20 ml-0" (click)="denunciar()">
           <mat-icon>flag</mat-icon> Denunciar
         </button>

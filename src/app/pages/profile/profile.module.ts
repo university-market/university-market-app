@@ -21,6 +21,9 @@ import { ContatosActionsComponent } from './components/profile-account-data/comp
 import { MeusDadosEditarComponent } from './components/profile-account-data/components/meus-dados/meus-dados-editar/meus-dados-editar.component';
 import { EnderecosActionsComponent } from './components/profile-account-data/components/meus-enderecos/enderecos-actions/enderecos-actions.component';
 import { ProfilePublicacaoItemNovoComponent } from './components/profile-publicacoes/profile-publicacao-item-novo/profile-publicacao-item-novo.component';
+import { ProfileFavoritasComponent } from './components/profile-favoritas/profile-favoritas.component';
+import { ProfileFavoritasHeaderComponent } from './components/profile-favoritas/profile-favoritas-header/profile-favoritas-header.component';
+import { ProfileFavoritasItemComponent } from './components/profile-favoritas/profile-favoritas-item/profile-favoritas-item.component';
 
 @NgModule({
   imports: [
@@ -44,7 +47,10 @@ import { ProfilePublicacaoItemNovoComponent } from './components/profile-publica
     ContatosActionsComponent,
     MeusDadosEditarComponent,
     EnderecosActionsComponent,
-    ProfilePublicacaoItemNovoComponent
+    ProfilePublicacaoItemNovoComponent,
+    ProfileFavoritasComponent,
+    ProfileFavoritasHeaderComponent,
+    ProfileFavoritasItemComponent
   ],
    providers: [ProfileService]
 })
