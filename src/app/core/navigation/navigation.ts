@@ -49,6 +49,13 @@ export const navigation: NavigationItemModel[] = [
         type: 'item',
         icon: 'dashboard',
         label: 'Ir para minhas publicações',
+      },
+      {
+        title: 'Favoritas',
+        route: 'perfil/favoritas',
+        type: 'item',
+        icon: 'favorite',
+        label: 'Ir para minhas publicações favoritas',
       }
     ]
   },

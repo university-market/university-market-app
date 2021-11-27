@@ -158,6 +158,10 @@ export class PublicacaoService {
     return this.http.get<PublicacaoDetalheModel[]>(`${API_URL}/buscar/curso/publicacoes/${cursoId}`,);
   }
 
+  public favoritarPublicacao( model:PublicacaoDetalheModel){
+    return this.http.post(API_URL + `/favoritar/publicacao`,model);
+  }
+
   // Operacoes com tags de publicacao
   public makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
 

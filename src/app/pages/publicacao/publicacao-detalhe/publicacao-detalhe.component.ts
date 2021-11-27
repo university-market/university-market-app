@@ -13,6 +13,7 @@ import { PublicacaoDenunciaComponent } from './publicacao-denuncia/publicacao-de
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { DenunciaService } from '../services/denuncia.service';
+import { AuthService } from 'src/app/base/services/auth.service';
 
 @Component({
   selector: 'app-publicacao-detalhe',
@@ -31,6 +32,8 @@ export class PublicacaoDetalheComponent implements OnInit {
   public publicacao: PublicacaoDetalheModel = {} as PublicacaoDetalheModel;
   public tags: PublicacaoTag[] = [];
 
+  public sessionId: number;
+
   constructor (
     private router: Router,
     private route: ActivatedRoute,
@@ -40,10 +43,13 @@ export class PublicacaoDetalheComponent implements OnInit {
     private _bottomSheet: MatBottomSheet,
     public  dialog: MatDialog,
     private notification: NotificationService,
+    private auth: AuthService
     ) { }
 
   ngOnInit() {
 
+    this.sessionId = this.auth.estudante.estudanteId
+    
     this.route.paramMap
     .pipe(
       take(1),
@@ -62,6 +68,7 @@ export class PublicacaoDetalheComponent implements OnInit {
       this.publicacao = publicacao;
       this.tags = publicacao.tags ? this.service.makeTagsArray(publicacao.tags) : [];
     });
+
   }
 
   public contatarVendedor(): void {
@@ -72,12 +79,25 @@ export class PublicacaoDetalheComponent implements OnInit {
   }
 
   public denunciar(): void {
+    if(this.publicacao.estudanteId == this.auth.estudante.estudanteId)
+    {
+      this.notification.error('Você não pode denunciar suas publicações.')
+      return;
+    }
 
     this.dialog.open(PublicacaoDenunciaComponent,{
       width : '500px',
       maxWidth: '80%',
       data: this.publicacao
     });
+  }
+
+  public favoritar(){
+    console.log(this.publicacao)
+    this.service.favoritarPublicacao(this.publicacao)
+      .subscribe(() =>{
+        this.notification.success('Publicação Favoritada.')
+      })
   }
 
 }

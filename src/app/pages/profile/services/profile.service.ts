@@ -83,4 +83,14 @@ export class ProfileService {
   marcarVendida(model:ProfilePublicacoesModel):Observable<ProfilePublicacoesModel>{
     return this.http.post<ProfilePublicacoesModel>(API_URL + environment.publicacao + `/marcarVendida`,model);
   }
+
+  //Buscar publicações favoritas
+  searchFavoritePubli(id:number): Observable<ProfilePublicacoesModel[]>{
+    return this.http.get<ProfilePublicacoesModel[]>(API_URL + environment.publicacao + `/estudante/favoritas/${id}`);
+  }
+
+  //delete uma publicação favortia do usuário
+  deletePublicacaoFavorita(id:number){
+    return this.http.delete(API_URL + environment.publicacao + `/excluir/favorita/${id}`);
+   }
 }

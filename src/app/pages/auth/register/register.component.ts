@@ -8,6 +8,7 @@ import { LoginModel } from 'src/app/base/models/auth/login.model';
 import { AuthService } from 'src/app/base/services/auth.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
+import { TermosDeUsoComponent } from '../components/termos-de-uso/termos-de-uso.component';
 import { RegistroInstituicaoEnsinoDialogComponent } from '../dialogs/registro-instituicao-ensino-dialog/registro-instituicao-ensino-dialog.component';
 import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
@@ -110,4 +111,13 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/']); // Direcionar o usuário para homepage após autenticado
       });
   }
+
+  termos(){
+    this.dialog.open(TermosDeUsoComponent,{
+      width : '800px',
+      maxWidth: '100%'
+    })
+  }
+
+
 }
