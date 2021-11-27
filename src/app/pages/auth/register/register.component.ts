@@ -114,8 +114,8 @@ export class RegisterComponent implements OnInit {
 
   termos(){
     this.dialog.open(TermosDeUsoComponent,{
-      width : '700px',
-      maxWidth: '80%'
+      width : '800px',
+      maxWidth: '100%'
     })
   }
 
