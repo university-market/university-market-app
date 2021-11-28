@@ -12,11 +12,18 @@ export class MenuListGroupComponent implements OnInit {
   @Input('item') menuItem: NavigationItemModel;
   @Output() onNavigate = new EventEmitter<boolean>();
 
+  public expanded: boolean = true;
+
   public panelOpened: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
+
+    if (this.menuItem.expanded != null && this.menuItem.expanded === false) {
+
+      this.expanded = false;
+    }
   }
 
 }

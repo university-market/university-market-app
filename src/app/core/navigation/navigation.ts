@@ -25,6 +25,7 @@ export const navigation: NavigationItemModel[] = [
     type: 'group',
     icon: 'book',
     label: 'Pesquisar por Cursos',
+    expanded: false,
     children: [
       {
         title: 'Administração',
