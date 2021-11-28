@@ -7,4 +7,8 @@
   <img src="assets\logos\logo-um-transparent.png" class="header-toolbar__img ml-8-perc  mr-10">
   <span>{{ title }}</span>
   <span class="spacer"></span>
+  <button mat-icon-button class="favorite-icon" matTooltip="Publicações favoritadas"
+    [routerLink]="['/perfil', 'favoritas']">
+    <mat-icon>favorite</mat-icon>
+  </button>
 </mat-toolbar>
