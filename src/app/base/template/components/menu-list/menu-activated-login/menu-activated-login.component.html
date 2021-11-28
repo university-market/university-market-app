@@ -1,0 +1,31 @@
+<section class="container">
+
+  <header>
+    <span class="secondary-text">Logado como</span>
+    &nbsp;
+    <span class="nome">
+      {{ nome }}
+    </span>
+  </header>
+
+  <aside class="initial-letter">
+    <span>
+      <h1>
+        {{ primeiraLetraNome }}
+      </h1>
+      <i class="ativo" matTooltip="Ativo"></i>
+    </span>
+  </aside>
+
+  <p class="truncate-text">
+    {{ cursoNome }}
+  </p>
+
+  <footer>
+    <button mat-stroked-button color="warn">
+      <mat-icon>logout</mat-icon>
+      Sair do Sistema
+    </button>
+  </footer>
+
+</section>

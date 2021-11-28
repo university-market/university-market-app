@@ -8,6 +8,7 @@ import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { MenuListItemComponent } from './components/menu-list/menu-list-item/menu-list-item.component';
 import { MenuListGroupComponent } from './components/menu-list/menu-list-group/menu-list-group.component';
 import { MenuListSectionComponent } from './components/menu-list/menu-list-section/menu-list-section.component';
+import { MenuActivatedLoginComponent } from './components/menu-list/menu-activated-login/menu-activated-login.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { MenuListSectionComponent } from './components/menu-list/menu-list-secti
     MenuListItemComponent,
     MenuListGroupComponent,
     MenuListSectionComponent,
+    MenuActivatedLoginComponent,
   ],
   exports: [TemplateBaseComponent]
 })
