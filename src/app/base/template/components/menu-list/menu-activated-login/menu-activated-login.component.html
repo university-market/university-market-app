@@ -1,8 +1,6 @@
 <section class="container">
 
   <header>
-    <span class="secondary-text">Logado como</span>
-    &nbsp;
     <span class="nome">
       {{ nome }}
     </span>
@@ -17,9 +15,12 @@
     </span>
   </aside>
 
-  <p class="truncate-text">
-    {{ cursoNome }}
-  </p>
+  <div>
+    <mat-icon class="icon" matTooltip="Curso">school</mat-icon>
+    <p class="truncate-text">
+      {{ cursoNome }}
+    </p>
+  </div>
 
   <footer>
     <button mat-stroked-button color="warn" (click)="logout()">

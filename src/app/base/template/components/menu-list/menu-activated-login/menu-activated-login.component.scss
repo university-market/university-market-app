@@ -29,15 +29,26 @@ section.container {
     }
   }
 
-  p {
+  div {
     
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+
     text-transform: uppercase;
     text-align: center;
-
-    margin: 0;
     
     font-weight: 300;
-    font-size: 0.85rem
+    font-size: 0.85rem;
+
+    .icon {
+      transform: scale(0.75);
+    }
+    p {
+      margin: 0;
+    }
   }
 
   aside.initial-letter {
