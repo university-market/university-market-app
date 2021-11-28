@@ -14,11 +14,11 @@
     <mat-card-content>
       <div class="publicacao-card__content">
         <div class="publicacao-card__content__important-tags">
-          <app-home-publicacao-important-tag color="primary">
+          <app-home-publicacao-important-tag color="primary" *ngIf="sale?.especificacoesTecnicas">
             Detalhes técnicos
           </app-home-publicacao-important-tag>
-          <app-home-publicacao-important-tag>
-            Novo
+          <app-home-publicacao-important-tag *ngIf="isLivro">
+            Livro
           </app-home-publicacao-important-tag>
         </div>
         <div class="publicacao-card__content__description">
