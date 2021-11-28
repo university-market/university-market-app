@@ -1,14 +1,14 @@
 <div class="container">
+  <mat-icon color="accent" class="icon">
+    dashboard
+  </mat-icon>
   <div class="container__content">
-    <h1>
-      <span class="title-icon">
-        <mat-icon color="accent">
-          dashboard
-        </mat-icon>
-      </span>
-      <span>
-        Algumas publicações de seu curso
-      </span>
-    </h1>
+    <h1>Algumas publicações de seu curso</h1>
+    <p class="secondary-text m-0">
+      Exibindo algumas das publicações encontradas em <span *ngIf="curso; else seuCurso">{{ curso }}</span>
+      <ng-template #seuCurso>
+        seu curso
+      </ng-template>
+    </p>
   </div>
 </div>

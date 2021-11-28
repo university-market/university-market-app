@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/base/services/auth.service';
 
 @Component({
   selector: 'app-home-curso-publicacao-header',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeCursoPublicacaoHeaderComponent implements OnInit {
 
-  constructor() { }
+  public curso: string = null;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+
+    this.curso = this.authService.estudante.cursoNome;
   }
 
 }
