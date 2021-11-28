@@ -7,4 +7,8 @@ export interface NavigationItemModel {
   disabled?: boolean;
   isActive?: boolean;
   children?: NavigationItemModel[];
+  queryParams?:{
+    cursoId,
+    curso
+  }
 }

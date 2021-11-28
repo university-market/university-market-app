@@ -22,6 +22,7 @@ export class PublicacaoListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     if(this.tipo_pesquisa == 1){
     this.publicacaoService.pesquisar(this.pesquisa)
       .subscribe(publicacoes => {
