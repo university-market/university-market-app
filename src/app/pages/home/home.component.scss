@@ -1,20 +1,7 @@
 @import "src/styles/colors.scss";
 @import "src/styles/template.scss";
 
-// .container {
-//     // padding: 15px;
-//     // padding-bottom: 75px;
-// }
+.bg-accent {
 
-.grid{
-    padding: 5px 0px 5px 0px;
-    width: 100%;
-    background-color: #536DFE;
-    // box-shadow: 0 8px 6px -6px #2c2c2c;
+  background-color: $app-accent;
 }
-
-@media only screen and (max-width: 650px) {
-    .grid{
-      width: 100%;
-    }
-  }
