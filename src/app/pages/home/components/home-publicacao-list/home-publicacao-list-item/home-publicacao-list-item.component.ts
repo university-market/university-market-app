@@ -22,8 +22,10 @@ export class HomePublicacaoListItemComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.sale.descricao?.indexOf('livro') != -1 || 
-      this.sale.especificacoesTecnicas?.indexOf('livro') != -1) {
+    const livroStr = 'livro';
+    if (this.sale.titulo?.toLowerCase().includes(livroStr) ||
+      this.sale.descricao?.toLowerCase().includes(livroStr) || 
+      this.sale.especificacoesTecnicas?.toLowerCase().includes(livroStr)) {
 
         this.isLivro = true;
     }
