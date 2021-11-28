@@ -91,11 +91,12 @@
         </div>
         <mat-divider></mat-divider>
       </div>
-      <div class="mt-20" *ngIf="publicacao.estudanteId != sessionId">
-        <button mat-stroked-button color="accent" class="w-20 ml-0"  (click)="favoritar()">
+      <div class="mt-20 full-width" *ngIf="publicacao.estudanteId != sessionId" 
+        fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap.lt-sm="10px">
+        <button mat-stroked-button color="accent" (click)="favoritar()">
           <mat-icon>favorite</mat-icon> Favoritar
         </button>
-        <button mat-stroked-button color="warn" class="w-20 ml-0" (click)="denunciar()">
+        <button mat-stroked-button color="warn" (click)="denunciar()">
           <mat-icon>flag</mat-icon> Denunciar
         </button>
       </div>

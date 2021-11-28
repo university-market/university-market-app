@@ -3,7 +3,7 @@
     <app-profile-user [user]="user" (onLogout)="logout()"></app-profile-user>
   </div>
   <div class="container__content">
-    <app-profile-content>
+    <app-profile-content (onLogout)="logout()">
       <router-outlet></router-outlet>
     </app-profile-content>
   </div>

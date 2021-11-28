@@ -6,13 +6,16 @@
           routerLink="posts" routerLinkActive="selected-route">
           <mat-icon>dashboard</mat-icon>
         </mat-button-toggle>
+        <mat-button-toggle value="favoritas" 
+          routerLink="favoritas" routerLinkActive="selected-route">
+          <mat-icon>favorite</mat-icon>
+        </mat-button-toggle>
         <mat-button-toggle value="account" 
           routerLink="account" routerLinkActive="selected-route">
           <mat-icon>account_circle</mat-icon>
         </mat-button-toggle>
-        <mat-button-toggle value="settings" 
-          routerLink="settings" routerLinkActive="selected-route">
-          <mat-icon>settings</mat-icon>
+        <mat-button-toggle value="logout" (click)="onLogout.emit()">
+          <mat-icon>logout</mat-icon>
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>

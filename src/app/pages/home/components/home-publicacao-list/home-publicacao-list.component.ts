@@ -17,7 +17,7 @@ export class HomePublicacaoListComponent implements OnInit {
 
     this.SaleHomeService.listSale()
       .subscribe(sales => {
-        this.sales = sales.slice(0, 5);
+        this.sales = sales.slice(0, 4);
       });
   }
 
