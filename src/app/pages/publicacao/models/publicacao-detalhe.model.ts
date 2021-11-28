@@ -10,5 +10,6 @@ export interface PublicacaoDetalheModel {
     estudanteId?: number; 
     cep?: string
     municipio?: string,
-    bairro?: string
+    bairro?: string;
+    favorita?: boolean;
 }

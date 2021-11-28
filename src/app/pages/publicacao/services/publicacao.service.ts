@@ -162,6 +162,10 @@ export class PublicacaoService {
     return this.http.post(API_URL + `/favoritar/publicacao`,model);
   }
 
+  public removerFavorita(publicacaoId: number) {
+    return this.http.delete(API_URL + `/excluir/favorita/${publicacaoId}`);
+  }
+
   // Operacoes com tags de publicacao
   public makeTagsString = (tags: PublicacaoTag[]) => tags ? tags.map<string>(t => (t.name)).join(',') : null;
 

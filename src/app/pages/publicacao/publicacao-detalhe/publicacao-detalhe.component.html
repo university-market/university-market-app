@@ -93,9 +93,17 @@
       </div>
       <div class="mt-20 full-width" *ngIf="publicacao.estudanteId != sessionId" 
         fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap.lt-sm="10px">
-        <button mat-stroked-button color="accent" (click)="favoritar()">
-          <mat-icon>favorite</mat-icon> Favoritar
+        <button mat-stroked-button color="accent" (click)="favoritar()" 
+          *ngIf="!publicacao.favorita; else favorita">
+          <mat-icon>favorite_border</mat-icon> 
+          Favoritar
         </button>
+        <ng-template #favorita>
+          <button mat-raised-button color="accent" (click)="favoritar()">
+            <mat-icon>favorite</mat-icon> 
+            Favoritada
+          </button>
+        </ng-template>
         <button mat-stroked-button color="warn" (click)="denunciar()">
           <mat-icon>flag</mat-icon> Denunciar
         </button>

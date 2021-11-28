@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { DenunciaService } from '../services/denuncia.service';
 import { AuthService } from 'src/app/base/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-publicacao-detalhe',
@@ -92,12 +93,27 @@ export class PublicacaoDetalheComponent implements OnInit {
     });
   }
 
-  public favoritar(){
-    console.log(this.publicacao)
-    this.service.favoritarPublicacao(this.publicacao)
-      .subscribe(() =>{
-        this.notification.success('Publicação Favoritada.')
-      })
+  public favoritar() {
+    
+    let obsFavotitada$: Observable<any> = null;
+
+    if (!this.publicacao.favorita) {
+
+      obsFavotitada$ = this.service.favoritarPublicacao(this.publicacao);
+
+    } else {
+
+      obsFavotitada$ = this.service.removerFavorita(this.publicacao.publicacaoId);
+    }
+
+    obsFavotitada$
+      .subscribe(() => {
+
+        const status = this.publicacao.favorita ? 'removida dos favoritos' : 'favoritada';
+
+        this.publicacao.favorita = !this.publicacao.favorita;
+        this.notification.success(`Publicação ${status}`);
+      });
   }
 
 }
