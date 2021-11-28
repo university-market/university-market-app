@@ -8,8 +8,5 @@ export interface NavigationItemModel {
   isActive?: boolean;
   children?: NavigationItemModel[];
   expanded?: boolean;
-  queryParams?:{
-    cursoId,
-    curso
-  }
+  queryParams?: object;
 }
