@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
+import { TipoPesquisa } from '../publicacao-search-list/publicacao-search-list.component';
 import { PublicacaoService } from '../services/publicacao.service';
 
 @Component({
@@ -9,30 +12,45 @@ import { PublicacaoService } from '../services/publicacao.service';
 })
 export class PublicacaoListComponent implements OnInit {
 
-  @Input() pesquisa: string;
-  @Input() tipo_pesquisa: number;
-  @Input() cursoId: number;
+  private _cursoId: number = 0;
+  private _pesquisa: string = null;
+  private _tipo_pesquisa: TipoPesquisa = null;
+
+  @Input() set pesquisa(value: string) {
+    this._pesquisa = value;
+  };
+
+  @Input('tipo_pesquisa') set tipo_pesquisa(value: TipoPesquisa) {
+    this._tipo_pesquisa = value;
+  };
+  @Input() set cursoId(value: number) {
+    this._cursoId = value
+  };
   
   public publicacaoList : PublicacaoDetalheModel[];
 
   public lista: number
 
   constructor(
-    private publicacaoService : PublicacaoService
+    private publicacaoService : PublicacaoService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
 
-    if(this.tipo_pesquisa == 1){
-    this.publicacaoService.pesquisar(this.pesquisa)
+    this.route.queryParams
+      .pipe(
+        switchMap(params => {
+
+          if (params['cursoId'])
+            return this.publicacaoService.pesquisarByCurso(params['cursoId']);
+
+          return this.publicacaoService.pesquisar(params['pesquisa']);
+        })
+      )
       .subscribe(publicacoes => {
-        this.publicacaoList = publicacoes
-      })
-    }else{
-      this.publicacaoService.pesquisarByCurso(this.cursoId)
-      .subscribe(publicacoes => {
-        this.publicacaoList = publicacoes
-      })
-    }
+
+        this.publicacaoList = publicacoes;
+      });
   }
 }

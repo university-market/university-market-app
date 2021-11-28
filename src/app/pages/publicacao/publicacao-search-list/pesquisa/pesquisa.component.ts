@@ -50,8 +50,6 @@ export class PesquisaComponent implements OnInit {
       queryParams:{
         pesquisa : this.form.get('pesquisa')?.value 
       }
-    }).then(() => {
-      window.location.reload();
     });
 
   }

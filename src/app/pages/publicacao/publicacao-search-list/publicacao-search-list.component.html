@@ -3,7 +3,7 @@
     <app-pesquisa></app-pesquisa>
   </div>
   <h2 class="w-75 m-auto">
-    Exibindo resultados de "{{pesquisa}}"
+    Exibindo resultados de "{{pesquisa$ | async}}"
   </h2>
   <h5 class="w-75 m-auto">
     Exibindo todos os resultados para a pesquisa.
@@ -14,7 +14,11 @@
       bloco de informações  
     </div> -->
     <div class="w-100">
-      <app-publicacao-list [pesquisa]="pesquisa" [tipo_pesquisa]="tipo_pesquisa" [cursoId]="cursoId"></app-publicacao-list>
+      <app-publicacao-list 
+        [pesquisa]="pesquisa$ | async" 
+        [tipo_pesquisa]="tipo_pesquisa$ | async" 
+        [cursoId]="cursoId$ | async">
+      </app-publicacao-list>
     </div>
   </div>
 </div>
