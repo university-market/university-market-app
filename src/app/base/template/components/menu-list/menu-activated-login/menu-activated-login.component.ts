@@ -52,7 +52,7 @@ export class MenuActivatedLoginComponent implements OnInit {
           }
           return true;
         }),
-        delay(1500),
+        delay(500),
         switchMap(() => this.authService.logout())
       )
       .subscribe(() => {
