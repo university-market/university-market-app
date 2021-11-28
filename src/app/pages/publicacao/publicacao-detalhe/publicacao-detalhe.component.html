@@ -92,7 +92,7 @@
         <mat-divider></mat-divider>
       </div>
       <div class="mt-20 full-width" *ngIf="publicacao.estudanteId != sessionId" 
-        fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap.lt-sm="10px">
+        fxLayout="row" fxLayoutGap="5px" fxLayout.lt-sm="column" fxLayoutGap.lt-sm="10px">
         <button mat-stroked-button color="accent" (click)="favoritar()" 
           *ngIf="!publicacao.favorita; else favorita">
           <mat-icon>favorite_border</mat-icon> 
