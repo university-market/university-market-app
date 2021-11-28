@@ -9,7 +9,7 @@ import { SaleHomeListService } from '../../../services/sale-home-list.service';
 })
 export class HomeCursoPublicacaoListComponent implements OnInit {
 
-  sales : SaleModel[];
+  sales : SaleModel[] = [];
 
   constructor(private SaleHomeService: SaleHomeListService) { }
 
