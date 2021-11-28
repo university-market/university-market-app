@@ -22,10 +22,12 @@
   </p>
 
   <footer>
-    <button mat-stroked-button color="warn">
+    <button mat-stroked-button color="warn" (click)="logout()">
       <mat-icon>logout</mat-icon>
       Sair do Sistema
     </button>
   </footer>
+
+  <mat-progress-bar color="accent" mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 
 </section>
