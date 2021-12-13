@@ -1,0 +1,23 @@
+<section class="container">
+
+  <header>
+    <mat-icon color="accent" class="mr-10">favorite</mat-icon>
+    <span>
+      Publicações Favoritas
+    </span>
+  </header>
+
+  <div class="info secondary-text">
+    <mat-icon>info_outline</mat-icon>
+    <span *ngIf="hasPublicacoes; else semPublicacoes" fxLayout="row" fxLayoutAlign="start center">
+      As suas publicações favoritas são exibidas aqui. Utilize o menu de contexto (<mat-icon>more_vert</mat-icon>) para ver mais ações
+    </span>
+  </div>
+
+</section>
+
+<ng-template #semPublicacoes>
+  <span>
+    Você ainda não tem nenhuma publicação favoritada. Quando tiver, elas serão apresentadas aqui
+  </span>
+</ng-template>

@@ -15,4 +15,8 @@ constructor(private http: HttpClient) { }
       return this.http.get<[SaleModel]>(API_URL + '/listar');
     }
 
+    listSalebyCourse(): Observable<[SaleModel]>{
+      return this.http.get<[SaleModel]>(API_URL + '/curso');
+    }
+
 }

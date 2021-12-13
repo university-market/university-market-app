@@ -23,7 +23,6 @@ export class PublicacaoListItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
     // Definindo padrao template descricao tamanho maximo
     this._limitDescriptionLength();
   }

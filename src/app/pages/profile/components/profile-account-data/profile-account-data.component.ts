@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/base/services/auth.service';
 import { MeusDadosUserModel } from '../../models/meus-dados-user.model';
 import { ProfileService } from '../../services/profile.service';
@@ -18,10 +18,10 @@ export class ProfileAccountDataComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.profileService.DadosUserbyId(this.authService.user.usuarioId)
-    .subscribe(user => {
-      this.user = user;
-    })
+    this.profileService.DadosUserbyId(this.authService.estudante.estudanteId)
+      .subscribe(user => {
+        this.user = user;
+      });
   }
 
 }

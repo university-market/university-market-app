@@ -20,22 +20,21 @@ export class RegisterService {
 
   public form: FormGroup = null;
 
+  // Loading
+  private _loading = new BehaviorSubject<boolean>(false);
+  public loading$ = this._loading.asObservable();
+
   constructor(private http: HttpClient) {
 
     this.form = new FormGroup({
       nome : new FormControl(null, Validators.required),
-      ra : new FormControl(null, Validators.required),
       email : new FormControl(null, [Validators.required, Validators.email]),
-      telefone : new FormControl(null, [Validators.required, NgBrazilValidators.telefone]),
       dataNascimento :new FormControl(null,[Validators.required]),
       senha: new FormControl(null, [Validators.required, Validators.minLength(PASSWORD_MINLENGHT)]),
       confirmacaoSenha: new FormControl(null, Validators.required),
       curso: new FormControl(null, Validators.required),
-      instituicao: new FormControl(null, Validators.required)
+      instituicao: new FormControl(null)
     });
-    
-    // Busca pelas instituições de ensino disponíveis
-    this.buscarInstituicoes().subscribe();
   }
 
   // Função Responsável por realizar o cadastro do usuário
@@ -56,7 +55,7 @@ export class RegisterService {
 
     return this._buscarInstituicoes()
       .pipe(
-        tap(data => this._instituicoes.next(data))
+        tap(data => this._instituicoes.next([...data]))
       );
   }
 
@@ -64,7 +63,7 @@ export class RegisterService {
 
     const url = environment.apiUrl + environment.instituicao;
 
-    return this.http.get<KeyValuePair<number, string>[]>(url + '/listar')
+    return this.http.get<KeyValuePair<number, string>[]>(url + '/buscar/disponiveis')
       .pipe(
         take(1)
       );
@@ -75,10 +74,20 @@ export class RegisterService {
     return this._buscarCursos(instituicaoId)
       .pipe(
         tap(data => {
-          this._cursos.next(data);
-          console.log('cursos', data);
-          
+          this._cursos.next([...data]);
         })
+      );
+  }
+
+  public buscarCursosPadrao(): Observable<KeyValuePair<number, string>[]> {
+
+    // Start loading
+    this._loading.next(true);
+
+    return this._buscarCursos(null)
+      .pipe(
+        tap(data => this._cursos.next([...data])),
+        finalize(() => this._loading.next(false))
       );
   }
 
@@ -86,7 +95,9 @@ export class RegisterService {
 
     const url = environment.apiUrl + environment.curso;
 
-    return this.http.get<KeyValuePair<number, string>[]>(url + `/${instituicaoId}/listar`)
+    const complementoUri = instituicaoId ? `/${instituicaoId}/listar` : '/all';
+
+    return this.http.get<KeyValuePair<number, string>[]>(url + complementoUri)
       .pipe(
         take(1)
       );

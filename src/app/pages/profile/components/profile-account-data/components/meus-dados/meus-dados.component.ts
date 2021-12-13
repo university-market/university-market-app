@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MeusDadosUserModel } from 'src/app/pages/profile/models/meus-dados-user.model';
+import { MeusDadosEditarComponent } from './meus-dados-editar/meus-dados-editar.component';
 
 @Component({
   selector: 'app-meus-dados',
@@ -10,9 +12,18 @@ export class MeusDadosComponent implements OnInit {
 
   @Input() user: MeusDadosUserModel;
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog
+    ){}
 
   ngOnInit() {
+  }
+
+  editar(){
+    this.dialog.open(MeusDadosEditarComponent,{
+      width : '500px',
+      maxWidth: '80%'
+    })
   }
 
 }

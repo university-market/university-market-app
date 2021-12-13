@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { KeyValuePair } from 'src/app/base/data-types/key-value-pair';
+import { map, switchMap } from 'rxjs/operators';
+import { LoginModel } from 'src/app/base/models/auth/login.model';
+import { AuthService } from 'src/app/base/services/auth.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { PASSWORD_MINLENGHT } from 'src/app/core/static/password-data';
+import { TermosDeUsoComponent } from '../components/termos-de-uso/termos-de-uso.component';
+import { RegistroInstituicaoEnsinoDialogComponent } from '../dialogs/registro-instituicao-ensino-dialog/registro-instituicao-ensino-dialog.component';
 import { RegisterModel } from '../models/register.model';
 import { RegisterService } from '../services/register.service';
 
@@ -13,7 +17,7 @@ import { RegisterService } from '../services/register.service';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [RegisterService]
+  // providers: [RegisterService]
 })
 export class RegisterComponent implements OnInit {
 
@@ -21,35 +25,45 @@ export class RegisterComponent implements OnInit {
   public passwordMinLenght: number = PASSWORD_MINLENGHT;
   public triedSave$ = new BehaviorSubject<boolean>(false);
 
-  // Dados necessários para formulário
-  public instituicaoList$: Observable<KeyValuePair<number, string>[]> = null;
-  public cursosList$: Observable<KeyValuePair<number, string>[]> = null
-
-  constructor(
+  constructor (
+    private authService: AuthService,
     private notification: NotificationService,
     private registerService: RegisterService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
 
     this.form = this.registerService.form;
-    this.instituicaoList$ = this.registerService.instituicoes$;
-    this.cursosList$ = this.registerService.cursos$;
 
-    this.form.get('instituicao').valueChanges
+    // Validacao inicial cadastro - Instituicao de ensino e Curso
+    this.dialog.open(RegistroInstituicaoEnsinoDialogComponent, {
+      disableClose: true,
+      width: '950px',
+    })
+      .afterClosed()
       .pipe(
-        distinctUntilChanged(),
-        switchMap(instituicaoId => this.registerService.buscarCursos(instituicaoId))
+        map((data: {instituicaoId: number|null, cursoId: number}) => ({
+          instituicaoId: data?.instituicaoId,
+          cursoId: data?.cursoId
+        }))
       )
-      .subscribe();
+      .subscribe(data => {
+
+        // Inicializacao dados institucionais do estudante
+        this.form.patchValue({
+          instituicao: data.instituicaoId,
+          curso: data.cursoId
+        });
+      });
   }
 
   // Função Responsável por realizar o cadatro do novo usuário
   public doRegister(): void {
     
     if (this.form.invalid) {
-      
+      console.log(this.form.getRawValue(), this.form);
       this.triedSave$.next(true);
       this.form.markAllAsTouched();
       this.notification.error('O formulário de cadastro deve ser preenchido corretamente', 3000);
@@ -70,25 +84,40 @@ export class RegisterComponent implements OnInit {
     const model: RegisterModel = {
       nome: this.form.get('nome').value,
       email: this.form.get('email').value,
-      ra: this.form.get('ra').value,
-      telefone: this.form.get('telefone').value,
       senha: this.form.get('senha').value,
       dataNascimento: this.form.get('dataNascimento').value,
       cursoId: this.form.get('curso').value,
       instituicaoId: this.form.get('instituicao').value
     };
 
-    console.log('model is', model);
-
+    // Registrar estudante e fazer login automático
     this.registerService.doRegister(model)
-    .subscribe(() => {
+      .pipe(
+        switchMap(() => {
+          
+          this.notification.success('Seu cadastro foi realizado com sucesso');
 
-      this.notification.success('Seu cadastro foi realizado com sucesso');
-      this.router.navigate(['/auth']);
-    }, (err) => {
+          const modelLogin: LoginModel = {
+            email: model.email,
+            senha: model.senha
+          };
+          // Realizar login ao finalizar cadastro
+          return this.authService.login(modelLogin)
+        })
+      )
+      .subscribe((data) => {
 
-      console.error(err);
-      this.notification.error('Não foi possível realizar seu cadastro');
-    });
+        this.notification.notify('Seja bem-vindo, ' + data.nome);
+        this.router.navigate(['/']); // Direcionar o usuário para homepage após autenticado
+      });
   }
+
+  termos(){
+    this.dialog.open(TermosDeUsoComponent,{
+      width : '800px',
+      maxWidth: '100%'
+    })
+  }
+
+
 }

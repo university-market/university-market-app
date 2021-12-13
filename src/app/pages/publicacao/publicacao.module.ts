@@ -15,7 +15,10 @@ import { PublicacaoLoadingComponent } from './components/publicacao-loading/publ
 import { PublicacaoListHeaderComponent } from './components/publicacao-list-header/publicacao-list-header.component';
 import { PublicacaoImportantTagComponent } from './components/publicacao-important-tag/publicacao-important-tag.component';
 import { PublicacaoDetalheContatoComponent } from './publicacao-detalhe/publicacao-detalhe-contato/publicacao-detalhe-contato.component';
-
+import { PublicacaoDenunciaComponent } from './publicacao-detalhe/publicacao-denuncia/publicacao-denuncia.component';
+import { DenunciaService } from './services/denuncia.service';
+import { PublicacaoSearchListComponent } from './publicacao-search-list/publicacao-search-list.component';
+import { PesquisaComponent } from './publicacao-search-list/pesquisa/pesquisa.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -32,10 +35,14 @@ import { PublicacaoDetalheContatoComponent } from './publicacao-detalhe/publicac
     PublicacaoListHeaderComponent,
     PublicacaoImportantTagComponent,
     PublicacaoDetalheContatoComponent,
+    PublicacaoDenunciaComponent,
+    PublicacaoSearchListComponent,
+    PesquisaComponent
   ],
   providers: [
     PublicacaoService,
-    PublicacaoFormService
+    PublicacaoFormService,
+    DenunciaService
   ]
 })
 export class PublicacaoModule { }

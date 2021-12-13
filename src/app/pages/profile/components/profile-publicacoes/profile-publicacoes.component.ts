@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/base/services/auth.service';
 import { DialogService } from 'src/app/base/services/dialog.service';
+import { NotificationService } from 'src/app/base/services/notification.service';
+import { PublicacaoListagemModel } from 'src/app/pages/publicacao/models/publicacao-listagem.model';
 import { ProfilePublicacoesModel } from '../../models/profile-publicacaoes.model';
 import { ProfileService } from '../../services/profile.service';
 
@@ -22,11 +24,12 @@ export class ProfilePublicacoesComponent implements OnInit {
     private profileService: ProfileService,
     private dialogService : DialogService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notification: NotificationService
   ) {}
 
   ngOnInit() { 
-    this.profileService.searchPublibyUser(this.authService.user.usuarioId)
+    this.profileService.searchPublibyUser(this.authService.estudante.estudanteId)
       .subscribe(publicacoes => {
         this.publicacoesList = publicacoes
       })
@@ -40,12 +43,27 @@ export class ProfilePublicacoesComponent implements OnInit {
       ).subscribe(()=>{
         var list = this.publicacoesList.filter(e => e.publicacaoId != publicacaoId)
         this.publicacoesList = list;
+        this.notification.success('Publicação excluida com sucesso.')
       })
   }
 
   onNovaPublicacaoClick(): void {
-
     this.router.navigate(['/publicacao', 'nova'], {relativeTo: this.route.root});
+  }
+
+  marcarVendida(publicacao: ProfilePublicacoesModel){
+    this.dialogService.openConfirmDialog('Tem certeza que deseja marcar esta publicação como vendida?')
+      .pipe(
+        filter((r) => r),
+        switchMap(() => this.profileService.marcarVendida(publicacao))
+      ).subscribe(()=>{
+        this.publicacoesList.filter(e => {
+          if(e.publicacaoId == publicacao.publicacaoId){
+            e.vendida = true
+          }
+        })
+        this.notification.success('Publicação marcada como vendida com sucesso.')
+      })
   }
 
 }

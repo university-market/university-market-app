@@ -2,10 +2,8 @@ import { Component, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
-import { AuthService } from 'src/app/base/services/auth.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { MeusContatosModel } from 'src/app/pages/profile/models/meus-contatos.model';
-import { ProfileService } from 'src/app/pages/profile/services/profile.service';
 
 @Component({
   selector: 'app-contatos-actions',
@@ -17,10 +15,9 @@ export class ContatosActionsComponent implements OnInit {
   public form: FormGroup;
   public MASKS = MASKS;
   public isEdicao = false;
+  
   constructor(
-    private authService: AuthService,
     private notification: NotificationService,
-    private profile: ProfileService,
     private dialogRef : MatDialogRef<ContatosActionsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: MeusContatosModel
   ) {
@@ -82,6 +79,10 @@ export class ContatosActionsComponent implements OnInit {
       tipo_contato_id: this.form.get('tipoContato')?.value
     }
 
+    if(model.tipo_contato_id == 1 || model.tipo_contato_id == 2 || model.tipo_contato_id == 3 ){
+      model.conteudo = (model.conteudo as string).replace(/\D/g, '');
+    }
+
     this.dialogRef.close(model);
   }
 
@@ -96,6 +97,9 @@ export class ContatosActionsComponent implements OnInit {
       tipo_contato_id: this.form.get('tipoContato')?.value
     }
 
+    if(model.tipo_contato_id == 1 || model.tipo_contato_id == 2 || model.tipo_contato_id == 3 ){
+      model.conteudo = (model.conteudo as string).replace(/\D/g, '');
+    }
     this.dialogRef.close(model);
   }
 

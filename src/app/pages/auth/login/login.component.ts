@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap } from 'rxjs/operators';
 import { DialogService } from 'src/app/base/services/dialog.service';
 import { NotificationService } from 'src/app/base/services/notification.service';
 import { EsqueciMinhaSenhaDialogComponent } from '../dialogs/esqueci-minha-senha-dialog/esqueci-minha-senha-dialog.component';
-import { LoginModel } from '../models/login.model';
+import { LoginModel } from 'src/app/base/models/auth/login.model';
 import { LoginService } from '../services/login.service';
 
 @Component({

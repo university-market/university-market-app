@@ -1,4 +1,16 @@
-<div class="container">
-  <app-publicacao-list-item *ngFor="let publicacao of publicacaoList"  [sale]="sale">
+<div class="container" *ngIf="publicacaoList?.length > 0; else semResultados">
+
+  <app-publicacao-list-item *ngFor="let publicacao of publicacaoList"  [publicacao]="publicacao">
   </app-publicacao-list-item>
+
 </div>
+
+<ng-template #semResultados>
+
+  <section class="sem-publicacoes secondary-text my-20" 
+    fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <mat-icon>info_outlined</mat-icon>
+    <span>Não foram encontradas publicações que correspondam à sua pesquisa</span>
+  </section>
+
+</ng-template>

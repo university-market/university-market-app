@@ -1,5 +1,13 @@
 <div class="container">
 
+  <section class="login-data">
+
+    <app-menu-activated-login></app-menu-activated-login>
+
+  </section>
+
+  <mat-divider class="my-10"></mat-divider>
+
   <ng-container *ngFor="let menuItem of menuList" [ngSwitch]="menuItem.type">
 
     <app-menu-list-item *ngSwitchCase="'item'"

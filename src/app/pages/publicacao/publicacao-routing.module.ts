@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PublicacaoComponent } from './publicacao.component';
 import { PublicacaoDetalheComponent } from './publicacao-detalhe/publicacao-detalhe.component';
 import { PublicacaoEdicaoComponent } from './publicacao-edicao/publicacao-edicao.component';
+import { PublicacaoSearchListComponent } from './publicacao-search-list/publicacao-search-list.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,14 @@ const routes: Routes = [
     component: PublicacaoEdicaoComponent
   },
   {
+    path: 'busca',
+    component: PublicacaoSearchListComponent
+  },
+  {
+    path: 'busca/curso',
+    component: PublicacaoSearchListComponent
+  },
+  {
     path: ':publicacaoId',
     children: [
       {
@@ -31,7 +40,7 @@ const routes: Routes = [
         component: PublicacaoEdicaoComponent
       }
     ]
-  },
+  }, 
 ];
 
 @NgModule({

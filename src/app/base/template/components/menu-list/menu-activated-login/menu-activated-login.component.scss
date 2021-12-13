@@ -1,0 +1,121 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+section.container {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+  
+  max-width: 100%;
+
+  row-gap: 7.5px;
+
+  background: transparent;
+  padding: 5px 10px;
+
+  header {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .nome {
+
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+  }
+
+  div {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+
+    text-transform: uppercase;
+    text-align: center;
+    
+    font-weight: 300;
+    font-size: 0.85rem;
+
+    .icon {
+      transform: scale(0.75);
+    }
+    p {
+      margin: 0;
+    }
+  }
+
+  aside.initial-letter {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    span {
+
+      $diameter: 85px;
+
+      color: #fff;
+      background: $app-accent;
+
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: $diameter;
+      height: $diameter;
+      padding: 15px;
+
+      border-radius: $rounded;
+
+      h1 {
+        margin: 0;
+        font-size: 58px;
+      }
+    }
+
+    i.ativo {
+      position: absolute;
+      $diameter: 17.5px;
+
+      width: $diameter;
+      height: $diameter;
+
+      background: #00d100;
+
+      $pos: 7.5px;
+
+      bottom: $pos;
+      right: $pos;
+
+      border-radius: $rounded;
+      border-style: solid;
+      border-width: 2.5px;
+      border-color: #fff;
+    }
+  }
+
+  footer {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    width: 100%;
+
+    button:first-child {
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

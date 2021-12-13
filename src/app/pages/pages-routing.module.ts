@@ -14,21 +14,23 @@ const routes: Routes = [
       loadChildren: () => import("../pages/home/home.module").then(m => m.HomeModule)
     },
     {
-      path: 'sales',
-      canActivate: [NavigationGuard],
-      loadChildren: () => import("../pages/sale/sale.module").then(m => m.SaleModule)
-
-    }, {
       path: 'publicacao',
       canActivate: [NavigationGuard],
       runGuardsAndResolvers: 'always',
       loadChildren: () => import("../pages/publicacao/publicacao.module").then(m => m.PublicacaoModule)
-    }, {
+    }, 
+    {
       path: 'perfil',
       canActivate: [NavigationGuard],
       loadChildren: () => import("../pages/profile/profile.module").then(m => m.ProfileModule)
+    },
+    {
+      path: 'publicacoes',
+      canActivate: [NavigationGuard],
+      loadChildren: () => import("../pages/profile/profile.module").then(m => m.ProfileModule)
     }
-];
+    
+  ];
 
 @NgModule({
   imports: [

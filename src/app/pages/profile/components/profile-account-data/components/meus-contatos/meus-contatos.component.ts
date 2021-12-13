@@ -18,7 +18,7 @@ export class MeusContatosComponent implements OnInit {
   contatos: MeusContatosModel[]
 
   constructor(
-    public dialog: MatDialog,
+    public  dialog: MatDialog,
     private profile: ProfileService,
     private notification: NotificationService,
     private auth: AuthService,
@@ -26,7 +26,7 @@ export class MeusContatosComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.profile.searchContatosByUser(this.auth.user.usuarioId)
+    this.profile.searchContatosByUser(this.auth.estudante.estudanteId)
       .subscribe(contatos => {
         this.contatos = contatos;
       });
@@ -51,6 +51,7 @@ export class MeusContatosComponent implements OnInit {
     ).subscribe((model) => {
       this.notification.success('Contato cadastrado com sucesso');  
       this.contatos.push(model)
+      console.log(this.contatos)
     })
   }
 

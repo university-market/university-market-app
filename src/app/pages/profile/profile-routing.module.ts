@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileAccountDataComponent } from './components/profile-account-data/profile-account-data.component';
 import { ProfileConfigComponent } from './components/profile-config/profile-config.component';
+import { ProfileFavoritasComponent } from './components/profile-favoritas/profile-favoritas.component';
 import { ProfilePublicacoesComponent } from './components/profile-publicacoes/profile-publicacoes.component';
 import { ProfileComponent } from './profile.component';
 
@@ -17,12 +18,18 @@ const routes: Routes = [
       }, {
         path: 'posts',
         component: ProfilePublicacoesComponent
-      }, {
+      }, 
+      {
         path: 'account',
         component: ProfileAccountDataComponent
-      }, {
+      }, 
+      {
         path: 'settings',
         component: ProfileConfigComponent
+      }, 
+      {
+        path: 'favoritas',
+        component: ProfileFavoritasComponent
       }
     ]
   }

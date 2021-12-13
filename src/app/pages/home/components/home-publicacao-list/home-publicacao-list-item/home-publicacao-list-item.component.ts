@@ -15,11 +15,20 @@ export class HomePublicacaoListItemComponent implements OnInit {
 
   private _descriptionMaxLength = 100;
 
+  public isLivro: boolean = false;
+
   constructor() { }
   
 
   ngOnInit() {
 
+    const livroStr = 'livro';
+    if (this.sale.titulo?.toLowerCase().includes(livroStr) ||
+      this.sale.descricao?.toLowerCase().includes(livroStr) || 
+      this.sale.especificacoesTecnicas?.toLowerCase().includes(livroStr)) {
+
+        this.isLivro = true;
+    }
 
     // Definindo padrao template descricao tamanho maximo
     this._limitDescriptionLength();

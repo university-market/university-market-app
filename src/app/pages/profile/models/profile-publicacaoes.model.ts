@@ -6,4 +6,5 @@ export interface ProfilePublicacoesModel{
     especificacoesTecnicas: string;
     pathImagem: string;
     dataHoraCriacao: string;
+    vendida?: boolean
 }

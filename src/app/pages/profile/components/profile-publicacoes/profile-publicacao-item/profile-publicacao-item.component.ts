@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PublicacaoListagemModel } from 'src/app/pages/publicacao/models/publicacao-listagem.model';
+import { ProfilePublicacoesModel } from '../../../models/profile-publicacaoes.model';
 
 @Component({
   selector: 'app-profile-publicacao-item',
@@ -8,9 +8,11 @@ import { PublicacaoListagemModel } from 'src/app/pages/publicacao/models/publica
 })
 export class ProfilePublicacaoItemComponent implements OnInit {
 
-  @Input('publicacao') publicacao: PublicacaoListagemModel; 
+  @Input('publicacao') publicacao: ProfilePublicacoesModel; 
 
   @Output('onDelete') onDelete = new EventEmitter<number>();
+
+  @Output('onVendida') onVendida = new EventEmitter<ProfilePublicacoesModel>();
 
   constructor(
   ) { }
@@ -19,6 +21,10 @@ export class ProfilePublicacaoItemComponent implements OnInit {
 
   excluir(){
     this.onDelete.emit(this.publicacao.publicacaoId);
+  }
+
+  marcarVendida(publicacao: ProfilePublicacoesModel){
+    this.onVendida.emit(publicacao);
   }
   
 }

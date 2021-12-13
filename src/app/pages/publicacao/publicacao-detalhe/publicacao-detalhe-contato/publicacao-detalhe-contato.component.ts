@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { PublicacaoContatosModel } from '../../models/publicacao-contatos.model';
+import { PublicacaoService } from '../../services/publicacao.service';
 
 @Component({
   selector: 'app-publicacao-detalhe-contato',
@@ -8,15 +10,27 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 })
 export class PublicacaoDetalheContatoComponent implements OnInit {
 
+  contatos: PublicacaoContatosModel[];
+
   constructor (
-    private _bottomSheetRef: MatBottomSheetRef<PublicacaoDetalheContatoComponent>
+    private _bottomSheetRef: MatBottomSheetRef<PublicacaoDetalheContatoComponent>,
+    private service: PublicacaoService,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: {id:number,
+                                                titulo: string}
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.service.obterContatos(this.data.id)
+      .subscribe(contatos => {
+        this.contatos = contatos
+        console.log(this.data.titulo)
+      })
+    
+  }
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
-    event.preventDefault();
+    // event.preventDefault();
   }
 
 }

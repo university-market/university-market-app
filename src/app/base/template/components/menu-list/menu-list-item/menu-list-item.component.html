@@ -14,6 +14,7 @@
     [matTooltip]="menuItem.label" 
     matTooltipPosition="right"
     [routerLink]="menuItem.route" 
+    [queryParams]="menuItem.queryParams"
     routerLinkActive="menu-active" 
     (click)="onNavigate.emit(true)">
     <mat-icon *ngIf="menuItem.icon != null; else menuIconDefault">{{ menuItem.icon }}</mat-icon>

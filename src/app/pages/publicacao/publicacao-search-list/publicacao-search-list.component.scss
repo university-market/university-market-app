@@ -1,0 +1,10 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+.header{
+  background-color: $app-accent;
+}
+
+.listagem{
+  display: flex;
+}

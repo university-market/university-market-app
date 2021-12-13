@@ -6,20 +6,23 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
 
-import { SaleModule } from './sale/sale.module';
 
 import { PublicacaoModule } from './publicacao/publicacao.module';
 import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   imports: [
+    // Common and 
     CommonModule,
     PagesRoutingModule,
-    HomeModule,
+
+    // Shared
     SharedModule,
-    SaleModule,
+
+    // Pages Module
+    HomeModule,
     PublicacaoModule,
-    ProfileModule
+    ProfileModule,
 
   ],
   declarations: [

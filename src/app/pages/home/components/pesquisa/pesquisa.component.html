@@ -1,0 +1,7 @@
+<form  [formGroup]="form" class="form w-75 m-auto mat-elevation-z6">
+    <input formControlName="pesquisa" class="input" type="text" placeholder="Digite o que você procura">
+    <button type="submit" (click)="pesquisar()" class="button m-auto">
+      <mat-icon>search
+      </mat-icon>
+    </button>
+</form>

@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-const API_URL = environment.apiUrl + environment.auth;
+const API_URL = environment.apiUrl + environment.account;
 
 @Injectable()
 export class RedefinicaoSenhaService {
@@ -50,7 +50,7 @@ export class RedefinicaoSenhaService {
 
   private _autenticarSolicitacaoPorEmail(email: string, token: string): Observable<boolean> {
 
-    return this.http.get<boolean>(API_URL + '/estudante/recuperarsenha', {
+    return this.http.get<boolean>(API_URL + '/recuperacaosenha/validar/email', {
       params: {
         email: email,
         token: token
@@ -62,7 +62,7 @@ export class RedefinicaoSenhaService {
 
   private _alterarSenha(novaSenha: string, email: string): Observable<void> {
 
-    return this.http.put<void>(API_URL + '/estudante/recuperarsenha', {
+    return this.http.put<void>(API_URL + '/recuperacaosenha/alterar', {
         senha: novaSenha,
         email: this._email.getValue(),
         token: this._token.getValue()

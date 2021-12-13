@@ -7,4 +7,6 @@ export interface NavigationItemModel {
   disabled?: boolean;
   isActive?: boolean;
   children?: NavigationItemModel[];
+  expanded?: boolean;
+  queryParams?: object;
 }

@@ -1,0 +1,24 @@
+<div>
+  <div class="w-100 header pt-20 pb-20 mb-20">
+    <app-pesquisa></app-pesquisa>
+  </div>
+  <h2 class="w-75 m-auto">
+    Exibindo resultados de "{{pesquisa$ | async}}"
+  </h2>
+  <h5 class="w-75 m-auto">
+    Exibindo todos os resultados para a pesquisa.
+  </h5>
+  <mat-divider class="m-auto w-75"></mat-divider>
+  <div class="w-75 m-auto listagem mt-20">
+    <!-- <div class="w-20 mat-elevation-z6">
+      bloco de informações  
+    </div> -->
+    <div class="w-100">
+      <app-publicacao-list 
+        [pesquisa]="pesquisa$ | async" 
+        [tipo_pesquisa]="tipo_pesquisa$ | async" 
+        [cursoId]="cursoId$ | async">
+      </app-publicacao-list>
+    </div>
+  </div>
+</div>

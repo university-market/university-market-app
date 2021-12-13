@@ -1,4 +1,4 @@
-<mat-expansion-panel class="mat-elevation-z0 container" expanded 
+<mat-expansion-panel class="mat-elevation-z0 container" [expanded]="expanded"
   [ngClass]="panelOpened ? 'container-opened' : 'container-closed'"
   (opened)="panelOpened = true" (closed)="panelOpened = false">
   <mat-expansion-panel-header [ngClass]="panelOpened ? 'group-on-opened' : 'group-on-closed'">

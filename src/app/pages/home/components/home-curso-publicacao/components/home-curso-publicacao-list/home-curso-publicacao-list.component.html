@@ -1,0 +1,15 @@
+<div class="container" *ngIf="sales?.length > 0; else semPublicacoes">
+
+  <app-home-publicacao-list-item *ngFor="let sale of sales" [sale]='sale'>
+  </app-home-publicacao-list-item>
+
+</div>
+
+<ng-template #semPublicacoes>
+
+  <section class="sem-publicacoes secondary-text my-20" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <mat-icon>info_outlined</mat-icon>
+    <span>Ainda não há publicações para exibir aqui. Volte mais tarde</span>
+  </section>
+  
+</ng-template>

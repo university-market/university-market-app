@@ -1,9 +1,7 @@
 @import "src/styles/colors.scss";
 @import "src/styles/template.scss";
 
-.container {
-    width: 75%;
-    margin: auto;
-    padding: 15px;
-    padding-bottom: 75px;
+.bg-accent {
+
+  background-color: $app-accent;
 }

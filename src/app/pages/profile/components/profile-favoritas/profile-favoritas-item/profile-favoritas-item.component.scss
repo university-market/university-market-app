@@ -1,0 +1,55 @@
+@import "src/styles/colors.scss";
+@import "src/styles/template.scss";
+
+.container {
+
+    // filter: drop-shadow(1.5px 1.5px 3.5px rgba(0,0,0,0.5));
+
+    &__details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+
+        .title { font-weight: 500; }
+    }
+
+    &__img {
+
+        .img {
+
+            border: solid 1px #ccc;
+            position: relative;
+
+            height: 175px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            img {
+              max-height: 100%;
+              max-width: 100%;
+            }
+            .value {
+                position: absolute;
+                bottom: 7.5px;
+                right: 7.5px;
+                background: $primary-chip-bg;
+                color: $primary-chip-text;
+                // padding: 5px 10px;
+              }
+              
+              .chip {
+              position: absolute;
+              background: $app-accent;
+              color: #fff;
+              padding: 5px 10px;
+              border-radius: $rounded;
+              right: 2.5px;
+              bottom: 7.5px;
+            }
+        }
+    }
+}

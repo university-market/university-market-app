@@ -1,5 +1,5 @@
 <div class="main-content"  >
-  <div class="informacoes full-width"*ngFor="let contato of contatos" [ngSwitch]="contato.tipo_contato_id" >
+  <div class="informacoes full-width" *ngFor="let contato of contatos" [ngSwitch]="contato.tipo_contato_id" >
     <mat-icon class="icon" color="primary" *ngSwitchCase="1" >call</mat-icon>
     <mat-icon class="icon" color="primary" *ngSwitchCase="2" >whatsapp</mat-icon>
     <mat-icon class="icon" color="primary" *ngSwitchCase="3" >telegram</mat-icon>
@@ -9,7 +9,16 @@
       <label *ngSwitchCase="2">Whatsapp</label>
       <label *ngSwitchCase="3">Telegram</label>
       <label *ngSwitchCase="4">E-mail</label>
-      <span>
+      <span *ngSwitchCase="1">
+        {{contato.conteudo | telefone}}
+      </span>
+      <span *ngSwitchCase="2">
+        {{contato.conteudo | telefone}}
+      </span>
+      <span *ngSwitchCase="3">
+        {{contato.conteudo | telefone}}
+      </span>
+      <span *ngSwitchCase="4">
         {{contato.conteudo}}
       </span>
     </div>

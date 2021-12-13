@@ -1,32 +1,24 @@
 .container {
 
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+
   &__content {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
 
     h1 {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      .title-icon {
-        display: flex;
-        margin-right: 7.5px;
-      }
+      margin: 0;
     }
   }
 
-  &__description {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    color: #5e5e5e;
-
-    mat-icon {
-      margin-right: 7.5px;
-    }
+  .icon {
+    transform: scale(1.25);
   }
 }

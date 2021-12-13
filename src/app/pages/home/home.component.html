@@ -1,23 +1,65 @@
-<div class="container">
-    <div class="container__header">
-        <!-- <app-grid-courses></app-grid-courses> -->
-    </div>
-    <div class="container__header">
-        <app-home-publicacao-list-header></app-home-publicacao-list-header>
-    </div>
-    <div class="mb-20">
-      <mat-divider></mat-divider>
-    </div>
-    <div>
-        <app-home-publicacao-list></app-home-publicacao-list>
-    </div>  
-    <div class="container__header">
-        <app-about-um-header></app-about-um-header>
-    </div>
-    <div class="mb-20">
-        <mat-divider></mat-divider>
+<div class="container full-width" fxLayout="column">
+
+  <header fxFlex  class="mat-elevation-z6 bg-accent pt-28">
+
+    <section ngClass="" ngClass.lt-md="" class="m-auto">
+
+      <app-pesquisa></app-pesquisa>
+  
+      <div class="my-8">
+        <app-grid-courses></app-grid-courses>
       </div>
-    <div>
-        <app-about-um></app-about-um>
-    </div> 
-  </div>
+
+    </section>
+
+  </header>
+
+  <main fxFlex fxLayout="column" ngClass="w-75" ngClass.lt-md="w-90" class="m-auto py-30" fxLayoutGap="20px">
+
+    <!-- PUBLICACOES EM DESTAQUE -->
+    <section fxLayout="column" fxLayoutGap="20px">
+
+      <app-home-publicacao-list-header></app-home-publicacao-list-header>
+      <app-home-publicacao-list></app-home-publicacao-list>
+
+    </section>
+    <!-- / PUBLICACOES EM DESTAQUE -->
+    
+    <aside class="my-20">
+      <mat-divider></mat-divider>
+    </aside>
+
+    <!-- PUBLICACOES DO CURSO -->
+    <section fxFlex class="m-0">
+
+      <app-home-curso-publicacao></app-home-curso-publicacao>
+
+    </section>
+    <!-- / PUBLICACOES DO CURSO -->
+    
+    <aside class="my-20">
+      <mat-divider></mat-divider>
+    </aside>
+
+    <!-- PUBLICIDADE - PARCEIROS -->
+    <section fxLayout="column" fxLayoutGap="20px">
+
+      <app-about-um-header></app-about-um-header>
+      <app-about-um></app-about-um>
+
+    </section>
+    <!-- / PUBLICIDADE - PARCEIROS -->
+    
+  </main>
+
+  <aside class="my-20">
+    <mat-divider></mat-divider>
+  </aside>
+
+  <footer fxFlex>
+
+    <app-home-footer></app-home-footer>
+
+  </footer>
+
+</div>

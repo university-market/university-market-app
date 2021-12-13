@@ -16,10 +16,7 @@
       <div class="publicacao-design__content">
         <div class="publicacao-design__content__sup-section">
           <div class="publicacao-design__content__sup-section__img">
-            <img 
-              #publicacaoImg
-              alt="publicacao-imagem"
-              [src]="publicacao.pathImagem ? 
+            <img #publicacaoImg alt="publicacao-imagem" [src]="publicacao.pathImagem ? 
               publicacao.pathImagem : 'assets/publicacao/' + noImage">
           </div>
           <div class="publicacao-design__content__sup-section__details">
@@ -42,9 +39,7 @@
                   {{ publicacao.valor | currencyBrazil }}
                 </span>
               </mat-card>
-              <button mat-raised-button type="button" 
-                (click)="contatarVendedor()"
-                color="accent"
+              <button mat-raised-button type="button" *ngIf="publicacao.estudanteId != sessionId" (click)="contatarVendedor()" color="accent"
                 class="w-100 m-0 py-4">
                 Entrar em contato com o vendedor
               </button>
@@ -65,10 +60,58 @@
             </mat-hint>
           </mat-form-field>
         </div>
+        <div class="mt-10">
+          <h3>Localização</h3>
+          <p class="secondary-text"
+            *ngIf="publicacao?.cep == null && publicacao?.municipio == null && publicacao?.bairro == null; else endereco">
+            Este usuário não possui endereço cadastrado
+          </p>
+          <ng-template #endereco>
+            <div class="data">
+              <div class="data__endereco">
+                <label>CEP</label>
+                <span>
+                  {{publicacao.cep | cep}}
+                </span>
+              </div>
+              <div class="data__endereco">
+                <label>Município</label>
+                <span>
+                  {{publicacao.municipio}}
+                </span>
+              </div>
+              <div class="data__endereco">
+                <label>Bairro</label>
+                <span>
+                  {{publicacao.bairro}}
+                </span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+      <div class="mt-20 full-width" *ngIf="publicacao.estudanteId != sessionId" 
+        fxLayout="row" fxLayoutGap="5px" fxLayout.lt-sm="column" fxLayoutGap.lt-sm="10px">
+        <button mat-stroked-button color="accent" (click)="favoritar()" 
+          *ngIf="!publicacao.favorita; else favorita">
+          <mat-icon>favorite_border</mat-icon> 
+          Favoritar
+        </button>
+        <ng-template #favorita>
+          <button mat-raised-button color="accent" (click)="favoritar()">
+            <mat-icon>favorite</mat-icon> 
+            Favoritada
+          </button>
+        </ng-template>
+        <button mat-stroked-button color="warn" (click)="denunciar()">
+          <mat-icon>flag</mat-icon> Denunciar
+        </button>
       </div>
     </div>
   </div>
 </div>
+
 
 <ng-template #noTags>
   <mat-form-field appearance="outline" class="input-full-width mt-20">

@@ -1,0 +1,41 @@
+<div class="container">
+  <mat-card class="publicacao-card">
+    <mat-card-header class="mb-4">
+      <div mat-card-avatar class="publicacao-header-image"></div>
+      <mat-card-title class="m-0">
+        {{ sale.titulo }}
+      </mat-card-title>
+      <!-- <mat-card-subtitle>{{ sale.name }}</mat-card-subtitle> -->
+    </mat-card-header>
+    <div mat-card-image class="publicacao-image">
+      <img [src]="sale.pathImagem" alt="Image of {{ sale.descricao }}">
+    </div>
+    <!-- <img mat-card-image [src]="sale.pathImagem" alt="Image of {{ sale.descricao }}"> -->
+    <mat-card-content>
+      <div class="publicacao-card__content">
+        <div class="publicacao-card__content__important-tags">
+          <app-home-publicacao-important-tag color="primary">
+            Detalhes técnicos
+          </app-home-publicacao-important-tag>
+          <app-home-publicacao-important-tag>
+            Novo
+          </app-home-publicacao-important-tag>
+        </div>
+        <div class="publicacao-card__content__description">
+          <p>{{ sale.descricao }}</p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="publicacao-card__actions">
+        <button mat-button type="button" class="content-price">
+          {{ sale.valor | currencyBrazil  }}
+        </button>
+        <button mat-raised-button color="accent" type="button" 
+          [routerLink]="['/publicacao', sale.publicacaoId]">
+          Ver detalhes
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

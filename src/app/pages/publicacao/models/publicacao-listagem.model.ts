@@ -4,4 +4,5 @@ export interface PublicacaoListagemModel {
     descricao: string;
     valor?: number;
     pathImagem?: string;
+    vendida?: boolean
 }

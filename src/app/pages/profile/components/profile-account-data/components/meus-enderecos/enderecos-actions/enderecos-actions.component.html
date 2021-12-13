@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>
+  {{isEdicao? "Editar": "Cadastrar"}} Endereço
+</h1>
+<span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+  <mat-icon fxLayout="row" fxLayoutAlign="start center" color='accent'>privacy_tip</mat-icon>
+  Este endereço será mostrado em todas suas publicações.
+</span>
+<hr>
+<form class="form" [formGroup]="form">
+  <div>
+    <mat-form-field class=" full-width pt-10">
+      <mat-label>Rua</mat-label>
+      <input formControlName="rua" maxlength="150" type="text" matInput autocomplete="off">
+    </mat-form-field>
+
+    <div fxLayout="row">
+      <mat-form-field class="mr-10 full-width pt-10">
+        <mat-label>Número</mat-label>
+        <input formControlName="numero" type="number" matInput autocomplete="off">
+      </mat-form-field>
+
+      <mat-form-field class=" full-width pt-10">
+        <mat-label>Bairro</mat-label>
+        <input formControlName="bairro" maxlength="25" type="text" matInput autocomplete="off">
+        <mat-error *ngIf="form.get('bairro')?.touched && form.get('bairro')?.errors">
+          Informe um bairro
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field class="mr-10 full-width pt-10">
+        <mat-label>Município</mat-label>
+        <input formControlName="municipio" maxlength="50" type="text" matInput autocomplete="off">
+        <mat-error *ngIf="form.get('municipio')?.touched && form.get('municipio')?.errors">
+          Informe um município
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class=" full-width pt-10">
+        <mat-label>CEP</mat-label>
+        <input formControlName="cep" type="text" matInput autocomplete="off" [textMask]="{mask: MASKS.cep.textMask}">
+        <mat-error *ngIf="form.get('cep')?.touched && form.get('cep')?.errors">
+          Informe um CEP válido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class=" full-width pt-10">
+      <mat-label>Complemento</mat-label>
+      <input formControlName="complemento" type="text" matInput autocomplete="off" maxlength="50">
+    </mat-form-field>
+
+  </div>
+  <mat-dialog-actions align="end" class="form__actions">
+    <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+    <button mat-raised-button color="accent" (click)="isEdicao? editar() : cadastrar()">Confirmar</button>
+  </mat-dialog-actions>
+</form>

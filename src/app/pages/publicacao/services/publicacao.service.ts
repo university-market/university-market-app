@@ -4,7 +4,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { finalize, map, take, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { PublicacaoContatosModel } from '../models/publicacao-contatos.model';
 import { PublicacaoCriacaoModel } from '../models/publicacao-criacao.model';
+import { PublicacaoDenunciaModel } from '../models/publicacao-denuncia.model';
 import { PublicacaoDetalheModel } from '../models/publicacao-detalhe.model';
 import { PublicacaoTag } from '../models/publicacao-tag.model';
 
@@ -138,6 +140,30 @@ export class PublicacaoService {
       .pipe(
         take(1)
       );
+  }
+
+  public obterContatos(id:number): Observable<PublicacaoContatosModel[]>{
+    return this.http.get<PublicacaoContatosModel[]>(environment.apiUrl + environment.estudante + `/contatos/${id}`);
+  }
+
+  public pesquisar(pesquisa :string): Observable<PublicacaoDetalheModel[]>{
+    return this.http.get<PublicacaoDetalheModel[]>(`${API_URL}/buscar/pesquisarPublicacoes/`,{
+      params: {
+        pesquisa
+      }
+    });
+  }
+
+  public pesquisarByCurso(cursoId :number): Observable<PublicacaoDetalheModel[]>{
+    return this.http.get<PublicacaoDetalheModel[]>(`${API_URL}/buscar/curso/publicacoes/${cursoId}`,);
+  }
+
+  public favoritarPublicacao( model:PublicacaoDetalheModel){
+    return this.http.post(API_URL + `/favoritar/publicacao`,model);
+  }
+
+  public removerFavorita(publicacaoId: number) {
+    return this.http.delete(API_URL + `/excluir/favorita/${publicacaoId}`);
   }
 
   // Operacoes com tags de publicacao
